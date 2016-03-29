@@ -39,6 +39,10 @@ public class ConsoleManager {
     private void executeConsoleCommand(ConsoleCommand command) {
 
         // every command need to read args: item + values
+
+        //check this out (test git)
+        String test = "test";
+        //check this out (test git)
         switch (command) {
             case GO:
                 break;
