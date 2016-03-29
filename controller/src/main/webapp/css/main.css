@@ -1,0 +1,40 @@
+textarea {
+	background-color:#2F4F4F;
+	color:#00FF00;
+	position: fixed;
+	width: 32%;
+	height: 100%;
+	font-weight: bold;
+	border: 4;
+	word-wrap: break-word;
+	resize: vertical;
+	margin-top: 5%;
+	margin-bottom: 5%;
+
+}
+html, body, #allContent{
+	height: 100%;
+}
+#consoleInfo
+{
+	background-color:#fdff5e;
+	width: 33%;
+	height: 100%;
+}
+#traderInfo
+{
+	background-color:#9999ff;
+	text-align: center;
+	left: 33%;
+	width: 34%;
+	height: 100%;
+}
+#marketInfo
+{
+	background-color:#99ff99;
+	text-align: center;
+	right: 0;
+	width: 33%;
+	height: 100%;
+}
+
