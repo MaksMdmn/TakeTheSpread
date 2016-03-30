@@ -3,16 +3,16 @@ package go.takethespread.managers;
 import go.takethespread.Money;
 import go.takethespread.NjTr.*;
 
-public class NjTrHelper {
+public class NjTrManager {
 
-    private static NjTrHelper instance;
+    private static NjTrManager instance;
 
-    private NjTrHelper() {
+    private NjTrManager() {
     }
 
-    public static NjTrHelper getInstance() {
+    public static NjTrManager getInstance() {
         if (instance == null) {
-            instance = new NjTrHelper();
+            instance = new NjTrManager();
         }
 
         return instance;
