@@ -19,16 +19,16 @@ public class NjTrManager {
     }
 
 
-    public Money getLastPrice(){
+    public Money getLastPrice(String instrument){
         return null;
     }
 
-    public Money getBestBid(){
+    public Money getBestBid(String instrument){
         return null;
 
     }
 
-    public Money getBestAsk(){
+    public Money getBestAsk(String instrument){
         return null;
     }
 

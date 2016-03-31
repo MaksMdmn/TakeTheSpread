@@ -56,31 +56,13 @@ public class ConsoleManager {
 
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
+        itemVerification(item);
+        valuesVerification(values);
+
         ConsoleCommand consoleCommand = ConsoleCommand.valueOf(command);
 
-        TradeManager.TradeTask ts = null;
+        TradeManager.TradeTask ts = TradeManager.createTradeTask(consoleCommand, item, values);
 
-        switch (consoleCommand) {
-            case GO:
-                ts = TradeManager.createTradeTask(consoleCommand, "", "");
-                //command already checked
-                break;
-            case GJ:
-                ts = TradeManager.createTradeTask(consoleCommand, "", "");
-                break;
-            case RN:
-                itemVerification(item);
-                valuesVerification(values);
-                ts = TradeManager.createTradeTask(consoleCommand, item, values);
-                break;
-            case PL:
-                itemVerification(item);
-                valuesVerification(values);
-                ts = TradeManager.createTradeTask(consoleCommand, item, values);
-                break;
-            default:
-                break;
-        }
         tradeManager.pushTask(ts);
     }
 
