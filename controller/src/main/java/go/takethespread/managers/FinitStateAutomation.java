@@ -9,6 +9,8 @@ public class FinitStateAutomation extends Thread {
     private NjTrManager njTrManager;
     private TradeManager tradeManager;
 
+    private boolean isWorking;
+
     private String nFuture;
     private String fFuture;
     private String settingAccount;
@@ -19,6 +21,7 @@ public class FinitStateAutomation extends Thread {
 
     @Override
     public void run() {
+        isWorking = true;
         if (nFuture == null || fFuture == null) {
 //                throw new IllegalAccessException("Please, enter the nFuture name: " + nFuture);
             return;
@@ -29,7 +32,7 @@ public class FinitStateAutomation extends Thread {
         njTrManager = NjTrManager.getInstance();
         tradeManager = TradeManager.getInstance();
 
-        while (true) {
+        while (isWorking) {
             try {
                 currentTask = tradeManager.getCurrentTask();
 
@@ -41,9 +44,11 @@ public class FinitStateAutomation extends Thread {
                         // break the cycle
                         break;
                     case RN:
+                        executeRN(currentTask.getItem(), currentTask.getValues());
                         // return the item and handle the values
                         break;
                     case PL:
+                        executePL(currentTask.getItem(), currentTask.getValues());
                         // change the item and handle the values
                         break;
                     default:
@@ -60,10 +65,10 @@ public class FinitStateAutomation extends Thread {
 
     private void executeGo() {
         Money nLast = njTrManager.getLastPrice(nFuture);
-        Money fLast = njTrManager.getLastPrice(fFuture);
         Money nBid = njTrManager.getBestBid(nFuture);
-        Money fBid = njTrManager.getBestBid(fFuture);
         Money nAsk = njTrManager.getBestAsk(nFuture);
+        Money fLast = njTrManager.getLastPrice(fFuture);
+        Money fBid = njTrManager.getBestBid(fFuture);
         Money fAsk = njTrManager.getBestAsk(fFuture);
 
         Money currentSpread;
@@ -97,7 +102,18 @@ public class FinitStateAutomation extends Thread {
                 //need to check orders!
             }
         }
+    }
 
+    private void executeGJ(){
+        // correcting completion of work!
+        isWorking = false;
+    }
+
+    private void executeRN(String item, String values) {
+
+    }
+
+    private void executePL(String item, String values) {
 
     }
 }
