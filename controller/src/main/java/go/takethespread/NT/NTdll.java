@@ -1,14 +1,9 @@
-package go.takethespread.NjTr;
+package go.takethespread.NT;
 
 
 import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import com.sun.jna.ptr.IntByReference;
-import com.sun.jna.ptr.PointerByReference;
 
-public interface NjTrAPI extends Library {
-    NjTrAPI INSTANCE = (NjTrAPI) Native.loadLibrary("NtDirect", NjTrAPI.class);
+public interface NTdll extends Library {
 
     double BuyingPower(String account);
 

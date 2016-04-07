@@ -1,7 +1,7 @@
-package go.takethespread.NjTr;
+package go.takethespread.NT;
 
 
-public class NjTrOrder {
+public class NTOrder {
 
     private final int orderId;
     private final String command;
@@ -17,7 +17,7 @@ public class NjTrOrder {
     private final String strategy;
     private final String strategyId;
 
-    private NjTrOrder(Builder builder) {
+    private NTOrder(Builder builder) {
         this.orderId = builder.orderId;
         this.account = builder.account;
         this.command = builder.command;
@@ -48,13 +48,14 @@ public class NjTrOrder {
         private String strategy = "";
         private String strategyId = "";
 
-        public Builder(int orderId, NjTrCommand njTrCommand) {
+        public Builder(int orderId, NTCommand NTCommand) {
             if (orderId < 0) {
-                this.orderId = Integer.valueOf(NjTrAPI.INSTANCE.NewOrderId());
+//                this.orderId = Integer.valueOf(INSTANCE.NewOrderId());
+                this.orderId = 0;
             } else {
                 this.orderId = orderId;
             }
-            this.command = njTrCommand.toString();
+            this.command = NTCommand.toString();
         }
 
         public Builder account(String val) {
@@ -62,7 +63,7 @@ public class NjTrOrder {
             return this;
         }
 
-        public Builder action(NjTrAction val) {
+        public Builder action(NTAction val) {
             action = val.toString();
             return this;
         }
@@ -77,7 +78,7 @@ public class NjTrOrder {
             return this;
         }
 
-        public Builder orderType(NjTrOrderType val) {
+        public Builder orderType(NTOrderType val) {
             orderType = val.toString();
             return this;
         }
@@ -92,7 +93,7 @@ public class NjTrOrder {
             return this;
         }
 
-        public Builder timeInForce(NjTrTIF val) {
+        public Builder timeInForce(NTtif val) {
             timeInForce = val.toString();
             return this;
         }
@@ -112,8 +113,8 @@ public class NjTrOrder {
             return this;
         }
 
-        public NjTrOrder build() {
-            return new NjTrOrder(this);
+        public NTOrder build() {
+            return new NTOrder(this);
         }
     }
 
@@ -124,14 +125,17 @@ public class NjTrOrder {
         } else {
             orderIdTemp = String.valueOf(orderId);
         }
-        return NjTrAPI.INSTANCE.Command(command, account, instrument, action,
-                        quantity, orderType, limitPrice, stopPrice, timeInForce, oco, orderIdTemp,
-                        strategy, strategyId) == 0;
+//        return INSTANCE.Command(command, account, instrument, action,
+//                        quantity, orderType, limitPrice, stopPrice, timeInForce, oco, orderIdTemp,
+//                        strategy, strategyId) == 0;
+
+        return true;
     }
 
     public int remainingContracts(int orderId){
         String orderIdTemp = String.valueOf(orderId);
-        return this.quantity - NjTrAPI.INSTANCE.Filled(orderIdTemp);
+//        return this.quantity - INSTANCE.Filled(orderIdTemp);
+        return 0;
     }
 
 }

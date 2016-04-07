@@ -1,6 +1,6 @@
-package go.takethespread.NjTr;
+package go.takethespread.NT;
 
-public enum NjTrOrderType {
+public enum NTOrderType {
     MARKET,
     LIMIT,
     //STOP,
