@@ -64,11 +64,15 @@ public class NTManager {
         return null;
     }
 
+    public Money getBuyingPower(){
+        return null;
+    }
+
     public int getPosition(){
         return 0;
     }
 
-    public List<NTOrder>getAllOrders(){
+    public List<String> getAllOrdersId(){
         return null;
     }
 
@@ -76,6 +80,38 @@ public class NTManager {
         return null;
     }
 
+//    Order State
+
+//      Initialized
+//    Order information validated on local PC
+//    Yellow
+//      PendingSubmit
+//    Order submitted to the connectivity provider
+//    Orange
+//      Accepted
+//    Order confirmation received by broker
+//    Light blue
+//      Working
+//    Order confirmation received by exchange
+//    Green
+//      PendingChange
+//    Order modification submitted to the connectivity provider
+//    Orange
+//      PendingCancel
+//    Order cancellation submitted to the connectivity provider/exchange
+//    Red
+//      Cancelled
+//    Order cancellation confirmed cancelled by exchange
+//    Red
+//       Rejected
+//    Order rejected locally, by connectivity provider or exchange
+//    Red
+//       PartFilled
+//    Order partially filled
+//    Red
+//       Filled
+//    Order completely filled
+//    Green
     public String getOrderStatus(String id){
         return null;
     }

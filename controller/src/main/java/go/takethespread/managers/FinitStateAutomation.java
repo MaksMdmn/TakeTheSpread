@@ -17,7 +17,7 @@ public class FinitStateAutomation extends Thread {
     private Money settingSpread;
     private int settingSize;
 
-//need to recive baisic values from config file
+//need to receive basic values from config file
 
     @Override
     public void run() {
@@ -81,8 +81,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 NTManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                NTManager.sendBuyLimitOrder(settingAccount, nFuture, nAsk.getAmount(), settingSize);
-                NTManager.sendSellLimitOrder(settingAccount, fFuture, fBid.getAmount(), settingSize);
+                NTManager.sendBuyLimitOrder(settingAccount, nFuture, nAsk, settingSize);
+                NTManager.sendSellLimitOrder(settingAccount, fFuture, fBid, settingSize);
 
                 //need to check the position!
                 //need to check orders!
@@ -95,8 +95,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 NTManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                NTManager.sendSellLimitOrder(settingAccount, nFuture, nBid.getAmount(), settingSize);
-                NTManager.sendBuyLimitOrder(settingAccount, fFuture, fAsk.getAmount(), settingSize);
+                NTManager.sendSellLimitOrder(settingAccount, nFuture, nBid, settingSize);
+                NTManager.sendBuyLimitOrder(settingAccount, fFuture, fAsk, settingSize);
 
                 //need to check the position!
                 //need to check orders!
