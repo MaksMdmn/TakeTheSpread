@@ -1,20 +1,19 @@
 package go.takethespread.managers;
 
 import go.takethespread.Money;
-import go.takethespread.NT.NTOrder;
 
 import java.util.List;
 
-public class NTManager {
+public class NTPlatformManagerImpl implements PlatformManager {
 
-    private static NTManager instance;
+    private static NTPlatformManagerImpl instance;
 
-    private NTManager() {
+    private NTPlatformManagerImpl() {
     }
 
-    public static NTManager getInstance() {
+    public static NTPlatformManagerImpl getInstance() {
         if (instance == null) {
-            instance = new NTManager();
+            instance = new NTPlatformManagerImpl();
         }
 
         return instance;
@@ -50,6 +49,10 @@ public class NTManager {
     }
 
     public void sendSellMarketOrder(String account, String instrument,int quantity) {
+    }
+
+    public int getFilledOfOrder(String orderId){
+        return 0;
     }
 
     public boolean getConnectionNT(int showMessage){

@@ -6,7 +6,7 @@ import go.takethespread.managers.exceptions.TradeException;
 
 public class FinitStateAutomation extends Thread {
     private ConsoleManager consoleManager;
-    private NTManager NTManager;
+    private PlatformManager platformManager;
     private TradeManager tradeManager;
 
     private boolean isWorking;
@@ -29,7 +29,7 @@ public class FinitStateAutomation extends Thread {
 
         TradeManager.TradeTask currentTask;
         consoleManager = ConsoleManager.getInstance();
-        NTManager = NTManager.getInstance();
+        platformManager = NTPlatformManagerImpl.getInstance();
         tradeManager = TradeManager.getInstance();
 
         while (isWorking) {
@@ -64,12 +64,12 @@ public class FinitStateAutomation extends Thread {
     }
 
     private void executeGo() {
-        Money nLast = NTManager.getLastPrice(nFuture);
-        Money nBid = NTManager.getBestBid(nFuture);
-        Money nAsk = NTManager.getBestAsk(nFuture);
-        Money fLast = NTManager.getLastPrice(fFuture);
-        Money fBid = NTManager.getBestBid(fFuture);
-        Money fAsk = NTManager.getBestAsk(fFuture);
+        Money nLast = platformManager.getLastPrice(nFuture);
+        Money nBid = platformManager.getBestBid(nFuture);
+        Money nAsk = platformManager.getBestAsk(nFuture);
+        Money fLast = platformManager.getLastPrice(fFuture);
+        Money fBid = platformManager.getBestBid(fFuture);
+        Money fAsk = platformManager.getBestAsk(fFuture);
 
         Money currentSpread;
 
@@ -79,10 +79,10 @@ public class FinitStateAutomation extends Thread {
 
             if(currentSpread.greaterThan(settingSpread)){
                 // AND CHECK THE SIZE!!!
-                NTManager.sendCancelAllOrders();
+                platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                NTManager.sendBuyLimitOrder(settingAccount, nFuture, nAsk, settingSize);
-                NTManager.sendSellLimitOrder(settingAccount, fFuture, fBid, settingSize);
+                platformManager.sendBuyLimitOrder(settingAccount, nFuture, nAsk, settingSize);
+                platformManager.sendSellLimitOrder(settingAccount, fFuture, fBid, settingSize);
 
                 //need to check the position!
                 //need to check orders!
@@ -93,10 +93,10 @@ public class FinitStateAutomation extends Thread {
 
             if(currentSpread.greaterThan(settingSpread)){
                 // AND CHECK THE SIZE!!!
-                NTManager.sendCancelAllOrders();
+                platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                NTManager.sendSellLimitOrder(settingAccount, nFuture, nBid, settingSize);
-                NTManager.sendBuyLimitOrder(settingAccount, fFuture, fAsk, settingSize);
+                platformManager.sendSellLimitOrder(settingAccount, nFuture, nBid, settingSize);
+                platformManager.sendBuyLimitOrder(settingAccount, fFuture, fAsk, settingSize);
 
                 //need to check the position!
                 //need to check orders!
