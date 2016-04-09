@@ -11,12 +11,12 @@ public class ConsoleManager {
 
     private static ConsoleManager instance;
 
-    private TradeManager tradeManager;
+    private TradeTaskManager tradeTaskManager;
     private Properties possibleSettings;
 
     private ConsoleManager() {
         possibleSettings = propertiesInit();
-        tradeManager = TradeManager.getInstance();
+        tradeTaskManager = TradeTaskManager.getInstance();
     }
 
     public static ConsoleManager getInstance() {
@@ -61,9 +61,9 @@ public class ConsoleManager {
 
         ConsoleCommand consoleCommand = ConsoleCommand.valueOf(command);
 
-        TradeManager.TradeTask ts = TradeManager.createTradeTask(consoleCommand, item, values);
+        TradeTaskManager.TradeTask ts = TradeTaskManager.createTradeTask(consoleCommand, item, values);
 
-        tradeManager.pushTask(ts);
+        tradeTaskManager.pushTask(ts);
     }
 
     private boolean commandVerification(String command) throws ConsoleException {

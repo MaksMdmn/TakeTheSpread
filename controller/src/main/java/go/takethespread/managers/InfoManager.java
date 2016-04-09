@@ -7,7 +7,7 @@ import java.util.*;
 public class InfoManager {
 
     private static InfoManager instance;
-    private PlatformManager platformManager;
+    private NTPlatformManager platformManager;
     private List<NTOrder> orders = new ArrayList<>();
     private Set<NTOrder>checkedOrders = new HashSet<>();
     private Map<String, Integer> positionsMap = new HashMap<>();
@@ -32,7 +32,7 @@ public class InfoManager {
     private void positionsCalc(){
         for (NTOrder order: orders){
             String instrument = order.getInstrument();
-            int filled = platformManager.getFilledOfOrder(order.getOrderId());
+            int filled = platformManager.getFilledOfOrder(order.getId());
 
 
 

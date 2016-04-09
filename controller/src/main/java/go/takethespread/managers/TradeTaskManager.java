@@ -5,19 +5,19 @@ import go.takethespread.managers.exceptions.TradeException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class TradeManager {
+public class TradeTaskManager {
 
-    private static TradeManager instance;
+    private static TradeTaskManager instance;
 
     private Deque<TradeTask> taskPool = new ArrayDeque<TradeTask>();
 
-    private TradeManager() {
+    private TradeTaskManager() {
 
     }
 
-    public static TradeManager getInstance() {
+    public static TradeTaskManager getInstance() {
         if (instance == null) {
-            instance = new TradeManager();
+            instance = new TradeTaskManager();
         }
 
         return instance;

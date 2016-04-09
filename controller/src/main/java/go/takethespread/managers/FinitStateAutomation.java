@@ -2,12 +2,13 @@ package go.takethespread.managers;
 
 
 import go.takethespread.Money;
+import go.takethespread.NT.NTOrder;
 import go.takethespread.managers.exceptions.TradeException;
 
 public class FinitStateAutomation extends Thread {
     private ConsoleManager consoleManager;
-    private PlatformManager platformManager;
-    private TradeManager tradeManager;
+    private NTPlatformManager platformManager;
+    private TradeTaskManager tradeTaskManager;
 
     private boolean isWorking;
 
@@ -27,14 +28,14 @@ public class FinitStateAutomation extends Thread {
             return;
         }
 
-        TradeManager.TradeTask currentTask;
+        TradeTaskManager.TradeTask currentTask;
         consoleManager = ConsoleManager.getInstance();
-        platformManager = NTPlatformManagerImpl.getInstance();
-        tradeManager = TradeManager.getInstance();
+        platformManager = NTPlatformManager.getInstance();
+        tradeTaskManager = TradeTaskManager.getInstance();
 
         while (isWorking) {
             try {
-                currentTask = tradeManager.getCurrentTask();
+                currentTask = tradeTaskManager.getCurrentTask();
 
                 switch (currentTask.getCommand()) {
                     case GO:
@@ -81,8 +82,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendBuyLimitOrder(settingAccount, nFuture, nAsk, settingSize);
-                platformManager.sendSellLimitOrder(settingAccount, fFuture, fBid, settingSize);
+                platformManager.sendBuyLimitOrder(new NTOrder());
+                platformManager.sendSellLimitOrder(new NTOrder());
 
                 //need to check the position!
                 //need to check orders!
@@ -95,8 +96,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendSellLimitOrder(settingAccount, nFuture, nBid, settingSize);
-                platformManager.sendBuyLimitOrder(settingAccount, fFuture, fAsk, settingSize);
+                platformManager.sendSellLimitOrder(new NTOrder());
+                platformManager.sendBuyLimitOrder(new NTOrder());
 
                 //need to check the position!
                 //need to check orders!

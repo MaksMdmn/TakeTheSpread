@@ -9,5 +9,4 @@ public enum NTCommand {
     FLATTENEVERYTHING,
     PLACE,
     REVERSEPOSITION,
-    NO_COMMAND
 }

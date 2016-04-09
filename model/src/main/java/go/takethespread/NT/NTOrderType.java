@@ -3,7 +3,6 @@ package go.takethespread.NT;
 public enum NTOrderType {
     MARKET,
     LIMIT,
-    //STOP,
-    //STOPLIMIT,
-    NO_TYPE
+    STOP,
+    STOPLIMIT
 }
