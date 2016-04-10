@@ -2,5 +2,6 @@ package go.takethespread;
 
 public enum OrderAction {
     BUY,
-    SELL
+    SELL,
+    NO_ACTION
 }

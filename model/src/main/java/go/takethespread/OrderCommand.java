@@ -9,4 +9,5 @@ public enum OrderCommand {
     FLATTENEVERYTHING,
     PLACE,
     REVERSEPOSITION,
+    NO_COMMAND
 }

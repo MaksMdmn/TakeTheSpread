@@ -4,5 +4,6 @@ public enum OrderType {
     MARKET,
     LIMIT,
     STOP,
-    STOPLIMIT
+    STOPLIMIT,
+    NO_TYPE
 }

@@ -1,8 +1,6 @@
 package go.takethespread;
 
 
-import go.takethespread.Money;
-import go.takethespread.NT.Order;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.NTPlatformManager;
 import go.takethespread.managers.TradeTaskManager;
@@ -10,7 +8,7 @@ import go.takethespread.managers.exceptions.TradeException;
 
 public class FinitStateAutomation extends Thread {
     private ConsoleManager consoleManager;
-    private NTPlatformManager platformManager;
+    private NTPlatformManager ntPlatformManager;
     private TradeTaskManager tradeTaskManager;
 
     private boolean isWorking;
@@ -33,47 +31,55 @@ public class FinitStateAutomation extends Thread {
 
         TradeTaskManager.TradeTask currentTask;
         consoleManager = ConsoleManager.getInstance();
-        platformManager = NTPlatformManager.getInstance();
+        ntPlatformManager = NTPlatformManager.getInstance();
         tradeTaskManager = TradeTaskManager.getInstance();
 
-        while (isWorking) {
-            try {
-                currentTask = tradeTaskManager.getCurrentTask();
+        try {
+            ntPlatformManager.startWorkingWithNT();
 
-                switch (currentTask.getCommand()) {
-                    case GO:
-                        //standart logical: check prices, waiting for signal and when signal - do the deal
-                        break;
-                    case GJ:
-                        // break the cycle
-                        break;
-                    case RN:
-                        executeRN(currentTask.getItem(), currentTask.getValues());
-                        // return the item and handle the values
-                        break;
-                    case PL:
-                        executePL(currentTask.getItem(), currentTask.getValues());
-                        // change the item and handle the values
-                        break;
-                    default:
+            while (isWorking) {
+                try {
+                    currentTask = tradeTaskManager.getCurrentTask();
 
-                        break;
+                    switch (currentTask.getCommand()) {
+                        case GO:
+                            //standart logical: check prices, waiting for signal and when signal - do the deal
+                            break;
+                        case GJ:
+                            // break the cycle
+                            break;
+                        case RN:
+                            executeRN(currentTask.getItem(), currentTask.getValues());
+                            // return the item and handle the values
+                            break;
+                        case PL:
+                            executePL(currentTask.getItem(), currentTask.getValues());
+                            // change the item and handle the values
+                            break;
+                        default:
+
+                            break;
+                    }
+
+                } catch (TradeException e) {
+                    e.printStackTrace();
                 }
 
-            } catch (TradeException e) {
-                e.printStackTrace();
             }
 
+            ntPlatformManager.endWorkingWithNT();
+        } catch (TradeException e) {
+            e.printStackTrace();
         }
     }
 
     private void executeGo() {
-        Money nLast = platformManager.getLastPrice(nFuture);
-        Money nBid = platformManager.getBestBid(nFuture);
-        Money nAsk = platformManager.getBestAsk(nFuture);
-        Money fLast = platformManager.getLastPrice(fFuture);
-        Money fBid = platformManager.getBestBid(fFuture);
-        Money fAsk = platformManager.getBestAsk(fFuture);
+        Money nLast = ntPlatformManager.getLastPrice(nFuture);
+        Money nBid = ntPlatformManager.getBestBid(nFuture);
+        Money nAsk = ntPlatformManager.getBestAsk(nFuture);
+        Money fLast = ntPlatformManager.getLastPrice(fFuture);
+        Money fBid = ntPlatformManager.getBestBid(fFuture);
+        Money fAsk = ntPlatformManager.getBestAsk(fFuture);
 
         Money currentSpread;
 
@@ -81,12 +87,12 @@ public class FinitStateAutomation extends Thread {
         if (nLast.lessThan(fLast)) {
             currentSpread = fBid.subtract(nAsk);
 
-            if(currentSpread.greaterThan(settingSpread)){
+            if (currentSpread.greaterThan(settingSpread)) {
                 // AND CHECK THE SIZE!!!
-                platformManager.sendCancelAllOrders();
+                ntPlatformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendBuyLimitOrder(new Order());
-                platformManager.sendSellLimitOrder(new Order());
+                ntPlatformManager.sendBuyLimitOrder(new Order());
+                ntPlatformManager.sendSellLimitOrder(new Order());
 
                 //need to check the position!
                 //need to check orders!
@@ -95,12 +101,12 @@ public class FinitStateAutomation extends Thread {
         } else {
             currentSpread = nBid.subtract(fAsk);
 
-            if(currentSpread.greaterThan(settingSpread)){
+            if (currentSpread.greaterThan(settingSpread)) {
                 // AND CHECK THE SIZE!!!
-                platformManager.sendCancelAllOrders();
+                ntPlatformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendSellLimitOrder(new Order());
-                platformManager.sendBuyLimitOrder(new Order());
+                ntPlatformManager.sendSellLimitOrder(new Order());
+                ntPlatformManager.sendBuyLimitOrder(new Order());
 
                 //need to check the position!
                 //need to check orders!
@@ -108,7 +114,7 @@ public class FinitStateAutomation extends Thread {
         }
     }
 
-    private void executeGJ(){
+    private void executeGJ() {
         // correcting completion of work!
         isWorking = false;
     }

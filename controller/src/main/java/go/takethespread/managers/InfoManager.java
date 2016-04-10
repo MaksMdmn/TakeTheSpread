@@ -1,17 +1,18 @@
 package go.takethespread.managers;
 
-import go.takethespread.NT.Order;
 
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class InfoManager {
 
     private static InfoManager instance;
-    private NTPlatformManager platformManager;
-    private List<Order> orders = new ArrayList<>();
-    private Set<Order>checkedOrders = new HashSet<>();
-    private Map<String, Integer> positionsMap = new HashMap<>();
+    private Properties properties;
 
+    private InfoManager(){
+        propertiesInit();
+    }
 
     public static InfoManager getInstance() {
         if (instance == null) {
@@ -20,22 +21,22 @@ public class InfoManager {
         return instance;
     }
 
-    //check from program side
-    public int checkPosition(String instrument){
-        return positionsMap.get(instrument);
+    public Properties getActualProperties(){
+        return properties;
     }
 
-    protected void addOrder(Order order){
-        orders.add(order);
-    }
-
-    private void positionsCalc(){
-        for (Order order: orders){
-            String instrument = order.getInstrument();
-            int filled = platformManager.getFilledOfOrder(order.getId());
-
-
-
+    private void propertiesInit() {
+        properties = new Properties();
+        String fileName = "possibleSettings.properties";
+        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName);) {
+            if (input == null) {
+                throw new RuntimeException("Settings-example file was unable to find");
+            }
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
+
 }

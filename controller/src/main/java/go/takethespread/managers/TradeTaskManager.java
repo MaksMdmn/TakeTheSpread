@@ -1,5 +1,6 @@
 package go.takethespread.managers;
 
+import go.takethespread.ConsoleCommand;
 import go.takethespread.managers.exceptions.TradeException;
 
 import java.util.ArrayDeque;
@@ -56,7 +57,7 @@ public class TradeTaskManager {
     }
 
 
-    protected static class TradeTask {
+    public static class TradeTask {
         private ConsoleCommand command;
         private String item;
         private String values;

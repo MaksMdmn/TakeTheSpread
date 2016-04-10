@@ -1,10 +1,9 @@
 package go.takethespread.managers;
 
+import go.takethespread.ConsoleCommand;
 import go.takethespread.managers.exceptions.ConsoleException;
 import go.takethespread.managers.exceptions.TradeException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class ConsoleManager {
@@ -12,10 +11,10 @@ public class ConsoleManager {
     private static ConsoleManager instance;
 
     private TradeTaskManager tradeTaskManager;
-    private Properties possibleSettings;
+    private Properties actualProperties;
 
     private ConsoleManager() {
-        possibleSettings = propertiesInit();
+        actualProperties = InfoManager.getInstance().getActualProperties();
         tradeTaskManager = TradeTaskManager.getInstance();
     }
 
@@ -25,22 +24,6 @@ public class ConsoleManager {
 
         }
         return instance;
-    }
-
-    private Properties propertiesInit() {
-        possibleSettings = new Properties();
-        String fileName = "possibleSettings.properties";
-        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName);) {
-            if (input == null) {
-                throw new RuntimeException("Settings-example file was unable to find");
-            }
-            possibleSettings.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return possibleSettings;
-
     }
 
     public void readConsoleMessage(String msg) throws ConsoleException, TradeException {
@@ -77,20 +60,20 @@ public class ConsoleManager {
     }
 
     private boolean itemVerification(String item) throws ConsoleException {
-        if (possibleSettings == null) {
-            throw new ConsoleException("Settings-example file is empty, " + possibleSettings);
+        if (actualProperties == null) {
+            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
         }
 
-        return possibleSettings.containsKey(item);
+        return actualProperties.containsKey(item);
 
     }
 
     private boolean valuesVerification(String values) throws ConsoleException {
-        if (possibleSettings == null) {
-            throw new ConsoleException("Settings-example file is empty, " + possibleSettings);
+        if (actualProperties == null) {
+            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
         }
 
-        return possibleSettings.containsValue(values);
+        return actualProperties.containsValue(values);
     }
 
 
