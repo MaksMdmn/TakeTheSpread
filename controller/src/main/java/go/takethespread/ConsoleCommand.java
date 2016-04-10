@@ -1,4 +1,4 @@
-package go.takethespread.managers;
+package go.takethespread;
 
 public enum ConsoleCommand {
     GO, //start

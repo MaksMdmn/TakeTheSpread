@@ -25,7 +25,7 @@ public class UserDaoImplTest {
             user0.setPassword("I'M SAY - THE BAPTIST");
             dao.update(user0, id0);
             System.out.println(dao.getById(id0));
-            
+
             dao.deleteById(id0);
             System.out.println(dao.getAll());
 

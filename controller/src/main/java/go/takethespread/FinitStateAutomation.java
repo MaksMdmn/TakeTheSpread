@@ -1,8 +1,11 @@
-package go.takethespread.managers;
+package go.takethespread;
 
 
 import go.takethespread.Money;
 import go.takethespread.NT.Order;
+import go.takethespread.managers.ConsoleManager;
+import go.takethespread.managers.NTPlatformManager;
+import go.takethespread.managers.TradeTaskManager;
 import go.takethespread.managers.exceptions.TradeException;
 
 public class FinitStateAutomation extends Thread {
