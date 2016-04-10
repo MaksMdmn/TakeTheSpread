@@ -17,4 +17,6 @@ public interface UserDao  extends GenericDao<User>{
     public void update(User user, int id) throws DbException;
 
     public void deleteById(int id) throws DbException;
+
+    public void deleteByName(String name) throws DbException;
 }

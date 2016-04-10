@@ -11,15 +11,15 @@
 
 </head>
 <body>
-<div id="allContent">
-    <div id="consoleInfo" style="float:left">
+<div ntId="allContent">
+    <div ntId="consoleInfo" style="float:left">
         CONSOLE
-        <textarea id="userConsole" type="textarea" cols="40" rows="40" onkeypress="checkCommandSend(event)"> </textarea>
+        <textarea ntId="userConsole" type="textarea" cols="40" rows="40" onkeypress="checkCommandSend(event)"> </textarea>
     </div>
-    <div id="traderInfo" style="float:left">
+    <div ntId="traderInfo" style="float:left">
         TABLE
     </div>
-    <div id="marketInfo" style="float:right">
+    <div ntId="marketInfo" style="float:right">
         CHART WITH SYMBOLS
     </div>
 </div>

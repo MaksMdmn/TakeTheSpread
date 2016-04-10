@@ -101,6 +101,23 @@ public class Order implements Serializable {
     public void setTif(OrderTIF tif) {
         this.tif = tif;
     }
+
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ntId='" + ntId + '\'' +
+                ", account='" + account + '\'' +
+                ", instrument='" + instrument + '\'' +
+                ", price=" + price +
+                ", size=" + size +
+                ", action=" + action +
+                ", command=" + command +
+                ", type=" + type +
+                ", status=" + status +
+                ", tif=" + tif +
+                '}';
+    }
 }
 
 

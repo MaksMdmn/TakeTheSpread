@@ -14,8 +14,9 @@ public class UserDaoImpl implements UserDao {
     private static final String USERS_SELECT_BY_NAME = "SELECT nick, pass, roleid FROM users WHERE nick = ?";
     private static final String USERS_SELECT_ALL = "SELECT nick, pass, roleid FROM users";
     private static final String USERS_INSERT = "INSERT INTO users(nick,pass,roleid) VALUES(?,?,?)";
-    private static final String USERS_UPDATE = "UPDATE users SET nick = ?, pass = ? roleid = ? WHERE id = ?";
+    private static final String USERS_UPDATE = "UPDATE users SET nick = ?, pass = ?, roleid = ? WHERE id = ?";
     private static final String USERS_DELETE_BY_ID = "DELETE FROM users WHERE id = ?";
+    private static final String USERS_DELETE_BY_NAME = "DELETE FROM users WHERE nick = ?";
 
     private Connection cn;
     private DaoHelper daoHelper;
@@ -36,9 +37,9 @@ public class UserDaoImpl implements UserDao {
             rs.next();
 
             user = new User();
-            user.setName(rs.getString("name"));
-            user.setPassword(rs.getString("password"));
-            user.setRoleId(rs.getInt("role"));
+            user.setName(rs.getString("nick"));
+            user.setPassword(rs.getString("pass"));
+            user.setRoleId(rs.getInt("roleid"));
 
         } catch (SQLException e) {
             throw new DbException("Can' execute the following SQL: " + USERS_SELECT_BY_ID, e);
@@ -62,8 +63,8 @@ public class UserDaoImpl implements UserDao {
 
             user = new User();
             user.setName(name);
-            user.setPassword(rs.getString("password"));
-            user.setRoleId(rs.getInt("role"));
+            user.setPassword(rs.getString("pass"));
+            user.setRoleId(rs.getInt("roleid"));
 
         } catch (SQLException e) {
             throw new DbException("Can' execute the following SQL: " + USERS_SELECT_BY_NAME, e);
@@ -86,9 +87,9 @@ public class UserDaoImpl implements UserDao {
             users = new ArrayList<>();
             while (rs.next()) {
                 User user = new User();
-                user.setName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
-                user.setRoleId(rs.getInt("role"));
+                user.setName(rs.getString("nick"));
+                user.setPassword(rs.getString("pass"));
+                user.setRoleId(rs.getInt("roleid"));
 
                 users.add(user);
             }
@@ -158,6 +159,21 @@ public class UserDaoImpl implements UserDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new DbException("Can't execute the following SQL: " + USERS_DELETE_BY_ID, e);
+        } finally {
+            daoHelper.closeDataBaseEntities(ps, null, cn);
+        }
+    }
+
+    @Override
+    public void deleteByName(String name) throws DbException {
+        PreparedStatement ps = null;
+        try {
+            prepareConnection();
+            ps = cn.prepareStatement(USERS_DELETE_BY_NAME);
+            ps.setString(1, name);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException("Can't execute the following SQL: " + USERS_DELETE_BY_NAME, e);
         } finally {
             daoHelper.closeDataBaseEntities(ps, null, cn);
         }
