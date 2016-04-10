@@ -1,14 +1,12 @@
 package go.takethespread;
 
 
-import go.takethespread.Money;
-
 import java.io.Serializable;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private String ntId;
     private String account;
     private String instrument;
     private Money price;
@@ -24,12 +22,12 @@ public class Order implements Serializable {
 
     }
 
-    public String getId() {
-        return id;
+    public String getNtId() {
+        return ntId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNtId(String ntId) {
+        this.ntId = ntId;
     }
 
     public String getAccount() {
