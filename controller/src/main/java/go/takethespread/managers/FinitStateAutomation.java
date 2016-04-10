@@ -2,7 +2,7 @@ package go.takethespread.managers;
 
 
 import go.takethespread.Money;
-import go.takethespread.NT.NTOrder;
+import go.takethespread.NT.Order;
 import go.takethespread.managers.exceptions.TradeException;
 
 public class FinitStateAutomation extends Thread {
@@ -82,8 +82,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendBuyLimitOrder(new NTOrder());
-                platformManager.sendSellLimitOrder(new NTOrder());
+                platformManager.sendBuyLimitOrder(new Order());
+                platformManager.sendSellLimitOrder(new Order());
 
                 //need to check the position!
                 //need to check orders!
@@ -96,8 +96,8 @@ public class FinitStateAutomation extends Thread {
                 // AND CHECK THE SIZE!!!
                 platformManager.sendCancelAllOrders();
                 // prices is incorrect !!!
-                platformManager.sendSellLimitOrder(new NTOrder());
-                platformManager.sendBuyLimitOrder(new NTOrder());
+                platformManager.sendSellLimitOrder(new Order());
+                platformManager.sendBuyLimitOrder(new Order());
 
                 //need to check the position!
                 //need to check orders!

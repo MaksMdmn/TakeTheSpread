@@ -1,6 +1,6 @@
 package go.takethespread.managers;
 
-import go.takethespread.NT.NTOrder;
+import go.takethespread.NT.Order;
 
 import java.util.*;
 
@@ -8,8 +8,8 @@ public class InfoManager {
 
     private static InfoManager instance;
     private NTPlatformManager platformManager;
-    private List<NTOrder> orders = new ArrayList<>();
-    private Set<NTOrder>checkedOrders = new HashSet<>();
+    private List<Order> orders = new ArrayList<>();
+    private Set<Order>checkedOrders = new HashSet<>();
     private Map<String, Integer> positionsMap = new HashMap<>();
 
 
@@ -25,12 +25,12 @@ public class InfoManager {
         return positionsMap.get(instrument);
     }
 
-    protected void addOrder(NTOrder order){
+    protected void addOrder(Order order){
         orders.add(order);
     }
 
     private void positionsCalc(){
-        for (NTOrder order: orders){
+        for (Order order: orders){
             String instrument = order.getInstrument();
             int filled = platformManager.getFilledOfOrder(order.getId());
 

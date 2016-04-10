@@ -1,11 +1,11 @@
-package go.takethespread.NT;
+package go.takethespread;
 
 
 import go.takethespread.Money;
 
 import java.io.Serializable;
 
-public class NTOrder implements Serializable {
+public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
@@ -13,14 +13,14 @@ public class NTOrder implements Serializable {
     private String instrument;
     private Money price;
     private int size;
-    private NTAction action;
-    private NTCommand command;
-    private NTOrderType type;
-    private NTOrderStatus status;
-    private NTtif tif;
+    private OrderAction action;
+    private OrderCommand command;
+    private OrderType type;
+    private OrderStatus status;
+    private OrderTIF tif;
 
 
-    public NTOrder() {
+    public Order() {
 
     }
 
@@ -64,43 +64,43 @@ public class NTOrder implements Serializable {
         this.size = size;
     }
 
-    public NTAction getAction() {
+    public OrderAction getAction() {
         return action;
     }
 
-    public void setAction(NTAction action) {
+    public void setAction(OrderAction action) {
         this.action = action;
     }
 
-    public NTCommand getCommand() {
+    public OrderCommand getCommand() {
         return command;
     }
 
-    public void setCommand(NTCommand command) {
+    public void setCommand(OrderCommand command) {
         this.command = command;
     }
 
-    public NTOrderType getType() {
+    public OrderType getType() {
         return type;
     }
 
-    public void setType(NTOrderType type) {
+    public void setType(OrderType type) {
         this.type = type;
     }
 
-    public NTOrderStatus getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(NTOrderStatus status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
-    public NTtif getTif() {
+    public OrderTIF getTif() {
         return tif;
     }
 
-    public void setTif(NTtif tif) {
+    public void setTif(OrderTIF tif) {
         this.tif = tif;
     }
 }

@@ -1,6 +1,6 @@
-package go.takethespread.NT;
+package go.takethespread;
 
-public enum NTOrderStatus {
+public enum OrderStatus {
     INITIALIZED,
     PENDING_SUBMIT,
     ACCEPTED,

@@ -1,4 +1,4 @@
-package go.takethespread.NT;
+package go.takethespread;
 
 
 import com.sun.jna.Library;

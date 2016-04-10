@@ -20,16 +20,16 @@ public class NTPlatformManager {
         return instance;
     }
 
-    public static NTOrder createOrder(Money price, int size, NTAction action, NTOrderType type) {
-        NTOrder resultOrder = new NTOrder();
+    public static Order createOrder(Money price, int size, OrderAction action, OrderType type) {
+        Order resultOrder = new Order();
         String id = instance.getNewOrderId();
         //<will be in settings
         String account = "";
         String instrument = "";
         //will be in settings>
-        NTCommand command = NTCommand.PLACE;
-        NTOrderStatus status = NTOrderStatus.INITIALIZED;
-        NTtif tif = NTtif.GTC;
+        OrderCommand command = OrderCommand.PLACE;
+        OrderStatus status = OrderStatus.INITIALIZED;
+        OrderTIF tif = OrderTIF.GTC;
 
         resultOrder.setId(id);
         resultOrder.setAccount(account);
@@ -59,22 +59,22 @@ public class NTPlatformManager {
         return null;
     }
 
-    public void sendCancelOrder(NTOrder order) {
+    public void sendCancelOrder(Order order) {
     }
 
     public void sendCancelAllOrders() {
     }
 
-    public void sendBuyLimitOrder(NTOrder order) {
+    public void sendBuyLimitOrder(Order order) {
     }
 
-    public void sendBuyMarketOrder(NTOrder order) {
+    public void sendBuyMarketOrder(Order order) {
     }
 
-    public void sendSellLimitOrder(NTOrder order) {
+    public void sendSellLimitOrder(Order order) {
     }
 
-    public void sendSellMarketOrder(NTOrder order) {
+    public void sendSellMarketOrder(Order order) {
     }
 
     public int getFilledOfOrder(String orderId) {

@@ -1,6 +1,6 @@
-package go.takethespread.NT;
+package go.takethespread;
 
-public enum NTCommand {
+public enum OrderCommand {
     CANCEL,
     CANCELALLORDERS,
     CHANGE,
