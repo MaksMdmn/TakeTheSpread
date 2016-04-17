@@ -2,56 +2,44 @@ package go.takethespread;
 
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String ntId;
-    private String account;
-    private String instrument;
-    private Money price;
+    private Date date;
+    private Deal deal;
+    private Type type;
     private int size;
-    private OrderAction action;
-    private OrderCommand command;
-    private OrderType type;
-    private OrderStatus status;
-    private OrderTIF tif;
+    private Money price;
+    private int filled;
 
-
-    public Order() {
+    public Order(){
 
     }
 
-    public String getNtId() {
-        return ntId;
+    public Date getDate() {
+        return date;
     }
 
-    public void setNtId(String ntId) {
-        this.ntId = ntId;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getAccount() {
-        return account;
+    public Deal getDeal() {
+        return deal;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setDeal(Deal deal) {
+        this.deal = deal;
     }
 
-    public String getInstrument() {
-        return instrument;
+    public Type getType() {
+        return type;
     }
 
-    public void setInstrument(String instrument) {
-        this.instrument = instrument;
-    }
-
-    public Money getPrice() {
-        return price;
-    }
-
-    public void setPrice(Money price) {
-        this.price = price;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public int getSize() {
@@ -62,61 +50,30 @@ public class Order implements Serializable {
         this.size = size;
     }
 
-    public OrderAction getAction() {
-        return action;
+    public Money getPrice() {
+        return price;
     }
 
-    public void setAction(OrderAction action) {
-        this.action = action;
+    public void setPrice(Money price) {
+        this.price = price;
     }
 
-    public OrderCommand getCommand() {
-        return command;
+    public int getFilled() {
+        return filled;
     }
 
-    public void setCommand(OrderCommand command) {
-        this.command = command;
+    public void setFilled(int filled) {
+        this.filled = filled;
     }
 
-    public OrderType getType() {
-        return type;
+    public enum Deal{
+        BUY,
+        SELL
     }
 
-    public void setType(OrderType type) {
-        this.type = type;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public OrderTIF getTif() {
-        return tif;
-    }
-
-    public void setTif(OrderTIF tif) {
-        this.tif = tif;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "ntId='" + ntId + '\'' +
-                ", account='" + account + '\'' +
-                ", instrument='" + instrument + '\'' +
-                ", price=" + price +
-                ", size=" + size +
-                ", action=" + action +
-                ", command=" + command +
-                ", type=" + type +
-                ", status=" + status +
-                ", tif=" + tif +
-                '}';
+    public enum Type{
+        LIMIT,
+        MARKET
     }
 }
 

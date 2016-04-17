@@ -1,9 +1,10 @@
 package go.takethespread.managers;
 
-import go.takethespread.ConsoleCommand;
 import go.takethespread.managers.exceptions.ConsoleException;
 import go.takethespread.managers.exceptions.TradeException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConsoleManager {
@@ -14,7 +15,8 @@ public class ConsoleManager {
     private Properties actualProperties;
 
     private ConsoleManager() {
-        actualProperties = InfoManager.getInstance().getActualProperties();
+        propertiesInit();
+        actualProperties = getActualProperties();
         tradeTaskManager = TradeTaskManager.getInstance();
     }
 
@@ -36,6 +38,12 @@ public class ConsoleManager {
         executeConsoleCommand(command, item, values);
 
     }
+
+
+    public Properties getActualProperties(){
+        return actualProperties;
+    }
+
 
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
@@ -76,7 +84,27 @@ public class ConsoleManager {
         return actualProperties.containsValue(values);
     }
 
+    private void propertiesInit() {
+        actualProperties = new Properties();
+        String fileName = "possibleSettings.properties";
+        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName)) {
+            if (input == null) {
+                throw new RuntimeException("Settings-example file was unable to find");
+            }
+            actualProperties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    protected enum ConsoleCommand {
+        GO, //start
+        GJ, //stop
+        RN, //ReturN the Value
+        PL, //PLace the Value
+
+    }
 }
 
 
