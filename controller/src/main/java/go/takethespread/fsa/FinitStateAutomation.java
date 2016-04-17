@@ -85,10 +85,30 @@ public class FinitStateAutomation extends Thread {
     }
 
     private class Algorithm {
-        private Signal getSignal() {
-            if (!checkPosition()) return Signal.DO_NOTHING;
-            if (!checkSpread()) return Signal.DO_NOTHING;
+
+        String n_instrument = consoleManager.getActualProperties().getProperty("n_instrument");
+        String f_instrument = consoleManager.getActualProperties().getProperty("f_instrument");
+        Money spread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread")));
+
+        private Signal getSignal() throws TradeException {
+
             if (!checkTime()) return Signal.DO_NOTHING;
+
+            switch (checkPosition()){
+                case IN_FLAT:
+                    if (!checkSpread()) return Signal.DO_NOTHING;
+                    break;
+                case IN_LONG:
+                    if (!checkSpread()) return Signal.DO_NOTHING;
+                    break;
+                case IN_SHORT:
+                    if (!checkSpread()) return Signal.DO_NOTHING;
+                    break;
+                default:
+                    break;
+            }
+            
+
             if (true) /*buy or sell and return that*/ {
                 return Signal.LETS_BUY;
             } else {
@@ -96,8 +116,23 @@ public class FinitStateAutomation extends Thread {
             }
         }
 
-        private boolean checkPosition() {
-            return true;
+        private InPosition checkPosition() throws TradeException {
+            int pos_n = externalDataManager.getPosition(n_instrument);
+            int pos_f = externalDataManager.getPosition(f_instrument);
+
+            if (pos_n == 0 && pos_f == 0) {
+                return InPosition.IN_FLAT;
+            }
+
+            if (pos_n > 0 && pos_n == pos_f * -1) {
+                return InPosition.IN_LONG;
+            }
+
+            if (pos_n < 0 && pos_n * -1 == pos_f) {
+                return InPosition.IN_FLAT;
+            }
+
+            throw new TradeException("Positions is not equvivalent now, NEAR: " + pos_n + " FAR: " + pos_f);
         }
 
         private boolean checkSpread() {
@@ -107,6 +142,14 @@ public class FinitStateAutomation extends Thread {
         private boolean checkTime() {
             return true;
         }
+
+    }
+
+    private enum InPosition {
+        //ORIENTATE ON NEAREST FUTURE!
+        IN_LONG,
+        IN_SHORT,
+        IN_FLAT
     }
 
     private enum Signal {
