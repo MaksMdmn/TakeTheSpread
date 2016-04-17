@@ -7,7 +7,6 @@ import go.takethespread.exceptions.DbException;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
-    //думаю пока подождёт, так как ордера могут быть в терминале\отчётах
 
     @Override
     public Order getById(int id) throws DbException {
