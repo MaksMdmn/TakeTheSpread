@@ -1,4 +1,4 @@
-package go.takethespread.temporary;
+package go.takethespread.managers.impl.temporary;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
