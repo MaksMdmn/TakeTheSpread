@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.temporary;
+package go.takethespread.managers.impl.socket.temporary;
 
 public class xCnClientServer {
     public static void main(String[] args) {

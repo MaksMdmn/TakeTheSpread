@@ -2,11 +2,21 @@ package go.takethespread.managers.impl;
 
 import go.takethespread.Money;
 import go.takethespread.Order;
-import go.takethespread.managers.ExternalManager;
+import go.takethespread.managers.ExternalDataManager;
 
 import java.util.List;
 
-public class ExternalManagerImpl implements ExternalManager {
+public class ExternalDataManagerImpl implements ExternalDataManager {
+
+    private static ExternalDataManager instance;
+
+    public static ExternalDataManager getInstance() {
+        if (instance == null) {
+            instance = new ExternalDataManagerImpl();
+
+        }
+        return instance;
+    }
 
     @Override
     public Money getBBid(String instr) {

@@ -11,13 +11,13 @@ public class ConsoleManager {
 
     private static ConsoleManager instance;
 
-    private TradeTaskManager tradeTaskManager;
+    private TaskManager taskManager;
     private Properties actualProperties;
 
     private ConsoleManager() {
         propertiesInit();
         actualProperties = getActualProperties();
-        tradeTaskManager = TradeTaskManager.getInstance();
+        taskManager = TaskManager.getInstance();
     }
 
     public static ConsoleManager getInstance() {
@@ -52,9 +52,9 @@ public class ConsoleManager {
 
         ConsoleCommand consoleCommand = ConsoleCommand.valueOf(command);
 
-        TradeTaskManager.TradeTask ts = TradeTaskManager.createTradeTask(consoleCommand, item, values);
+        TaskManager.TradeTask ts = TaskManager.createTradeTask(consoleCommand, item, values);
 
-        tradeTaskManager.pushTask(ts);
+        taskManager.pushTask(ts);
     }
 
     private boolean commandVerification(String command) throws ConsoleException {
@@ -98,7 +98,7 @@ public class ConsoleManager {
 
     }
 
-    protected enum ConsoleCommand {
+    public enum ConsoleCommand {
         GO, //start
         GJ, //stop
         RN, //ReturN the Value

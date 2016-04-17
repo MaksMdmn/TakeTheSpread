@@ -5,7 +5,7 @@ import go.takethespread.Order;
 
 import java.util.List;
 
-public interface ExternalManager {
+public interface ExternalDataManager {
 
     public Money getBBid(String instr);
 

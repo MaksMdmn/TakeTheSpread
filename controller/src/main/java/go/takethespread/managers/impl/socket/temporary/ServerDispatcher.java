@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.temporary;
+package go.takethespread.managers.impl.socket.temporary;
 
 import java.util.Vector;
 
