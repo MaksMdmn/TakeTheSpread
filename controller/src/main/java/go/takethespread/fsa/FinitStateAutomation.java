@@ -107,7 +107,7 @@ public class FinitStateAutomation extends Thread {
                 default:
                     break;
             }
-            
+
 
             if (true) /*buy or sell and return that*/ {
                 return Signal.LETS_BUY;
