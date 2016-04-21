@@ -53,6 +53,7 @@ public class NTTcpServer {
             while (isConn) {
                 try {
                     while (br.ready()) {
+                        System.out.println("reading...");
                         String data = br.readLine();
                         dataBridge.addData(data);
                     }

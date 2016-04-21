@@ -1,6 +1,5 @@
 #region Using declarations
 using System;
-
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
@@ -16,6 +15,7 @@ using System.Xml.Serialization;
 using NinjaTrader.Cbi;
 using NinjaTrader.Data;
 using NinjaTrader.Gui.Chart;
+using NinjaTrader.Strategy;
 #endregion
 
 // This namespace holds all indicators and is required. Do not change it.
@@ -32,7 +32,7 @@ namespace NinjaTrader.Indicator
             private int myInput0 = 1; // Default setting for MyInput0
         // User defined variables (add any user defined variables below)
         #endregion
-		
+
 		private System.Timers.Timer timer;
 		private StreamWriter tcpWriter;
 		private TcpClient tcpClient;
@@ -41,10 +41,11 @@ namespace NinjaTrader.Indicator
 		private StreamReader tcpReader;
 		private bool isCon;
 		private String prevMessage = "";
-		
+
 		private System.IO.StreamWriter fileWriter;
-		
-		
+
+
+
 
         /// <summary>
         /// This method is used to configure the indicator and is called once before any bar data is loaded.
@@ -58,9 +59,8 @@ namespace NinjaTrader.Indicator
         protected override void OnStartUp()
 		{
 			InitializeConnection ();
-
 		}
-		
+
 		private void InitializeConnection()
 		{
 			try
@@ -75,52 +75,74 @@ namespace NinjaTrader.Indicator
 				Print("Initialize exception " + e2.ToString());
 			}
 		}
-		
+
 		private void logicConnect(){
 			IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
 			tcpClient = new TcpClient();
 			tcpClient.Connect(ipAddr, 8085);
 			isCon = true;
 		}
-		
+
 		private void logicRead(){
 			tcpReader = new StreamReader(tcpClient.GetStream());
-			
+
 			thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
 			thrMessaging.Start();
 		}
-		
+
 		private void logicWrite(){
 			tcpWriter = new StreamWriter(tcpClient.GetStream());
+			SendMessages("TEST SUCCESS");
 		}
-		
+
 		private void ReceiveMessages()
 		{
 			while (isCon)
-			{		
+			{
 				try{
 					String con = tcpReader.ReadLine();
 					processMessage(con);
-					
-					if(con == "GJ"){
-						Print("Good bye blue sky");
-						correctClosingAndAbortCon();
-						
-					}
+
+
 				}catch (Exception e4){
-					correctClosingAndAbortCon();
-					
 					Print("receiveMessages exception: " + e4.ToString());
+					correctClosingAndAbortCon();
 				}
 			}
 		}
 
-		private void processMessage(String p)
+		private void processMessage(String msg)
 		{
-			Print("got this: " + p);
+			Print("COMMAND IS: " + msg);
+			switch (msg){
+				case "GJ":
+					Print("Good buy, Blue Sky!");
+					correctClosingAndAbortCon();
+					break;
+				case "ORD":
+					Print("okay, im here");
+					SendMessages("okay, do order");
+					break;
+				case "ORDS":
+					break;
+				case "NEWID":
+					break;
+				case "POS":
+					break;
+				case "BPOW":
+					break;
+				case "CSHV":
+					SendMessages(AccountItem.CashValue.ToString());
+					break;
+				case "RPNL":
+					SendMessages(AccountItem.RealizedProfitLoss.ToString());
+					break;
+				default:
+					break;
+			}
 		}
 
-		
+
 		//				p = HttpUtility.UrlEncode(p, System.Text.Encoding.UTF8);
 		private void SendMessages(String message)
 		{
@@ -130,40 +152,40 @@ namespace NinjaTrader.Indicator
 					tcpWriter.Flush();
 				}
 		}
-		
+
 
 		protected override void OnTermination()
 		{
 			Print("termination...");
 			correctClosingAndAbortCon();
 		}
-		
+
         protected override void OnBarUpdate()
         {
         }
-		
+
 		protected override void OnMarketData(MarketDataEventArgs e)
 		{
-			try{
-				if (e.MarketDataType == MarketDataType.Last)
-				{
-					String tickStr = "t: " + e.Time + " "
-					+ "ask: " + GetCurrentAsk() + " " 
-					+ "askVol: " + GetCurrentAskVolume() + " "
-					+ "bid: " + GetCurrentBid() + " " 
-					+ "bidVol: " + GetCurrentBidVolume() + 
-					Environment.NewLine;
-					
-					if (prevMessage!=tickStr){
-						SendMessages(tickStr);
-						prevMessage = tickStr;
-					}
-					
-				}	
-			}catch(Exception e3){
-				correctClosingAndAbortCon();
-				Print("onMarketData exception: " + e3.ToString());
-			}
+//			try{
+//				if (e.MarketDataType == MarketDataType.Last)
+//				{
+//					String tickStr = "t: " + e.Time + " "
+//					+ "ask: " + GetCurrentAsk() + " "
+//					+ "askVol: " + GetCurrentAskVolume() + " "
+//					+ "bid: " + GetCurrentBid() + " "
+//					+ "bidVol: " + GetCurrentBidVolume() +
+//					Environment.NewLine;
+//
+//					if (prevMessage!=tickStr){
+//						SendMessages(tickStr);
+//						prevMessage = tickStr;
+//					}
+//
+//				}
+//			}catch(Exception e3){
+//				correctClosingAndAbortCon();
+//				Print("onMarketData exception: " + e3.ToString());
+//			}
 		}
 		
 		private void correctClosingAndAbortCon(){
