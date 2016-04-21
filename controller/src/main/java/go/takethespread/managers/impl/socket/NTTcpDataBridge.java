@@ -27,9 +27,10 @@ public class NTTcpDataBridge {
         if(data.contains(":-:")){
             answers.push(data);
         }else{
-            Date key = null;
-            String value = null;
-            marketData.put(key, value);
+            System.out.println(data);
+//            Date key = null;
+//            String value = null;
+//            marketData.put(key, value);
         }
     }
 

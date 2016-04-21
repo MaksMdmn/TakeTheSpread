@@ -11,22 +11,17 @@ public class TCPTest {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             NTTcpServer server = new NTTcpServer();
             NTTcpDataBridge bridge = server.getDataBridge();
-            server.initServ();
-            Thread.sleep(8000);
-
+            server.initServerWork();
             System.out.println("Server started");
-            Thread.sleep(2000);
-            bridge.addMessage("TEST 1");
-            bridge.printAllDataToConsole();
+            bridge.addMessage("TEST 1.23:-:1");
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while(flag){
-                        bridge.printAllDataToConsole();
-                    }
+            Thread test = new Thread(() -> {
+                while(flag){
+                    bridge.printAllDataToConsole();
                 }
-            }).start();
+            });
+            test.setDaemon(true);
+            test.start();
 
             String s = "";
             while(true){

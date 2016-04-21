@@ -5,47 +5,67 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class NTTcpServer extends Thread {
+public class NTTcpServer {
 
+    private NTTcpDataBridge dataBridge;
     private Socket socket;
     private ServerSocket serverSocket;
-    private BufferedReader br;
     private volatile boolean isConn;
-    private NTTcpDataBridge dataBridge;
+    private BufferedReader br;
     private PrintWriter pw;
+    private Thread reading;
+    private Thread writing;
 
     public NTTcpServer() {
         dataBridge = NTTcpDataBridge.getInstance();
         isConn = true;
-    }
-
-    @Override
-    public void run() {
         try {
             serverSocket = new ServerSocket(8085, 0, InetAddress.getByName("localhost"));
+            if (socket == null) {
+                System.out.println("im here");
+                socket = serverSocket.accept();
+                br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                pw = new PrintWriter(socket.getOutputStream());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (isConn) {
-            try {
-                if (socket == null) {
-                    System.out.println("im here");
-                    socket = serverSocket.accept();
-                    br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    pw = new PrintWriter(socket.getOutputStream());
-                }
+        this.reading = initReading();
+        this.writing = initWriting();
+    }
 
-                if (!socket.isConnected()) {
-                    System.out.println("socket is closed");
-                    closeAllEntities();
-                    break;
-                }
+    public NTTcpDataBridge getDataBridge() {
+        return dataBridge;
+    }
 
-                while (br.ready()) {
-                    String data = br.readLine();
-                    dataBridge.addData(data);
-                }
+    public void initServerWork() {
+        reading.start();
+        writing.start();
+    }
 
+    public void shutDown() {
+        isConn = false;
+        closeAllEntities();
+    }
+
+    private Thread initReading() {
+        return new Thread(() -> {
+            while (isConn) {
+                try {
+                    while (br.ready()) {
+                        String data = br.readLine();
+                        dataBridge.addData(data);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private Thread initWriting() {
+        return new Thread(() -> {
+            while (isConn) {
                 while (dataBridge.haveMessage()) {
                     String message = dataBridge.acceptMessage();
                     if (message != null) {
@@ -54,31 +74,20 @@ public class NTTcpServer extends Thread {
                         pw.flush();
                     }
                 }
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
-    }
-
-    public NTTcpDataBridge getDataBridge() {
-        return dataBridge;
-    }
-
-    public void initServ() {
-        start();
-    }
-
-    public void shutDown() {
-        isConn = false;
-        closeAllEntities();
+        });
     }
 
     private void closeAllEntities() {
         try {
             br.close();
             pw.close();
+            if (reading != null) {
+                reading.interrupt();
+            }
+            if (writing != null) {
+                writing.interrupt();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
