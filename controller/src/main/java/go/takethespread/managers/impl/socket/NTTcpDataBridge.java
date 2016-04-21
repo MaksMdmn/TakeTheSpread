@@ -7,6 +7,7 @@ public class NTTcpDataBridge {
     private static NTTcpDataBridge instance;
     private TreeMap<Date, String> marketData;
     private Deque<String> messages;
+    private Deque<String> answers;
 
     private NTTcpDataBridge() {
         marketData = new TreeMap<>(Comparator.reverseOrder());
@@ -23,9 +24,13 @@ public class NTTcpDataBridge {
 
     public void addData(String data) {
         //data handle
-        Date key = null;
-        String value = null;
-        marketData.put(key, value);
+        if(data.contains(":-:")){
+            answers.push(data);
+        }else{
+            Date key = null;
+            String value = null;
+            marketData.put(key, value);
+        }
     }
 
     public void addMessage(String message) {
@@ -36,9 +41,27 @@ public class NTTcpDataBridge {
         return messages.pollFirst();
     }
 
+    public void addAnswer(String answer) {
+        answers.push(answer);
+    }
+
+    public String acceptAnswer() {
+        return answers.pollFirst();
+    }
+
     public boolean haveMessage() {
         return !messages.isEmpty();
     }
+
+    public boolean haveAnswers() {
+        return !answers.isEmpty();
+    }
+
+
+
+
+
+
 
     public void printAllDataToConsole() {
         if (!marketData.isEmpty()) {
