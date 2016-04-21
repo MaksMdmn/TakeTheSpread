@@ -1,29 +1,29 @@
-package go.takethespread.managers;
+package go.takethespread.managers.impl;
 
 import go.takethespread.managers.exceptions.TradeException;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class TradeManager {
+public class TaskManager {
 
-    private static TradeManager instance;
+    private static TaskManager instance;
 
     private Deque<TradeTask> taskPool = new ArrayDeque<TradeTask>();
 
-    private TradeManager() {
+    private TaskManager() {
 
     }
 
-    public static TradeManager getInstance() {
+    public static TaskManager getInstance() {
         if (instance == null) {
-            instance = new TradeManager();
+            instance = new TaskManager();
         }
 
         return instance;
     }
 
-    public static TradeTask createTradeTask(ConsoleCommand command, String item, String values) {
+    public static TradeTask createTradeTask(ConsoleManager.ConsoleCommand command, String item, String values) {
         return new TradeTask(command, item, values);
     }
 
@@ -56,18 +56,18 @@ public class TradeManager {
     }
 
 
-    protected static class TradeTask {
-        private ConsoleCommand command;
+    public static class TradeTask {
+        private ConsoleManager.ConsoleCommand command;
         private String item;
         private String values;
 
-        private TradeTask(ConsoleCommand command, String item, String values) {
+        private TradeTask(ConsoleManager.ConsoleCommand command, String item, String values) {
             this.command = command;
             this.item = item;
             this.values = values;
         }
 
-        public ConsoleCommand getCommand() {
+        public ConsoleManager.ConsoleCommand getCommand() {
             return command;
         }
 

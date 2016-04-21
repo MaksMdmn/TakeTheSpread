@@ -1,4 +1,4 @@
-package go.takethespread.managers;
+package go.takethespread.managers.impl;
 
 import go.takethespread.managers.exceptions.ConsoleException;
 import go.takethespread.managers.exceptions.TradeException;
@@ -11,12 +11,13 @@ public class ConsoleManager {
 
     private static ConsoleManager instance;
 
-    private TradeManager tradeManager;
-    private Properties possibleSettings;
+    private TaskManager taskManager;
+    private Properties actualProperties;
 
     private ConsoleManager() {
-        possibleSettings = propertiesInit();
-        tradeManager = TradeManager.getInstance();
+        propertiesInit();
+        actualProperties = getActualProperties();
+        taskManager = TaskManager.getInstance();
     }
 
     public static ConsoleManager getInstance() {
@@ -25,22 +26,6 @@ public class ConsoleManager {
 
         }
         return instance;
-    }
-
-    private Properties propertiesInit() {
-        possibleSettings = new Properties();
-        String fileName = "possibleSettings.properties";
-        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName);) {
-            if (input == null) {
-                throw new RuntimeException("Settings-example file was unable to find");
-            }
-            possibleSettings.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return possibleSettings;
-
     }
 
     public void readConsoleMessage(String msg) throws ConsoleException, TradeException {
@@ -54,6 +39,12 @@ public class ConsoleManager {
 
     }
 
+
+    public Properties getActualProperties(){
+        return actualProperties;
+    }
+
+
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
         itemVerification(item);
@@ -61,9 +52,9 @@ public class ConsoleManager {
 
         ConsoleCommand consoleCommand = ConsoleCommand.valueOf(command);
 
-        TradeManager.TradeTask ts = TradeManager.createTradeTask(consoleCommand, item, values);
+        TaskManager.TradeTask ts = TaskManager.createTradeTask(consoleCommand, item, values);
 
-        tradeManager.pushTask(ts);
+        taskManager.pushTask(ts);
     }
 
     private boolean commandVerification(String command) throws ConsoleException {
@@ -77,23 +68,43 @@ public class ConsoleManager {
     }
 
     private boolean itemVerification(String item) throws ConsoleException {
-        if (possibleSettings == null) {
-            throw new ConsoleException("Settings-example file is empty, " + possibleSettings);
+        if (actualProperties == null) {
+            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
         }
 
-        return possibleSettings.containsKey(item);
+        return actualProperties.containsKey(item);
 
     }
 
     private boolean valuesVerification(String values) throws ConsoleException {
-        if (possibleSettings == null) {
-            throw new ConsoleException("Settings-example file is empty, " + possibleSettings);
+        if (actualProperties == null) {
+            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
         }
 
-        return possibleSettings.containsValue(values);
+        return actualProperties.containsValue(values);
     }
 
+    private void propertiesInit() {
+        actualProperties = new Properties();
+        String fileName = "possibleSettings.properties";
+        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName)) {
+            if (input == null) {
+                throw new RuntimeException("Settings-example file was unable to find");
+            }
+            actualProperties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    public enum ConsoleCommand {
+        GO, //start
+        GJ, //stop
+        RN, //ReturN the Value
+        PL, //PLace the Value
+
+    }
 }
 
 

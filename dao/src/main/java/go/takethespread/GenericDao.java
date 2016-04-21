@@ -1,17 +1,18 @@
 package go.takethespread;
 
+import go.takethespread.exceptions.DbException;
+
 import java.util.List;
 
 public interface GenericDao<T> {
 
-    public long create(T obj);
+    public T getById(int id) throws DbException;
 
-    public T read(int id);
+    public List<T> getAll() throws DbException;
 
-    public List<T> readAll();
+    public int insert(T object) throws DbException;
 
-    public void update(T obj);
+    public void update(T object, int id) throws DbException;
 
-    public void delete(int id);
-
+    public void deleteById(int id) throws DbException;
 }

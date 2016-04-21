@@ -1,70 +1,45 @@
 package go.takethespread;
 
+
 import java.io.Serializable;
 import java.sql.Date;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Date actDate;
-    private Date endDate;
-    private String assetTicker;
-    private Money enterPrice;
-    private Money exitPrice;
-    private Money volume;
+    private Date date;
+    private Deal deal;
+    private Type type;
     private int size;
-    private Money result;
+    private Money price;
+    private int filled;
 
-    public Order() {
+    public Order(){
 
     }
 
-    public Date getActDate() {
-        return actDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setActDate(Date actDate) {
-        this.actDate = actDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Deal getDeal() {
+        return deal;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setDeal(Deal deal) {
+        this.deal = deal;
     }
 
-    public String getAssetTicker() {
-        return assetTicker;
+    public Type getType() {
+        return type;
     }
 
-    public void setAssetTicker(String assetTicker) {
-        this.assetTicker = assetTicker;
-    }
-
-    public Money getEnterPrice() {
-        return enterPrice;
-    }
-
-    public void setEnterPrice(Money enterPrice) {
-        this.enterPrice = enterPrice;
-    }
-
-    public Money getExitPrice() {
-        return exitPrice;
-    }
-
-    public void setExitPrice(Money exitPrice) {
-        this.exitPrice = exitPrice;
-    }
-
-    public Money getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Money volume) {
-        this.volume = volume;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public int getSize() {
@@ -75,11 +50,31 @@ public class Order implements Serializable {
         this.size = size;
     }
 
-    public Money getResult() {
-        return result;
+    public Money getPrice() {
+        return price;
     }
 
-    public void setResult(Money result) {
-        this.result = result;
+    public void setPrice(Money price) {
+        this.price = price;
+    }
+
+    public int getFilled() {
+        return filled;
+    }
+
+    public void setFilled(int filled) {
+        this.filled = filled;
+    }
+
+    public enum Deal{
+        BUY,
+        SELL
+    }
+
+    public enum Type{
+        LIMIT,
+        MARKET
     }
 }
+
+
