@@ -22,7 +22,6 @@ public class NTTcpServer {
         try {
             serverSocket = new ServerSocket(8085, 0, InetAddress.getByName("localhost"));
             if (socket == null) {
-                System.out.println("im here");
                 socket = serverSocket.accept();
                 br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 pw = new PrintWriter(socket.getOutputStream());
@@ -55,6 +54,7 @@ public class NTTcpServer {
                     while (br.ready()) {
                         System.out.println("reading...");
                         String data = br.readLine();
+                        System.out.println("data: " + data);
                         dataBridge.addData(data);
                     }
                 } catch (IOException e) {

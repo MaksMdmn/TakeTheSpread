@@ -9,10 +9,10 @@ public class TCPTest {
     public static void main(String[] args) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Server starting...");
             NTTcpServer server = new NTTcpServer();
             NTTcpDataBridge bridge = server.getDataBridge();
             server.initServerWork();
-            System.out.println("Server started");
             bridge.addMessage("TEST 1.23:-:1");
 
             Thread test = new Thread(() -> {

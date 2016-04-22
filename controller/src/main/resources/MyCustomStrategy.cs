@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using System.Web;
-using System.Timers;
 
 using System.ComponentModel;
 using System.Diagnostics;
@@ -15,25 +14,22 @@ using System.Xml.Serialization;
 using NinjaTrader.Cbi;
 using NinjaTrader.Data;
 using NinjaTrader.Gui.Chart;
-using NinjaTrader.Strategy;
 #endregion
 
-// This namespace holds all indicators and is required. Do not change it.
-namespace NinjaTrader.Indicator
+// This namespace holds all strategies and is required. Do not change it.
+namespace NinjaTrader.Strategy
 {
     /// <summary>
-    /// Enter the description of your new custom indicator here
+    /// Enter the description of your strategy here
     /// </summary>
-    [Description("Enter the description of your new custom indicator here")]
-    public class sClient : Indicator
+    [Description("Enter the description of your strategy here")]
+    public class TcpClientStrategy : Strategy
     {
         #region Variables
         // Wizard generated variables
             private int myInput0 = 1; // Default setting for MyInput0
         // User defined variables (add any user defined variables below)
         #endregion
-
-		private System.Timers.Timer timer;
 		private StreamWriter tcpWriter;
 		private TcpClient tcpClient;
 		private Thread thrMessaging;
@@ -42,18 +38,14 @@ namespace NinjaTrader.Indicator
 		private bool isCon;
 		private String prevMessage = "";
 
-		private System.IO.StreamWriter fileWriter;
-
-
-
-
         /// <summary>
         /// This method is used to configure the indicator and is called once before any bar data is loaded.
         /// </summary>
         protected override void Initialize()
         {
-            Overlay				= true;
 			CalculateOnBarClose = true;
+			Enabled = true;
+			Unmanaged = true;
         }
 
         protected override void OnStartUp()
@@ -92,7 +84,7 @@ namespace NinjaTrader.Indicator
 
 		private void logicWrite(){
 			tcpWriter = new StreamWriter(tcpClient.GetStream());
-			SendMessages("TEST SUCCESS");
+			SendMessages("TEST SUCCESS 1.23");
 		}
 
 		private void ReceiveMessages()
@@ -113,39 +105,64 @@ namespace NinjaTrader.Indicator
 
 		private void processMessage(String msg)
 		{
-			Print("COMMAND IS: " + msg);
 			switch (msg){
 				case "GJ":
 					Print("Good buy, Blue Sky!");
 					correctClosingAndAbortCon();
 					break;
 				case "ORD":
-					Print("okay, im here");
-					SendMessages("okay, do order");
+//					openOrder();
+					SubmitOrder(0,OrderAction.Buy, OrderType.Market, 1,0,0,"","");
 					break;
 				case "ORDS":
+					SubmitOrder(0,OrderAction.Sell, OrderType.Market, 1,0,0,"","");
 					break;
 				case "NEWID":
+					Print(Account.Orders.ToString());
+					System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
+					for (int i = 0; i < Account.Orders.Count;i++)
+					{
+						ListOfOrders.MoveNext();
+						Print(ListOfOrders.Current.ToString());
+					}
+					Print(Orders.Count.ToString());
+//					SendMessages(Orders.ToString());
 					break;
 				case "POS":
+//					SendMessages(GetAtmStrategyPositionQuantity(tmp).ToString());
+					SendMessages(Position.Quantity.ToString());
 					break;
 				case "BPOW":
+					SendMessages(GetAccountValue(AccountItem.BuyingPower).ToString());
 					break;
 				case "CSHV":
-					SendMessages(AccountItem.CashValue.ToString());
+					SendMessages(GetAccountValue(AccountItem.CashValue).ToString());
 					break;
 				case "RPNL":
-					SendMessages(AccountItem.RealizedProfitLoss.ToString());
+					SendMessages(GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 					break;
 				default:
 					break;
 			}
 		}
 
+		private void openOrder() {
+			AtmStrategyCreate(OrderAction.Buy,
+					OrderType.Market,
+					0,
+					0,
+					TimeInForce.Day,
+					GetAtmStrategyUniqueId(),
+					"atm",
+					GetAtmStrategyUniqueId());
+		}
+
 
 		//				p = HttpUtility.UrlEncode(p, System.Text.Encoding.UTF8);
 		private void SendMessages(String message)
 		{
+			Print("COMMAND IS: " + message);
+
 			if (message != "")
 				{
 					tcpWriter.WriteLine(message);
@@ -187,39 +204,35 @@ namespace NinjaTrader.Indicator
 //				Print("onMarketData exception: " + e3.ToString());
 //			}
 		}
-		
+
 		private void correctClosingAndAbortCon(){
 			isCon = false;
-				
+
 			if (thrMessaging != null) {
 				thrMessaging = null;
 			}
-			
+
 			if (tcpClient != null) {
 				tcpClient.GetStream().Close();
 				tcpClient.Close();
 				tcpClient = null;
 			}
-			
+
 			if (tcpWriter != null) {
 				tcpWriter.Close();
 				tcpWriter = null;
 			}
-			
+
 			if (tcpReader != null) {
 				tcpReader.Close();
 				tcpReader = null;
 			}
-		}
-		
-        #region Properties
-        [Browsable(false)]	// this line prevents the data series from being displayed in the indicator properties dialog, do not remove
-        [XmlIgnore()]		// this line ensures that the indicator can be saved/recovered as part of a chart template, do not remove
-        public DataSeries Plot0
-        {
-            get { return Values[0]; }
-        }
 
+			Disable();
+		}
+
+
+        #region Properties
         [Description("")]
         [GridCategory("Parameters")]
         public int MyInput0
@@ -230,122 +243,3 @@ namespace NinjaTrader.Indicator
         #endregion
     }
 }
-
-#region NinjaScript generated code. Neither change nor remove.
-// This namespace holds all indicators and is required. Do not change it.
-namespace NinjaTrader.Indicator
-{
-    public partial class Indicator : IndicatorBase
-    {
-        private sClient[] cachesClient = null;
-
-        private static sClient checksClient = new sClient();
-
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        public sClient sClient(int myInput0)
-        {
-            return sClient(Input, myInput0);
-        }
-
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        public sClient sClient(Data.IDataSeries input, int myInput0)
-        {
-            if (cachesClient != null)
-                for (int idx = 0; idx < cachesClient.Length; idx++)
-                    if (cachesClient[idx].MyInput0 == myInput0 && cachesClient[idx].EqualsInput(input))
-                        return cachesClient[idx];
-
-            lock (checksClient)
-            {
-                checksClient.MyInput0 = myInput0;
-                myInput0 = checksClient.MyInput0;
-
-                if (cachesClient != null)
-                    for (int idx = 0; idx < cachesClient.Length; idx++)
-                        if (cachesClient[idx].MyInput0 == myInput0 && cachesClient[idx].EqualsInput(input))
-                            return cachesClient[idx];
-
-                sClient indicator = new sClient();
-                indicator.BarsRequired = BarsRequired;
-                indicator.CalculateOnBarClose = CalculateOnBarClose;
-#if NT7
-                indicator.ForceMaximumBarsLookBack256 = ForceMaximumBarsLookBack256;
-                indicator.MaximumBarsLookBack = MaximumBarsLookBack;
-#endif
-                indicator.Input = input;
-                indicator.MyInput0 = myInput0;
-                Indicators.Add(indicator);
-                indicator.SetUp();
-
-                sClient[] tmp = new sClient[cachesClient == null ? 1 : cachesClient.Length + 1];
-                if (cachesClient != null)
-                    cachesClient.CopyTo(tmp, 0);
-                tmp[tmp.Length - 1] = indicator;
-                cachesClient = tmp;
-                return indicator;
-            }
-        }
-    }
-}
-
-// This namespace holds all market analyzer column definitions and is required. Do not change it.
-namespace NinjaTrader.MarketAnalyzer
-{
-    public partial class Column : ColumnBase
-    {
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        [Gui.Design.WizardCondition("Indicator")]
-        public Indicator.sClient sClient(int myInput0)
-        {
-            return _indicator.sClient(Input, myInput0);
-        }
-
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        public Indicator.sClient sClient(Data.IDataSeries input, int myInput0)
-        {
-            return _indicator.sClient(input, myInput0);
-        }
-    }
-}
-
-// This namespace holds all strategies and is required. Do not change it.
-namespace NinjaTrader.Strategy
-{
-    public partial class Strategy : StrategyBase
-    {
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        [Gui.Design.WizardCondition("Indicator")]
-        public Indicator.sClient sClient(int myInput0)
-        {
-            return _indicator.sClient(Input, myInput0);
-        }
-
-        /// <summary>
-        /// Enter the description of your new custom indicator here
-        /// </summary>
-        /// <returns></returns>
-        public Indicator.sClient sClient(Data.IDataSeries input, int myInput0)
-        {
-            if (InInitialize && input == null)
-                throw new ArgumentException("You only can access an indicator with the default input/bar series from within the 'Initialize()' method");
-
-            return _indicator.sClient(input, myInput0);
-        }
-    }
-}
-#endregion
