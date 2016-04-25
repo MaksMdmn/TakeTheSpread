@@ -4,13 +4,15 @@ import java.util.HashMap;
 
 public class NTTcpManager {
     private static NTTcpManager instance;
+    private NTTcpServer server;
     private NTTcpDataBridge bridge;
-    private HashMap<Integer, String> msgAnwMap;
-    private int messageCounter = 0;
+    private HashMap<Long, String> answersMap;
 
     private NTTcpManager() {
-        msgAnwMap = new HashMap<>();
+        answersMap = new HashMap<>();
         bridge = NTTcpDataBridge.getInstance();
+        server = new NTTcpServer();
+        server.initServerWork();
     }
 
     public static NTTcpManager getInstance() {
@@ -21,17 +23,29 @@ public class NTTcpManager {
         return instance;
     }
 
-    public int sendNTMessage(String msg) {
-        msgAnwMap.put(messageCounter, null);
-        msg += ":-:" + messageCounter;
-        bridge.addMessage(msg);
-        return messageCounter++;
+    public long sendNTMessage(NTTcpMessage msg) {
+        long msgId = msg.getId();
+        answersMap.put(msgId, null);
+        bridge.addMessage(msg.prepareToSending());
+        return msgId;
     }
 
     //if == null then havent answer yet
-    public String receiveNTAnswer(int key) {
+    public String receiveNTAnswer(long key) {
         collectAllAnswers();
-        return msgAnwMap.get(key);
+        return answersMap.get(key);
+    }
+
+    //always last
+
+    public void finishingTodaysJob(){
+        server.shutDown();
+        //correct ending
+        //repotring
+    }
+
+    protected static long getMessageId() {
+        return System.currentTimeMillis();
     }
 
     private void collectAllAnswers() {
@@ -42,9 +56,19 @@ public class NTTcpManager {
             if (tempArr.length != 2) throw new IllegalArgumentException("Parsing error: answer array have length != 2");
 
             String answer = tempArr[0];
-            int key = Integer.valueOf(tempArr[1]);
-
-            msgAnwMap.put(key, answer);
+            long key = Integer.valueOf(tempArr[1]);
+            answersMap.put(key, answer);
         }
     }
+
+    public enum InstrumentTerm {
+        NEAR,
+        FAR
+    }
+
+    public enum DataType {
+        BID,
+        ASK
+    }
+
 }

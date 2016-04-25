@@ -10,7 +10,7 @@ public class NTTcpServer {
     private NTTcpDataBridge dataBridge;
     private Socket socket;
     private ServerSocket serverSocket;
-    private volatile boolean isConn;
+    private volatile boolean isConn = false;
     private BufferedReader br;
     private PrintWriter pw;
     private Thread reading;
@@ -18,6 +18,13 @@ public class NTTcpServer {
 
     public NTTcpServer() {
         dataBridge = NTTcpDataBridge.getInstance();
+    }
+
+    public NTTcpDataBridge getDataBridge() {
+        return dataBridge;
+    }
+
+    public void initServerWork() {
         isConn = true;
         try {
             serverSocket = new ServerSocket(8085, 0, InetAddress.getByName("localhost"));
@@ -31,20 +38,18 @@ public class NTTcpServer {
         }
         this.reading = initReading();
         this.writing = initWriting();
-    }
-
-    public NTTcpDataBridge getDataBridge() {
-        return dataBridge;
-    }
-
-    public void initServerWork() {
         reading.start();
         writing.start();
+        System.out.println("started...");
     }
 
     public void shutDown() {
         isConn = false;
-        closeAllEntities();
+        closeConnEntities();
+    }
+
+    public boolean isServerWorking(){
+        return isConn;
     }
 
     private Thread initReading() {
@@ -52,10 +57,8 @@ public class NTTcpServer {
             while (isConn) {
                 try {
                     while (br.ready()) {
-                        System.out.println("reading...");
                         String data = br.readLine();
-                        System.out.println("data: " + data);
-                        dataBridge.addData(data);
+                        dataBridge.addAnswer(data);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -70,7 +73,6 @@ public class NTTcpServer {
                 while (dataBridge.haveMessage()) {
                     String message = dataBridge.acceptMessage();
                     if (message != null) {
-                        System.out.println("writing...");
                         pw.write(message + System.lineSeparator());
                         pw.flush();
                     }
@@ -79,7 +81,7 @@ public class NTTcpServer {
         });
     }
 
-    private void closeAllEntities() {
+    private void closeConnEntities() {
         try {
             br.close();
             pw.close();

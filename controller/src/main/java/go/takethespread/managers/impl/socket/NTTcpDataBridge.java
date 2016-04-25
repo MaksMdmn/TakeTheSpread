@@ -1,18 +1,17 @@
 package go.takethespread.managers.impl.socket;
 
-import java.util.*;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class NTTcpDataBridge {
 
     private static NTTcpDataBridge instance;
-    private TreeMap<Date, String> marketData;
-    private Deque<String> messages;
-    private Deque<String> answers;
+    private BlockingDeque<String> messages;
+    private BlockingDeque<String> answers;
 
     private NTTcpDataBridge() {
-        marketData = new TreeMap<>(Comparator.reverseOrder());
-        messages = new ArrayDeque<>();
-        answers = new ArrayDeque<>();
+        messages = new LinkedBlockingDeque<>();
+        answers = new LinkedBlockingDeque<>();
     }
 
     public static NTTcpDataBridge getInstance() {
@@ -23,16 +22,9 @@ public class NTTcpDataBridge {
         return instance;
     }
 
-    public void addData(String data) {
-        //data handle
-        if (data.contains(":-:")) {
-            answers.push(data);
-        } else {
-            marketData.put(new Date(), data);
-//            Date key = null;
-//            String value = null;
-//            marketData.put(key, value);
-        }
+    public void addAnswer(String data) {
+        System.out.println(data);
+        answers.push(data);
     }
 
     public void addMessage(String message) {
@@ -41,10 +33,6 @@ public class NTTcpDataBridge {
 
     public String acceptMessage() {
         return messages.pollFirst();
-    }
-
-    public void addAnswer(String answer) {
-        answers.push(answer);
     }
 
     public String acceptAnswer() {
@@ -59,16 +47,10 @@ public class NTTcpDataBridge {
         return !answers.isEmpty();
     }
 
-
-    public void printAllDataToConsole() {
-        if (!marketData.isEmpty() || !messages.isEmpty() || !answers.isEmpty()) {
-            System.out.println("md: " + marketData.toString());
-            System.out.println("msg: " + messages.toString());
-            System.out.println("anw: " + answers.toString());
-            marketData.clear();
-            messages.clear();
-            answers.clear();
-        }
+    public String toStrBridgeData() {
+        String result = answers.toString();
+        answers.clear();
+        return result;
     }
 
 }

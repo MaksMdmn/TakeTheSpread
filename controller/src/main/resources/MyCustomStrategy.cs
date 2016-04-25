@@ -46,6 +46,7 @@ namespace NinjaTrader.Strategy
 			CalculateOnBarClose = true;
 			Enabled = true;
 			Unmanaged = true;
+			Add("CL 07-16", PeriodType.Minute,1);
         }
 
         protected override void OnStartUp()
@@ -84,7 +85,7 @@ namespace NinjaTrader.Strategy
 
 		private void logicWrite(){
 			tcpWriter = new StreamWriter(tcpClient.GetStream());
-			SendMessages("TEST SUCCESS 1.23");
+			tcpWriter.WriteLine("TEST1.23");
 		}
 
 		private void ReceiveMessages()
@@ -105,67 +106,105 @@ namespace NinjaTrader.Strategy
 
 		private void processMessage(String msg)
 		{
-			switch (msg){
+			Print(msg);
+			String instrum = Instrument.FullName.Replace(" ","");
+			instrum = instrum.Remove(instrum.Length - 3);
+
+			//parsing here
+			String[] tempArr = msg.Split(new[]{":-:"}, StringSplitOptions.None);
+			String msgId = tempArr[0];
+			String msgCmd = tempArr[1];
+			String msgParam = tempArr[2];
+
+			Print("id: " + msgId + "cmd: " + msgCmd + "param: " + msgParam);
+
+			switch (msgCmd){
 				case "GJ":
 					Print("Good buy, Blue Sky!");
 					correctClosingAndAbortCon();
 					break;
-				case "ORD":
-//					openOrder();
-					SubmitOrder(0,OrderAction.Buy, OrderType.Market, 1,0,0,"","");
-					break;
 				case "ORDS":
-					SubmitOrder(0,OrderAction.Sell, OrderType.Market, 1,0,0,"","");
-					break;
-				case "NEWID":
-					Print(Account.Orders.ToString());
 					System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
-					for (int i = 0; i < Account.Orders.Count;i++)
-					{
-						ListOfOrders.MoveNext();
-						Print(ListOfOrders.Current.ToString());
-					}
-					Print(Orders.Count.ToString());
-//					SendMessages(Orders.ToString());
+					SendMessages(msgId, ListOfOrders.ToString());
+//					for (int i = 0; i < Account.Orders.Count;i++)
+//					{
+//						ListOfOrders.MoveNext();
+//						Print(ListOfOrders.Current.ToString());
+//					}
+
+					break;
+				case "BYID":
+					//msgParam
+					SendMessages(msgId, Orders.FindByOrderId(msgParam).ToString());
 					break;
 				case "POS":
-//					SendMessages(GetAtmStrategyPositionQuantity(tmp).ToString());
-					SendMessages(Position.Quantity.ToString());
+					SendMessages(msgId, Positions[0].Quantity.ToString());
+					SendMessages(msgId, Positions[1].Quantity.ToString());
 					break;
 				case "BPOW":
-					SendMessages(GetAccountValue(AccountItem.BuyingPower).ToString());
+					SendMessages(msgId, GetAccountValue(AccountItem.BuyingPower).ToString());
 					break;
 				case "CSHV":
-					SendMessages(GetAccountValue(AccountItem.CashValue).ToString());
+					SendMessages(msgId, GetAccountValue(AccountItem.CashValue).ToString());
 					break;
 				case "RPNL":
-					SendMessages(GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
+					SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
+					break;
+					//1 equals the parameter which we need to recieve
+				case "BMRT":
+					SubmitOrder(0,OrderAction.Buy, OrderType.Market, 1,0,0,"","");
+					SubmitOrder(1,OrderAction.Sell, OrderType.Market, 2,0,0,"","");
+					break;
+				case "BLMT":
+					SubmitOrder(0,OrderAction.Buy,OrderType.Limit,1,1,0,"","");
+					break;
+				case "SMRT":
+					SubmitOrder(0,OrderAction.Sell, OrderType.Market, 1,0,0,"","");
+					break;
+				case "SLMT":
+					SubmitOrder(0,OrderAction.Sell,OrderType.Limit,1,1,0,"","");
+					break;
+				case "BBID0":
+					SendMessages(msgId, instrum
+						+ " "
+						+ "b["
+							+ GetCurrentBid(0)
+							+ " "
+							+ GetCurrentBidVolume(0)
+						+ "]"
+						+ " a["
+							+ GetCurrentAsk(0)
+							+ " "
+							+ GetCurrentAskVolume(0)
+						+ "]"
+						+ Environment.NewLine);
+					break;
+				case "BBID1":
+					SendMessages(msgId, instrum
+						+ " "
+						+ "b["
+							+ GetCurrentBid(1)
+							+ " "
+							+ GetCurrentBidVolume(1)
+						+ "]"
+						+ " a["
+							+ GetCurrentAsk(1)
+							+ " "
+							+ GetCurrentAskVolume(1)
+						+ "]"
+						+ Environment.NewLine);
 					break;
 				default:
 					break;
 			}
 		}
 
-		private void openOrder() {
-			AtmStrategyCreate(OrderAction.Buy,
-					OrderType.Market,
-					0,
-					0,
-					TimeInForce.Day,
-					GetAtmStrategyUniqueId(),
-					"atm",
-					GetAtmStrategyUniqueId());
-		}
-
-
-		//				p = HttpUtility.UrlEncode(p, System.Text.Encoding.UTF8);
-		private void SendMessages(String message)
+		private void SendMessages(String messageId, String message)
 		{
-			Print("COMMAND IS: " + message);
 
 			if (message != "")
 				{
-					tcpWriter.WriteLine(message);
+					tcpWriter.WriteLine(messageId + ":-:" + message);
 					tcpWriter.Flush();
 				}
 		}
@@ -183,21 +222,55 @@ namespace NinjaTrader.Strategy
 
 		protected override void OnMarketData(MarketDataEventArgs e)
 		{
+//			String instrum = Instrument.FullName.Replace(" ","");
+//			instrum = instrum.Remove(instrum.Length - 3);
+//
+//			Print(instrum
+//						+ " "
+//						+ "b["
+//							+ GetCurrentBid()
+//							+ " "
+//							+ GetCurrentBidVolume()
+//						+ "]"
+//						+ " a["
+//							+ GetCurrentAsk()
+//							+ " "
+//							+ GetCurrentAskVolume()
+//						+ "]"
+//						+ Environment.NewLine);
 //			try{
-//				if (e.MarketDataType == MarketDataType.Last)
-//				{
-//					String tickStr = "t: " + e.Time + " "
-//					+ "ask: " + GetCurrentAsk() + " "
-//					+ "askVol: " + GetCurrentAskVolume() + " "
-//					+ "bid: " + GetCurrentBid() + " "
-//					+ "bidVol: " + GetCurrentBidVolume() +
-//					Environment.NewLine;
+//				if(BarsInProgress == 0){
+//					if (e.MarketDataType == MarketDataType.Last)
+//					{
+//						String tickStr = "CL06, time: " + e.Time + " "
+//						+ "bid: " + GetCurrentBid() + " "
+//						+ "bidVol: " + GetCurrentBidVolume() +
+//						+ "ask: " + GetCurrentAsk() + " "
+//						+ "askVol: " + GetCurrentAskVolume() + " "
+//						Environment.NewLine;
 //
-//					if (prevMessage!=tickStr){
-//						SendMessages(tickStr);
-//						prevMessage = tickStr;
+//						if (prevMessage!=tickStr){
+//							SendMessages(msgId, tickStr);
+//							prevMessage = tickStr;
+//						}
+//
 //					}
+//				}else{
+//					if (e.MarketDataType == MarketDataType.Last)
+//					{
+//						String tickStr = "CL07, time: " + e.Time + " "
+//						+ "bid: " + GetCurrentBid() + " "
+//						+ "bidVol: " + GetCurrentBidVolume() +
+//						+ "ask: " + GetCurrentAsk() + " "
+//						+ "askVol: " + GetCurrentAskVolume() + " "
+//						Environment.NewLine;
 //
+//						if (prevMessage!=tickStr){
+//							SendMessages(msgId, tickStr);
+//							prevMessage = tickStr;
+//						}
+//
+//					}
 //				}
 //			}catch(Exception e3){
 //				correctClosingAndAbortCon();
