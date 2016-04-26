@@ -23,8 +23,12 @@ public class NTTcpDataBridge {
     }
 
     public void addAnswer(String data) {
-        System.out.println(data);
-        answers.push(data);
+        if (data.contains("TEST")) {
+            System.out.println(data);
+        } else {
+            System.out.println(data);
+            answers.push(data);
+        }
     }
 
     public void addMessage(String message) {

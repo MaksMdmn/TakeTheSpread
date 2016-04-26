@@ -36,7 +36,18 @@ namespace NinjaTrader.Strategy
 		private Thread thrSendering;
 		private StreamReader tcpReader;
 		private bool isCon;
-		private String prevMessage = "";
+
+
+
+
+		//handle by myself
+		private String[] ntToken = new[]{":-:"};
+		private String secondInstrTicker = "CL 07-16";
+		private int ntPort = 8085;
+		private String ntHost = "127.0.0.1";
+		//handle by myself
+
+
 
         /// <summary>
         /// This method is used to configure the indicator and is called once before any bar data is loaded.
@@ -46,7 +57,7 @@ namespace NinjaTrader.Strategy
 			CalculateOnBarClose = true;
 			Enabled = true;
 			Unmanaged = true;
-			Add("CL 07-16", PeriodType.Minute,1);
+			Add(secondInstrTicker, PeriodType.Minute,1);
         }
 
         protected override void OnStartUp()
@@ -58,9 +69,9 @@ namespace NinjaTrader.Strategy
 		{
 			try
 			{
-				logicConnect();
-				logicWrite();
-				logicRead();
+				proceedConn();
+				proceedWrite();
+				proceedRead();
 			}
 			catch (Exception e2)
 			{
@@ -69,21 +80,21 @@ namespace NinjaTrader.Strategy
 			}
 		}
 
-		private void logicConnect(){
-			IPAddress ipAddr = IPAddress.Parse("127.0.0.1");
+		private void proceedConn(){
+			IPAddress ipAddr = IPAddress.Parse(ntHost);
 			tcpClient = new TcpClient();
-			tcpClient.Connect(ipAddr, 8085);
+			tcpClient.Connect(ipAddr, ntPort);
 			isCon = true;
 		}
 
-		private void logicRead(){
+		private void proceedRead(){
 			tcpReader = new StreamReader(tcpClient.GetStream());
 
 			thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
 			thrMessaging.Start();
 		}
 
-		private void logicWrite(){
+		private void proceedWrite(){
 			tcpWriter = new StreamWriter(tcpClient.GetStream());
 			tcpWriter.WriteLine("TEST1.23");
 		}
@@ -106,17 +117,45 @@ namespace NinjaTrader.Strategy
 
 		private void processMessage(String msg)
 		{
-			Print(msg);
-			String instrum = Instrument.FullName.Replace(" ","");
-			instrum = instrum.Remove(instrum.Length - 3);
+//			Print(msg);
+//			String instrum = Instrument.FullName.Replace(" ","");
+//			instrum = instrum.Remove(instrum.Length - 3);
 
 			//parsing here
-			String[] tempArr = msg.Split(new[]{":-:"}, StringSplitOptions.None);
+			String[] tempArr = msg.Split(ntToken, StringSplitOptions.None);
 			String msgId = tempArr[0];
 			String msgCmd = tempArr[1];
 			String msgParam = tempArr[2];
+			int instrumentN = -1;
+			String ordId = "";
+			int size = -1;
+			double price = -1;
 
-			Print("id: " + msgId + "cmd: " + msgCmd + "param: " + msgParam);
+			//param
+			String[] tempParamArr = msgParam.Split(new[]{" "}, StringSplitOptions.None);
+
+			switch(tempParamArr.Length){
+				case 1:
+					if(msgCmd == "BYID"){
+						ordId = tempParamArr[0];
+					}else{
+						instrumentN = Convert.ToInt32(tempParamArr[0]);
+					}
+					break;
+				case 2:
+					instrumentN = Convert.ToInt32(tempParamArr[0]);
+					size =  Convert.ToInt32(tempParamArr[1]);
+					break;
+				case 3:
+					instrumentN = Convert.ToInt32(tempParamArr[0]);
+					size =  Convert.ToInt32(tempParamArr[1]);
+					price = Convert.ToDouble(tempParamArr[2]);
+					break;
+				default:
+					ifParamIncorrect(instrumentN + " " + size + " " + price);
+					break;
+			}
+			//param
 
 			switch (msgCmd){
 				case "GJ":
@@ -135,11 +174,26 @@ namespace NinjaTrader.Strategy
 					break;
 				case "BYID":
 					//msgParam
-					SendMessages(msgId, Orders.FindByOrderId(msgParam).ToString());
+					SendMessages(msgId, Orders.FindByOrderId(ordId).ToString());
 					break;
 				case "POS":
-					SendMessages(msgId, Positions[0].Quantity.ToString());
-					SendMessages(msgId, Positions[1].Quantity.ToString());
+					int pos = Positions[instrumentN].Quantity;
+					switch(Positions[instrumentN].MarketPosition){
+						case(MarketPosition.Flat):
+							pos = pos * 0;
+							break;
+						case(MarketPosition.Long):
+							pos = pos * 1;
+							break;
+						case(MarketPosition.Short):
+							pos = pos * -1;
+							break;
+						default:
+							ifParamIncorrect("market pos incorrect");
+							break;
+					}
+
+					SendMessages(msgId, pos.ToString());
 					break;
 				case "BPOW":
 					SendMessages(msgId, GetAccountValue(AccountItem.BuyingPower).ToString());
@@ -150,51 +204,35 @@ namespace NinjaTrader.Strategy
 				case "RPNL":
 					SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 					break;
-					//1 equals the parameter which we need to recieve
 				case "BMRT":
-					SubmitOrder(0,OrderAction.Buy, OrderType.Market, 1,0,0,"","");
-					SubmitOrder(1,OrderAction.Sell, OrderType.Market, 2,0,0,"","");
+					SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
 					break;
 				case "BLMT":
-					SubmitOrder(0,OrderAction.Buy,OrderType.Limit,1,1,0,"","");
+					SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
 					break;
 				case "SMRT":
-					SubmitOrder(0,OrderAction.Sell, OrderType.Market, 1,0,0,"","");
+					SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
 					break;
 				case "SLMT":
-					SubmitOrder(0,OrderAction.Sell,OrderType.Limit,1,1,0,"","");
+					SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
 					break;
-				case "BBID0":
-					SendMessages(msgId, instrum
-						+ " "
-						+ "b["
-							+ GetCurrentBid(0)
+				case "BDAK":
+					SendMessages(msgId,
+						"b["
+							+ GetCurrentBid(instrumentN)
 							+ " "
-							+ GetCurrentBidVolume(0)
+							+ GetCurrentBidVolume(instrumentN)
 						+ "]"
 						+ " a["
-							+ GetCurrentAsk(0)
+							+ GetCurrentAsk(instrumentN)
 							+ " "
-							+ GetCurrentAskVolume(0)
+							+ GetCurrentAskVolume(instrumentN)
 						+ "]"
 						+ Environment.NewLine);
 					break;
-				case "BBID1":
-					SendMessages(msgId, instrum
-						+ " "
-						+ "b["
-							+ GetCurrentBid(1)
-							+ " "
-							+ GetCurrentBidVolume(1)
-						+ "]"
-						+ " a["
-							+ GetCurrentAsk(1)
-							+ " "
-							+ GetCurrentAskVolume(1)
-						+ "]"
-						+ Environment.NewLine);
-					break;
+
 				default:
+					ifParamIncorrect(instrumentN + " " + size + " " + price);
 					break;
 			}
 		}
@@ -204,7 +242,7 @@ namespace NinjaTrader.Strategy
 
 			if (message != "")
 				{
-					tcpWriter.WriteLine(messageId + ":-:" + message);
+					tcpWriter.WriteLine(messageId + String.Concat(ntToken) + message);
 					tcpWriter.Flush();
 				}
 		}
@@ -276,6 +314,12 @@ namespace NinjaTrader.Strategy
 //				correctClosingAndAbortCon();
 //				Print("onMarketData exception: " + e3.ToString());
 //			}
+		}
+
+		private void ifParamIncorrect(String s){
+			Print("incorrect parametres. I'm out - bb man" + s);
+			Disable();
+			correctClosingAndAbortCon();
 		}
 
 		private void correctClosingAndAbortCon(){

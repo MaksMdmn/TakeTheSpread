@@ -1,5 +1,6 @@
 package go.takethespread.managers.impl.socket;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class NTTcpManager {
@@ -38,7 +39,7 @@ public class NTTcpManager {
 
     //always last
 
-    public void finishingTodaysJob(){
+    public void finishingTodaysJob() {
         server.shutDown();
         //correct ending
         //repotring
@@ -48,15 +49,16 @@ public class NTTcpManager {
         return System.currentTimeMillis();
     }
 
-    private void collectAllAnswers() {
+    private synchronized void collectAllAnswers() {
         while (bridge.haveAnswers()) {
             String tempStr = bridge.acceptAnswer();
-            String[] tempArr = tempStr.split(":-:");
+            String[] tempArr = tempStr.split(NTTcpMessage.ntToken);
 
-            if (tempArr.length != 2) throw new IllegalArgumentException("Parsing error: answer array have length != 2");
+            if (tempArr.length != 2)
+                throw new IllegalArgumentException("Parsing error: answer array have length != 2, actual: " + tempArr.length + " arr: " + Arrays.toString(tempArr));
 
-            String answer = tempArr[0];
-            long key = Integer.valueOf(tempArr[1]);
+            long key = Long.valueOf(tempArr[0]);
+            String answer = tempArr[1];
             answersMap.put(key, answer);
         }
     }
