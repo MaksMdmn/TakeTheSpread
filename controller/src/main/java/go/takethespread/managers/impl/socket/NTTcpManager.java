@@ -31,6 +31,70 @@ public class NTTcpManager {
         return msgId;
     }
 
+    public void sendOffMessage() {
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.GJ, "").prepareToSending());
+    }
+
+    public long sendOrdersMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.ORDS, ""));
+    }
+
+    public long sendOrderByIdMessage(String ordId) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BYID, ordId));
+    }
+
+    public long sendPositionMessage(Term term) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.POS, getInstrumentNumber(term)));
+    }
+
+    public long sendBuyingPowerMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BPOW, ""));
+    }
+
+    public long sendCashValueMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CSHV, ""));
+    }
+
+    public long sendRealizedPnLMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.RPNL, ""));
+    }
+
+    public long sendBuyMarketMessage(Term term, int size) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
+    }
+
+    public long sendSellMarketMessage(Term term, int size) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
+    }
+
+    public long sendBuyLimitMessage(Term term, int size, double price) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BLMT, getOrderParametres(term,size,price)));
+    }
+
+    public long sendSellLimitMessage(Term term, int size, double price) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SLMT, getOrderParametres(term,size,price)));
+    }
+
+    public long sendMarketDataMessage(Term term) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BDAK, getInstrumentNumber(term)));
+    }
+
+    public long sendFilledMessage(String ordId){
+        //?? mb delete it
+        return 0L;
+    }
+
+    private String getOrderParametres(Term term, int size, double price) {
+        return price == 0d
+                ? getInstrumentNumber(term) + " " + String.valueOf(size)
+                : getInstrumentNumber(term) + " " + String.valueOf(size) + " " + String.valueOf(price);
+    }
+
+    private String getInstrumentNumber(Term term) {
+        return String.valueOf(term == Term.NEAR ? 0 : 1);
+    }
+
+    //    BDAK //bid ask data
     //if == null then havent answer yet
     public String receiveNTAnswer(long key) {
         collectAllAnswers();
@@ -63,14 +127,9 @@ public class NTTcpManager {
         }
     }
 
-    public enum InstrumentTerm {
+    public enum Term {
         NEAR,
         FAR
-    }
-
-    public enum DataType {
-        BID,
-        ASK
     }
 
 }

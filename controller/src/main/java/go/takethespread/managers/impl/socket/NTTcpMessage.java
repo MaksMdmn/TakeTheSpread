@@ -46,7 +46,8 @@ public class NTTcpMessage {
         BMRT,
         BLMT,
         SMRT,
-        SLMT //buy\sell limir or market order
+        SLMT, //buy\sell limir or market order
+        BDAK //bid ask data
     }
 
 }

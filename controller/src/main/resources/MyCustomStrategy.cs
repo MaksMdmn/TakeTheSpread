@@ -204,6 +204,8 @@ namespace NinjaTrader.Strategy
 				case "RPNL":
 					SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 					break;
+				//in answer need to send order id : IORder = SubmitOrder.....    IOrder.id or .token
+							// need to add FILLED message
 				case "BMRT":
 					SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
 					break;
