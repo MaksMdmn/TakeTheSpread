@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using System.Web;
+using System.Globalization;
 
 using System.ComponentModel;
 using System.Diagnostics;
@@ -117,136 +118,158 @@ namespace NinjaTrader.Strategy
 
 		private void processMessage(String msg)
 		{
-//			Print(msg);
-//			String instrum = Instrument.FullName.Replace(" ","");
-//			instrum = instrum.Remove(instrum.Length - 3);
+			try{
+					//parsing here
+					Print(msg);
+					String[] tempArr = msg.Split(ntToken, StringSplitOptions.None);
+					String msgId = tempArr[0];
+					String msgCmd = tempArr[1];
+					String msgParam = tempArr[2];
+					int instrumentN = -1;
+					String ordId = "";
+					int size = -1;
+					double price = -1d;
 
-			//parsing here
-			String[] tempArr = msg.Split(ntToken, StringSplitOptions.None);
-			String msgId = tempArr[0];
-			String msgCmd = tempArr[1];
-			String msgParam = tempArr[2];
-			int instrumentN = -1;
-			String ordId = "";
-			int size = -1;
-			double price = -1;
-
-			//param
-			String[] tempParamArr = msgParam.Split(new[]{" "}, StringSplitOptions.None);
-
-			switch(tempParamArr.Length){
-				case 1:
-					if(msgCmd == "BYID"){
-						ordId = tempParamArr[0];
+					//param
+					String[] tempParamArr;
+					if (msgParam == ""){
+						tempParamArr = new String[]{};
 					}else{
-						instrumentN = Convert.ToInt32(tempParamArr[0]);
+						tempParamArr = msgParam.Split(new[]{" "}, StringSplitOptions.None);
 					}
-					break;
-				case 2:
-					instrumentN = Convert.ToInt32(tempParamArr[0]);
-					size =  Convert.ToInt32(tempParamArr[1]);
-					break;
-				case 3:
-					instrumentN = Convert.ToInt32(tempParamArr[0]);
-					size =  Convert.ToInt32(tempParamArr[1]);
-					price = Convert.ToDouble(tempParamArr[2]);
-					break;
-				default:
-					ifParamIncorrect(instrumentN + " " + size + " " + price);
-					break;
-			}
-			//param
 
-			switch (msgCmd){
-				case "GJ":
-					Print("Good buy, Blue Sky!");
-					correctClosingAndAbortCon();
-					break;
-				case "ORDS":
-					System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
-					SendMessages(msgId, ListOfOrders.ToString());
-//					for (int i = 0; i < Account.Orders.Count;i++)
-//					{
-//						ListOfOrders.MoveNext();
-//						Print(ListOfOrders.Current.ToString());
-//					}
-
-					break;
-				case "BYID":
-					//msgParam
-					SendMessages(msgId, Orders.FindByOrderId(ordId).ToString());
-					break;
-				case "POS":
-					int pos = Positions[instrumentN].Quantity;
-					switch(Positions[instrumentN].MarketPosition){
-						case(MarketPosition.Flat):
-							pos = pos * 0;
+					switch(tempParamArr.Length){
+						case 0:
+//							NOP
 							break;
-						case(MarketPosition.Long):
-							pos = pos * 1;
+						case 1:
+							if(msgCmd == "BYID"){
+								ordId = tempParamArr[0];
+							}else{
+								instrumentN = Convert.ToInt32(tempParamArr[0]);
+							}
 							break;
-						case(MarketPosition.Short):
-							pos = pos * -1;
+						case 2:
+							instrumentN = Convert.ToInt32(tempParamArr[0]);
+							size =  Convert.ToInt32(tempParamArr[1]);
+							break;
+						case 3:
+							instrumentN = Convert.ToInt32(tempParamArr[0]);
+							size =  Convert.ToInt32(tempParamArr[1]);
+							price = Double.Parse(tempParamArr[2],NumberFormatInfo.InvariantInfo);
 							break;
 						default:
-							ifParamIncorrect("market pos incorrect");
+							ifParamIncorrect(instrumentN + " " + size + " " + price);
 							break;
 					}
 
-					SendMessages(msgId, pos.ToString());
-					break;
-				case "BPOW":
-					SendMessages(msgId, GetAccountValue(AccountItem.BuyingPower).ToString());
-					break;
-				case "CSHV":
-					SendMessages(msgId, GetAccountValue(AccountItem.CashValue).ToString());
-					break;
-				case "RPNL":
-					SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
-					break;
-				//in answer need to send order id : IORder = SubmitOrder.....    IOrder.id or .token
-							// need to add FILLED message
-				case "BMRT":
-					SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
-					break;
-				case "BLMT":
-					SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
-					break;
-				case "SMRT":
-					SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
-					break;
-				case "SLMT":
-					SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
-					break;
-				case "BDAK":
-					SendMessages(msgId,
-						"b["
-							+ GetCurrentBid(instrumentN)
-							+ " "
-							+ GetCurrentBidVolume(instrumentN)
-						+ "]"
-						+ " a["
-							+ GetCurrentAsk(instrumentN)
-							+ " "
-							+ GetCurrentAskVolume(instrumentN)
-						+ "]"
-						+ Environment.NewLine);
-					break;
+					switch (msgCmd){
+						case "GJ":
+							Print("Good buy, Blue Sky!");
+							correctClosingAndAbortCon();
+							break;
+						case "ORDS":
+							System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
+							SendMessages(msgId, ListOfOrders.ToString());
+		//					for (int i = 0; i < Account.Orders.Count;i++)
+		//					{
+		//						ListOfOrders.MoveNext();
+		//						Print(ListOfOrders.Current.ToString());
+		//					}
 
-				default:
-					ifParamIncorrect(instrumentN + " " + size + " " + price);
-					break;
+							break;
+						case "BYID":
+							//msgParam
+							SendMessages(msgId, Orders.FindByOrderId(ordId).ToString());
+							break;
+						case "POS":
+							int pos = Positions[instrumentN].Quantity;
+							switch(Positions[instrumentN].MarketPosition){
+								case(MarketPosition.Flat):
+									pos = pos * 0;
+									break;
+								case(MarketPosition.Long):
+									pos = pos * 1;
+									break;
+								case(MarketPosition.Short):
+									pos = pos * -1;
+									break;
+								default:
+									ifParamIncorrect("market pos incorrect");
+									break;
+							}
+
+							SendMessages(msgId, pos.ToString());
+							break;
+						case "BPOW":
+							SendMessages(msgId, GetAccountValue(AccountItem.BuyingPower).ToString());
+							break;
+						case "CSHV":
+							SendMessages(msgId, GetAccountValue(AccountItem.CashValue).ToString());
+							break;
+						case "RPNL":
+							SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
+							break;
+						//in answer need to send order id : IORder = SubmitOrder.....    IOrder.id or .token
+									// need to add FILLED message
+						case "BMRT":
+							SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
+							break;
+						case "BLMT":
+							IOrder newOrd = SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
+							String tempId = newOrd.OrderId;
+							SendMessages(msgId, tempId);
+							break;
+						case "SMRT":
+							SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
+							break;
+						case "SLMT":
+							SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
+							break;
+						case "CNAL":
+							CancelAllOrders(true,true);
+							break;
+						case "CNID":
+									//do not work, we need a Map<id,IOrder> of IOrder objects here for cheking...
+									// NO NO MAN!!!!! ALL CANCELING DO NOT WORKING, DON'T KNOW WTF!!!!!!!!!!!!!!!!!!!!!!!!!!
+							Order order =  Orders.FindByOrderId(ordId);
+							Orders.Remove(order);
+							break;
+						case "BDAK":
+							SendMessages(msgId,
+								"b["
+									+ GetCurrentBid(instrumentN)
+									+ " "
+									+ GetCurrentBidVolume(instrumentN)
+								+ "]"
+								+ " a["
+									+ GetCurrentAsk(instrumentN)
+									+ " "
+									+ GetCurrentAskVolume(instrumentN)
+								+ "]"
+								+ Environment.NewLine);
+							break;
+
+						default:
+							ifParamIncorrect(instrumentN + " " + size + " " + price);
+							break;
+					}
+			}catch(Exception e5){
+				Print("processMessage exception: " + e5.ToString() + "message was: " + msg );
 			}
 		}
 
 		private void SendMessages(String messageId, String message)
 		{
-
-			if (message != "")
-				{
-					tcpWriter.WriteLine(messageId + String.Concat(ntToken) + message);
-					tcpWriter.Flush();
-				}
+			try{
+				if (message != "")
+					{
+						tcpWriter.WriteLine(messageId + String.Concat(ntToken) + message);
+						tcpWriter.Flush();
+					}
+			}catch(Exception e6){
+				Print("send message exception: " + e6.ToString());
+			}
 		}
 
 

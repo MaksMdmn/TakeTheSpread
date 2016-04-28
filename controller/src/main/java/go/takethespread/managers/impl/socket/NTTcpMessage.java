@@ -13,6 +13,7 @@ public class NTTcpMessage {
         this.command = command;
         this.id = NTTcpManager.getMessageId();
         this.param = param;
+        System.out.println(this.prepareToSending());
     }
 
     public NTTcpCommand getCommand() {
@@ -47,6 +48,8 @@ public class NTTcpMessage {
         BLMT,
         SMRT,
         SLMT, //buy\sell limir or market order
+        CNAL,
+        CNID,
         BDAK //bid ask data
     }
 

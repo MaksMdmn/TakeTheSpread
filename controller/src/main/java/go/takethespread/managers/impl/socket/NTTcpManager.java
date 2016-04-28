@@ -84,6 +84,14 @@ public class NTTcpManager {
         return 0L;
     }
 
+    public void sendCancelAllMessage(){
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, "").prepareToSending());
+    }
+
+    public void sendCancelByIdMessage(String ordId){
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId).prepareToSending());
+    }
+
     private String getOrderParametres(Term term, int size, double price) {
         return price == 0d
                 ? getInstrumentNumber(term) + " " + String.valueOf(size)
