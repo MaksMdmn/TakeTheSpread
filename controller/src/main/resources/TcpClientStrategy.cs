@@ -6,6 +6,7 @@ using System.Threading;
 using System.Net;
 using System.Web;
 using System.Globalization;
+using System.Collections.Generic;
 
 using System.ComponentModel;
 using System.Diagnostics;
@@ -37,7 +38,7 @@ namespace NinjaTrader.Strategy
 		private Thread thrSendering;
 		private StreamReader tcpReader;
 		private bool isCon;
-
+		private Dictionary<String, IOrder> orderMap = new Dictionary<String, IOrder>();
 
 
 
@@ -47,8 +48,6 @@ namespace NinjaTrader.Strategy
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
 		//handle by myself
-
-
 
         /// <summary>
         /// This method is used to configure the indicator and is called once before any bar data is loaded.
@@ -143,7 +142,7 @@ namespace NinjaTrader.Strategy
 //							NOP
 							break;
 						case 1:
-							if(msgCmd == "BYID"){
+							if(msgCmd == "BYID" || msgCmd == "CNID" || msgCmd == "FLLD"){
 								ordId = tempParamArr[0];
 							}else{
 								instrumentN = Convert.ToInt32(tempParamArr[0]);
@@ -170,16 +169,15 @@ namespace NinjaTrader.Strategy
 							break;
 						case "ORDS":
 							System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
-							SendMessages(msgId, ListOfOrders.ToString());
-		//					for (int i = 0; i < Account.Orders.Count;i++)
-		//					{
-		//						ListOfOrders.MoveNext();
-		//						Print(ListOfOrders.Current.ToString());
-		//					}
-
+							String tempStr = "";
+							for (int i = 0; i < Account.Orders.Count;i++)
+							{
+								ListOfOrders.MoveNext();
+								tempStr += "ord:" + ListOfOrders.Current.ToString();
+							}
+							SendMessages(msgId, tempStr);
 							break;
 						case "BYID":
-							//msgParam
 							SendMessages(msgId, Orders.FindByOrderId(ordId).ToString());
 							break;
 						case "POS":
@@ -210,30 +208,28 @@ namespace NinjaTrader.Strategy
 						case "RPNL":
 							SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 							break;
-						//in answer need to send order id : IORder = SubmitOrder.....    IOrder.id or .token
-									// need to add FILLED message
 						case "BMRT":
 							SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
 							break;
 						case "BLMT":
-							IOrder newOrd = SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
-							String tempId = newOrd.OrderId;
-							SendMessages(msgId, tempId);
+							String tempBOrdId = AddToOrderMap(SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", ""));
+							SendMessages(msgId, tempBOrdId);
 							break;
 						case "SMRT":
 							SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
 							break;
 						case "SLMT":
-							SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
+							String tempSOrdId = AddToOrderMap(SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", ""));
+							SendMessages(msgId, tempSOrdId);
 							break;
 						case "CNAL":
 							CancelAllOrders(true,true);
 							break;
 						case "CNID":
-									//do not work, we need a Map<id,IOrder> of IOrder objects here for cheking...
-									// NO NO MAN!!!!! ALL CANCELING DO NOT WORKING, DON'T KNOW WTF!!!!!!!!!!!!!!!!!!!!!!!!!!
-							Order order =  Orders.FindByOrderId(ordId);
-							Orders.Remove(order);
+							CancelOrder(orderMap[ordId]);
+							break;
+						case "FLLD":
+							SendMessages(msgId,orderMap[ordId].Filled.ToString());
 							break;
 						case "BDAK":
 							SendMessages(msgId,
@@ -246,10 +242,8 @@ namespace NinjaTrader.Strategy
 									+ GetCurrentAsk(instrumentN)
 									+ " "
 									+ GetCurrentAskVolume(instrumentN)
-								+ "]"
-								+ Environment.NewLine);
+								+ "]");
 							break;
-
 						default:
 							ifParamIncorrect(instrumentN + " " + size + " " + price);
 							break;
@@ -270,6 +264,11 @@ namespace NinjaTrader.Strategy
 			}catch(Exception e6){
 				Print("send message exception: " + e6.ToString());
 			}
+		}
+
+		private String AddToOrderMap(IOrder order){
+			orderMap.Add(order.OrderId, order);
+			return order.OrderId;
 		}
 
 

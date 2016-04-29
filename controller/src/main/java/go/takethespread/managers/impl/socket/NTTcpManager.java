@@ -59,12 +59,12 @@ public class NTTcpManager {
         return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.RPNL, ""));
     }
 
-    public long sendBuyMarketMessage(Term term, int size) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
+    public void sendBuyMarketMessage(Term term, int size) {
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
     }
 
-    public long sendSellMarketMessage(Term term, int size) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
+    public void sendSellMarketMessage(Term term, int size) {
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
     }
 
     public long sendBuyLimitMessage(Term term, int size, double price) {
@@ -80,8 +80,7 @@ public class NTTcpManager {
     }
 
     public long sendFilledMessage(String ordId){
-        //?? mb delete it
-        return 0L;
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.FLLD, ordId));
     }
 
     public void sendCancelAllMessage(){
@@ -106,6 +105,7 @@ public class NTTcpManager {
     //if == null then havent answer yet
     public String receiveNTAnswer(long key) {
         collectAllAnswers();
+        System.out.print("I'M AN ANSWER: ");
         return answersMap.get(key);
     }
 

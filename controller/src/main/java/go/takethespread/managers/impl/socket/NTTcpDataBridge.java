@@ -26,7 +26,6 @@ public class NTTcpDataBridge {
         if (data.contains("TEST")) {
             System.out.println(data);
         } else {
-            System.out.println(data);
             answers.push(data);
         }
     }
