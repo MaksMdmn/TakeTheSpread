@@ -5,7 +5,7 @@ import go.takethespread.Money;
 import go.takethespread.managers.ExternalDataManager;
 import go.takethespread.managers.exceptions.TradeException;
 import go.takethespread.managers.impl.ConsoleManager;
-import go.takethespread.managers.impl.ExternalDataManagerImpl;
+import go.takethespread.managers.impl.ExternalNTDataManagerImpl;
 import go.takethespread.managers.impl.TaskManager;
 
 public class FinitStateAutomation extends Thread {
@@ -34,7 +34,7 @@ public class FinitStateAutomation extends Thread {
         TaskManager.TradeTask currentTask;
         consoleManager = ConsoleManager.getInstance();
         taskManager = TaskManager.getInstance();
-        externalDataManager = ExternalDataManagerImpl.getInstance();
+        externalDataManager = ExternalNTDataManagerImpl.getInstance();
 
         while (isWorking) {
             try {

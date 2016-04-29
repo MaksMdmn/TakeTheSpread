@@ -173,12 +173,14 @@ namespace NinjaTrader.Strategy
 							for (int i = 0; i < Account.Orders.Count;i++)
 							{
 								ListOfOrders.MoveNext();
-								tempStr += "ord:" + ListOfOrders.Current.ToString();
+								Order ord1 = (Order)ListOfOrders.Current;
+								tempStr += "ord:" + ord1.ToString() + " Time=" + "'" + ord1.Time.ToString() + "'";
 							}
 							SendMessages(msgId, tempStr);
 							break;
 						case "BYID":
-							SendMessages(msgId, Orders.FindByOrderId(ordId).ToString());
+							Order ord = Orders.FindByOrderId(ordId);
+							SendMessages(msgId, ord.ToString() + " Time=" + "'" + ord.Time.ToString() + "'");
 							break;
 						case "POS":
 							int pos = Positions[instrumentN].Quantity;
@@ -233,16 +235,17 @@ namespace NinjaTrader.Strategy
 							break;
 						case "BDAK":
 							SendMessages(msgId,
-								"b["
+								"b"
+								    + " "
 									+ GetCurrentBid(instrumentN)
 									+ " "
 									+ GetCurrentBidVolume(instrumentN)
-								+ "]"
-								+ " a["
+									+ " " +
+								"a"
+								    + " "
 									+ GetCurrentAsk(instrumentN)
 									+ " "
-									+ GetCurrentAskVolume(instrumentN)
-								+ "]");
+									+ GetCurrentAskVolume(instrumentN));
 							break;
 						default:
 							ifParamIncorrect(instrumentN + " " + size + " " + price);

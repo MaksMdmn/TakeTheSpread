@@ -15,20 +15,18 @@ public interface ExternalDataManager {
 
     public int getBAskVolume(String instr);
 
-    public Money getLast(String instr);
-
     public int getPosition(String instr);
 
-    public Order getOrder(String id);
+    public Order getOrder(String orderId);
 
     public List<Order> getOrders();
 
-    public void sendLimitBuy(String instr, Money price, int size);
+    public String sendLimitBuy(String instr, Money price, int size);
 
-    public void sendLimitSell(String instr, Money price, int size);
+    public String sendLimitSell(String instr, Money price, int size);
 
-    public void sendMarketBuy(String instr, Money price, int size);
+    public void sendMarketBuy(String instr, int size);
 
-    public void sendMarketSell(String instr, Money price, int size);
+    public void sendMarketSell(String instr, int size);
 
 }

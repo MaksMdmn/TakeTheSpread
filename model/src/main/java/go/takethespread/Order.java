@@ -2,7 +2,7 @@ package go.takethespread;
 
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -13,6 +13,7 @@ public class Order implements Serializable {
     private int size;
     private Money price;
     private int filled;
+    private Money priceFilled;
 
     public Order(){
 
@@ -64,6 +65,14 @@ public class Order implements Serializable {
 
     public void setFilled(int filled) {
         this.filled = filled;
+    }
+
+    public Money getPriceFilled() {
+        return priceFilled;
+    }
+
+    public void setPriceFilled(Money priceFilled) {
+        this.priceFilled = priceFilled;
     }
 
     public enum Deal{
