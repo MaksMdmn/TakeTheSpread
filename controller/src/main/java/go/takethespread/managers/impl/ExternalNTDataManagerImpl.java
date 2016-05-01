@@ -143,9 +143,9 @@ public class ExternalNTDataManagerImpl implements ExternalDataManager {
     }
 
     private NTTcpManager.Term identifyTerm(String instr) {
-        if (instr.equals(consoleManager.getActualProperties().getProperty("n_instrument")))
+        if (instr.equals(consoleManager.getActualProperties().getProperty("instrument_n")))
             return NTTcpManager.Term.NEAR;
-        if (instr.equals(consoleManager.getActualProperties().getProperty("f_instrument")))
+        if (instr.equals(consoleManager.getActualProperties().getProperty("instrument_f")))
             return NTTcpManager.Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }

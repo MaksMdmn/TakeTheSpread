@@ -118,8 +118,16 @@ public class Money {
         return (compareTo(other) > 0);
     }
 
+    public boolean greaterOrEqualThan(Money other) {
+        return (compareTo(other) >= 0);
+    }
+
     public boolean lessThan(Money other) {
         return (compareTo(other) < 0);
+    }
+
+    public boolean lessOrEqualThan(Money other) {
+        return (compareTo(other) <= 0);
     }
 
     /**

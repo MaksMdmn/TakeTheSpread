@@ -13,23 +13,21 @@ public class FinitStateAutomation extends Thread {
     private TaskManager taskManager;
     private ExternalDataManager externalDataManager;
 
+    private String instrument_n;
+    private String instrument_f;
+    private Money enterSpread;
+    private Money exitSpread;
+    private int size;
+
+    private Algorithm algo;
+
     private boolean isWorking;
-
-    //from properties
-    private String nFuture;
-    private String fFuture;
-    private String settingAccount;
-    private Money settingSpread;
-    private int settingSize;
-
 
     @Override
     public void run() {
         isWorking = true;
-        if (nFuture == null || fFuture == null) {
-//                throw new IllegalAccessException("Please, enter the nFuture name: " + nFuture);
-            return;
-        }
+
+        prepareToWork();
 
         TaskManager.TradeTask currentTask;
         consoleManager = ConsoleManager.getInstance();
@@ -42,9 +40,11 @@ public class FinitStateAutomation extends Thread {
 
                 switch (currentTask.getCommand()) {
                     case GO:
+                        executeGO();
                         //standart logical: check prices, waiting for signal and when signal - do the deal
                         break;
                     case GJ:
+                        executeGJ();
                         // break the cycle
                         break;
                     case RN:
@@ -67,8 +67,23 @@ public class FinitStateAutomation extends Thread {
         }
     }
 
-    private void executeGo() {
-
+    private void executeGO() {
+        algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalDataManager);
+        Algorithm.Signal signal = algo.getSignal();
+        switch (signal){
+            case LETS_BUY:
+                externalDataManager.sendMarketBuy(instrument_n, size);
+                externalDataManager.sendMarketSell(instrument_f, size);
+                break;
+            case LETS_SELL:
+                externalDataManager.sendMarketBuy(instrument_f, size);
+                externalDataManager.sendMarketSell(instrument_n, size);
+                break;
+            case NOTHING:
+                break;
+            default:
+                break;
+        }
     }
 
     private void executeGJ() {
@@ -84,78 +99,17 @@ public class FinitStateAutomation extends Thread {
 
     }
 
-    private class Algorithm {
+    private void prepareToWork() {
+        instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
+        instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
 
-        String n_instrument = consoleManager.getActualProperties().getProperty("n_instrument");
-        String f_instrument = consoleManager.getActualProperties().getProperty("f_instrument");
-        Money spread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread")));
+        Money propSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread")));
+        Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
+        Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
 
-        private Signal getSignal() throws TradeException {
-
-            if (!checkTime()) return Signal.DO_NOTHING;
-
-            switch (checkPosition()){
-                case IN_FLAT:
-                    if (!checkSpread()) return Signal.DO_NOTHING;
-                    break;
-                case IN_LONG:
-                    if (!checkSpread()) return Signal.DO_NOTHING;
-                    break;
-                case IN_SHORT:
-                    if (!checkSpread()) return Signal.DO_NOTHING;
-                    break;
-                default:
-                    break;
-            }
-
-
-            if (true) /*buy or sell and return that*/ {
-                return Signal.LETS_BUY;
-            } else {
-                return Signal.LETS_SELL;
-            }
-        }
-
-        private InPosition checkPosition() throws TradeException {
-            int pos_n = externalDataManager.getPosition(n_instrument);
-            int pos_f = externalDataManager.getPosition(f_instrument);
-
-            if (pos_n == 0 && pos_f == 0) {
-                return InPosition.IN_FLAT;
-            }
-
-            if (pos_n > 0 && pos_n == pos_f * -1) {
-                return InPosition.IN_LONG;
-            }
-
-            if (pos_n < 0 && pos_n * -1 == pos_f) {
-                return InPosition.IN_FLAT;
-            }
-
-            throw new TradeException("Positions is not equvivalent now, NEAR: " + pos_n + " FAR: " + pos_f);
-        }
-
-        private boolean checkSpread() {
-            return true;
-        }
-
-        private boolean checkTime() {
-            return true;
-        }
-
+        enterSpread = propSpread.add(propDevEnter);
+        exitSpread = propSpread.add(propDevExit);
     }
 
-    private enum InPosition {
-        //ORIENTATE ON NEAREST FUTURE!
-        IN_LONG,
-        IN_SHORT,
-        IN_FLAT
-    }
 
-    private enum Signal {
-        LETS_BUY,
-        LETS_SELL,
-        DO_NOTHING
-
-    }
 }
