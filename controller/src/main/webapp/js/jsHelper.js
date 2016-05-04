@@ -1,20 +1,23 @@
-function handleCommand(){
-    var command = $('#userConsole').val();
+function handleCommand() {
+    var cmd = $('#console').val();
 
+    console.log(cmd)
     $.ajax({
-        url:"toparse",
+        url: "parsing",
         type: 'post',
-        dataType: 'json',
-        data: command,
-        contentType: 'application/json',
-
+        cache: false,
+        data: {"msg": cmd},
+        success: function(text)
+        {
+            var temp = $('#answers').val();
+            $('#answers').val(temp + "\n" + text);
+            $('#cmd_stack').val($('#cmd_stack').val() + "\n" + cmd);
+        }
     })
 }
 
-function checkCommandSend(event)
-{
-    if((event.ctrlKey) && ((event.keyCode == 0xA)||(event.keyCode == 0xD)))
-    {
+function checkCommandSend(event) {
+    if ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0xD))) {
         handleCommand();
     }
 }

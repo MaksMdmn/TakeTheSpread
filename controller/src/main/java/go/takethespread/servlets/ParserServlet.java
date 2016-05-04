@@ -1,6 +1,11 @@
 package go.takethespread.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import go.takethespread.managers.exceptions.ConsoleException;
+import go.takethespread.managers.exceptions.TradeException;
+import go.takethespread.managers.impl.ConsoleManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,14 +19,23 @@ public class ParserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. get received JSON data from request
-        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        String consoleCommand = "";
+        String msg = request.getParameter("msg");
+        String ans;
 
-        if(br != null){
-            consoleCommand = br.readLine();
+        System.out.println(msg);
+        ConsoleManager manager = ConsoleManager.getInstance();
+        try {
+            ans = manager.parseConsoleMsg(msg);
+        } catch (ConsoleException e) {
+            ans = e.toString();
+            e.printStackTrace();
+        } catch (TradeException e) {
+            ans = e.toString();
+            e.printStackTrace();
         }
 
-        System.out.println(consoleCommand);
+        response.getWriter().write(ans);
+        response.getWriter().flush();
 //
 //        // 2. initiate jackson mapper
 //        ObjectMapper mapper = new ObjectMapper();

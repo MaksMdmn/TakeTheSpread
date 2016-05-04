@@ -1,40 +1,71 @@
-textarea {
-	background-color:#2F4F4F;
-	color:#00FF00;
-	position: fixed;
-	width: 32%;
+html, body{
+	margin:0px;
 	height: 100%;
-	font-weight: bold;
-	border: 4;
-	word-wrap: break-word;
-	resize: vertical;
-	margin-top: 5%;
-	margin-bottom: 5%;
-
+	width: 100%;
+	overflow: hidden;
 }
-html, body, #allContent{
-	height: 100%;
-}
-#consoleInfo
-{
-	background-color:#fdff5e;
-	width: 33%;
-	height: 100%;
-}
-#traderInfo
-{
-	background-color:#9999ff;
-	text-align: center;
-	left: 33%;
-	width: 34%;
-	height: 100%;
-}
-#marketInfo
-{
-	background-color:#99ff99;
-	text-align: center;
-	right: 0;
-	width: 33%;
-	height: 100%;
+#headInfo{
+	background-color:red;
+	width:100%;
+	height:12%;
 }
 
+#loginDiv{
+	float: right;
+	margin: 5px;
+	background: white;
+}
+
+#mainInfo{
+	margin:0px;
+	width: 100%;
+	height: 88%;
+	background-color: green;
+}
+
+
+#userInfo{
+	background-color:yellow;
+	width:30%;
+	height: 100%;
+	float:left;
+}
+#tradingInfo{
+	background-color:blue;
+	width:30%;
+	height: 100%;
+	float:left;
+}
+
+#marketInfo{
+	background-color:orange;
+	width:40%;
+	height: 100%;
+	float:left;
+}
+
+#console{
+	margin: 5px;
+	width: 95%;
+	height: 30%;
+	resize: none;
+}
+#answers{
+	margin: 5px;
+	width: 80%;
+	height:60%;
+	float: left;
+	clear: left;
+}
+#cmd_stack{
+	margin: 5px;
+	width: 10%;
+	height:60%;
+	float: right;
+}
+
+table{
+	width: 80%;
+	height: 30%;
+	margin:auto;
+}

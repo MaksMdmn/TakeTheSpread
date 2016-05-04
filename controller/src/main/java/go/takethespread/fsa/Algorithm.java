@@ -2,7 +2,6 @@ package go.takethespread.fsa;
 
 import go.takethespread.Money;
 import go.takethespread.managers.ExternalDataManager;
-import go.takethespread.managers.impl.ConsoleManager;
 
 public class Algorithm {
     private ExternalDataManager externalDataManager;

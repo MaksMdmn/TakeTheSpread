@@ -28,19 +28,40 @@ public class ConsoleManager {
         return instance;
     }
 
-    public void readConsoleMessage(String msg) throws ConsoleException, TradeException {
+    public String parseConsoleMsg(String msg) throws ConsoleException, TradeException {
         // token is ' ', token between values is ','
 
-        String command = msg.split(" ")[0];
-        String item = msg.split(" ")[1];
-        String values = msg.split(" ")[2];
+        String command = "";
+        String item = "";
+        String values = "";
+
+        switch (msg.split(" ").length) {
+            case 1:
+                command = msg.split(" ")[0];
+                break;
+            case 2:
+                command = msg.split(" ")[0];
+                item = msg.split(" ")[1];
+                break;
+            case 3:
+                command = msg.split(" ")[0];
+                item = msg.split(" ")[1];
+                values = msg.split(" ")[2];
+                break;
+            default:
+                throw new IllegalArgumentException("array length lower that 1 or higher than 3: " + msg);
+        }
+
 
         executeConsoleCommand(command, item, values);
+
+        String answer = "ANSWEROK";
+        return answer;
 
     }
 
 
-    public Properties getActualProperties(){
+    public Properties getActualProperties() {
         return actualProperties;
     }
 
@@ -87,7 +108,7 @@ public class ConsoleManager {
     private void propertiesInit() {
         actualProperties = new Properties();
         String fileName = "possibleSettings.properties";
-        try (InputStream input = getInstance().getClass().getClassLoader().getResourceAsStream(fileName)) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(fileName)) {
             if (input == null) {
                 throw new RuntimeException("Settings-example file was unable to find");
             }

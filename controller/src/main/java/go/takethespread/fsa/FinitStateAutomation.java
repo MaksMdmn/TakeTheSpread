@@ -102,7 +102,7 @@ public class FinitStateAutomation extends Thread {
     private void prepareToWork() {
         instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
         instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
-
+        size = Integer.valueOf(consoleManager.getActualProperties().getProperty("deal_size"));
         Money propSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread")));
         Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
         Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
