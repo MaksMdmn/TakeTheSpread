@@ -183,4 +183,12 @@ public class Money {
         money.amount = amount;
         return money;
     }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "amount=" + getAmount() +
+                ", currency=" + getCurrency() +
+                '}';
+    }
 }

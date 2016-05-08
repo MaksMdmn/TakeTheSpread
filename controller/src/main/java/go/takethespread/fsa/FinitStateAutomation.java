@@ -2,16 +2,16 @@ package go.takethespread.fsa;
 
 
 import go.takethespread.Money;
-import go.takethespread.managers.ExternalDataManager;
+import go.takethespread.managers.ConsoleManager;
+import go.takethespread.managers.ExternalManager;
+import go.takethespread.managers.TaskManager;
 import go.takethespread.managers.exceptions.TradeException;
-import go.takethespread.managers.impl.ConsoleManager;
-import go.takethespread.managers.impl.ExternalNTDataManagerImpl;
-import go.takethespread.managers.impl.TaskManager;
+import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 public class FinitStateAutomation extends Thread {
     private ConsoleManager consoleManager;
     private TaskManager taskManager;
-    private ExternalDataManager externalDataManager;
+    private ExternalManager externalManager;
 
     private String instrument_n;
     private String instrument_f;
@@ -26,17 +26,21 @@ public class FinitStateAutomation extends Thread {
     @Override
     public void run() {
         isWorking = true;
-
         prepareToWork();
-
-        TaskManager.TradeTask currentTask;
-        consoleManager = ConsoleManager.getInstance();
-        taskManager = TaskManager.getInstance();
-        externalDataManager = ExternalNTDataManagerImpl.getInstance();
+        TaskManager.TradeTask currentTask = null;
 
         while (isWorking) {
             try {
-                currentTask = taskManager.getCurrentTask();
+                if (currentTask == null) {
+                    while (currentTask == null) {
+                        currentTask = taskManager.getCurrentTask();
+                    }
+                } else {
+                    currentTask = taskManager.getCurrentTask();
+                }
+
+
+                System.out.println("COMMANDOS: " + currentTask.getCommand().toString());
 
                 switch (currentTask.getCommand()) {
                     case GO:
@@ -56,9 +60,10 @@ public class FinitStateAutomation extends Thread {
                         // change the item and handle the values
                         break;
                     default:
-
                         break;
                 }
+
+                System.out.println(algo.toString());
 
             } catch (TradeException e) {
                 e.printStackTrace();
@@ -68,16 +73,15 @@ public class FinitStateAutomation extends Thread {
     }
 
     private void executeGO() {
-        algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalDataManager);
         Algorithm.Signal signal = algo.getSignal();
-        switch (signal){
+        switch (signal) {
             case LETS_BUY:
-                externalDataManager.sendMarketBuy(instrument_n, size);
-                externalDataManager.sendMarketSell(instrument_f, size);
+                externalManager.sendMarketBuy(instrument_n, size);
+                externalManager.sendMarketSell(instrument_f, size);
                 break;
             case LETS_SELL:
-                externalDataManager.sendMarketBuy(instrument_f, size);
-                externalDataManager.sendMarketSell(instrument_n, size);
+                externalManager.sendMarketBuy(instrument_f, size);
+                externalManager.sendMarketSell(instrument_n, size);
                 break;
             case NOTHING:
                 break;
@@ -88,6 +92,7 @@ public class FinitStateAutomation extends Thread {
 
     private void executeGJ() {
         // correcting completion of work!
+        externalManager.finishingJob();
         isWorking = false;
     }
 
@@ -100,15 +105,23 @@ public class FinitStateAutomation extends Thread {
     }
 
     private void prepareToWork() {
+        consoleManager = ConsoleManager.getInstance();
+        taskManager = TaskManager.getInstance();
+        externalManager = NTTcpExternalManagerImpl.getInstance();
+
         instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
         instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
         size = Integer.valueOf(consoleManager.getActualProperties().getProperty("deal_size"));
-        Money propSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread")));
+
         Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
         Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
 
-        enterSpread = propSpread.add(propDevEnter);
-        exitSpread = propSpread.add(propDevExit);
+        enterSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_open")));
+        enterSpread = enterSpread.add(propDevEnter);
+        exitSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_close")));
+        exitSpread = exitSpread.add(propDevExit);
+
+        algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);
     }
 
 

@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl;
+package go.takethespread.managers;
 
 import go.takethespread.managers.exceptions.TradeException;
 
@@ -52,7 +52,7 @@ public class TaskManager {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
-        return taskPool.peek();
+        return taskPool.peekFirst();
     }
 
 

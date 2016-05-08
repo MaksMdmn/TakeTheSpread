@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.socket;
+package go.takethespread.managers.socket;
 
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -25,9 +25,15 @@ public class NTTcpDataBridge {
     public void addAnswer(String data) {
         if (data.contains("TEST")) {
             System.out.println(data);
-        } else {
-            answers.push(data);
+            return;
         }
+
+        if (data.isEmpty()) {
+            return;
+        }
+
+        answers.push(data);
+
     }
 
     public void addMessage(String message) {
@@ -48,12 +54,6 @@ public class NTTcpDataBridge {
 
     public boolean haveAnswers() {
         return !answers.isEmpty();
-    }
-
-    public String toStrBridgeData() {
-        String result = answers.toString();
-        answers.clear();
-        return result;
     }
 
 }

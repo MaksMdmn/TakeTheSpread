@@ -10,12 +10,13 @@ public class Order implements Serializable {
     private Date date;
     private Deal deal;
     private Type type;
+    private State state;
     private int size;
     private Money price;
     private int filled;
     private Money priceFilled;
 
-    public Order(){
+    public Order() {
 
     }
 
@@ -41,6 +42,14 @@ public class Order implements Serializable {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public int getSize() {
@@ -75,14 +84,42 @@ public class Order implements Serializable {
         this.priceFilled = priceFilled;
     }
 
-    public enum Deal{
-        BUY,
-        SELL
+    public enum Deal {
+        Buy,
+        Sell
     }
 
-    public enum Type{
-        LIMIT,
-        MARKET
+    public enum Type {
+        Limit,
+        Market
+    }
+
+    public enum State {
+        Accepted,
+        Cancelled,
+        Filled,
+        PartFilled,
+        PendingCancel,
+        PendingChange,
+        PendingSubmit,
+        Rejected,
+        Working,
+        Unknown,
+        Initialized
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "date=" + date +
+                ", deal=" + deal +
+                ", type=" + type +
+                ", state=" + state +
+                ", size=" + size +
+                ", price=" + price +
+                ", filled=" + filled +
+                ", priceFilled=" + priceFilled +
+                '}' + "\r\n";
     }
 }
 

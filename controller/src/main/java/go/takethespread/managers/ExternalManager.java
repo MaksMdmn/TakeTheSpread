@@ -5,7 +5,7 @@ import go.takethespread.Order;
 
 import java.util.List;
 
-public interface ExternalDataManager {
+public interface ExternalManager {
 
     public Money getBBid(String instr);
 
@@ -21,6 +21,12 @@ public interface ExternalDataManager {
 
     public List<Order> getOrders();
 
+    public Money getCashValue();
+
+    public Money getBuyingPower();
+
+    public Money getPnL();
+
     public String sendLimitBuy(String instr, Money price, int size);
 
     public String sendLimitSell(String instr, Money price, int size);
@@ -28,5 +34,15 @@ public interface ExternalDataManager {
     public void sendMarketBuy(String instr, int size);
 
     public void sendMarketSell(String instr, int size);
+
+    public void sendCancelOrder(String ordId);
+
+    public void sendCancelOrders();
+
+    public void refreshData();
+
+    public void startingJob();
+
+    public void finishingJob();
 
 }

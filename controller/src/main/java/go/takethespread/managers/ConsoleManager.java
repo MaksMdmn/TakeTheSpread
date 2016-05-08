@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl;
+package go.takethespread.managers;
 
 import go.takethespread.managers.exceptions.ConsoleException;
 import go.takethespread.managers.exceptions.TradeException;

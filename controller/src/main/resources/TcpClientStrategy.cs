@@ -39,6 +39,10 @@ namespace NinjaTrader.Strategy
 		private StreamReader tcpReader;
 		private bool isCon;
 		private Dictionary<String, IOrder> orderMap = new Dictionary<String, IOrder>();
+		private String prevMessage_n = "";
+		private String prevMessage_f = "";
+		private String currentMessage_n;
+		private String currentMessage_f;
 
 
 
@@ -118,7 +122,6 @@ namespace NinjaTrader.Strategy
 		private void processMessage(String msg)
 		{
 			try{
-					//parsing here
 					Print(msg);
 					String[] tempArr = msg.Split(ntToken, StringSplitOptions.None);
 					String msgId = tempArr[0];
@@ -234,18 +237,30 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
 							break;
 						case "BDAK":
-							SendMessages(msgId,
-								"b"
-								    + " "
-									+ GetCurrentBid(instrumentN)
-									+ " "
-									+ GetCurrentBidVolume(instrumentN)
-									+ " " +
-								"a"
-								    + " "
-									+ GetCurrentAsk(instrumentN)
-									+ " "
-									+ GetCurrentAskVolume(instrumentN));
+							if (instrumentN == 0){
+								currentMessage_n = getBDAKMessage(instrumentN);
+								while(prevMessage_n == currentMessage_n)
+								{
+									currentMessage_n = getBDAKMessage(instrumentN);
+								}
+
+								Print("prev n: " + prevMessage_n + "   cur n: " + currentMessage_n);
+
+								prevMessage_n = currentMessage_n;
+								SendMessages(msgId, currentMessage_n);
+
+							}else if (instrumentN == 1){
+								currentMessage_f = getBDAKMessage(instrumentN);
+								while(prevMessage_f == currentMessage_f)
+								{
+									currentMessage_f = getBDAKMessage(instrumentN);
+								}
+
+								Print("prev f: " + prevMessage_f + "   cur f: " + currentMessage_f);
+
+								prevMessage_f = currentMessage_f;
+								SendMessages(msgId, currentMessage_f);
+							}
 							break;
 						default:
 							ifParamIncorrect(instrumentN + " " + size + " " + price);
@@ -267,6 +282,20 @@ namespace NinjaTrader.Strategy
 			}catch(Exception e6){
 				Print("send message exception: " + e6.ToString());
 			}
+		}
+
+		private String getBDAKMessage(int instrN){
+			return "b"
+						+ " "
+						+ GetCurrentBid(instrN)
+						+ " "
+						+ GetCurrentBidVolume(instrN)
+						+ " " +
+					"a"
+						+ " "
+						+ GetCurrentAsk(instrN)
+						+ " "
+						+ GetCurrentAskVolume(instrN);
 		}
 
 		private String AddToOrderMap(IOrder order){
@@ -345,7 +374,6 @@ namespace NinjaTrader.Strategy
 
 		private void ifParamIncorrect(String s){
 			Print("incorrect parametres. I'm out - bb man" + s);
-			Disable();
 			correctClosingAndAbortCon();
 		}
 

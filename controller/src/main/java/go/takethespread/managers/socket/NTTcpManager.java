@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.socket;
+package go.takethespread.managers.socket;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,8 +12,6 @@ public class NTTcpManager {
     private NTTcpManager() {
         answersMap = new HashMap<>();
         bridge = NTTcpDataBridge.getInstance();
-        server = new NTTcpServer();
-        server.initServerWork();
     }
 
     public static NTTcpManager getInstance() {
@@ -24,71 +22,89 @@ public class NTTcpManager {
         return instance;
     }
 
-    public long sendNTMessage(NTTcpMessage msg) {
+    protected void okay_letsGo(){
+        server = new NTTcpServer();
+        server.initServerWork();
+    }
+
+    //always last
+
+    protected void finishingTodaysJob() {
+        server.shutDown();
+        //correct ending
+        //repotring
+    }
+
+    protected void sendOffMessage() {
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.GJ, "").prepareToSending());
+    }
+
+    protected long sendOrdersMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.ORDS, ""));
+    }
+
+    protected long sendOrderByIdMessage(String ordId) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BYID, ordId));
+    }
+
+    protected long sendPositionMessage(Term term) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.POS, getInstrumentNumber(term)));
+    }
+
+    protected long sendBuyingPowerMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BPOW, ""));
+    }
+
+    protected long sendCashValueMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CSHV, ""));
+    }
+
+    protected long sendRealizedPnLMessage() {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.RPNL, ""));
+    }
+
+    protected void sendBuyMarketMessage(Term term, int size) {
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
+    }
+
+    protected void sendSellMarketMessage(Term term, int size) {
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
+    }
+
+    protected long sendBuyLimitMessage(Term term, int size, double price) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BLMT, getOrderParametres(term,size,price)));
+    }
+
+    protected long sendSellLimitMessage(Term term, int size, double price) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SLMT, getOrderParametres(term,size,price)));
+    }
+
+    protected long sendMarketDataMessage(Term term) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BDAK, getInstrumentNumber(term)));
+    }
+
+    protected long sendFilledMessage(String ordId){
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.FLLD, ordId));
+    }
+
+    protected void sendCancelAllMessage(){
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, "").prepareToSending());
+    }
+
+    protected void sendCancelByIdMessage(String ordId){
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId).prepareToSending());
+    }
+
+    protected long sendNTMessage(NTTcpMessage msg) {
         long msgId = msg.getId();
         answersMap.put(msgId, null);
         bridge.addMessage(msg.prepareToSending());
         return msgId;
     }
 
-    public void sendOffMessage() {
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.GJ, "").prepareToSending());
-    }
-
-    public long sendOrdersMessage() {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.ORDS, ""));
-    }
-
-    public long sendOrderByIdMessage(String ordId) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BYID, ordId));
-    }
-
-    public long sendPositionMessage(Term term) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.POS, getInstrumentNumber(term)));
-    }
-
-    public long sendBuyingPowerMessage() {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BPOW, ""));
-    }
-
-    public long sendCashValueMessage() {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CSHV, ""));
-    }
-
-    public long sendRealizedPnLMessage() {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.RPNL, ""));
-    }
-
-    public void sendBuyMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
-    }
-
-    public void sendSellMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
-    }
-
-    public long sendBuyLimitMessage(Term term, int size, double price) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BLMT, getOrderParametres(term,size,price)));
-    }
-
-    public long sendSellLimitMessage(Term term, int size, double price) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SLMT, getOrderParametres(term,size,price)));
-    }
-
-    public long sendMarketDataMessage(Term term) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BDAK, getInstrumentNumber(term)));
-    }
-
-    public long sendFilledMessage(String ordId){
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.FLLD, ordId));
-    }
-
-    public void sendCancelAllMessage(){
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, "").prepareToSending());
-    }
-
-    public void sendCancelByIdMessage(String ordId){
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId).prepareToSending());
+    protected String receiveNTAnswer(long key) {
+        collectAllAnswers();
+        return answersMap.get(key);
     }
 
     private String getOrderParametres(Term term, int size, double price) {
@@ -99,22 +115,6 @@ public class NTTcpManager {
 
     private String getInstrumentNumber(Term term) {
         return String.valueOf(term == Term.NEAR ? 0 : 1);
-    }
-
-    //    BDAK //bid ask data
-    //if == null then havent answer yet
-    public String receiveNTAnswer(long key) {
-        collectAllAnswers();
-        System.out.print("I'M AN ANSWER: ");
-        return answersMap.get(key);
-    }
-
-    //always last
-
-    public void finishingTodaysJob() {
-        server.shutDown();
-        //correct ending
-        //repotring
     }
 
     protected static long getMessageId() {

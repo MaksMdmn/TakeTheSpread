@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.socket;
+package go.takethespread.managers.socket;
 
 
 
@@ -13,7 +13,6 @@ public class NTTcpMessage {
         this.command = command;
         this.id = NTTcpManager.getMessageId();
         this.param = param;
-        System.out.println("I'M A MESSAGE: " + this.prepareToSending());
     }
 
     public NTTcpCommand getCommand() {

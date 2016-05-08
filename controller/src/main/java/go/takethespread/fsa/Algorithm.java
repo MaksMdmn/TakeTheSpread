@@ -1,10 +1,10 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Money;
-import go.takethespread.managers.ExternalDataManager;
+import go.takethespread.managers.ExternalManager;
 
 public class Algorithm {
-    private ExternalDataManager externalDataManager;
+    private ExternalManager externalManager;
     private String instrument_n;
     private String instrument_f;
     private Money enterSpread;
@@ -18,34 +18,23 @@ public class Algorithm {
     private Money ask_f;
 
     protected Algorithm(String instrument_n, String instrument_f, Money enterSpread, Money exitSpread,
-                        ExternalDataManager externalDataManager) {
+                        ExternalManager externalManager) {
         this.instrument_n = instrument_n;
         this.instrument_f = instrument_f;
         this.enterSpread = enterSpread;
         this.exitSpread = exitSpread;
-        this.externalDataManager = externalDataManager;
+        this.externalManager = externalManager;
+        dataUpdate();
 
-        this.bid_n = externalDataManager.getBBid(instrument_n);
-        this.ask_n = externalDataManager.getBAsk(instrument_n);
-        this.bid_f = externalDataManager.getBBid(instrument_f);
-        this.ask_f = externalDataManager.getBAsk(instrument_f);
-        this.position = getCurrentPosition();
     }
 
     public Signal getSignal() {
+        dataUpdate();
         if (position == PositionState.FLAT) {
             return makeDeal();
         } else {
             return closeDeal(position);
         }
-    }
-
-    private PositionState getCurrentPosition() {
-        int tempPos = externalDataManager.getPosition(instrument_n);
-        if (tempPos > 0) return PositionState.LONG;
-        if (tempPos == 0) return PositionState.FLAT;
-        if (tempPos < 0) return PositionState.SHORT;
-        throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + tempPos);
     }
 
     private Signal makeDeal() {
@@ -86,7 +75,22 @@ public class Algorithm {
         return Money.dollars(Math.abs(val1.subtract(val2).getAmount()));
     }
 
+    private void dataUpdate() {
+        externalManager.refreshData();
+        bid_n = externalManager.getBBid(instrument_n);
+        ask_n = externalManager.getBAsk(instrument_n);
+        bid_f = externalManager.getBBid(instrument_f);
+        ask_f = externalManager.getBAsk(instrument_f);
+        position = getCurrentPosition();
+    }
 
+    private PositionState getCurrentPosition() {
+        int tempPos = externalManager.getPosition(instrument_n);
+        if (tempPos > 0) return PositionState.LONG;
+        if (tempPos == 0) return PositionState.FLAT;
+        if (tempPos < 0) return PositionState.SHORT;
+        throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + tempPos);
+    }
     protected enum Signal {
         LETS_BUY,
         LETS_SELL,
@@ -99,4 +103,14 @@ public class Algorithm {
         FLAT
     }
 
+    @Override
+    public String toString() {
+        return "Algorithm{" +
+                "position=" + position +
+                ", bid_n=" + bid_n.getAmount() +
+                ", ask_n=" + ask_n.getAmount() +
+                ", bid_f=" + bid_f.getAmount() +
+                ", ask_f=" + ask_f.getAmount() +
+                '}';
+    }
 }

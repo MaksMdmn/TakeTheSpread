@@ -1,4 +1,4 @@
-package go.takethespread.managers.impl.socket;
+package go.takethespread.managers.socket;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -40,7 +40,6 @@ public class NTTcpServer {
         this.writing = initWriting();
         reading.start();
         writing.start();
-        System.out.println("started...");
     }
 
     public void shutDown() {
