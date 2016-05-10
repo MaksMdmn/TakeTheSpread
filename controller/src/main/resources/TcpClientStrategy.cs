@@ -122,7 +122,6 @@ namespace NinjaTrader.Strategy
 		private void processMessage(String msg)
 		{
 			try{
-					Print(msg);
 					String[] tempArr = msg.Split(ntToken, StringSplitOptions.None);
 					String msgId = tempArr[0];
 					String msgCmd = tempArr[1];
@@ -237,30 +236,29 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
 							break;
 						case "BDAK":
-							if (instrumentN == 0){
-								currentMessage_n = getBDAKMessage(instrumentN);
-								while(prevMessage_n == currentMessage_n)
-								{
-									currentMessage_n = getBDAKMessage(instrumentN);
-								}
+//							if (instrumentN == 0){
+//								currentMessage_n = getBDAKMessage(instrumentN);
+//								while(prevMessage_n == currentMessage_n)
+//								{
+//									currentMessage_n = getBDAKMessage(instrumentN);
+//								}
+//
+//								prevMessage_n = currentMessage_n;
+//								SendMessages(msgId, currentMessage_n);
+//
+//							}else if (instrumentN == 1){
+//								currentMessage_f = getBDAKMessage(instrumentN);
+//								while(prevMessage_f == currentMessage_f)
+//								{
+//									currentMessage_f = getBDAKMessage(instrumentN);
+//								}
+//
+//								prevMessage_f = currentMessage_f;
+//								SendMessages(msgId, currentMessage_f);
+//							}
 
-								Print("prev n: " + prevMessage_n + "   cur n: " + currentMessage_n);
-
-								prevMessage_n = currentMessage_n;
-								SendMessages(msgId, currentMessage_n);
-
-							}else if (instrumentN == 1){
-								currentMessage_f = getBDAKMessage(instrumentN);
-								while(prevMessage_f == currentMessage_f)
-								{
-									currentMessage_f = getBDAKMessage(instrumentN);
-								}
-
-								Print("prev f: " + prevMessage_f + "   cur f: " + currentMessage_f);
-
-								prevMessage_f = currentMessage_f;
-								SendMessages(msgId, currentMessage_f);
-							}
+							currentMessage_f = getBDAKMessage(instrumentN);
+							SendMessages(msgId, currentMessage_f);
 							break;
 						default:
 							ifParamIncorrect(instrumentN + " " + size + " " + price);

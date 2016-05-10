@@ -42,6 +42,8 @@ public class Algorithm {
             currentSpread = calcAbsSpread(ask_n, bid_f);
             if (currentSpread.greaterOrEqualThan(enterSpread)) {
                 return Signal.LETS_BUY;
+            } else {
+                return Signal.NOTHING;
             }
         }
 
@@ -49,6 +51,8 @@ public class Algorithm {
             currentSpread = calcAbsSpread(bid_n, ask_f);
             if (currentSpread.greaterOrEqualThan(enterSpread)) {
                 return Signal.LETS_SELL;
+            } else {
+                return Signal.NOTHING;
             }
         }
 
@@ -91,6 +95,7 @@ public class Algorithm {
         if (tempPos < 0) return PositionState.SHORT;
         throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + tempPos);
     }
+
     protected enum Signal {
         LETS_BUY,
         LETS_SELL,
@@ -106,11 +111,12 @@ public class Algorithm {
     @Override
     public String toString() {
         return "Algorithm{" +
-                "position=" + position +
-                ", bid_n=" + bid_n.getAmount() +
+                "bid_n=" + bid_n.getAmount() +
                 ", ask_n=" + ask_n.getAmount() +
                 ", bid_f=" + bid_f.getAmount() +
                 ", ask_f=" + ask_f.getAmount() +
+                ", currentSpread=" + currentSpread.getAmount() +
+                ", enterSpread=" + enterSpread.getAmount() +
                 '}';
     }
 }

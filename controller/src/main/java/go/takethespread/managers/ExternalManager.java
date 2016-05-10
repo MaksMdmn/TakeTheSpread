@@ -27,6 +27,8 @@ public interface ExternalManager {
 
     public Money getPnL();
 
+    public int getOrderFilled(String ordId);
+
     public String sendLimitBuy(String instr, Money price, int size);
 
     public String sendLimitSell(String instr, Money price, int size);

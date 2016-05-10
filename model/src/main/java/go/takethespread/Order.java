@@ -7,6 +7,7 @@ import java.util.Date;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private Date date;
     private Deal deal;
     private Type type;
@@ -18,6 +19,14 @@ public class Order implements Serializable {
 
     public Order() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -111,7 +120,8 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", deal=" + deal +
                 ", type=" + type +
                 ", state=" + state +

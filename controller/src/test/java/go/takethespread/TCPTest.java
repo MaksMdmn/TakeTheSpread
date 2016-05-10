@@ -74,6 +74,24 @@ public class TCPTest {
             System.out.println(ntTcpExternalManager.getPosition(instr1));
             System.out.println(ntTcpExternalManager.getPosition(instr2));
 
+
+            System.out.println("check order filling: ");
+            ntTcpExternalManager.refreshData();
+            System.out.println("poss: "
+                    + ntTcpExternalManager.getPosition(instr1)
+                    + " "
+                    + ntTcpExternalManager.getPosition(instr2));
+            String tempId = ntTcpExternalManager.sendLimitBuy(instr1, ntTcpExternalManager.getBBid(instr1),15);
+            Thread.sleep(500);
+            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
+            Thread.sleep(500);
+            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
+            Thread.sleep(500);
+            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
+            Thread.sleep(500);
+            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
+
+
             System.out.println("if all seems good, bb");
             ntTcpExternalManager.finishingJob();
 

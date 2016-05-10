@@ -12,9 +12,11 @@ import java.util.*;
 public class NTTcpExternalManagerImpl implements ExternalManager {
 
     private static ExternalManager instance;
+    private static int attemptMaxNumbers;
+    private static int attempts;
+    private int delay;
     private ConsoleManager consoleManager;
     private NTTcpManager ntTcpManager;
-    private int delay;
     private ActualMarketData nearMarketData;
     private ActualMarketData farMarketData;
 
@@ -23,7 +25,8 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         ntTcpManager = NTTcpManager.getInstance();
         nearMarketData = new ActualMarketData(NTTcpManager.Term.NEAR);
         farMarketData = new ActualMarketData(NTTcpManager.Term.FAR);
-        delay = 200;
+        attemptMaxNumbers = 20; //2 sec
+        delay = 100;
     }
 
     public static ExternalManager getInstance() {
@@ -85,38 +88,14 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     @Override
     public int getPosition(String instr) {
         long id = ntTcpManager.sendPositionMessage(identifyTerm(instr));
-        String tempPos = null;
-        while (tempPos == null) {
-            tempPos = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
+        String tempPos = waitingForAnswer(id);
         return Integer.valueOf(tempPos);
     }
 
     @Override
     public Order getOrder(String orderId) {
         long id = ntTcpManager.sendOrderByIdMessage(orderId);
-        String tempOrder = null;
-        while (tempOrder == null) {
-            tempOrder = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
-//        Order='9c102d6da4254c9eb87e6a5c747b9c64/Sim101'
-//        Name='Buy'
-//        State=Filled
-//        Instrument='CL 06-16'
-//        Action=Buy Limit
-//        price=46,7
-//        Stop price=0
-//        Quantity=1
-//        Strategy='TcpClientStrategy'
-//        Type=Limit
-//        Tif=Gtc Oco=''
-//        Filled=1
-//        Fill price=46,37
-//        Token='9c102d6da4254c9eb87e6a5c747b9c64'
-//        Gtd='01.12.2099 0:00:00'
-//        Time='29.04.2016 11:10:40'
+        String tempOrder = waitingForAnswer(id);
 
         return parseTheOrder(tempOrder);
     }
@@ -124,11 +103,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     @Override
     public List<Order> getOrders() {
         long id = ntTcpManager.sendOrdersMessage();
-        String tempOrders = null;
-        while (tempOrders == null) {
-            tempOrders = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
+        String tempOrders = waitingForAnswer(id);
         List<Order> orders = new ArrayList<>();
         String[] tempOrdersArr = tempOrders.split("ord:");
         for (String tempOrder : tempOrdersArr) {
@@ -143,69 +118,65 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     @Override
     public Money getCashValue() {
         long id = ntTcpManager.sendCashValueMessage();
-        String tempCashValue = null;
-        while (tempCashValue == null) {
-            tempCashValue = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
-
-        return Money.dollars(Double.valueOf(tempCashValue));
+        String tempCashValue = waitingForAnswer(id);
+        return Money.dollars(Double.valueOf(tempCashValue.replace(",", ".")));
     }
 
     @Override
     public Money getBuyingPower() {
         long id = ntTcpManager.sendBuyingPowerMessage();
-        String tempBuyingPower = null;
-        while (tempBuyingPower == null) {
-            tempBuyingPower = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
-
-        return Money.dollars(Double.valueOf(tempBuyingPower));
+        String tempBuyingPower =waitingForAnswer(id);
+        return Money.dollars(Double.valueOf(tempBuyingPower.replace(",", ".")));
     }
 
     @Override
     public Money getPnL() {
         long id = ntTcpManager.sendRealizedPnLMessage();
-        String tempPnL = null;
-        while (tempPnL == null) {
-            tempPnL = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
+        String tempPnL = waitingForAnswer(id);
+        return Money.dollars(Double.valueOf(tempPnL.replace(",", ".")));
+    }
 
-        return Money.dollars(Double.valueOf(tempPnL));
+    @Override
+    public int getOrderFilled(String ordId) {
+        long id = ntTcpManager.sendFilledMessage(ordId);
+        String filled = waitingForAnswer(id);
+        return Integer.valueOf(filled);
     }
 
     @Override
     public String sendLimitBuy(String instr, Money price, int size) {
         long id = ntTcpManager.sendBuyLimitMessage(identifyTerm(instr), size, price.getAmount());
-        String result = null;
-        while (result == null) {
-            result = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
+        String result = waitingForAnswer(id);
         return result;
     }
 
     @Override
     public String sendLimitSell(String instr, Money price, int size) {
         long id = ntTcpManager.sendSellLimitMessage(identifyTerm(instr), size, price.getAmount());
-        String result = null;
-        while (result == null) {
-            result = ntTcpManager.receiveNTAnswer(id);
-            delayWaiting();
-        }
+        String result = waitingForAnswer(id);
         return result;
     }
 
     @Override
     public void sendMarketBuy(String instr, int size) {
+        int tempPos = getPosition(instr);
         ntTcpManager.sendBuyMarketMessage(identifyTerm(instr), size);
+        while (tempPos == getPosition(instr)) {
+            trackStatus();
+            /*NOP*/
+        }
+        resetStatus();
     }
 
     @Override
     public void sendMarketSell(String instr, int size) {
+        int tempPos = getPosition(instr);
         ntTcpManager.sendSellMarketMessage(identifyTerm(instr), size);
+        while (tempPos == getPosition(instr)) {
+            trackStatus();
+            /*NOP*/
+        }
+        resetStatus();
     }
 
     @Override
@@ -247,6 +218,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         Order order = new Order();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         try {
+            String id = searchTheParameter("Order", tempOrder);
             Date date = dateFormat.parse(searchTheParameter("Time", tempOrder));
             Order.Deal deal = Order.Deal.valueOf(searchTheParameter("Action", tempOrder));
             Order.Type type = Order.Type.valueOf(searchTheParameter("Type", tempOrder));
@@ -256,6 +228,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
             int filled = Integer.valueOf(searchTheParameter("Filled", tempOrder));
             Money priceFilled = Money.dollars(Double.valueOf(searchTheParameter("Fill price", tempOrder)));
 
+            order.setId(id);
             order.setDate(date);
             order.setDeal(deal);
             order.setType(type);
@@ -267,13 +240,16 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
 
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("error on this order " + tempOrder);
+            e.printStackTrace();
         }
 
         return order;
     }
 
     private String searchTheParameter(String param, String str) {
-        int startParamIndex = str.indexOf(param);
+        int startParamIndex = str.indexOf(param + "=");
         int startEqualIndex = str.indexOf("=", startParamIndex);
 
         int startValueIndex = 0;
@@ -300,16 +276,40 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         if (result.contains(",")) {
             result = result.replace(",", ".");
         }
+        if (result.contains("/")) {
+            result = result.split("/")[0];
+        }
         return result;
     }
 
-    private void delayWaiting() {
+    private String waitingForAnswer(long id){
+        String answer = null;
+        while (answer == null) {
+            answer = ntTcpManager.receiveNTAnswer(id);
+            trackStatus();
+        }
+        resetStatus();
+        return answer;
+    }
+
+    private void trackStatus() {
         try {
+            attempts++;
             Thread.sleep(delay);
+            if (attempts > attemptMaxNumbers) {
+                throw new RuntimeException("delay is too big for correcting work : " + delay * attemptMaxNumbers + " ms.");
+            }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+    private void resetStatus() {
+        attempts = 0;
+    }
+
+
 
     private class ActualMarketData {
         double bid;
@@ -327,7 +327,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
             String data = null;
             while (data == null) {
                 data = ntTcpManager.receiveNTAnswer(id);
-                delayWaiting();
+                trackStatus();
             }
 
             String[] marketData = data.replace(',', '.').split(" ");

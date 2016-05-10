@@ -8,6 +8,8 @@ import go.takethespread.managers.TaskManager;
 import go.takethespread.managers.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
+import java.util.Date;
+
 public class FinitStateAutomation extends Thread {
     private ConsoleManager consoleManager;
     private TaskManager taskManager;
@@ -39,9 +41,6 @@ public class FinitStateAutomation extends Thread {
                     currentTask = taskManager.getCurrentTask();
                 }
 
-
-                System.out.println("COMMANDOS: " + currentTask.getCommand().toString());
-
                 switch (currentTask.getCommand()) {
                     case GO:
                         executeGO();
@@ -63,7 +62,7 @@ public class FinitStateAutomation extends Thread {
                         break;
                 }
 
-                System.out.println(algo.toString());
+                System.out.println(algo.toString() + " t:" +  new Date(System.currentTimeMillis()));
 
             } catch (TradeException e) {
                 e.printStackTrace();
