@@ -2,6 +2,7 @@ package go.takethespread.managers.socket;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class NTTcpManager {
     private static NTTcpManager instance;
@@ -22,7 +23,15 @@ public class NTTcpManager {
         return instance;
     }
 
-    protected void okay_letsGo(){
+    protected String getFreshMarketData(Term term) {
+        if (term == Term.NEAR) {
+            return bridge.acceptNearMarketData();
+        } else {
+            return bridge.acceptFarMarketData();
+        }
+    }
+
+    protected void startUpServ() {
         server = new NTTcpServer();
         server.initServerWork();
     }
@@ -64,34 +73,30 @@ public class NTTcpManager {
     }
 
     protected void sendBuyMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term,size,0d)));
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term, size, 0d)));
     }
 
     protected void sendSellMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term,size,0d)));
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term, size, 0d)));
     }
 
     protected long sendBuyLimitMessage(Term term, int size, double price) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BLMT, getOrderParametres(term,size,price)));
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BLMT, getOrderParametres(term, size, price)));
     }
 
     protected long sendSellLimitMessage(Term term, int size, double price) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SLMT, getOrderParametres(term,size,price)));
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SLMT, getOrderParametres(term, size, price)));
     }
 
-    protected long sendMarketDataMessage(Term term) {
-        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BDAK, getInstrumentNumber(term)));
-    }
-
-    protected long sendFilledMessage(String ordId){
+    protected long sendFilledMessage(String ordId) {
         return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.FLLD, ordId));
     }
 
-    protected void sendCancelAllMessage(){
+    protected void sendCancelAllMessage() {
         bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, "").prepareToSending());
     }
 
-    protected void sendCancelByIdMessage(String ordId){
+    protected void sendCancelByIdMessage(String ordId) {
         bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId).prepareToSending());
     }
 
@@ -125,13 +130,16 @@ public class NTTcpManager {
         while (bridge.haveAnswers()) {
             String tempStr = bridge.acceptAnswer();
             String[] tempArr = tempStr.split(NTTcpMessage.ntToken);
+            long key;
+            String value;
 
             if (tempArr.length != 2)
                 throw new IllegalArgumentException("Parsing error: answer array have length != 2, actual: " + tempArr.length + " arr: " + Arrays.toString(tempArr));
 
-            long key = Long.valueOf(tempArr[0]);
-            String answer = tempArr[1];
-            answersMap.put(key, answer);
+            key = Long.valueOf(tempArr[0]);
+            value = tempArr[1];
+
+            answersMap.put(key, value);
         }
     }
 
@@ -139,5 +147,6 @@ public class NTTcpManager {
         NEAR,
         FAR
     }
+
 
 }

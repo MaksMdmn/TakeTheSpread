@@ -8,13 +8,17 @@ public class NTTcpDataBridge {
     private static NTTcpDataBridge instance;
     private BlockingDeque<String> messages;
     private BlockingDeque<String> answers;
+    private BlockingDeque<String> nearMarketData;
+    private BlockingDeque<String> farMarketData;
 
     private NTTcpDataBridge() {
         messages = new LinkedBlockingDeque<>();
         answers = new LinkedBlockingDeque<>();
+        nearMarketData = new LinkedBlockingDeque<>();
+        farMarketData = new LinkedBlockingDeque<>();
     }
 
-    public static NTTcpDataBridge getInstance() {
+    protected static NTTcpDataBridge getInstance() {
         if (instance == null) {
             instance = new NTTcpDataBridge();
         }
@@ -22,13 +26,23 @@ public class NTTcpDataBridge {
         return instance;
     }
 
-    public void addAnswer(String data) {
+    protected void addAnswer(String data) {
+        if (data.isEmpty()) {
+            return;
+        }
+
         if (data.contains("TEST")) {
             System.out.println(data);
             return;
         }
 
-        if (data.isEmpty()) {
+        if (data.startsWith("n")) {
+            nearMarketData.add(data.split(NTTcpMessage.ntToken)[1]);
+            return;
+        }
+
+        if (data.startsWith("f")) {
+            farMarketData.add(data.split(NTTcpMessage.ntToken)[1]);
             return;
         }
 
@@ -36,24 +50,34 @@ public class NTTcpDataBridge {
 
     }
 
-    public void addMessage(String message) {
+    protected void addMessage(String message) {
         messages.push(message);
     }
 
-    public String acceptMessage() {
+    protected String acceptMessage() {
         return messages.pollFirst();
     }
 
-    public String acceptAnswer() {
+    protected String acceptAnswer() {
         return answers.pollFirst();
     }
 
-    public boolean haveMessage() {
+    protected String acceptNearMarketData(){
+        return nearMarketData.peekLast();
+    }
+
+    protected String acceptFarMarketData(){
+        return nearMarketData.peekLast();
+    }
+
+    protected boolean haveMessage() {
         return !messages.isEmpty();
     }
 
-    public boolean haveAnswers() {
+    protected boolean haveAnswers() {
         return !answers.isEmpty();
     }
+
+    protected boolean haveMarketData() {return !nearMarketData.isEmpty() && !farMarketData.isEmpty();}
 
 }

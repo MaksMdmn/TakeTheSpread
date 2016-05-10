@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Timers;
 
 using System.ComponentModel;
 using System.Diagnostics;
@@ -34,8 +35,8 @@ namespace NinjaTrader.Strategy
         #endregion
 		private StreamWriter tcpWriter;
 		private TcpClient tcpClient;
-		private Thread thrMessaging;
-		private Thread thrSendering;
+		private Thread thrGetting;
+		private Thread thrSending;
 		private StreamReader tcpReader;
 		private bool isCon;
 		private Dictionary<String, IOrder> orderMap = new Dictionary<String, IOrder>();
@@ -43,6 +44,9 @@ namespace NinjaTrader.Strategy
 		private String prevMessage_f = "";
 		private String currentMessage_n;
 		private String currentMessage_f;
+		private String md0 = "";
+		private String md1 = "";
+		private System.Timers.Timer timer;
 
 
 
@@ -51,6 +55,7 @@ namespace NinjaTrader.Strategy
 		private String secondInstrTicker = "CL 07-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
+		private int sendingDelayMs = 500;
 		//handle by myself
 
         /// <summary>
@@ -94,13 +99,24 @@ namespace NinjaTrader.Strategy
 		private void proceedRead(){
 			tcpReader = new StreamReader(tcpClient.GetStream());
 
-			thrMessaging = new Thread(new ThreadStart(ReceiveMessages));
-			thrMessaging.Start();
+			thrGetting = new Thread(new ThreadStart(ReceiveMessages));
+			thrGetting.Start();
 		}
 
 		private void proceedWrite(){
 			tcpWriter = new StreamWriter(tcpClient.GetStream());
 			tcpWriter.WriteLine("TEST1.23");
+
+			timer  = new System.Timers.Timer(sendingDelayMs);
+			timer.Elapsed+=OnTimedEvent;
+			timer.AutoReset = true;
+			timer.Enabled = true;
+		}
+
+		private void OnTimedEvent(Object source, ElapsedEventArgs e)
+		{	//id 0 is market data messages!
+			SendMessages("n", md0);
+			SendMessages("f", md1);
 		}
 
 		private void ReceiveMessages()
@@ -108,9 +124,8 @@ namespace NinjaTrader.Strategy
 			while (isCon)
 			{
 				try{
-					String con = tcpReader.ReadLine();
-					processMessage(con);
-
+					String msgFromJ = tcpReader.ReadLine();
+					processMessage(msgFromJ);
 
 				}catch (Exception e4){
 					Print("receiveMessages exception: " + e4.ToString());
@@ -236,27 +251,6 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
 							break;
 						case "BDAK":
-//							if (instrumentN == 0){
-//								currentMessage_n = getBDAKMessage(instrumentN);
-//								while(prevMessage_n == currentMessage_n)
-//								{
-//									currentMessage_n = getBDAKMessage(instrumentN);
-//								}
-//
-//								prevMessage_n = currentMessage_n;
-//								SendMessages(msgId, currentMessage_n);
-//
-//							}else if (instrumentN == 1){
-//								currentMessage_f = getBDAKMessage(instrumentN);
-//								while(prevMessage_f == currentMessage_f)
-//								{
-//									currentMessage_f = getBDAKMessage(instrumentN);
-//								}
-//
-//								prevMessage_f = currentMessage_f;
-//								SendMessages(msgId, currentMessage_f);
-//							}
-
 							currentMessage_f = getBDAKMessage(instrumentN);
 							SendMessages(msgId, currentMessage_f);
 							break;
@@ -271,6 +265,7 @@ namespace NinjaTrader.Strategy
 
 		private void SendMessages(String messageId, String message)
 		{
+			Print(messageId + String.Concat(ntToken) + message);
 			try{
 				if (message != "")
 					{
@@ -280,20 +275,6 @@ namespace NinjaTrader.Strategy
 			}catch(Exception e6){
 				Print("send message exception: " + e6.ToString());
 			}
-		}
-
-		private String getBDAKMessage(int instrN){
-			return "b"
-						+ " "
-						+ GetCurrentBid(instrN)
-						+ " "
-						+ GetCurrentBidVolume(instrN)
-						+ " " +
-					"a"
-						+ " "
-						+ GetCurrentAsk(instrN)
-						+ " "
-						+ GetCurrentAskVolume(instrN);
 		}
 
 		private String AddToOrderMap(IOrder order){
@@ -314,60 +295,33 @@ namespace NinjaTrader.Strategy
 
 		protected override void OnMarketData(MarketDataEventArgs e)
 		{
-//			String instrum = Instrument.FullName.Replace(" ","");
-//			instrum = instrum.Remove(instrum.Length - 3);
-//
-//			Print(instrum
-//						+ " "
-//						+ "b["
-//							+ GetCurrentBid()
-//							+ " "
-//							+ GetCurrentBidVolume()
-//						+ "]"
-//						+ " a["
-//							+ GetCurrentAsk()
-//							+ " "
-//							+ GetCurrentAskVolume()
-//						+ "]"
-//						+ Environment.NewLine);
-//			try{
-//				if(BarsInProgress == 0){
-//					if (e.MarketDataType == MarketDataType.Last)
-//					{
-//						String tickStr = "CL06, time: " + e.Time + " "
-//						+ "bid: " + GetCurrentBid() + " "
-//						+ "bidVol: " + GetCurrentBidVolume() +
-//						+ "ask: " + GetCurrentAsk() + " "
-//						+ "askVol: " + GetCurrentAskVolume() + " "
-//						Environment.NewLine;
-//
-//						if (prevMessage!=tickStr){
-//							SendMessages(msgId, tickStr);
-//							prevMessage = tickStr;
-//						}
-//
-//					}
-//				}else{
-//					if (e.MarketDataType == MarketDataType.Last)
-//					{
-//						String tickStr = "CL07, time: " + e.Time + " "
-//						+ "bid: " + GetCurrentBid() + " "
-//						+ "bidVol: " + GetCurrentBidVolume() +
-//						+ "ask: " + GetCurrentAsk() + " "
-//						+ "askVol: " + GetCurrentAskVolume() + " "
-//						Environment.NewLine;
-//
-//						if (prevMessage!=tickStr){
-//							SendMessages(msgId, tickStr);
-//							prevMessage = tickStr;
-//						}
-//
-//					}
-//				}
-//			}catch(Exception e3){
-//				correctClosingAndAbortCon();
-//				Print("onMarketData exception: " + e3.ToString());
-//			}
+			try{
+				if(BarsInProgress == 0){
+					md0 = getBDAKMessage(0);
+				}
+
+				if(BarsInProgress == 1){
+					md1 = getBDAKMessage(1);
+				}
+
+			}catch(Exception e3){
+				correctClosingAndAbortCon();
+				Print("onMarketData exception: " + e3.ToString());
+			}
+		}
+
+		private String getBDAKMessage(int instrN){
+			return "b"
+						+ " "
+						+ GetCurrentBid(instrN)
+						+ " "
+						+ GetCurrentBidVolume(instrN)
+						+ " " +
+					"a"
+						+ " "
+						+ GetCurrentAsk(instrN)
+						+ " "
+						+ GetCurrentAskVolume(instrN);
 		}
 
 		private void ifParamIncorrect(String s){
@@ -377,9 +331,11 @@ namespace NinjaTrader.Strategy
 
 		private void correctClosingAndAbortCon(){
 			isCon = false;
+			timer.Stop();
+			timer.Dispose();
 
-			if (thrMessaging != null) {
-				thrMessaging = null;
+			if (thrGetting != null) {
+				thrGetting = null;
 			}
 
 			if (tcpClient != null) {

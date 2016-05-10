@@ -44,6 +44,7 @@ public class FinitStateAutomation extends Thread {
                 switch (currentTask.getCommand()) {
                     case GO:
                         executeGO();
+                        algo.printAlgo();
                         //standart logical: check prices, waiting for signal and when signal - do the deal
                         break;
                     case GJ:
@@ -61,8 +62,6 @@ public class FinitStateAutomation extends Thread {
                     default:
                         break;
                 }
-
-                System.out.println(algo.toString() + " t:" +  new Date(System.currentTimeMillis()));
 
             } catch (TradeException e) {
                 e.printStackTrace();
@@ -104,23 +103,31 @@ public class FinitStateAutomation extends Thread {
     }
 
     private void prepareToWork() {
-        consoleManager = ConsoleManager.getInstance();
-        taskManager = TaskManager.getInstance();
-        externalManager = NTTcpExternalManagerImpl.getInstance();
+        try {
+            consoleManager = ConsoleManager.getInstance();
+            taskManager = TaskManager.getInstance();
+            externalManager = NTTcpExternalManagerImpl.getInstance();
 
-        instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
-        instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
-        size = Integer.valueOf(consoleManager.getActualProperties().getProperty("deal_size"));
+            instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
+            instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
+            size = Integer.valueOf(consoleManager.getActualProperties().getProperty("deal_size"));
 
-        Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
-        Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
+            Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
+            Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
 
-        enterSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_open")));
-        enterSpread = enterSpread.add(propDevEnter);
-        exitSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_close")));
-        exitSpread = exitSpread.add(propDevExit);
+            enterSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_open")));
+            enterSpread = enterSpread.add(propDevEnter);
+            exitSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_close")));
+            exitSpread = exitSpread.add(propDevExit);
 
-        algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);
+
+
+            algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);
+
+            algo.printAlgo();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

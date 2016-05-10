@@ -21,6 +21,7 @@ public class TEST_FSA {
         ExternalManager edm = NTTcpExternalManagerImpl.getInstance();
 
         edm.startingJob();
+
         fsa.start();
 
         String userMessage = "";

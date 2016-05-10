@@ -3,6 +3,8 @@ package go.takethespread.fsa;
 import go.takethespread.Money;
 import go.takethespread.managers.ExternalManager;
 
+import java.util.Date;
+
 public class Algorithm {
     private ExternalManager externalManager;
     private String instrument_n;
@@ -108,15 +110,17 @@ public class Algorithm {
         FLAT
     }
 
-    @Override
-    public String toString() {
-        return "Algorithm{" +
+
+    public void printAlgo() {
+        System.out.println("Algorithm{" +
                 "bid_n=" + bid_n.getAmount() +
                 ", ask_n=" + ask_n.getAmount() +
                 ", bid_f=" + bid_f.getAmount() +
                 ", ask_f=" + ask_f.getAmount() +
-                ", currentSpread=" + currentSpread.getAmount() +
+                ", currentSpread=" + (currentSpread == null ? "null for now..." : currentSpread.getAmount()) +
                 ", enterSpread=" + enterSpread.getAmount() +
-                '}';
+                ", exitSpread=" + exitSpread.getAmount() +
+                ", t=" +  new Date(System.currentTimeMillis()) +
+                 '}');
     }
 }

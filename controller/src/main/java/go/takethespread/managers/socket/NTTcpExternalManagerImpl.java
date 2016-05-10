@@ -125,7 +125,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     @Override
     public Money getBuyingPower() {
         long id = ntTcpManager.sendBuyingPowerMessage();
-        String tempBuyingPower =waitingForAnswer(id);
+        String tempBuyingPower = waitingForAnswer(id);
         return Money.dollars(Double.valueOf(tempBuyingPower.replace(",", ".")));
     }
 
@@ -191,7 +191,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
 
     public void startingJob() {
         System.out.println("starting...");
-        ntTcpManager.okay_letsGo();
+        ntTcpManager.startUpServ();
         System.out.println("started.");
     }
 
@@ -282,7 +282,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         return result;
     }
 
-    private String waitingForAnswer(long id){
+    private String waitingForAnswer(long id) {
         String answer = null;
         while (answer == null) {
             answer = ntTcpManager.receiveNTAnswer(id);
@@ -323,12 +323,12 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         }
 
         private void updateActualMarketData() {
-            long id = ntTcpManager.sendMarketDataMessage(term);
             String data = null;
             while (data == null) {
-                data = ntTcpManager.receiveNTAnswer(id);
+                data = ntTcpManager.getFreshMarketData(term); //tut
                 trackStatus();
             }
+            resetStatus();
 
             String[] marketData = data.replace(',', '.').split(" ");
             this.bid = Double.valueOf(marketData[1]);
