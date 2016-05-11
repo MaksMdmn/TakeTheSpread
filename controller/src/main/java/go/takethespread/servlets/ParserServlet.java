@@ -1,7 +1,7 @@
 package go.takethespread.servlets;
 
 import go.takethespread.fsa.FinitStateAutomation;
-import go.takethespread.managers.ConsoleManager;
+import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.exceptions.ConsoleException;
 import go.takethespread.managers.exceptions.TradeException;
 
@@ -18,7 +18,7 @@ public class ParserServlet extends HttpServlet {
         String ans;
 
         System.out.println(msg);
-        ConsoleManager manager = ConsoleManager.getInstance();
+        InfoManager manager = InfoManager.getInstance();
         FinitStateAutomation fsa = new FinitStateAutomation();
         fsa.start();
         try {

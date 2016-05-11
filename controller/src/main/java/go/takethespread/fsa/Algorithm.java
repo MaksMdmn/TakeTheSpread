@@ -11,13 +11,13 @@ public class Algorithm {
     private String instrument_f;
     private Money enterSpread;
     private Money exitSpread;
-    private Money currentSpread;
 
-    private PositionState position;
     private Money bid_n;
     private Money ask_n;
     private Money bid_f;
     private Money ask_f;
+    private Money currentSpread;
+    private PositionState position;
 
     protected Algorithm(String instrument_n, String instrument_f, Money enterSpread, Money exitSpread,
                         ExternalManager externalManager) {
@@ -33,13 +33,13 @@ public class Algorithm {
     public Signal getSignal() {
         dataUpdate();
         if (position == PositionState.FLAT) {
-            return makeDeal();
+            return checkEnteringSignal();
         } else {
-            return closeDeal(position);
+            return checkLeavingSignal(position);
         }
     }
 
-    private Signal makeDeal() {
+    private Signal checkEnteringSignal() {
         if (ask_n.lessThan(bid_f)) {
             currentSpread = calcAbsSpread(ask_n, bid_f);
             if (currentSpread.greaterOrEqualThan(enterSpread)) {
@@ -61,7 +61,7 @@ public class Algorithm {
         return Signal.NOTHING;
     }
 
-    private Signal closeDeal(PositionState position) {
+    private Signal checkLeavingSignal(PositionState position) {
         switch (position) {
             case LONG:
                 currentSpread = calcAbsSpread(bid_n, ask_f);

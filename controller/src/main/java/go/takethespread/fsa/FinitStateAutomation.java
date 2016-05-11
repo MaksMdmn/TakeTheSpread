@@ -2,16 +2,14 @@ package go.takethespread.fsa;
 
 
 import go.takethespread.Money;
-import go.takethespread.managers.ConsoleManager;
+import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
 import go.takethespread.managers.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
-import java.util.Date;
-
 public class FinitStateAutomation extends Thread {
-    private ConsoleManager consoleManager;
+    private InfoManager infoManager;
     private TaskManager taskManager;
     private ExternalManager externalManager;
 
@@ -100,20 +98,20 @@ public class FinitStateAutomation extends Thread {
 
     private void prepareToWork() {
         try {
-            consoleManager = ConsoleManager.getInstance();
+            infoManager = InfoManager.getInstance();
             taskManager = TaskManager.getInstance();
             externalManager = NTTcpExternalManagerImpl.getInstance();
 
-            instrument_n = consoleManager.getActualProperties().getProperty("instrument_n");
-            instrument_f = consoleManager.getActualProperties().getProperty("instrument_f");
-            size = Integer.valueOf(consoleManager.getActualProperties().getProperty("deal_size"));
+            instrument_n = infoManager.getActualProperties().getProperty("instrument_n");
+            instrument_f = infoManager.getActualProperties().getProperty("instrument_f");
+            size = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_deal_size"));
 
-            Money propDevEnter = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_open_deviation")));
-            Money propDevExit = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("for_close_deviation")));
+            Money propDevEnter = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_deviation")));
+            Money propDevExit = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_deviation")));
 
-            enterSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_open")));
+            enterSpread = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_spread")));
             enterSpread = enterSpread.add(propDevEnter);
-            exitSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_close")));
+            exitSpread = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_spread")));
             exitSpread = exitSpread.add(propDevExit);
 
             algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);

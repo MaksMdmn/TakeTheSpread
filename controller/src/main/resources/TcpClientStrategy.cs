@@ -55,7 +55,7 @@ namespace NinjaTrader.Strategy
 		private String secondInstrTicker = "CL 07-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
-		private int sendingDelayMs = 500;
+		private int sendingDelayMs = 200;
 		//handle by myself
 
         /// <summary>
@@ -265,7 +265,6 @@ namespace NinjaTrader.Strategy
 
 		private void SendMessages(String messageId, String message)
 		{
-			Print(messageId + String.Concat(ntToken) + message);
 			try{
 				if (message != "")
 					{

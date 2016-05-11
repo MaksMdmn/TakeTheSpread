@@ -23,7 +23,7 @@ public class TaskManager {
         return instance;
     }
 
-    public static TradeTask createTradeTask(ConsoleManager.ConsoleCommand command, String item, String values) {
+    public static TradeTask createTradeTask(InfoManager.ConsoleCommand command, String item, String values) {
         return new TradeTask(command, item, values);
     }
 
@@ -57,17 +57,17 @@ public class TaskManager {
 
 
     public static class TradeTask {
-        private ConsoleManager.ConsoleCommand command;
+        private InfoManager.ConsoleCommand command;
         private String item;
         private String values;
 
-        private TradeTask(ConsoleManager.ConsoleCommand command, String item, String values) {
+        private TradeTask(InfoManager.ConsoleCommand command, String item, String values) {
             this.command = command;
             this.item = item;
             this.values = values;
         }
 
-        public  ConsoleManager.ConsoleCommand getCommand() {
+        public  InfoManager.ConsoleCommand getCommand() {
             return command;
         }
 
