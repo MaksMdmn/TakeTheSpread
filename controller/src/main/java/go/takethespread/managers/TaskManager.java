@@ -27,28 +27,28 @@ public class TaskManager {
         return new TradeTask(command, item, values);
     }
 
-    public void pushTask(TradeTask task) throws TradeException {
+    public synchronized void pushTask(TradeTask task) throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
         taskPool.push(task);
     }
 
-    public void pollTask(TradeTask task) throws TradeException {
+    public synchronized void pollTask(TradeTask task) throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
         taskPool.poll();
     }
 
-    public void removeTask(TradeTask task) throws TradeException {
+    public synchronized void removeTask(TradeTask task) throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
         taskPool.remove(task);
     }
 
-    public TradeTask getCurrentTask() throws TradeException {
+    public synchronized TradeTask getCurrentTask() throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
@@ -67,7 +67,7 @@ public class TaskManager {
             this.values = values;
         }
 
-        public ConsoleManager.ConsoleCommand getCommand() {
+        public  ConsoleManager.ConsoleCommand getCommand() {
             return command;
         }
 

@@ -7,15 +7,14 @@ import java.util.LinkedList;
 public class NTTcpManager {
     private static NTTcpManager instance;
     private NTTcpServer server;
-    private NTTcpDataBridge bridge;
+    private NTTcpServer.NTTcpDataBridge bridge;
     private HashMap<Long, String> answersMap;
 
     private NTTcpManager() {
         answersMap = new HashMap<>();
-        bridge = NTTcpDataBridge.getInstance();
     }
 
-    public static NTTcpManager getInstance() {
+    protected static NTTcpManager getInstance() {
         if (instance == null) {
             instance = new NTTcpManager();
         }
@@ -31,14 +30,15 @@ public class NTTcpManager {
         }
     }
 
-    protected void startUpServ() {
+    protected void startUpServer() {
         server = new NTTcpServer();
         server.initServerWork();
+        bridge = server.getDataBridge();
     }
 
     //always last
 
-    protected void finishingTodaysJob() {
+    protected void finishingTodayJob() {
         server.shutDown();
         //correct ending
         //repotring

@@ -9,25 +9,25 @@ public class NTTcpMessage {
     private String param;
     protected static final String ntToken = ":-:";
 
-    public NTTcpMessage(NTTcpCommand command, String param) {
+    protected NTTcpMessage(NTTcpCommand command, String param) {
         this.command = command;
         this.id = NTTcpManager.getMessageId();
         this.param = param;
     }
 
-    public NTTcpCommand getCommand() {
+    protected NTTcpCommand getCommand() {
         return command;
     }
 
-    public long getId() {
+    protected long getId() {
         return id;
     }
 
-    public String getParam() {
+    protected String getParam() {
         return param;
     }
 
-    public String prepareToSending(){
+    protected String prepareToSending(){
         return String.valueOf(id) +
                 ntToken +
                 command.name() +

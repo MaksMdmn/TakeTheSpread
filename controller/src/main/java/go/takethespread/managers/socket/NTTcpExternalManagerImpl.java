@@ -191,13 +191,13 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
 
     public void startingJob() {
         System.out.println("starting...");
-        ntTcpManager.startUpServ();
+        ntTcpManager.startUpServer();
         System.out.println("started.");
     }
 
     public void finishingJob() {
         ntTcpManager.sendOffMessage();
-        ntTcpManager.finishingTodaysJob();
+        ntTcpManager.finishingTodayJob();
         System.out.println("job finished");
     }
 

@@ -16,12 +16,10 @@ public class TEST_FSA {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         FinitStateAutomation fsa = new FinitStateAutomation();
-
-        ConsoleManager cm = ConsoleManager.getInstance();
         ExternalManager edm = NTTcpExternalManagerImpl.getInstance();
+        ConsoleManager cm = ConsoleManager.getInstance();
 
         edm.startingJob();
-
         fsa.start();
 
         String userMessage = "";

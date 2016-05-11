@@ -23,23 +23,19 @@ public class FinitStateAutomation extends Thread {
 
     private Algorithm algo;
 
-    private boolean isWorking;
+    private volatile boolean isWorking;
 
     @Override
     public void run() {
         isWorking = true;
         prepareToWork();
-        TaskManager.TradeTask currentTask = null;
+        TaskManager.TradeTask currentTask;
 
         while (isWorking) {
             try {
-                if (currentTask == null) {
-                    while (currentTask == null) {
-                        currentTask = taskManager.getCurrentTask();
-                    }
-                } else {
+                do {
                     currentTask = taskManager.getCurrentTask();
-                }
+                } while (currentTask == null);
 
                 switch (currentTask.getCommand()) {
                     case GO:
@@ -120,12 +116,8 @@ public class FinitStateAutomation extends Thread {
             exitSpread = Money.dollars(Double.valueOf(consoleManager.getActualProperties().getProperty("spread_close")));
             exitSpread = exitSpread.add(propDevExit);
 
-
-
             algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);
-
-            algo.printAlgo();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
