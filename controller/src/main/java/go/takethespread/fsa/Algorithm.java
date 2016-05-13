@@ -7,31 +7,23 @@ import java.util.Date;
 
 public class Algorithm {
     private ExternalManager externalManager;
-    private String instrument_n;
-    private String instrument_f;
     private Money enterSpread;
     private Money exitSpread;
-
-    private Money bid_n;
-    private Money ask_n;
-    private Money bid_f;
-    private Money ask_f;
+    private TradeBlotter blotter;
     private Money currentSpread;
     private PositionState position;
 
-    protected Algorithm(String instrument_n, String instrument_f, Money enterSpread, Money exitSpread,
-                        ExternalManager externalManager) {
-        this.instrument_n = instrument_n;
-        this.instrument_f = instrument_f;
+    protected Algorithm(Money enterSpread, Money exitSpread, ExternalManager externalManager, TradeBlotter blotter) {
         this.enterSpread = enterSpread;
         this.exitSpread = exitSpread;
         this.externalManager = externalManager;
-        dataUpdate();
+        this.blotter = blotter;
 
     }
 
     public Signal getSignal() {
-        dataUpdate();
+        blotter.updateBlotter();
+        position = getCurrentPosition();
         if (position == PositionState.FLAT) {
             return checkEnteringSignal();
         } else {
@@ -40,8 +32,8 @@ public class Algorithm {
     }
 
     private Signal checkEnteringSignal() {
-        if (ask_n.lessThan(bid_f)) {
-            currentSpread = calcAbsSpread(ask_n, bid_f);
+        if (blotter.getAsk_n().lessThan(blotter.getBid_f())) {
+            currentSpread = calcAbsSpread(blotter.getAsk_n(), blotter.getBid_f());
             if (currentSpread.greaterOrEqualThan(enterSpread)) {
                 return Signal.LETS_BUY;
             } else {
@@ -49,8 +41,8 @@ public class Algorithm {
             }
         }
 
-        if (bid_n.greaterThan(ask_f)) {
-            currentSpread = calcAbsSpread(bid_n, ask_f);
+        if (blotter.getBid_n().greaterThan(blotter.getAsk_f())) {
+            currentSpread = calcAbsSpread(blotter.getBid_n(), blotter.getAsk_f());
             if (currentSpread.greaterOrEqualThan(enterSpread)) {
                 return Signal.LETS_SELL;
             } else {
@@ -64,11 +56,11 @@ public class Algorithm {
     private Signal checkLeavingSignal(PositionState position) {
         switch (position) {
             case LONG:
-                currentSpread = calcAbsSpread(bid_n, ask_f);
+                currentSpread = calcAbsSpread(blotter.getBid_n(), blotter.getAsk_f());
                 if (currentSpread.lessOrEqualThan(exitSpread)) return Signal.LETS_SELL;
                 break;
             case SHORT:
-                currentSpread = calcAbsSpread(ask_n, bid_f);
+                currentSpread = calcAbsSpread(blotter.getAsk_n(), blotter.getBid_f());
                 if (currentSpread.lessOrEqualThan(exitSpread)) return Signal.LETS_BUY;
                 break;
             default:
@@ -81,17 +73,8 @@ public class Algorithm {
         return Money.dollars(Math.abs(val1.subtract(val2).getAmount()));
     }
 
-    private void dataUpdate() {
-        externalManager.refreshData();
-        bid_n = externalManager.getBBid(instrument_n);
-        ask_n = externalManager.getBAsk(instrument_n);
-        bid_f = externalManager.getBBid(instrument_f);
-        ask_f = externalManager.getBAsk(instrument_f);
-        position = getCurrentPosition();
-    }
-
     private PositionState getCurrentPosition() {
-        int tempPos = externalManager.getPosition(instrument_n);
+        int tempPos = externalManager.getPosition(blotter.getInstrument_n());
         if (tempPos > 0) return PositionState.LONG;
         if (tempPos == 0) return PositionState.FLAT;
         if (tempPos < 0) return PositionState.SHORT;
@@ -110,17 +93,4 @@ public class Algorithm {
         FLAT
     }
 
-
-    public void printAlgo() {
-        System.out.println("Algorithm{" +
-                "bid_n=" + bid_n.getAmount() +
-                ", ask_n=" + ask_n.getAmount() +
-                ", bid_f=" + bid_f.getAmount() +
-                ", ask_f=" + ask_f.getAmount() +
-                ", currentSpread=" + (currentSpread == null ? "null for now..." : currentSpread.getAmount()) +
-                ", enterSpread=" + enterSpread.getAmount() +
-                ", exitSpread=" + exitSpread.getAmount() +
-                ", t=" +  new Date(System.currentTimeMillis()) +
-                 '}');
-    }
 }

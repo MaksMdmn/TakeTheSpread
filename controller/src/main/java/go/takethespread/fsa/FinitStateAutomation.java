@@ -38,7 +38,6 @@ public class FinitStateAutomation extends Thread {
                 switch (currentTask.getCommand()) {
                     case GO:
                         executeGO();
-                        algo.printAlgo();
                         //standart logical: check prices, waiting for signal and when signal - do the deal
                         break;
                     case GJ:
