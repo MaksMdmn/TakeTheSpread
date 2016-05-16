@@ -2,8 +2,8 @@ package go.takethespread.servlets;
 
 import go.takethespread.fsa.FinitStateAutomation;
 import go.takethespread.managers.InfoManager;
-import go.takethespread.managers.exceptions.ConsoleException;
-import go.takethespread.managers.exceptions.TradeException;
+import go.takethespread.exceptions.ConsoleException;
+import go.takethespread.exceptions.TradeException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -42,8 +42,7 @@ namespace NinjaTrader.Strategy
 		private Dictionary<String, IOrder> orderMap = new Dictionary<String, IOrder>();
 		private String prevMessage_n = "";
 		private String prevMessage_f = "";
-		private String currentMessage_n;
-		private String currentMessage_f;
+		private String currentMessage;
 		private String md0 = "";
 		private String md1 = "";
 		private System.Timers.Timer timer;
@@ -84,7 +83,7 @@ namespace NinjaTrader.Strategy
 			}
 			catch (Exception e2)
 			{
-				correctClosingAndAbortCon();
+				closeTcpEntities();
 				Print("Initialize exception " + e2.ToString());
 			}
 		}
@@ -129,7 +128,7 @@ namespace NinjaTrader.Strategy
 
 				}catch (Exception e4){
 					Print("receiveMessages exception: " + e4.ToString());
-					correctClosingAndAbortCon();
+					closeTcpEntities();
 				}
 			}
 		}
@@ -145,6 +144,7 @@ namespace NinjaTrader.Strategy
 					String ordId = "";
 					int size = -1;
 					double price = -1d;
+					IOrder tempIOrd;
 
 					//param
 					String[] tempParamArr;
@@ -182,7 +182,7 @@ namespace NinjaTrader.Strategy
 					switch (msgCmd){
 						case "GJ":
 							Print("Good buy, Blue Sky!");
-							correctClosingAndAbortCon();
+							closeTcpEntities();
 							break;
 						case "ORDS":
 							System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
@@ -228,18 +228,24 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 							break;
 						case "BMRT":
-							SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
+							tempIOrd = SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
+							AddToOrderMap(tempIOrd);
+							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
 						case "BLMT":
-							String tempBOrdId = AddToOrderMap(SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", ""));
-							SendMessages(msgId, tempBOrdId);
+							tempIOrd = SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
+							AddToOrderMap(tempIOrd);
+							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
 						case "SMRT":
-							SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
+							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
+							AddToOrderMap(tempIOrd);
+							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
 						case "SLMT":
-							String tempSOrdId = AddToOrderMap(SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", ""));
-							SendMessages(msgId, tempSOrdId);
+							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
+							AddToOrderMap(tempIOrd);
+							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
 						case "CNAL":
 							CancelAllOrders(true,true);
@@ -250,10 +256,10 @@ namespace NinjaTrader.Strategy
 						case "FLLD":
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
 							break;
-						case "BDAK":
-							currentMessage_f = getBDAKMessage(instrumentN);
-							SendMessages(msgId, currentMessage_f);
-							break;
+//						case "BDAK":
+//							currentMessage = getBDAKMessage(instrumentN);
+//							SendMessages(msgId, currentMessage);
+//							break;
 						default:
 							ifParamIncorrect(instrumentN + " " + size + " " + price);
 							break;
@@ -281,15 +287,19 @@ namespace NinjaTrader.Strategy
 			return order.OrderId;
 		}
 
+		private String PrepareOrderToSend(IOrder order){
+			return order.ToString()  + " Time=" + "'" + order.Time.ToString() + "'";
+		}
 
 		protected override void OnTermination()
 		{
 			Print("termination...");
-			correctClosingAndAbortCon();
+			closeTcpEntities();
 		}
 
         protected override void OnBarUpdate()
         {
+
         }
 
 		protected override void OnMarketData(MarketDataEventArgs e)
@@ -304,7 +314,7 @@ namespace NinjaTrader.Strategy
 				}
 
 			}catch(Exception e3){
-				correctClosingAndAbortCon();
+				closeTcpEntities();
 				Print("onMarketData exception: " + e3.ToString());
 			}
 		}
@@ -325,22 +335,16 @@ namespace NinjaTrader.Strategy
 
 		private void ifParamIncorrect(String s){
 			Print("incorrect parametres. I'm out - bb man" + s);
-			correctClosingAndAbortCon();
+			closeTcpEntities();
 		}
 
-		private void correctClosingAndAbortCon(){
+		private void closeTcpEntities(){
 			isCon = false;
 			timer.Stop();
 			timer.Dispose();
 
 			if (thrGetting != null) {
 				thrGetting = null;
-			}
-
-			if (tcpClient != null) {
-				tcpClient.GetStream().Close();
-				tcpClient.Close();
-				tcpClient = null;
 			}
 
 			if (tcpWriter != null) {
@@ -353,7 +357,12 @@ namespace NinjaTrader.Strategy
 				tcpReader = null;
 			}
 
-			Disable();
+			if (tcpClient != null) {
+				tcpClient.Close();
+				tcpClient = null;
+			}
+
+//			Disable();
 		}
 
 

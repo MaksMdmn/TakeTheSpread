@@ -2,6 +2,7 @@ package go.takethespread.managers.socket;
 
 import go.takethespread.Money;
 import go.takethespread.Order;
+import go.takethespread.fsa.Term;
 import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
 
@@ -23,8 +24,8 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     private NTTcpExternalManagerImpl() {
         infoManager = InfoManager.getInstance();
         ntTcpManager = NTTcpManager.getInstance();
-        nearMarketData = new ActualMarketData(NTTcpManager.Term.NEAR);
-        farMarketData = new ActualMarketData(NTTcpManager.Term.FAR);
+        nearMarketData = new ActualMarketData(Term.NEAR);
+        farMarketData = new ActualMarketData(Term.FAR);
         attemptMaxNumbers = 40; //2 sec
         delay = 50;
     }
@@ -144,44 +145,45 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     @Override
-    public String sendLimitBuy(String instr, Money price, int size) {
+    public Order sendLimitBuy(String instr, Money price, int size) {
         long id = ntTcpManager.sendBuyLimitMessage(identifyTerm(instr), size, price.getAmount());
-        String result = waitingForAnswer(id);
-        return result;
+        return parseTheOrder(waitingForAnswer(id));
     }
 
     @Override
-    public String sendLimitSell(String instr, Money price, int size) {
+    public Order sendLimitSell(String instr, Money price, int size) {
         long id = ntTcpManager.sendSellLimitMessage(identifyTerm(instr), size, price.getAmount());
-        String result = waitingForAnswer(id);
-        return result;
+        return parseTheOrder(waitingForAnswer(id));
     }
 
     @Override
-    public void sendMarketBuy(String instr, int size) {
+    public Order sendMarketBuy(String instr, int size) {
         int tempPos = getPosition(instr);
-        ntTcpManager.sendBuyMarketMessage(identifyTerm(instr), size);
+        long id = ntTcpManager.sendBuyMarketMessage(identifyTerm(instr), size);
         while (tempPos == getPosition(instr)) {
             trackStatus();
             /*NOP*/
         }
         resetStatus();
+        return parseTheOrder(waitingForAnswer(id));
     }
 
     @Override
-    public void sendMarketSell(String instr, int size) {
+    public Order sendMarketSell(String instr, int size) {
         int tempPos = getPosition(instr);
-        ntTcpManager.sendSellMarketMessage(identifyTerm(instr), size);
+        long id = ntTcpManager.sendSellMarketMessage(identifyTerm(instr), size);
         while (tempPos == getPosition(instr)) {
             trackStatus();
             /*NOP*/
         }
         resetStatus();
+        return parseTheOrder(waitingForAnswer(id));
     }
 
     @Override
-    public void sendCancelOrder(String ordId) {
-        ntTcpManager.sendCancelByIdMessage(ordId);
+    public Order sendCancelOrder(String ordId) {
+        long id = ntTcpManager.sendCancelByIdMessage(ordId);
+        return parseTheOrder(waitingForAnswer(id));
     }
 
     @Override
@@ -201,11 +203,11 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         System.out.println("job finished");
     }
 
-    private NTTcpManager.Term identifyTerm(String instr) {
+    private Term identifyTerm(String instr) {
         if (instr.equals(infoManager.getActualProperties().getProperty("instrument_n")))
-            return NTTcpManager.Term.NEAR;
+            return Term.NEAR;
         if (instr.equals(infoManager.getActualProperties().getProperty("instrument_f")))
-            return NTTcpManager.Term.FAR;
+            return Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }
 
@@ -219,6 +221,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         try {
             String id = searchTheParameter("Order", tempOrder);
+            String instr = searchTheParameter("Instrument", tempOrder);
             Date date = dateFormat.parse(searchTheParameter("Time", tempOrder));
             Order.Deal deal = Order.Deal.valueOf(searchTheParameter("Action", tempOrder));
             Order.Type type = Order.Type.valueOf(searchTheParameter("Type", tempOrder));
@@ -229,6 +232,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
             Money priceFilled = Money.dollars(Double.valueOf(searchTheParameter("Fill price", tempOrder)));
 
             order.setId(id);
+            order.setInstrument(instr);
             order.setDate(date);
             order.setDeal(deal);
             order.setType(type);
@@ -310,15 +314,14 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
 
-
     private class ActualMarketData {
         double bid;
         int bidVol;
         double ask;
         int askVol;
-        NTTcpManager.Term term;
+        Term term;
 
-        private ActualMarketData(NTTcpManager.Term term) {
+        private ActualMarketData(Term term) {
             this.term = term;
         }
 

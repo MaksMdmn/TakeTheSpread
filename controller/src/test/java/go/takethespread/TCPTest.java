@@ -47,15 +47,9 @@ public class TCPTest {
             System.out.println(ntTcpExternalManager.getPosition(instr2));
 
             System.out.println("sending limit orders near and far:");
-            String tempId1;
-            String tempId2;
-            tempId1=ntTcpExternalManager.sendLimitBuy(instr1, ntTcpExternalManager.getBBid(instr1).multiply(0.99d), 1);
-            System.out.println(tempId1);
-            tempId2 = ntTcpExternalManager.sendLimitSell(instr2, ntTcpExternalManager.getBAsk(instr2).multiply(1.01d), 1);
-            System.out.println(tempId2);
+            ntTcpExternalManager.sendLimitBuy(instr1, ntTcpExternalManager.getBBid(instr1).multiply(0.99d), 1);
+            ntTcpExternalManager.sendLimitSell(instr2, ntTcpExternalManager.getBAsk(instr2).multiply(1.01d), 1);
             System.out.println("and try to check this orders: ");
-            System.out.println(ntTcpExternalManager.getOrder(tempId1));
-            System.out.println(ntTcpExternalManager.getOrder(tempId2));
 
             System.out.println("try to cancel them: ");
             ntTcpExternalManager.sendCancelOrders();
@@ -81,15 +75,7 @@ public class TCPTest {
                     + ntTcpExternalManager.getPosition(instr1)
                     + " "
                     + ntTcpExternalManager.getPosition(instr2));
-            String tempId = ntTcpExternalManager.sendLimitBuy(instr1, ntTcpExternalManager.getBBid(instr1),15);
-            Thread.sleep(500);
-            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
-            Thread.sleep(500);
-            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
-            Thread.sleep(500);
-            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
-            Thread.sleep(500);
-            System.out.println(ntTcpExternalManager.getOrderFilled(tempId));
+            ntTcpExternalManager.sendLimitBuy(instr1, ntTcpExternalManager.getBBid(instr1),15);
 
 
             System.out.println("if all seems good, bb");

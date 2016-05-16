@@ -5,13 +5,14 @@ import go.takethespread.Money;
 import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
-import go.takethespread.managers.exceptions.TradeException;
+import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 public class FinitStateAutomation extends Thread {
     private InfoManager infoManager;
     private TaskManager taskManager;
     private ExternalManager externalManager;
+    private TradeBlotter blotter;
 
     private String instrument_n;
     private String instrument_f;
@@ -103,7 +104,7 @@ public class FinitStateAutomation extends Thread {
 
             instrument_n = infoManager.getActualProperties().getProperty("instrument_n");
             instrument_f = infoManager.getActualProperties().getProperty("instrument_f");
-            size = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_deal_size"));
+            size = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_size"));
 
             Money propDevEnter = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_deviation")));
             Money propDevExit = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_deviation")));
@@ -113,7 +114,8 @@ public class FinitStateAutomation extends Thread {
             exitSpread = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_spread")));
             exitSpread = exitSpread.add(propDevExit);
 
-            algo = new Algorithm(instrument_n, instrument_f, enterSpread, exitSpread, externalManager);
+            blotter = new TradeBlotter(instrument_n, instrument_f, externalManager);
+            algo = new Algorithm(enterSpread, exitSpread, externalManager, blotter);
         } catch (Exception e) {
             e.printStackTrace();
         }

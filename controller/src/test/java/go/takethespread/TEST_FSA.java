@@ -3,8 +3,8 @@ package go.takethespread;
 import go.takethespread.fsa.FinitStateAutomation;
 import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.exceptions.ConsoleException;
-import go.takethespread.managers.exceptions.TradeException;
+import go.takethespread.exceptions.ConsoleException;
+import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 import java.io.BufferedReader;

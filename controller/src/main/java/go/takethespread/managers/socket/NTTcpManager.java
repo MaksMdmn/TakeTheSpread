@@ -1,8 +1,9 @@
 package go.takethespread.managers.socket;
 
+import go.takethespread.fsa.Term;
+
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class NTTcpManager {
     private static NTTcpManager instance;
@@ -72,12 +73,12 @@ public class NTTcpManager {
         return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.RPNL, ""));
     }
 
-    protected void sendBuyMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term, size, 0d)));
+    protected long sendBuyMarketMessage(Term term, int size) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.BMRT, getOrderParametres(term, size, 0d)));
     }
 
-    protected void sendSellMarketMessage(Term term, int size) {
-        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term, size, 0d)));
+    protected long sendSellMarketMessage(Term term, int size) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.SMRT, getOrderParametres(term, size, 0d)));
     }
 
     protected long sendBuyLimitMessage(Term term, int size, double price) {
@@ -93,11 +94,11 @@ public class NTTcpManager {
     }
 
     protected void sendCancelAllMessage() {
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, "").prepareToSending());
+        sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNAL, ""));
     }
 
-    protected void sendCancelByIdMessage(String ordId) {
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId).prepareToSending());
+    protected long sendCancelByIdMessage(String ordId) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId));
     }
 
     protected long sendNTMessage(NTTcpMessage msg) {
@@ -141,11 +142,6 @@ public class NTTcpManager {
 
             answersMap.put(key, value);
         }
-    }
-
-    public enum Term {
-        NEAR,
-        FAR
     }
 
 

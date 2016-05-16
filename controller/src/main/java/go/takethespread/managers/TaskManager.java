@@ -1,6 +1,6 @@
 package go.takethespread.managers;
 
-import go.takethespread.managers.exceptions.TradeException;
+import go.takethespread.exceptions.TradeException;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

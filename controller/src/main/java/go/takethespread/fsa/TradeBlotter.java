@@ -1,7 +1,10 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Money;
+import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
+
+import java.util.List;
 
 public class TradeBlotter {
     private String instrument_n;
@@ -15,6 +18,9 @@ public class TradeBlotter {
     private int bidVol_f;
     private int askVol_f;
     private ExternalManager externalManager;
+    private int position_n;
+    private int position_f;
+    private List<Order> orders;
 
     public TradeBlotter(String instrument_n, String instrument_f, ExternalManager externalManager){
         this.instrument_n = instrument_n;
@@ -62,7 +68,19 @@ public class TradeBlotter {
         return instrument_f;
     }
 
-    public void updateBlotter(){
+    public int getPosition_n() {
+        return position_n;
+    }
+
+    public int getPosition_f() {
+        return position_f;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void updateMainInfo(){
         externalManager.refreshData();
         bid_n = externalManager.getBBid(instrument_n);
         ask_n = externalManager.getBAsk(instrument_n);
@@ -72,7 +90,29 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(instrument_n);
         bidVol_f = externalManager.getBBidVolume(instrument_f);
         askVol_f = externalManager.getBAskVolume(instrument_f);
+        position_n = externalManager.getPosition(instrument_n);
+        position_f= externalManager.getPosition(instrument_f);
+    }
 
+    public void updateOrdersInfo(){
+        orders = externalManager.getOrders();
+    }
+
+    public PositionState nearestPosState() {
+        checkPositionsEquivalent();
+        if (position_n > 0) return PositionState.LONG;
+        if (position_n == 0) return PositionState.FLAT;
+        if (position_n < 0) return PositionState.SHORT;
+        throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + position_n);
+    }
+
+    private void checkPositionsEquivalent(){
+        // need to check pos correctly (can be delay\active orders etc)
+    }
+    protected enum PositionState {
+        LONG,
+        SHORT,
+        FLAT
     }
 
     //here all market data and pos (like you are in terminal)

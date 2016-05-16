@@ -29,15 +29,15 @@ public interface ExternalManager {
 
     public int getOrderFilled(String ordId);
 
-    public String sendLimitBuy(String instr, Money price, int size);
+    public Order sendLimitBuy(String instr, Money price, int size);
 
-    public String sendLimitSell(String instr, Money price, int size);
+    public Order sendLimitSell(String instr, Money price, int size);
 
-    public void sendMarketBuy(String instr, int size);
+    public Order sendMarketBuy(String instr, int size);
 
-    public void sendMarketSell(String instr, int size);
+    public Order sendMarketSell(String instr, int size);
 
-    public void sendCancelOrder(String ordId);
+    public Order sendCancelOrder(String ordId);
 
     public void sendCancelOrders();
 

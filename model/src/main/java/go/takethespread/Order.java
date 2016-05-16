@@ -8,6 +8,7 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
+    private String instrument;
     private Date date;
     private Deal deal;
     private Type type;
@@ -27,6 +28,14 @@ public class Order implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
     }
 
     public Date getDate() {
@@ -120,7 +129,8 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "id='" + id + '\'' +
+                ", instrument='" + instrument + '\'' +
                 ", date=" + date +
                 ", deal=" + deal +
                 ", type=" + type +
@@ -129,7 +139,7 @@ public class Order implements Serializable {
                 ", price=" + price +
                 ", filled=" + filled +
                 ", priceFilled=" + priceFilled +
-                '}' + "\r\n";
+                '}';
     }
 }
 
