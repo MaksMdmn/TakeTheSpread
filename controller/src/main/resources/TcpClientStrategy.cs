@@ -252,6 +252,7 @@ namespace NinjaTrader.Strategy
 							break;
 						case "CNID":
 							CancelOrder(orderMap[ordId]);
+							SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
 							break;
 						case "FLLD":
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
