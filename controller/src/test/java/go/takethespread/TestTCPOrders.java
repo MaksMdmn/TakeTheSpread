@@ -18,14 +18,22 @@ public class TestTCPOrders {
 //            System.out.println(ord);
 //            System.out.println(ntTcpExternalManager.getOrderFilled(ord.getId()));
 
-            Order ord = ntTcpExternalManager.sendLimitBuy(instr1,Money.dollars(47.5), 2);
+//            Order ord = ntTcpExternalManager.sendLimitBuy(instr1,Money.dollars(47.5), 2);
+//            System.out.println(ord);
+//            ord = ntTcpExternalManager.sendCancelOrder(ord.getId());
+//            System.out.println(ord);
+
+            Order ord = ntTcpExternalManager.sendLimitBuy(instr1, Money.dollars(47.6), 2);
             System.out.println(ord);
-            ord = ntTcpExternalManager.sendCancelOrder(ord.getId());
+            Thread.sleep(2000);
+            System.out.println("send change");
+            ord = ntTcpExternalManager.sendChangeOrder(ord.getId(), Money.dollars(47.7), 6);
             System.out.println(ord);
+
 
             ntTcpExternalManager.finishingJob();
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

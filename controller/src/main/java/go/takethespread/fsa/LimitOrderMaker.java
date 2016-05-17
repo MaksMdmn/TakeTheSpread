@@ -10,8 +10,8 @@ public class LimitOrderMaker extends OrderMaker {
     private ExternalManager externalManager;
     private InfoManager infoManager;
     private int favorableSize;
-    private Order frontOrd_n;
-    private Order frontOrd_f;
+    private Order frontRunningOrder_n;
+    private Order frontRunningOrder_f;
 
 
     public LimitOrderMaker(TradeBlotter blotter, ExternalManager externalManager, InfoManager infoManager) {
@@ -22,41 +22,73 @@ public class LimitOrderMaker extends OrderMaker {
     }
 
     public void doNearBuyFarSell() {
+
+        if (frontRunningOrder_n == null) {
+            frontRunningOrder_n = externalManager.sendLimitBuy(blotter.getInstrument_n(), blotter.getBid_n(), favorableSize);
+        } else {
+            frontRunningOrder_n = externalManager.getOrder(frontRunningOrder_n.getId());
+            String instr = blotter.getInstrument_n();
+            Money price = calcDealPrice(BlotterPrice.BID, blotter.getBid_n(), frontRunningOrder_n.getPrice());
+            int size = calcDealSize(favorableSize, frontRunningOrder_n.getFilled(), blotter.getBidVol_n());
+
+            if(calcUpdateNecessity(frontRunningOrder_n, price, size)){
+
+            }
+
+        }
+
+        if (frontRunningOrder_f == null) {
+            frontRunningOrder_f = externalManager.sendLimitSell(blotter.getInstrument_f(), blotter.getBid_f(), favorableSize);
+        } else {
+            frontRunningOrder_f = externalManager.getOrder(frontRunningOrder_f.getId());
+        }
+
+
     }
 
 
     public void doFarBuyNearSell() {
     }
 
-    public void doCancelling(){
-
+    public void doCancelling() {
+        externalManager.sendCancelOrders();
+        frontRunningOrder_n = null;
+        frontRunningOrder_f = null;
     }
 
-    private void buying(Order order, Term term) {
-        String instr = term == Term.NEAR
-                ? blotter.getInstrument_n()
-                : blotter.getInstrument_f();
-        ;
-        Money price = term == Term.NEAR
-                ? blotter.getBid_n()
-                : blotter.getBid_f();
-        ;
-        int size = term == Term.NEAR
-                ? possibleDealSize(favorableSize, blotter.getBidVol_n())
-                : possibleDealSize(favorableSize, blotter.getBidVol_f());
-        ;
-        if (order != null) {
-            externalManager.sendCancelOrder(order.getId());
+    private int calcDealSize(int favorableSize, int filled, int blotterSize) {
+        int favor = favorableSize - filled;
+        return favor <= blotterSize ? favor : blotterSize;
+    }
+
+    private Money calcDealPrice(BlotterPrice type, Money currentPrice, Money orderPrice) {
+        Money answer;
+        switch (type) {
+            case BID:
+                if (currentPrice.greaterThan(orderPrice)) {
+                    answer = currentPrice;
+                } else {
+                    answer = orderPrice;
+                }
+                break;
+            case ASK:
+                if (currentPrice.lessThan(orderPrice)) {
+                    answer = currentPrice;
+                } else {
+                    answer = orderPrice;
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("price type is null: " + type);
         }
 
-        externalManager.sendLimitBuy(instr, price, size);
+        return answer;
     }
 
-    private void selling(Order order, Term term) {
-
+    private boolean calcUpdateNecessity(Order actualOrder, Money newPrice, int newSize){
+        if(!actualOrder.getPrice().equals(newPrice)) return true;
+        if(actualOrder.getSize()!=newSize) return true;
+        return false;
     }
 
-    private int possibleDealSize(int favorableSize, int blotterSize) {
-        return favorableSize <= blotterSize ? favorableSize : blotterSize;
-    }
 }

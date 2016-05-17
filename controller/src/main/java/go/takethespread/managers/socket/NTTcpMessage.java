@@ -49,6 +49,7 @@ public class NTTcpMessage {
         SLMT, //buy\sell limir or market order
         CNAL,
         CNID,
+        CHOR,
         FLLD,
         BDAK //bid ask data
     }

@@ -187,6 +187,12 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     @Override
+    public Order sendChangeOrder(String ordId, Money price, int size) {
+        long id = ntTcpManager.sendChangeByIdMessage(ordId, size, price.getAmount());
+        return parseTheOrder(waitingForAnswer(id));
+    }
+
+    @Override
     public void sendCancelOrders() {
         ntTcpManager.sendCancelAllMessage();
     }

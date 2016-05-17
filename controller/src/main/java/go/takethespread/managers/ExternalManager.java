@@ -39,6 +39,8 @@ public interface ExternalManager {
 
     public Order sendCancelOrder(String ordId);
 
+    public Order sendChangeOrder(String ordId, Money price, int size);
+
     public void sendCancelOrders();
 
     public void refreshData();

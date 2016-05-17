@@ -101,6 +101,10 @@ public class NTTcpManager {
         return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CNID, ordId));
     }
 
+    protected long sendChangeByIdMessage(String ordId, int size, double price) {
+        return sendNTMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.CHOR, ordId + " " + size + " " + price));
+    }
+
     protected long sendNTMessage(NTTcpMessage msg) {
         long msgId = msg.getId();
         answersMap.put(msgId, null);
