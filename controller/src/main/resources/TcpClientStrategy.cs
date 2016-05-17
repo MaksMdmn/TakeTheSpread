@@ -144,6 +144,7 @@ namespace NinjaTrader.Strategy
 					String ordId = "";
 					int size = -1;
 					double price = -1d;
+
 					IOrder tempIOrd;
 
 					//param
@@ -170,7 +171,11 @@ namespace NinjaTrader.Strategy
 							size =  Convert.ToInt32(tempParamArr[1]);
 							break;
 						case 3:
-							instrumentN = Convert.ToInt32(tempParamArr[0]);
+							if(msgCmd == "CHOR"){
+								ordId = tempParamArr[0];
+							}else{
+								instrumentN = Convert.ToInt32(tempParamArr[0]);
+							}
 							size =  Convert.ToInt32(tempParamArr[1]);
 							price = Double.Parse(tempParamArr[2],NumberFormatInfo.InvariantInfo);
 							break;
@@ -253,6 +258,10 @@ namespace NinjaTrader.Strategy
 						case "CNID":
 							CancelOrder(orderMap[ordId]);
 							SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
+							break;
+						case "CHOR":
+							ChangeOrder(orderMap[ordId], size, price, 0);
+							SendMessages(msgId, PrepareOrderToSend(orderMap[ordId]));
 							break;
 						case "FLLD":
 							SendMessages(msgId,orderMap[ordId].Filled.ToString());
