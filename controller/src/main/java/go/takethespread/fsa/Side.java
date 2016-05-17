@@ -1,6 +1,6 @@
 package go.takethespread.fsa;
 
-public enum BlotterPrice {
+public enum Side {
     BID,
     ASK
 }

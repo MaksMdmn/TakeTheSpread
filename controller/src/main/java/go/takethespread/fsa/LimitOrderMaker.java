@@ -5,6 +5,7 @@ import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.InfoManager;
 
+
 public class LimitOrderMaker extends OrderMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
@@ -18,36 +19,36 @@ public class LimitOrderMaker extends OrderMaker {
         this.blotter = blotter;
         this.externalManager = externalManager;
         this.infoManager = infoManager;
-        favorableSize = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_size"));
+        this.favorableSize = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_size"));
     }
 
     public void doNearBuyFarSell() {
-
         if (frontRunningOrder_n == null) {
             frontRunningOrder_n = externalManager.sendLimitBuy(blotter.getInstrument_n(), blotter.getBid_n(), favorableSize);
         } else {
-            frontRunningOrder_n = externalManager.getOrder(frontRunningOrder_n.getId());
-            String instr = blotter.getInstrument_n();
-            Money price = calcDealPrice(BlotterPrice.BID, blotter.getBid_n(), frontRunningOrder_n.getPrice());
-            int size = calcDealSize(favorableSize, frontRunningOrder_n.getFilled(), blotter.getBidVol_n());
-
-            if(calcUpdateNecessity(frontRunningOrder_n, price, size)){
-
-            }
-
+            frontRunningOrder_n = orderRolling(externalManager.getOrder(frontRunningOrder_n.getId()), Term.NEAR);
         }
 
         if (frontRunningOrder_f == null) {
-            frontRunningOrder_f = externalManager.sendLimitSell(blotter.getInstrument_f(), blotter.getBid_f(), favorableSize);
+            frontRunningOrder_f = externalManager.sendLimitSell(blotter.getInstrument_f(), blotter.getAsk_f(), favorableSize);
         } else {
-            frontRunningOrder_f = externalManager.getOrder(frontRunningOrder_f.getId());
+            frontRunningOrder_f = orderRolling(externalManager.getOrder(frontRunningOrder_f.getId()), Term.FAR);
         }
-
-
     }
 
 
-    public void doFarBuyNearSell() {
+    public void doNearSellFarBuy() {
+        if (frontRunningOrder_n == null) {
+            frontRunningOrder_n = externalManager.sendLimitSell(blotter.getInstrument_n(), blotter.getAsk_n(), favorableSize);
+        } else {
+            frontRunningOrder_n = orderRolling(externalManager.getOrder(frontRunningOrder_n.getId()), Term.NEAR);
+        }
+
+        if (frontRunningOrder_f == null) {
+            frontRunningOrder_f = externalManager.sendLimitBuy(blotter.getInstrument_f(), blotter.getBid_f(), favorableSize);
+        } else {
+            frontRunningOrder_f = orderRolling(externalManager.getOrder(frontRunningOrder_f.getId()), Term.FAR);
+        }
     }
 
     public void doCancelling() {
@@ -56,12 +57,54 @@ public class LimitOrderMaker extends OrderMaker {
         frontRunningOrder_f = null;
     }
 
+    private Order orderRolling(Order order, Term term) {
+        if (term == null || order == null) {
+            throw new NullPointerException("One of param is null. Order: " + order.toString() + " and term: " + term);
+        }
+
+        Order answer = null;
+        Money price = null;
+        int size = 0;
+
+        switch (order.getDeal()) {
+            case Buy:
+                if(term == Term.NEAR){
+                    price = calcDealPrice(Side.BID, blotter.getBid_n(), order.getPrice());
+                    size = calcDealSize(favorableSize, order.getFilled(), blotter.getBidVol_n());
+                }else{
+                    price = calcDealPrice(Side.BID, blotter.getBid_f(), order.getPrice());
+                    size = calcDealSize(favorableSize, order.getFilled(), blotter.getBidVol_f());
+                }
+                break;
+            case Sell:
+                if(term == Term.NEAR){
+                    price = calcDealPrice(Side.ASK, blotter.getAsk_n(), order.getPrice());
+                    size = calcDealSize(favorableSize, order.getFilled(), blotter.getAskVol_n());
+                }else{
+                    price = calcDealPrice(Side.ASK, blotter.getAsk_f(), order.getPrice());
+                    size = calcDealSize(favorableSize, order.getFilled(), blotter.getAskVol_f());
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect deal type: " + order.getDeal());
+        }
+
+        if (calcUpdateNecessity(order, price, size)) {
+            answer = externalManager.sendChangeOrder(order.getId(), price, size);
+        }else{
+            answer = order;
+        }
+
+        return answer;
+    }
+
+
     private int calcDealSize(int favorableSize, int filled, int blotterSize) {
         int favor = favorableSize - filled;
         return favor <= blotterSize ? favor : blotterSize;
     }
 
-    private Money calcDealPrice(BlotterPrice type, Money currentPrice, Money orderPrice) {
+    private Money calcDealPrice(Side type, Money currentPrice, Money orderPrice) {
         Money answer;
         switch (type) {
             case BID:
@@ -85,9 +128,9 @@ public class LimitOrderMaker extends OrderMaker {
         return answer;
     }
 
-    private boolean calcUpdateNecessity(Order actualOrder, Money newPrice, int newSize){
-        if(!actualOrder.getPrice().equals(newPrice)) return true;
-        if(actualOrder.getSize()!=newSize) return true;
+    private boolean calcUpdateNecessity(Order actualOrder, Money newPrice, int newSize) {
+        if (!actualOrder.getPrice().equals(newPrice)) return true;
+        if (actualOrder.getSize() != newSize) return true;
         return false;
     }
 
