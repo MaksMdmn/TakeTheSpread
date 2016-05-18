@@ -10,7 +10,6 @@ public class Algorithm {
     private Money exitSpread;
     private TradeBlotter blotter;
     private Money currentSpread;
-    private TradeBlotter.PositionState position;
 
     protected Algorithm(Money enterSpread, Money exitSpread, ExternalManager externalManager, TradeBlotter blotter) {
         this.enterSpread = enterSpread;
@@ -21,64 +20,109 @@ public class Algorithm {
     }
 
     public Signal getSignal() {
+        TradeBlotter.PositionState position = blotter.nearestPosState();
         blotter.updateMainInfo();
-        position = blotter.nearestPosState();
         if (position == TradeBlotter.PositionState.FLAT) {
-            return getEnterSignal();
+            return getEnterSignal(blotter.getBid_n(), blotter.getBid_f());
         } else {
-            return getExitSignal(position);
+            return getExitSignal(position, blotter.getBid_n(), blotter.getBid_f());
         }
     }
 
-    private Signal getEnterSignal() {
-        if (blotter.getAsk_n().lessThan(blotter.getBid_f())) {
-            currentSpread = calcAbsSpread(blotter.getAsk_n(), blotter.getBid_f());
-            if (currentSpread.greaterOrEqualThan(enterSpread)) {
-                return Signal.LETS_BUY;
-            } else {
-                return Signal.NOTHING;
+    private Signal getEnterSignal(Money comparePrc_n, Money comparePrc_f) {
+        Money tempSpread;
+        if (comparePrc_n.lessOrEqualThan(comparePrc_f)) {
+            //check market
+            tempSpread = blotter.getBid_f().subtract(blotter.getAsk_n());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_M_BUY;
             }
-        }
+            //check n lim  f mar
 
-        if (blotter.getBid_n().greaterThan(blotter.getAsk_f())) {
-            currentSpread = calcAbsSpread(blotter.getBid_n(), blotter.getAsk_f());
-            if (currentSpread.greaterOrEqualThan(enterSpread)) {
-                return Signal.LETS_SELL;
-            } else {
-                return Signal.NOTHING;
+            tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.L_M_BUY;
+            }
+
+            //check n mar   f lim
+            tempSpread = blotter.getAsk_f().subtract(blotter.getAsk_n());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_L_BUY;
+            }
+
+        } else {
+            tempSpread = blotter.getBid_n().subtract(blotter.getAsk_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_M_SELL;
+            }
+            //check n lim  f mar
+
+            tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.L_M_SELL;
+            }
+
+            //check n mar   f lim
+            tempSpread = blotter.getBid_n().subtract(blotter.getBid_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_L_BUY;
             }
         }
 
         return Signal.NOTHING;
     }
 
-    private Signal getExitSignal(TradeBlotter.PositionState position) {
-        switch (position) {
-            case LONG:
-                currentSpread = calcAbsSpread(blotter.getBid_n(), blotter.getAsk_f());
-                if (currentSpread.lessOrEqualThan(exitSpread)) return Signal.LETS_SELL;
-                break;
-            case SHORT:
-                currentSpread = calcAbsSpread(blotter.getAsk_n(), blotter.getBid_f());
-                if (currentSpread.lessOrEqualThan(exitSpread)) return Signal.LETS_BUY;
-                break;
-            default:
-                throw new IllegalArgumentException("Illegal position value in 'close' method: " + position);
+    private Signal getExitSignal(TradeBlotter.PositionState position, Money comparePrc_n, Money comparePrc_f) {
+        Money tempSpread;
+        if (comparePrc_n.lessOrEqualThan(comparePrc_f)) {
+            //check market
+            tempSpread = blotter.getAsk_f().subtract(blotter.getBid_n());
+            if (tempSpread.lessOrEqualThan(exitSpread)) {
+                return Signal.M_M_SELL;
+            }
+            //check n lim  f mar
+            tempSpread = blotter.getAsk_f().subtract(blotter.getAsk_n());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.L_M_SELL;
+            }
+
+            //check n mar   f lim
+            tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_L_SELL;
+            }
+
+        } else {
+            tempSpread = blotter.getAsk_n().subtract(blotter.getBid_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_M_BUY;
+            }
+            //check n lim  f mar
+
+            tempSpread = blotter.getBid_n().subtract(blotter.getBid_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.L_M_BUY;
+            }
+
+            //check n mar   f lim
+            tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
+            if (tempSpread.greaterOrEqualThan(enterSpread)) {
+                return Signal.M_L_BUY;
+            }
         }
+
         return Signal.NOTHING;
     }
-
-    private Money calcAbsSpread(Money val1, Money val2) {
-        return Money.dollars(Math.abs(val1.subtract(val2).getAmount()));
-    }
-
 
     protected enum Signal {
-        LETS_BUY,
-        LETS_SELL,
+        M_M_BUY,
+        L_M_BUY,
+        M_L_BUY,
+        M_M_SELL,
+        L_M_SELL,
+        M_L_SELL,
         NOTHING
     }
-
 
 
 }

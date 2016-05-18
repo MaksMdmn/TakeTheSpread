@@ -1,6 +1,6 @@
 package go.takethespread;
 
-import go.takethespread.fsa.LimitOrderMaker;
+import go.takethespread.fsa.OrderMaker;
 import go.takethespread.fsa.TradeBlotter;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.InfoManager;
@@ -17,7 +17,7 @@ public class TestLimitMaker {
         String instrumentN = infoManager.getActualProperties().getProperty("instrument_n");
         String instrumentF = infoManager.getActualProperties().getProperty("instrument_f");
         TradeBlotter blotter = new TradeBlotter(instrumentN, instrumentF, externalManager);
-        LimitOrderMaker orderMaker = new LimitOrderMaker(blotter, externalManager, infoManager);
+        OrderMaker orderMaker = new OrderMaker(blotter, externalManager, infoManager);
 
         while (curQ < q) {
             blotter.updateMainInfo();

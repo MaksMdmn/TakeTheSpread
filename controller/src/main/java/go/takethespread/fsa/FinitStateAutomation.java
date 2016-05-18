@@ -66,20 +66,20 @@ public class FinitStateAutomation extends Thread {
 
     private void executeGO() {
         Algorithm.Signal signal = algo.getSignal();
-        switch (signal) {
-            case LETS_BUY:
-                externalManager.sendMarketBuy(instrument_n, size);
-                externalManager.sendMarketSell(instrument_f, size);
-                break;
-            case LETS_SELL:
-                externalManager.sendMarketBuy(instrument_f, size);
-                externalManager.sendMarketSell(instrument_n, size);
-                break;
-            case NOTHING:
-                break;
-            default:
-                break;
-        }
+//        switch (signal) {
+//            case TRY_BUY:
+//                externalManager.sendMarketBuy(instrument_n, size);
+//                externalManager.sendMarketSell(instrument_f, size);
+//                break;
+//            case TRY_SELL:
+//                externalManager.sendMarketBuy(instrument_f, size);
+//                externalManager.sendMarketSell(instrument_n, size);
+//                break;
+//            case NOTHING:
+//                break;
+//            default:
+//                break;
+//        }
     }
 
     private void executeGJ() {
