@@ -2,6 +2,7 @@ package go.takethespread.fsa;
 
 
 import go.takethespread.Money;
+import go.takethespread.Order;
 import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
@@ -18,7 +19,10 @@ public class FinitStateAutomation extends Thread {
     private String instrument_f;
     private Money enterSpread;
     private Money exitSpread;
-    private int size;
+
+    private LimitOrderMaker lom;
+    private MarketOrderMaker mom;
+
 
     private Algorithm algo;
 
@@ -66,20 +70,74 @@ public class FinitStateAutomation extends Thread {
 
     private void executeGO() {
         Algorithm.Signal signal = algo.getSignal();
-//        switch (signal) {
-//            case TRY_BUY:
-//                externalManager.sendMarketBuy(instrument_n, size);
-//                externalManager.sendMarketSell(instrument_f, size);
-//                break;
-//            case TRY_SELL:
-//                externalManager.sendMarketBuy(instrument_f, size);
-//                externalManager.sendMarketSell(instrument_n, size);
-//                break;
-//            case NOTHING:
-//                break;
-//            default:
-//                break;
-//        }
+        Order.Deal deal_n;
+        Order.Deal deal_f;
+        int size_n;
+        int size_f;
+        switch (signal) {
+            case M_M_BUY:
+                deal_n = Order.Deal.Buy;
+                deal_f = Order.Deal.Sell;
+                size_n = mom.getOrientedSize(Term.NEAR, Side.ASK);
+                size_f = mom.getOrientedSize(Term.FAR, Side.BID);
+
+                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                mom.hitMarket(size_f, Term.FAR, deal_f);
+                break;
+            case L_M_BUY:
+                deal_n = Order.Deal.Buy;
+                deal_f = Order.Deal.Sell;
+
+                size_n = mom.getOrientedSize(Term.FAR, Side.BID);
+                lom.tryingTo(size_n, Term.NEAR, deal_n);
+
+                size_f = lom.getCollectedSize();
+                mom.hitMarket(size_f, Term.FAR, deal_f);
+                break;
+            case M_L_BUY:
+                deal_n = Order.Deal.Buy;
+                deal_f = Order.Deal.Sell;
+
+                size_f = mom.getOrientedSize(Term.NEAR, Side.ASK);
+                lom.tryingTo(size_f, Term.FAR, deal_f);
+
+                size_n = lom.getCollectedSize();
+                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                break;
+            case M_M_SELL:
+                deal_n = Order.Deal.Sell;
+                deal_f = Order.Deal.Buy;
+                size_n = mom.getOrientedSize(Term.NEAR, Side.BID);
+                size_f = mom.getOrientedSize(Term.FAR, Side.ASK);
+
+                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                mom.hitMarket(size_f, Term.FAR, deal_f);
+                break;
+            case L_M_SELL:
+                deal_n = Order.Deal.Sell;
+                deal_f = Order.Deal.Buy;
+
+                size_n = mom.getOrientedSize(Term.FAR, Side.ASK);
+                lom.tryingTo(size_n, Term.NEAR, deal_n);
+
+                size_f = lom.getCollectedSize();
+                mom.hitMarket(size_f, Term.FAR, deal_f);
+                break;
+            case M_L_SELL:
+                deal_n = Order.Deal.Sell;
+                deal_f = Order.Deal.Buy;
+
+                size_f = mom.getOrientedSize(Term.NEAR, Side.BID);
+                lom.tryingTo(size_f, Term.FAR, deal_f);
+
+                size_n = lom.getCollectedSize();
+                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                break;
+            case NOTHING:
+                break;
+            default:
+                break;
+        }
     }
 
     private void executeGJ() {
@@ -104,7 +162,6 @@ public class FinitStateAutomation extends Thread {
 
             instrument_n = infoManager.getActualProperties().getProperty("instrument_n");
             instrument_f = infoManager.getActualProperties().getProperty("instrument_f");
-            size = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_size"));
 
             Money propDevEnter = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_deviation")));
             Money propDevExit = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_deviation")));
