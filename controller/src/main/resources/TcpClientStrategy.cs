@@ -51,7 +51,7 @@ namespace NinjaTrader.Strategy
 
 		//handle by myself
 		private String[] ntToken = new[]{":-:"};
-		private String secondInstrTicker = "CL 07-16";
+		private String secondInstrTicker = "CL 08-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
 		private int sendingDelayMs = 200;
@@ -257,6 +257,10 @@ namespace NinjaTrader.Strategy
 							break;
 						case "CNID":
 							CancelOrder(orderMap[ordId]);
+							while(orderMap[ordId].OrderState != OrderState.Cancelled)
+							{
+//								NOP ---- trying to get final filled value
+							}
 							SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
 							break;
 						case "CHOR":

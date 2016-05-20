@@ -19,13 +19,53 @@ public class Algorithm {
 
     }
 
+    public double getSpread() {
+        return currentSpread.getAmount();
+    }
+
     public Signal getSignal() {
         TradeBlotter.PositionState position = blotter.nearestPosState();
         blotter.updateMainInfo();
-        if (position == TradeBlotter.PositionState.FLAT) {
-            return getEnterSignal(blotter.getBid_n(), blotter.getBid_f());
+
+        Money compare1;
+        Money compare2;
+
+        if (Money.absl
+                (
+                        blotter.getBid_f()
+                                .subtract
+                                        (
+                                                blotter.getBid_n()
+                                        )
+                ).greaterOrEqualThan
+                (
+                        Money.absl
+                                (
+                                        blotter.getAsk_f()
+                                                .subtract
+                                                        (
+                                                                blotter.getAsk_n()
+                                                        )
+                                )
+                )) {
+            compare1 = blotter.getBid_n();
+            compare2 = blotter.getBid_f();
         } else {
-            return getExitSignal(position, blotter.getBid_n(), blotter.getBid_f());
+            compare1 = blotter.getAsk_n();
+            compare2 = blotter.getAsk_f();
+        }
+        currentSpread = Money.absl(compare1.subtract(compare2));
+
+//        if (position == TradeBlotter.PositionState.FLAT) {
+//            return getEnterSignal(blotter.getBid_n(), blotter.getBid_f());
+//        } else {
+//            return getExitSignal(position, blotter.getBid_n(), blotter.getBid_f());
+//        }
+
+        if (position == TradeBlotter.PositionState.FLAT) {
+            return getEnterSignal(compare1, compare2);
+        } else {
+            return getExitSignal(position, compare1, compare2);
         }
     }
 

@@ -9,7 +9,7 @@ import go.takethespread.managers.TaskManager;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
-public class FinitStateAutomation extends Thread {
+public class FiniteStateAutomation extends Thread {
     private InfoManager infoManager;
     private TaskManager taskManager;
     private ExternalManager externalManager;
@@ -65,6 +65,7 @@ public class FinitStateAutomation extends Thread {
                 e.printStackTrace();
             }
 
+            System.out.println(algo.getSpread() + "<--spread-----signal-->" + algo.getSignal());
         }
     }
 
@@ -173,6 +174,8 @@ public class FinitStateAutomation extends Thread {
 
             blotter = new TradeBlotter(instrument_n, instrument_f, externalManager);
             algo = new Algorithm(enterSpread, exitSpread, externalManager, blotter);
+            lom = new LimitOrderMaker(blotter, externalManager, infoManager);
+            mom = new MarketOrderMaker(blotter, externalManager, infoManager);
         } catch (Exception e) {
             e.printStackTrace();
         }

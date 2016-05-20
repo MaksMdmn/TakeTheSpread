@@ -1,6 +1,6 @@
 package go.takethespread;
 
-import go.takethespread.fsa.FinitStateAutomation;
+import go.takethespread.fsa.FiniteStateAutomation;
 import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.exceptions.ConsoleException;
@@ -15,7 +15,7 @@ public class TEST_FSA {
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        FinitStateAutomation fsa = new FinitStateAutomation();
+        FiniteStateAutomation fsa = new FiniteStateAutomation();
         ExternalManager edm = NTTcpExternalManagerImpl.getInstance();
         InfoManager cm = InfoManager.getInstance();
 

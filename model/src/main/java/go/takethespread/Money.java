@@ -42,6 +42,10 @@ public class Money {
         return new Money(amount, Currency.getInstance(Locale.getDefault()));
     }
 
+    public static Money absl(Money money) {
+        return Money.dollars(Math.abs(money.getAmount()));
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
