@@ -13,9 +13,7 @@ public class TestLimitMaker {
         externalManager.startingJob();
 
         ConsoleManager consoleManager = ConsoleManager.getInstance();
-        String instrumentN = consoleManager.getActualProperties().getProperty("instrument_n");
-        String instrumentF = consoleManager.getActualProperties().getProperty("instrument_f");
-        TradeBlotter blotter = new TradeBlotter(instrumentN, instrumentF, externalManager);
+        TradeBlotter blotter = new TradeBlotter(consoleManager.getTradeSystemInfo(), externalManager);
 //        OrderMaker orderMaker = new OrderMaker(blotter, externalManager, infoManager);
 
         while (curQ < q) {
