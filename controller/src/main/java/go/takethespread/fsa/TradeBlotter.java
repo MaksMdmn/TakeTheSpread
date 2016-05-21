@@ -7,8 +7,6 @@ import go.takethespread.managers.ExternalManager;
 import java.util.List;
 
 public class TradeBlotter {
-    private String instrument_n;
-    private String instrument_f;
     private Money bid_n;
     private Money ask_n;
     private Money bid_f;
@@ -18,13 +16,13 @@ public class TradeBlotter {
     private int bidVol_f;
     private int askVol_f;
     private ExternalManager externalManager;
+    private TradeSystemInfo tradeSystemInfo;
     private int position_n;
     private int position_f;
     private List<Order> orders;
 
-    public TradeBlotter(String instrument_n, String instrument_f, ExternalManager externalManager){
-        this.instrument_n = instrument_n;
-        this.instrument_f = instrument_f;
+    public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager){
+        this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
     }
 
@@ -61,11 +59,11 @@ public class TradeBlotter {
     }
 
     public String getInstrument_n() {
-        return instrument_n;
+        return tradeSystemInfo.instrument_n;
     }
 
     public String getInstrument_f() {
-        return instrument_f;
+        return tradeSystemInfo.instrument_f;
     }
 
     public int getPosition_n() {
@@ -82,16 +80,16 @@ public class TradeBlotter {
 
     public void updateMainInfo(){
         externalManager.refreshData();
-        bid_n = externalManager.getBBid(instrument_n);
-        ask_n = externalManager.getBAsk(instrument_n);
-        bid_f = externalManager.getBBid(instrument_f);
-        ask_f = externalManager.getBAsk(instrument_f);
-        bidVol_n = externalManager.getBBidVolume(instrument_n);
-        askVol_n = externalManager.getBAskVolume(instrument_n);
-        bidVol_f = externalManager.getBBidVolume(instrument_f);
-        askVol_f = externalManager.getBAskVolume(instrument_f);
-        position_n = externalManager.getPosition(instrument_n);
-        position_f= externalManager.getPosition(instrument_f);
+        bid_n = externalManager.getBBid(tradeSystemInfo.instrument_n);
+        ask_n = externalManager.getBAsk(tradeSystemInfo.instrument_n);
+        bid_f = externalManager.getBBid(tradeSystemInfo.instrument_f);
+        ask_f = externalManager.getBAsk(tradeSystemInfo.instrument_f);
+        bidVol_n = externalManager.getBBidVolume(tradeSystemInfo.instrument_n);
+        askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
+        bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
+        askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
+        position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
+        position_f= externalManager.getPosition(tradeSystemInfo.instrument_f);
     }
 
     public void updateOrdersInfo(){

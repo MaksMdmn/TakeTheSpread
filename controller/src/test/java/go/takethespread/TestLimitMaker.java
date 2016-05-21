@@ -2,7 +2,7 @@ package go.takethespread;
 
 import go.takethespread.fsa.TradeBlotter;
 import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 public class TestLimitMaker {
@@ -12,9 +12,9 @@ public class TestLimitMaker {
         ExternalManager externalManager = NTTcpExternalManagerImpl.getInstance();
         externalManager.startingJob();
 
-        InfoManager infoManager = InfoManager.getInstance();
-        String instrumentN = infoManager.getActualProperties().getProperty("instrument_n");
-        String instrumentF = infoManager.getActualProperties().getProperty("instrument_f");
+        ConsoleManager consoleManager = ConsoleManager.getInstance();
+        String instrumentN = consoleManager.getActualProperties().getProperty("instrument_n");
+        String instrumentF = consoleManager.getActualProperties().getProperty("instrument_f");
         TradeBlotter blotter = new TradeBlotter(instrumentN, instrumentF, externalManager);
 //        OrderMaker orderMaker = new OrderMaker(blotter, externalManager, infoManager);
 

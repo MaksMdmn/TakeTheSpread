@@ -3,7 +3,7 @@ package go.takethespread.fsa;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class LimitOrderMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
-    private InfoManager infoManager;
+    private ConsoleManager consoleManager;
     private Order frontRunningOrder;
     private int collectedSize;
     private Map<String, Integer> filledMap;
@@ -19,10 +19,10 @@ public class LimitOrderMaker {
     private Term afterLastChangeTerm;
     private Order.Deal afterLastChangeDeal;
 
-    public LimitOrderMaker(TradeBlotter blotter, ExternalManager externalManager, InfoManager infoManager) {
+    public LimitOrderMaker(TradeBlotter blotter, ExternalManager externalManager, ConsoleManager consoleManager) {
         this.blotter = blotter;
         this.externalManager = externalManager;
-        this.infoManager = infoManager;
+        this.consoleManager = consoleManager;
         this.frontRunningOrder = null;
         this.collectedSize = 0;
         this.filledMap = new HashMap<>();

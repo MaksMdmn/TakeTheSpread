@@ -2,22 +2,25 @@ package go.takethespread.fsa;
 
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 
 public class MarketOrderMaker {
 
     private TradeBlotter blotter;
     private ExternalManager externalManager;
-    private InfoManager infoManager;
+    private ConsoleManager consoleManager;
+    private TradeSystemInfo tradeSystemInfo;
     private int favorableSize;
     private int maxPossibleSize;
 
 
-    public MarketOrderMaker(TradeBlotter blotter, ExternalManager externalManager, InfoManager infoManager) {
+    public MarketOrderMaker(TradeBlotter blotter, ExternalManager externalManager,
+                            ConsoleManager consoleManager, TradeSystemInfo tradeSystemInfo) {
         this.blotter = blotter;
         this.externalManager = externalManager;
-        this.infoManager = infoManager;
-        this.favorableSize = Integer.valueOf(infoManager.getActualProperties().getProperty("favorable_size"));
+        this.consoleManager = consoleManager;
+        this.tradeSystemInfo = tradeSystemInfo;
+        this.favorableSize = tradeSystemInfo.favorable_size;
         this.maxPossibleSize = favorableSize;
     }
 

@@ -1,24 +1,19 @@
 package go.takethespread.fsa;
 
 
-import go.takethespread.Money;
 import go.takethespread.Order;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 public class FiniteStateAutomation extends Thread {
-    private InfoManager infoManager;
+    private ConsoleManager consoleManager;
     private TaskManager taskManager;
     private ExternalManager externalManager;
     private TradeBlotter blotter;
-
-    private String instrument_n;
-    private String instrument_f;
-    private Money enterSpread;
-    private Money exitSpread;
+    private TradeSystemInfo tradeSystemInfo;
 
     private LimitOrderMaker lom;
     private MarketOrderMaker mom;
@@ -28,10 +23,23 @@ public class FiniteStateAutomation extends Thread {
 
     private volatile boolean isWorking;
 
+
+    public FiniteStateAutomation(){
+        consoleManager = ConsoleManager.getInstance();
+        taskManager = TaskManager.getInstance();
+        externalManager = NTTcpExternalManagerImpl.getInstance();
+
+        tradeSystemInfo = consoleManager.getTradeSystemInfo();
+        blotter = new TradeBlotter(tradeSystemInfo, externalManager);
+        algo = new Algorithm(tradeSystemInfo, externalManager, blotter);
+
+        lom = new LimitOrderMaker(blotter, externalManager, consoleManager);
+        mom = new MarketOrderMaker(blotter, externalManager, consoleManager, tradeSystemInfo);
+    }
+
     @Override
     public void run() {
         isWorking = true;
-        prepareToWork();
         TaskManager.TradeTask currentTask;
 
         while (isWorking) {
@@ -65,7 +73,7 @@ public class FiniteStateAutomation extends Thread {
                 e.printStackTrace();
             }
 
-            System.out.println(algo.getSpread() + "<--spread-----signal-->" + algo.getSignal());
+            System.out.println("<--spread-----signal-->" + algo.getSignal());
         }
     }
 
@@ -153,32 +161,6 @@ public class FiniteStateAutomation extends Thread {
 
     private void executePL(String item, String values) {
 
-    }
-
-    private void prepareToWork() {
-        try {
-            infoManager = InfoManager.getInstance();
-            taskManager = TaskManager.getInstance();
-            externalManager = NTTcpExternalManagerImpl.getInstance();
-
-            instrument_n = infoManager.getActualProperties().getProperty("instrument_n");
-            instrument_f = infoManager.getActualProperties().getProperty("instrument_f");
-
-            Money propDevEnter = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_deviation")));
-            Money propDevExit = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_deviation")));
-
-            enterSpread = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("entering_spread")));
-            enterSpread = enterSpread.add(propDevEnter);
-            exitSpread = Money.dollars(Double.valueOf(infoManager.getActualProperties().getProperty("leaving_spread")));
-            exitSpread = exitSpread.add(propDevExit);
-
-            blotter = new TradeBlotter(instrument_n, instrument_f, externalManager);
-            algo = new Algorithm(enterSpread, exitSpread, externalManager, blotter);
-            lom = new LimitOrderMaker(blotter, externalManager, infoManager);
-            mom = new MarketOrderMaker(blotter, externalManager, infoManager);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 

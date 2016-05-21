@@ -1,7 +1,7 @@
 package go.takethespread;
 
 import go.takethespread.fsa.FiniteStateAutomation;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.exceptions.ConsoleException;
 import go.takethespread.exceptions.TradeException;
@@ -17,7 +17,7 @@ public class TEST_FSA {
 
         FiniteStateAutomation fsa = new FiniteStateAutomation();
         ExternalManager edm = NTTcpExternalManagerImpl.getInstance();
-        InfoManager cm = InfoManager.getInstance();
+        ConsoleManager cm = ConsoleManager.getInstance();
 
         edm.startingJob();
         fsa.start();

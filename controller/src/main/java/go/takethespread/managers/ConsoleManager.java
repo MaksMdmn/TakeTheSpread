@@ -2,34 +2,25 @@ package go.takethespread.managers;
 
 import go.takethespread.exceptions.ConsoleException;
 import go.takethespread.exceptions.TradeException;
+import go.takethespread.fsa.TradeSystemInfo;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+public class ConsoleManager {
 
-public class InfoManager {
-
-    private static InfoManager instance;
-
+    private static ConsoleManager instance;
+    private TradeSystemInfo tradeSystemInfo;
     private TaskManager taskManager;
-    private Properties actualProperties;
 
-    private InfoManager() {
-        propertiesInit();
-        actualProperties = getActualProperties();
+    private ConsoleManager() {
+        tradeSystemInfo = new TradeSystemInfo();
         taskManager = TaskManager.getInstance();
     }
 
-    public static InfoManager getInstance() {
+    public static ConsoleManager getInstance() {
         if (instance == null) {
-            instance = new InfoManager();
+            instance = new ConsoleManager();
 
         }
         return instance;
-    }
-
-    public Properties getActualProperties() {
-        return actualProperties;
     }
 
     public String parseConsoleMsg(String msg) throws ConsoleException, TradeException {
@@ -61,9 +52,11 @@ public class InfoManager {
 
         String answer = "ANSWEROK";
         return answer;
-
     }
 
+    public TradeSystemInfo getTradeSystemInfo(){
+        return tradeSystemInfo;
+    }
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
         itemVerification(item);
@@ -87,34 +80,14 @@ public class InfoManager {
     }
 
     private boolean itemVerification(String item) throws ConsoleException {
-        if (actualProperties == null) {
-            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
-        }
-
-        return actualProperties.containsKey(item);
+        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty" );
+        return tradeSystemInfo.isPropExists(item);
 
     }
 
     private boolean valuesVerification(String values) throws ConsoleException {
-        if (actualProperties == null) {
-            throw new ConsoleException("Settings-example file is empty, " + actualProperties);
-        }
-
-        return actualProperties.containsValue(values);
-    }
-
-    private void propertiesInit() {
-        actualProperties = new Properties();
-        String fileName = "possibleSettings.properties";
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(fileName)) {
-            if (input == null) {
-                throw new RuntimeException("Settings-example file was unable to find");
-            }
-            actualProperties.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty" );
+        return tradeSystemInfo.isPropExists(values);
     }
 
     public enum ConsoleCommand {

@@ -1,7 +1,7 @@
 package go.takethespread;
 
 import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 public class TestTCPOrders {
@@ -9,8 +9,8 @@ public class TestTCPOrders {
 
     public static void main(String[] args) {
         try {
-            String instr1 = InfoManager.getInstance().getActualProperties().getProperty("instrument_n");
-            String instr2 = InfoManager.getInstance().getActualProperties().getProperty("instrument_f");
+            String instr1 = ConsoleManager.getInstance().getActualProperties().getProperty("instrument_n");
+            String instr2 = ConsoleManager.getInstance().getActualProperties().getProperty("instrument_f");
 
             ntTcpExternalManager.startingJob();
 

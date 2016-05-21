@@ -3,7 +3,7 @@ package go.takethespread.managers.socket;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.fsa.Term;
-import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 
 import java.text.ParseException;
@@ -16,13 +16,13 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     private static int attemptMaxNumbers;
     private static int attempts;
     private int delay;
-    private InfoManager infoManager;
+    private ConsoleManager consoleManager;
     private NTTcpManager ntTcpManager;
     private ActualMarketData nearMarketData;
     private ActualMarketData farMarketData;
 
     private NTTcpExternalManagerImpl() {
-        infoManager = InfoManager.getInstance();
+        consoleManager = ConsoleManager.getInstance();
         ntTcpManager = NTTcpManager.getInstance();
         nearMarketData = new ActualMarketData(Term.NEAR);
         farMarketData = new ActualMarketData(Term.FAR);
@@ -210,9 +210,9 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     private Term identifyTerm(String instr) {
-        if (instr.equals(infoManager.getActualProperties().getProperty("instrument_n")))
+        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
             return Term.NEAR;
-        if (instr.equals(infoManager.getActualProperties().getProperty("instrument_f")))
+        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
             return Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }
