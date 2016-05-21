@@ -41,6 +41,8 @@ public class MarketOrderMaker {
         if (deal == Order.Deal.Buy) tempOrder = externalManager.sendMarketBuy(tempIntsr, strongSize);
         if (deal == Order.Deal.Sell) tempOrder = externalManager.sendMarketSell(tempIntsr, strongSize);
 
+
+        //need to check: filled size of market order: 0 or equal size ?
         updateMaxSize(tempOrder.getFilled());
     }
 

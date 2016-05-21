@@ -17,9 +17,16 @@ public class Algorithm {
 
     public Signal getSignal() {
         blotter.updateMainInfo();
+        Money compare1;
+        Money compare2;
+        if (spreadChoosing() == Side.BID) {
+            compare1 = blotter.getBid_n();
+            compare2 = blotter.getBid_f();
+        } else {
+            compare1 = blotter.getAsk_n();
+            compare2 = blotter.getAsk_f();
+        }
 
-        Money compare1 = blotter.getBid_n();
-        Money compare2 = blotter.getBid_f();
         Signal enterSignal = getEnterSignal(compare1, compare2);
         Signal exitSignal = getExitSignal(compare1, compare2);
 
@@ -110,6 +117,18 @@ public class Algorithm {
 
         return Signal.NOTHING;
     }
+
+    private Side spreadChoosing() {
+        Money byBid = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
+        Money byAsk = Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n()));
+
+        if (byBid.greaterOrEqualThan(byAsk)) {
+            return Side.BID;
+        } else {
+            return Side.ASK;
+        }
+    }
+
 
     protected enum Signal {
         M_M_BUY,

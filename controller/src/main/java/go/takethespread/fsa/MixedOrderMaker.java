@@ -8,10 +8,11 @@ import go.takethespread.managers.ConsoleManager;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LimitOrderMaker {
+public class MixedOrderMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
     private ConsoleManager consoleManager;
+    private MarketOrderMaker mom;
     private Order frontRunningOrder;
     private int collectedSize;
     private Map<String, Integer> filledMap;
@@ -19,21 +20,24 @@ public class LimitOrderMaker {
     private Term afterLastChangeTerm;
     private Order.Deal afterLastChangeDeal;
 
-    public LimitOrderMaker(TradeBlotter blotter, ExternalManager externalManager, ConsoleManager consoleManager) {
+    public MixedOrderMaker(TradeBlotter blotter, ExternalManager externalManager, ConsoleManager consoleManager, MarketOrderMaker mom) {
         this.blotter = blotter;
         this.externalManager = externalManager;
         this.consoleManager = consoleManager;
+        this.mom = mom;
         this.frontRunningOrder = null;
         this.collectedSize = 0;
         this.filledMap = new HashMap<>();
-
         this.afterLastChangeTerm = Term.NEAR; //for example
         this.afterLastChangeDeal = Order.Deal.Buy; //for example
     }
 
-
-    public void tryingTo(int orientedOn, Term term,Order.Deal deal) {
+    public void attemptToCatch(int orientedOn, Term term, Order.Deal deal) {
         cancelAllIfNecessary(term, deal);
+
+        if(orientedOn == 0 ){
+            return;
+        }
 
         if (frontRunningOrder == null) {
             switch (deal) {
@@ -57,6 +61,21 @@ public class LimitOrderMaker {
         } else {
             frontRunningOrder = orderRolling(frontRunningOrder, orientedOn);
         }
+    }
+
+    private void askForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
+        if (reverseTerm == Term.NEAR) {
+            reverseTerm = Term.FAR;
+        } else {
+            reverseTerm = Term.NEAR;
+        }
+
+        if (reverseDeal == Order.Deal.Buy) {
+            reverseDeal = Order.Deal.Sell;
+        } else {
+            reverseDeal = Order.Deal.Buy;
+        }
+        mom.hitMarket(size, reverseTerm, reverseDeal);
     }
 
 
@@ -125,6 +144,10 @@ public class LimitOrderMaker {
         if (updateIfNecessary(order, price, orientedSize)) {
             Order tempOrder = externalManager.sendCancelOrder(order.getId());
             calcCollectedPos(tempOrder);
+
+            //MOM HERE!!!!
+            askForHelp(tempOrder.getFilled(), term, order.getDeal());
+
             size = calcDealSize(orientedSize, tempOrder.getFilled());
             if (order.getDeal() == Order.Deal.Buy) {
                 answer = externalManager.sendLimitBuy(order.getInstrument(), price, size);
@@ -162,7 +185,7 @@ public class LimitOrderMaker {
         return answer;
     }
 
-    private int calcDealSize(int oriented, int filled){
+    private int calcDealSize(int oriented, int filled) {
         return oriented - filled;
     }
 

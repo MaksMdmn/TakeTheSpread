@@ -15,9 +15,8 @@ public class FiniteStateAutomation extends Thread {
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
 
-    private LimitOrderMaker lom;
+    private MixedOrderMaker mxm;
     private MarketOrderMaker mom;
-
 
     private Algorithm algo;
 
@@ -33,8 +32,8 @@ public class FiniteStateAutomation extends Thread {
         blotter = new TradeBlotter(tradeSystemInfo, externalManager);
         algo = new Algorithm(tradeSystemInfo, externalManager, blotter);
 
-        lom = new LimitOrderMaker(blotter, externalManager, consoleManager);
         mom = new MarketOrderMaker(blotter, externalManager, consoleManager, tradeSystemInfo);
+        mxm = new MixedOrderMaker(blotter, externalManager, consoleManager, mom);
     }
 
     @Override
@@ -83,64 +82,53 @@ public class FiniteStateAutomation extends Thread {
         Order.Deal deal_f;
         int size_n;
         int size_f;
+        int size;
         switch (signal) {
             case M_M_BUY:
                 deal_n = Order.Deal.Buy;
                 deal_f = Order.Deal.Sell;
+
                 size_n = mom.getOrientedSize(Term.NEAR, Side.ASK);
                 size_f = mom.getOrientedSize(Term.FAR, Side.BID);
+                size = size_n <= size_f ? size_n : size_f;
 
-                mom.hitMarket(size_n, Term.NEAR, deal_n);
-                mom.hitMarket(size_f, Term.FAR, deal_f);
+                mom.hitMarket(size, Term.NEAR, deal_n);
+                mom.hitMarket(size, Term.FAR, deal_f);
                 break;
             case L_M_BUY:
                 deal_n = Order.Deal.Buy;
-                deal_f = Order.Deal.Sell;
-
                 size_n = mom.getOrientedSize(Term.FAR, Side.BID);
-                lom.tryingTo(size_n, Term.NEAR, deal_n);
 
-                size_f = lom.getCollectedSize();
-                mom.hitMarket(size_f, Term.FAR, deal_f);
+                mxm.attemptToCatch(size_n, Term.NEAR, deal_n);
                 break;
             case M_L_BUY:
-                deal_n = Order.Deal.Buy;
                 deal_f = Order.Deal.Sell;
-
                 size_f = mom.getOrientedSize(Term.NEAR, Side.ASK);
-                lom.tryingTo(size_f, Term.FAR, deal_f);
 
-                size_n = lom.getCollectedSize();
-                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                mxm.attemptToCatch(size_f, Term.FAR, deal_f);
                 break;
             case M_M_SELL:
                 deal_n = Order.Deal.Sell;
                 deal_f = Order.Deal.Buy;
+
                 size_n = mom.getOrientedSize(Term.NEAR, Side.BID);
                 size_f = mom.getOrientedSize(Term.FAR, Side.ASK);
+                size = size_n <= size_f ? size_n : size_f;
 
-                mom.hitMarket(size_n, Term.NEAR, deal_n);
-                mom.hitMarket(size_f, Term.FAR, deal_f);
+                mom.hitMarket(size, Term.NEAR, deal_n);
+                mom.hitMarket(size, Term.FAR, deal_f);
                 break;
             case L_M_SELL:
                 deal_n = Order.Deal.Sell;
-                deal_f = Order.Deal.Buy;
-
                 size_n = mom.getOrientedSize(Term.FAR, Side.ASK);
-                lom.tryingTo(size_n, Term.NEAR, deal_n);
 
-                size_f = lom.getCollectedSize();
-                mom.hitMarket(size_f, Term.FAR, deal_f);
+                mxm.attemptToCatch(size_n, Term.NEAR, deal_n);
                 break;
             case M_L_SELL:
-                deal_n = Order.Deal.Sell;
                 deal_f = Order.Deal.Buy;
-
                 size_f = mom.getOrientedSize(Term.NEAR, Side.BID);
-                lom.tryingTo(size_f, Term.FAR, deal_f);
 
-                size_n = lom.getCollectedSize();
-                mom.hitMarket(size_n, Term.NEAR, deal_n);
+                mxm.attemptToCatch(size_f, Term.FAR, deal_f);
                 break;
             case NOTHING:
                 break;
