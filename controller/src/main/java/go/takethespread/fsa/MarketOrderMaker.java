@@ -12,6 +12,7 @@ public class MarketOrderMaker {
     private TradeSystemInfo tradeSystemInfo;
     private int favorableSize;
     private int maxPossibleSize;
+    private Algorithm.Phase currentPhase;
 
 
     public MarketOrderMaker(TradeBlotter blotter, ExternalManager externalManager,
@@ -22,13 +23,22 @@ public class MarketOrderMaker {
         this.tradeSystemInfo = tradeSystemInfo;
         this.favorableSize = tradeSystemInfo.favorable_size;
         this.maxPossibleSize = favorableSize;
+        this.currentPhase = Algorithm.Phase.ACCUMULATION; //default
     }
 
-    public void hitMarket(int strongSize, Term term, Order.Deal deal) {
+    public static int sizeForPairDeal(int nearSize, int farSize) {
+        return nearSize <= farSize ? nearSize : farSize;
+    }
+
+    public void youShouldKnow(Algorithm.Phase phase) {
+        this.currentPhase = phase;
+    }
+
+    public void hitTheMarket(int strongSize, Term term, Order.Deal deal) {
         if (deal == null || term == null)
             throw new IllegalArgumentException("deal or term is null: " + deal + " " + term);
 
-        if(strongSize == 0){
+        if (strongSize == 0) {
             return;
         }
 
@@ -82,10 +92,20 @@ public class MarketOrderMaker {
                 result = 0;
                 break;
         }
-        return maxPossibleSize > result ? result : maxPossibleSize;
+
+        if (currentPhase == Algorithm.Phase.ACCUMULATION) {
+            return maxPossibleSize > result ? result : maxPossibleSize;
+        } else {
+            return (favorableSize - maxPossibleSize) > result ? result : (favorableSize - maxPossibleSize);
+        }
     }
 
     private void updateMaxSize(int diff) {
-        maxPossibleSize -= diff;
+        if (currentPhase == Algorithm.Phase.ACCUMULATION) {
+            maxPossibleSize -= diff;
+        } else {
+            maxPossibleSize += diff;
+        }
+
     }
 }

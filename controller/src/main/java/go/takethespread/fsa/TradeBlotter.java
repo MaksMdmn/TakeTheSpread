@@ -21,9 +21,21 @@ public class TradeBlotter {
     private int position_f;
     private List<Order> orders;
 
-    public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager){
+    public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager) {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
+    }
+
+    public Term getOrderTerm(String instrument) {
+        if (instrument.equals(tradeSystemInfo.instrument_n)) {
+            return Term.NEAR;
+        }
+
+        if (instrument.equals(tradeSystemInfo.instrument_f)) {
+            return Term.FAR;
+        }
+
+        throw new IllegalArgumentException("Incorrect instrument name: " + instrument);
     }
 
     public Money getBid_n() {
@@ -78,7 +90,7 @@ public class TradeBlotter {
         return orders;
     }
 
-    public void updateMainInfo(){
+    public void updateMainInfo() {
         externalManager.refreshData();
         bid_n = externalManager.getBBid(tradeSystemInfo.instrument_n);
         ask_n = externalManager.getBAsk(tradeSystemInfo.instrument_n);
@@ -89,10 +101,10 @@ public class TradeBlotter {
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
-        position_f= externalManager.getPosition(tradeSystemInfo.instrument_f);
+        position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
     }
 
-    public void updateOrdersInfo(){
+    public void updateOrdersInfo() {
         orders = externalManager.getOrders();
     }
 
@@ -104,9 +116,10 @@ public class TradeBlotter {
         throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + position_n);
     }
 
-    private void checkPositionsEquivalent(){
+    private void checkPositionsEquivalent() {
         // need to check pos correctly (can be delay\active orders etc)
     }
+
     protected enum PositionState {
         LONG,
         SHORT,

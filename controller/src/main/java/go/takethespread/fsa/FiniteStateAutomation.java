@@ -23,7 +23,7 @@ public class FiniteStateAutomation extends Thread {
     private volatile boolean isWorking;
 
 
-    public FiniteStateAutomation(){
+    public FiniteStateAutomation() {
         consoleManager = ConsoleManager.getInstance();
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
@@ -83,17 +83,20 @@ public class FiniteStateAutomation extends Thread {
         int size_n;
         int size_f;
         int size;
+
+        mom.youShouldKnow(algo.getCurrentPhase());
         switch (signal) {
             case M_M_BUY:
                 deal_n = Order.Deal.Buy;
                 deal_f = Order.Deal.Sell;
 
-                size_n = mom.getOrientedSize(Term.NEAR, Side.ASK);
-                size_f = mom.getOrientedSize(Term.FAR, Side.BID);
-                size = size_n <= size_f ? size_n : size_f;
+                mxm.posEqualize();
+                size = MarketOrderMaker.sizeForPairDeal(
+                        mom.getOrientedSize(Term.NEAR, Side.ASK),
+                        mom.getOrientedSize(Term.FAR, Side.BID));
 
-                mom.hitMarket(size, Term.NEAR, deal_n);
-                mom.hitMarket(size, Term.FAR, deal_f);
+                mom.hitTheMarket(size, Term.NEAR, deal_n);
+                mom.hitTheMarket(size, Term.FAR, deal_f);
                 break;
             case L_M_BUY:
                 deal_n = Order.Deal.Buy;
@@ -111,12 +114,13 @@ public class FiniteStateAutomation extends Thread {
                 deal_n = Order.Deal.Sell;
                 deal_f = Order.Deal.Buy;
 
-                size_n = mom.getOrientedSize(Term.NEAR, Side.BID);
-                size_f = mom.getOrientedSize(Term.FAR, Side.ASK);
-                size = size_n <= size_f ? size_n : size_f;
+                mxm.posEqualize();
+                size = MarketOrderMaker.sizeForPairDeal(
+                        mom.getOrientedSize(Term.NEAR, Side.BID),
+                        mom.getOrientedSize(Term.FAR, Side.ASK));
 
-                mom.hitMarket(size, Term.NEAR, deal_n);
-                mom.hitMarket(size, Term.FAR, deal_f);
+                mom.hitTheMarket(size, Term.NEAR, deal_n);
+                mom.hitTheMarket(size, Term.FAR, deal_f);
                 break;
             case L_M_SELL:
                 deal_n = Order.Deal.Sell;
@@ -131,6 +135,7 @@ public class FiniteStateAutomation extends Thread {
                 mxm.attemptToCatch(size_f, Term.FAR, deal_f);
                 break;
             case NOTHING:
+                mxm.posEqualize();
                 break;
             default:
                 break;

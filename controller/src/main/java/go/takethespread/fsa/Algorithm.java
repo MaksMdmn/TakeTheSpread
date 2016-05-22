@@ -8,11 +8,13 @@ public class Algorithm {
     private ExternalManager externalManager;
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
+    private Phase currentPhase;
 
     protected Algorithm(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager, TradeBlotter blotter) {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.blotter = blotter;
+        this.currentPhase = Phase.ACCUMULATION;
     }
 
     public Signal getSignal() {
@@ -30,7 +32,17 @@ public class Algorithm {
         Signal enterSignal = getEnterSignal(compare1, compare2);
         Signal exitSignal = getExitSignal(compare1, compare2);
 
-        return enterSignal == Signal.NOTHING ? exitSignal : enterSignal;
+        if (enterSignal == Signal.NOTHING) {
+            currentPhase = Phase.DISTRIBUTION;
+            return exitSignal;
+        } else {
+            currentPhase = Phase.ACCUMULATION;
+            return enterSignal;
+        }
+    }
+
+    public Phase getCurrentPhase(){
+        return currentPhase;
     }
 
     private Signal getEnterSignal(Money comparePrc_n, Money comparePrc_f) {
@@ -140,5 +152,9 @@ public class Algorithm {
         NOTHING
     }
 
+    protected enum Phase {
+        ACCUMULATION,
+        DISTRIBUTION
+    }
 
 }

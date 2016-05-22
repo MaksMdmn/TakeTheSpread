@@ -5,17 +5,12 @@ import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.ConsoleManager;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MixedOrderMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
     private ConsoleManager consoleManager;
     private MarketOrderMaker mom;
     private Order frontRunningOrder;
-    private int collectedSize;
-    private Map<String, Integer> filledMap;
 
     private Term afterLastChangeTerm;
     private Order.Deal afterLastChangeDeal;
@@ -26,16 +21,14 @@ public class MixedOrderMaker {
         this.consoleManager = consoleManager;
         this.mom = mom;
         this.frontRunningOrder = null;
-        this.collectedSize = 0;
-        this.filledMap = new HashMap<>();
         this.afterLastChangeTerm = Term.NEAR; //for example
         this.afterLastChangeDeal = Order.Deal.Buy; //for example
     }
 
     public void attemptToCatch(int orientedOn, Term term, Order.Deal deal) {
-        cancelAllIfNecessary(term, deal);
+        trackingChanges(term, deal);
 
-        if(orientedOn == 0 ){
+        if (orientedOn == 0) {
             return;
         }
 
@@ -63,6 +56,44 @@ public class MixedOrderMaker {
         }
     }
 
+    public void posEqualize() {
+        if (frontRunningOrder != null) {
+            int tempSize = cancellingExecution(frontRunningOrder);
+            Term tempTerm = blotter.getOrderTerm(frontRunningOrder.getInstrument());
+            Order.Deal tempDeal = frontRunningOrder.getDeal();
+
+            askForHelp(tempSize, tempTerm, tempDeal);
+        }
+    }
+
+    private void trackingChanges(Term term, Order.Deal deal) {
+        boolean isNecessary = false;
+
+        if (frontRunningOrder == null) {
+            return; //MB HERE TROUBLE???
+        }
+
+        if (term != afterLastChangeTerm) {
+            isNecessary = true;
+            afterLastChangeTerm = term;
+        }
+        if (deal != afterLastChangeDeal) {
+            isNecessary = true;
+            afterLastChangeDeal = deal;
+        }
+
+        if (isNecessary) {
+            frontRunningOrder = null;
+            posEqualize();
+        }
+    }
+
+    private boolean isCancelNecessary(Order actualOrder, Money newPrice, int newSize) {
+        if (!actualOrder.getPrice().equals(newPrice)) return true;
+        if (actualOrder.getSize() != newSize) return true;
+        return false;
+    }
+
     private void askForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
         if (reverseTerm == Term.NEAR) {
             reverseTerm = Term.FAR;
@@ -75,35 +106,7 @@ public class MixedOrderMaker {
         } else {
             reverseDeal = Order.Deal.Buy;
         }
-        mom.hitMarket(size, reverseTerm, reverseDeal);
-    }
-
-
-    public int getCollectedSize() {
-        return collectedSize;
-    }
-
-    public void resetFilledMap() {
-        filledMap.clear();
-    }
-
-    public void resetFrontRun() {
-        frontRunningOrder = null;
-    }
-
-    private void cancelAllIfNecessary(Term term, Order.Deal deal) {
-        boolean isNecessary = false;
-
-        if (term != afterLastChangeTerm) {
-            isNecessary = true;
-            afterLastChangeTerm = term;
-        }
-        if (deal != afterLastChangeDeal) {
-            isNecessary = true;
-            afterLastChangeDeal = deal;
-        }
-
-        if (isNecessary) externalManager.sendCancelOrders();
+        mom.hitTheMarket(size, reverseTerm, reverseDeal);
     }
 
     private Order orderRolling(Order order, int orientedSize) {
@@ -112,15 +115,8 @@ public class MixedOrderMaker {
         Order answer = null;
         Money price = null;
         int size = 0;
-        Term term;
-
-        if (order.getInstrument().equals(blotter.getInstrument_n())) {
-            term = Term.NEAR;
-        } else if (order.getInstrument().equals(blotter.getInstrument_f())) {
-            term = Term.FAR;
-        } else {
-            throw new IllegalArgumentException("incorrect instruments name(order's, near, far): " + order.getInstrument() + " " + blotter.getInstrument_n() + " " + blotter.getInstrument_f());
-        }
+        int filledSize = 0;
+        Term term = blotter.getOrderTerm(order.getInstrument());
 
         switch (order.getDeal()) {
             case Buy:
@@ -141,22 +137,22 @@ public class MixedOrderMaker {
                 throw new IllegalArgumentException("Incorrect deal type: " + order.getDeal());
         }
 
-        if (updateIfNecessary(order, price, orientedSize)) {
-            Order tempOrder = externalManager.sendCancelOrder(order.getId());
-            calcCollectedPos(tempOrder);
+        if (isCancelNecessary(order, price, orientedSize)) {
+            filledSize = cancellingExecution(order);
+            askForHelp(filledSize, term, order.getDeal());
 
-            //MOM HERE!!!!
-            askForHelp(tempOrder.getFilled(), term, order.getDeal());
-
-            size = calcDealSize(orientedSize, tempOrder.getFilled());
+            size = calcDealSize(orientedSize, filledSize);
             if (order.getDeal() == Order.Deal.Buy) {
                 answer = externalManager.sendLimitBuy(order.getInstrument(), price, size);
             } else {
                 answer = externalManager.sendLimitSell(order.getInstrument(), price, size);
             }
         } else {
+            filledSize = trackingExecution(order);
+            askForHelp(filledSize, term, order.getDeal());
             answer = order;
         }
+
 
         return answer;
     }
@@ -189,19 +185,11 @@ public class MixedOrderMaker {
         return oriented - filled;
     }
 
-    private int calcCollectedPos(Order order) {
-        int result = 0;
-        filledMap.put(order.getId(), order.getFilled());
-        for (Map.Entry<String, Integer> pair : filledMap.entrySet()) {
-            result += pair.getValue();
-        }
-        return result;
+    private int trackingExecution(Order order) {
+        return externalManager.getOrderFilled(order.getId());
     }
 
-    private boolean updateIfNecessary(Order actualOrder, Money newPrice, int newSize) {
-        if (!actualOrder.getPrice().equals(newPrice)) return true;
-        if (actualOrder.getSize() != newSize) return true;
-        return false;
+    private int cancellingExecution(Order order) {
+        return externalManager.sendCancelOrder(order.getId()).getFilled();
     }
-
 }
