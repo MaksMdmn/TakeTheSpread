@@ -39,7 +39,7 @@ public final class TradeSystemInfo {
         favorable_size = Integer.valueOf(actualProperties.getProperty("favorable_size"));
         limit_use = Boolean.valueOf(actualProperties.getProperty("limit_use"));
         max_loss = Money.dollars(Double.valueOf(actualProperties.getProperty("max_loss")));
-        max_loss_numbers = Integer.valueOf(actualProperties.getProperty("max_loss"));
+        max_loss_numbers = Integer.valueOf(actualProperties.getProperty("max_loss_numbers"));
         commis_per_one_contract = Money.dollars(Double.valueOf(actualProperties.getProperty("commis_per_contract")));
     }
 

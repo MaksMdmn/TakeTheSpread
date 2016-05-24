@@ -138,6 +138,7 @@ public class NTTcpManager {
             long key;
             String value;
 
+//            System.out.println(Arrays.toString(tempArr));
             if (tempArr.length != 2)
                 throw new IllegalArgumentException("Parsing error: answer array have length != 2, actual: " + tempArr.length + " arr: " + Arrays.toString(tempArr));
 

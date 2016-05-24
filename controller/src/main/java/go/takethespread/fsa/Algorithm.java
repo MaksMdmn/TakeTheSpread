@@ -14,30 +14,18 @@ public class Algorithm {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.blotter = blotter;
-        this.currentPhase = Phase.ACCUMULATION;
     }
 
     public Signal getSignal() {
         blotter.updateMainInfo();
-        Money compare1;
-        Money compare2;
-        if (spreadChoosing() == Side.BID) {
-            compare1 = blotter.getBid_n();
-            compare2 = blotter.getBid_f();
-        } else {
-            compare1 = blotter.getAsk_n();
-            compare2 = blotter.getAsk_f();
-        }
+        currentPhase = defineCurrentPhase();
 
-        Signal enterSignal = getEnterSignal(compare1, compare2);
-        Signal exitSignal = getExitSignal(compare1, compare2);
-
-        if (enterSignal == Signal.NOTHING) {
-            currentPhase = Phase.DISTRIBUTION;
-            return exitSignal;
-        } else {
-            currentPhase = Phase.ACCUMULATION;
-            return enterSignal;
+        if(currentPhase == Phase.ACCUMULATION){
+            return getEnterSignal();
+        }else if (currentPhase == Phase.DISTRIBUTION){
+            return getExitSignal();
+        } else{
+            return Signal.NOTHING;
         }
     }
 
@@ -45,9 +33,29 @@ public class Algorithm {
         return currentPhase;
     }
 
-    private Signal getEnterSignal(Money comparePrc_n, Money comparePrc_f) {
+    public Money getBestSpread(){
+        if(isBidBetOrEqThanAsk()){
+            return Money.absl(blotter.getBid_n().subtract(blotter.getBid_f()));
+        }else{
+            return Money.absl(blotter.getAsk_n().subtract(blotter.getAsk_f()));
+        }
+    }
+
+    private Phase defineCurrentPhase(){
+        Money bestSpread = getBestSpread();
+        if(bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)
+                && blotter.getPosition_n() < tradeSystemInfo.favorable_size){
+            return Phase.ACCUMULATION;
+            //getPos i think may have delay ----- keep in mind
+        }else if(blotter.getPosition_n() != 0){
+            return Phase.DISTRIBUTION;
+        } else{
+            return Phase.OFF_SEASON;
+        }
+    }
+    private Signal getEnterSignal() {
         Money tempSpread;
-        if (comparePrc_n.lessOrEqualThan(comparePrc_f)) {
+        if (isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getBid_f().subtract(blotter.getAsk_n());
             if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
@@ -88,9 +96,9 @@ public class Algorithm {
         return Signal.NOTHING;
     }
 
-    private Signal getExitSignal(Money comparePrc_n, Money comparePrc_f) {
+    private Signal getExitSignal() {
         Money tempSpread;
-        if (comparePrc_n.lessOrEqualThan(comparePrc_f)) {
+        if (isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getAsk_f().subtract(blotter.getBid_n());
             if (tempSpread.lessOrEqualThan(tradeSystemInfo.leaving_spread)) {
@@ -130,17 +138,19 @@ public class Algorithm {
         return Signal.NOTHING;
     }
 
-    private Side spreadChoosing() {
-        Money byBid = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
-        Money byAsk = Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n()));
-
-        if (byBid.greaterOrEqualThan(byAsk)) {
-            return Side.BID;
+    private boolean isNearLessThanFar(){
+        if (isBidBetOrEqThanAsk()) {
+            return blotter.getBid_n().lessOrEqualThan(blotter.getBid_f());
         } else {
-            return Side.ASK;
+            return blotter.getAsk_n().lessOrEqualThan(blotter.getAsk_f());
         }
     }
 
+    private boolean isBidBetOrEqThanAsk(){
+        Money byBid = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
+        Money byAsk = Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n()));
+        return byBid.greaterOrEqualThan(byAsk);
+    }
 
     protected enum Signal {
         M_M_BUY,
@@ -154,7 +164,8 @@ public class Algorithm {
 
     protected enum Phase {
         ACCUMULATION,
-        DISTRIBUTION
+        DISTRIBUTION,
+        OFF_SEASON
     }
 
 }

@@ -72,12 +72,13 @@ public class FiniteStateAutomation extends Thread {
                 e.printStackTrace();
             }
 
-            System.out.println("<--spread-----signal-->" + algo.getSignal());
         }
     }
 
     private void executeGO() {
         Algorithm.Signal signal = algo.getSignal();
+        System.out.println("signal-->" + signal);
+        System.out.println("spread-->" + algo.getBestSpread().getAmount());
         Order.Deal deal_n;
         Order.Deal deal_f;
         int size_n;

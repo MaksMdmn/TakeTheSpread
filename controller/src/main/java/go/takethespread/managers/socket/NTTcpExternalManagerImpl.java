@@ -160,24 +160,26 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     public Order sendMarketBuy(String instr, int size) {
         int tempPos = getPosition(instr);
         long id = ntTcpManager.sendBuyMarketMessage(identifyTerm(instr), size);
+        Order answer = parseTheOrder(waitingForAnswer(id));
         while (tempPos == getPosition(instr)) {
             trackStatus();
             /*NOP*/
         }
         resetStatus();
-        return parseTheOrder(waitingForAnswer(id));
+        return answer;
     }
 
     @Override
     public Order sendMarketSell(String instr, int size) {
         int tempPos = getPosition(instr);
         long id = ntTcpManager.sendSellMarketMessage(identifyTerm(instr), size);
+        Order answer = parseTheOrder(waitingForAnswer(id));
         while (tempPos == getPosition(instr)) {
             trackStatus();
             /*NOP*/
         }
         resetStatus();
-        return parseTheOrder(waitingForAnswer(id));
+        return answer;
     }
 
     @Override
@@ -212,7 +214,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     private Term identifyTerm(String instr) {
         if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
             return Term.NEAR;
-        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
+        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_f))
             return Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }

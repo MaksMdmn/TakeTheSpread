@@ -51,7 +51,6 @@ public class MarketOrderMaker {
         if (deal == Order.Deal.Buy) tempOrder = externalManager.sendMarketBuy(tempIntsr, strongSize);
         if (deal == Order.Deal.Sell) tempOrder = externalManager.sendMarketSell(tempIntsr, strongSize);
 
-
         //need to check: filled size of market order: 0 or equal size ?
         updateMaxSize(tempOrder.getFilled());
     }
@@ -95,8 +94,10 @@ public class MarketOrderMaker {
 
         if (currentPhase == Algorithm.Phase.ACCUMULATION) {
             return maxPossibleSize > result ? result : maxPossibleSize;
-        } else {
+        } else if (currentPhase == Algorithm.Phase.DISTRIBUTION){
             return (favorableSize - maxPossibleSize) > result ? result : (favorableSize - maxPossibleSize);
+        } else{
+            return 0;
         }
     }
 

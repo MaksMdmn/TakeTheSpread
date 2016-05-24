@@ -257,11 +257,15 @@ namespace NinjaTrader.Strategy
 							break;
 						case "CNID":
 							CancelOrder(orderMap[ordId]);
-							while(orderMap[ordId].OrderState != OrderState.Cancelled)
-							{
-//								NOP ---- trying to get final filled value
+							if(orderMap[ordId].OrderState == OrderState.Filled){
+								SendMessages(msgId, PrepareOrderToSend(orderMap[ordId]));
+							}else{
+								while(orderMap[ordId].OrderState != OrderState.Cancelled)
+								{
+	//								NOP ---- trying to get final filled value
+								}
+								SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
 							}
-							SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
 							break;
 						case "CHOR":
 							ChangeOrder(orderMap[ordId], size, price, 0);
@@ -285,6 +289,7 @@ namespace NinjaTrader.Strategy
 
 		private void SendMessages(String messageId, String message)
 		{
+			Print(messageId + " " + message);
 			try{
 				if (message != "")
 					{

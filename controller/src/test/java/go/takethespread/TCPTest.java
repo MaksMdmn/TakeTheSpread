@@ -11,8 +11,8 @@ public class TCPTest {
     static ExternalManager ntTcpExternalManager = NTTcpExternalManagerImpl.getInstance();
     public static void main(String[] args) {
         try {
-            String instr1 = ConsoleManager.getInstance().getActualProperties().getProperty("instrument_n");
-            String instr2 = ConsoleManager.getInstance().getActualProperties().getProperty("instrument_f");
+            String instr1 = ConsoleManager.getInstance().getTradeSystemInfo().instrument_n;
+            String instr2 = ConsoleManager.getInstance().getTradeSystemInfo().instrument_f;
 
             System.out.println("start!!!");
             ntTcpExternalManager.startingJob();

@@ -5,12 +5,16 @@ import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.ConsoleManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MixedOrderMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
     private ConsoleManager consoleManager;
     private MarketOrderMaker mom;
     private Order frontRunningOrder;
+    private Map<String, Integer> alreadyFilledMap;
 
     private Term afterLastChangeTerm;
     private Order.Deal afterLastChangeDeal;
@@ -21,12 +25,18 @@ public class MixedOrderMaker {
         this.consoleManager = consoleManager;
         this.mom = mom;
         this.frontRunningOrder = null;
+        alreadyFilledMap = new HashMap<>();
+
         this.afterLastChangeTerm = Term.NEAR; //for example
         this.afterLastChangeDeal = Order.Deal.Buy; //for example
     }
 
     public void attemptToCatch(int orientedOn, Term term, Order.Deal deal) {
-        trackingChanges(term, deal);
+        if (trackingChanges(term, deal)) {
+            posEqualize();
+        } else if (frontRunningOrder != null) {
+            askForHelp(trackingExecution(frontRunningOrder), term, deal);
+        }
 
         if (orientedOn == 0) {
             return;
@@ -63,14 +73,16 @@ public class MixedOrderMaker {
             Order.Deal tempDeal = frontRunningOrder.getDeal();
 
             askForHelp(tempSize, tempTerm, tempDeal);
+
+            frontRunningOrder = null;
         }
     }
 
-    private void trackingChanges(Term term, Order.Deal deal) {
+    private boolean trackingChanges(Term term, Order.Deal deal) {
         boolean isNecessary = false;
 
         if (frontRunningOrder == null) {
-            return; //MB HERE TROUBLE???
+            return false; //MB HERE TROUBLE???
         }
 
         if (term != afterLastChangeTerm) {
@@ -82,10 +94,7 @@ public class MixedOrderMaker {
             afterLastChangeDeal = deal;
         }
 
-        if (isNecessary) {
-            frontRunningOrder = null;
-            posEqualize();
-        }
+        return isNecessary;
     }
 
     private boolean isCancelNecessary(Order actualOrder, Money newPrice, int newSize) {
@@ -186,10 +195,29 @@ public class MixedOrderMaker {
     }
 
     private int trackingExecution(Order order) {
-        return externalManager.getOrderFilled(order.getId());
+        return calcNotFilledSize(externalManager.getOrder(order.getId()));
     }
 
     private int cancellingExecution(Order order) {
-        return externalManager.sendCancelOrder(order.getId()).getFilled();
+        return calcNotFilledSize(externalManager.sendCancelOrder(order.getId()));
+    }
+
+    private int calcNotFilledSize(Order order) {
+        String key = order.getId();
+        int val = order.getFilled();
+        int result;
+        if (alreadyFilledMap.containsKey(key)) {
+            if (alreadyFilledMap.get(key) == val) {
+                result = 0;
+            } else {
+                result = val - alreadyFilledMap.get(key);
+                alreadyFilledMap.put(key, val);
+            }
+        } else {
+            alreadyFilledMap.put(key, val);
+            result = val;
+        }
+
+        return result;
     }
 }

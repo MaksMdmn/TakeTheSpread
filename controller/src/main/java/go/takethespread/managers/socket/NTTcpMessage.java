@@ -1,7 +1,6 @@
 package go.takethespread.managers.socket;
 
 
-
 public class NTTcpMessage {
 
     private NTTcpCommand command;
@@ -13,6 +12,8 @@ public class NTTcpMessage {
         this.command = command;
         this.id = NTTcpManager.getMessageId();
         this.param = param;
+
+//        System.out.println("msg:" + " cmd:" + command + " id:" + id + " param:" + param);
     }
 
     protected NTTcpCommand getCommand() {
@@ -27,7 +28,7 @@ public class NTTcpMessage {
         return param;
     }
 
-    protected String prepareToSending(){
+    protected String prepareToSending() {
         return String.valueOf(id) +
                 ntToken +
                 command.name() +
@@ -35,7 +36,7 @@ public class NTTcpMessage {
                 param;
     }
 
-    protected enum NTTcpCommand{
+    protected enum NTTcpCommand {
         GJ, //off
         ORDS,//all orders
         BYID,//order by id
