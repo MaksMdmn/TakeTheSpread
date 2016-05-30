@@ -5,6 +5,11 @@
     <title>MainPage</title>
     <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="js/jsHelper.js"></script>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" mce_href="css/ui.jqgrid.css" />
+    <script type="text/javascript" src="js/i18n/grid.locale-ru.js"></script>
+    <script type="text/javascript" src="js/jquery.jqgrid.min.js"></script>
+
     <link rel="stylesheet" href="css/main.css" type="text/css"/>
 
 
@@ -29,86 +34,69 @@
             <textarea id="cmd_stack" type="text" readonly wrap="soft"></textarea>
         </div>
         <div id="tradingInfo">
-            <table border="1">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <table id="informTable" >
+                <script type="text/javascript">
+                    jQuery(document).ready(function(){ 
+                      jQuery("#informTable").jqGrid({
+                        // url:'example.php',
+                        datatype: 'xml',
+                        mtype: 'GET',
+                        colNames:['Inv No','Date', 'Amount','Tax','Total','Notes'],
+                        colModel :[ 
+                        {name:'invid', index:'invid', width:55}, 
+                        {name:'invdate', index:'invdate', width:90}, 
+                        {name:'amount', index:'amount', width:80, align:'right'}, 
+                        {name:'tax', index:'tax', width:80, align:'right'}, 
+                        {name:'total', index:'total', width:80, align:'right'}, 
+                        {name:'note', index:'note', width:150, sortable:false} 
+                        ],
+                        pager: '#pager',
+                        rowNum:10,
+                        rowList:[10,20,30],
+                        sortname: 'invid',
+                        sortorder: 'desc',
+                        viewrecords: true,
+                        caption: 'My first grid'
+                    }); 
+                  }); 
+              </script>
+          </table>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <br>
-            <br>
-            <br>
-            <br>
-            <table border="1">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div id="marketInfo">
-            <br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            CHART  CHART CHART CHART CHART CHART CHART CHART<br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <table border="1">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+      </div>
+      <div id="marketInfo">
+        <br>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table border="1">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
     </div>
+</div>
 </body>
 </html>
