@@ -138,14 +138,18 @@ public class NTTcpManager {
             long key;
             String value;
 
-//            System.out.println(Arrays.toString(tempArr));
-            if (tempArr.length != 2)
-                throw new IllegalArgumentException("Parsing error: answer array have length != 2, actual: " + tempArr.length + " arr: " + Arrays.toString(tempArr));
+            try {
+                if (tempArr.length != 2)
+                    throw new IllegalArgumentException("Parsing error: answer array have length != 2, actual: " + tempArr.length + " arr: " + Arrays.toString(tempArr));
 
-            key = Long.valueOf(tempArr[0]);
-            value = tempArr[1];
+                key = Long.valueOf(tempArr[0]);
+                value = tempArr[1];
 
-            answersMap.put(key, value);
+                answersMap.put(key, value);
+            } catch (Exception e) {
+                System.out.println("err: " + Arrays.toString(tempArr));
+                e.printStackTrace();
+            }
         }
     }
 

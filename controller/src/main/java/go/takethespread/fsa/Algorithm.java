@@ -16,6 +16,20 @@ public class Algorithm {
         this.blotter = blotter;
     }
 
+    public void printMe(){
+        System.out.println("algo: *phase is " + currentPhase
+                + " both bid are " + blotter.getBid_n().getAmount() + " " + blotter.getBid_f().getAmount()
+                + " spreadB=" + Money.absl(blotter.getBid_f().subtract(blotter.getBid_n())).getAmount()
+                + " both ask are " + blotter.getAsk_n().getAmount() + " " + blotter.getAsk_f().getAmount()
+                + " spreadA=" + Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n())).getAmount()
+                + " both pos are " + blotter.getPosition_n() + " " + blotter.getPosition_f());
+        System.out.println("----size----");
+        System.out.println(blotter.getBidVol_n() + " b n/f "
+                + blotter.getBidVol_f() + " "
+                + blotter.getAskVol_n() + " a n/f "
+                + blotter.getAskVol_f());
+    }
+
     public Signal getSignal() {
         blotter.updateMainInfo();
         currentPhase = defineCurrentPhase();
@@ -44,7 +58,8 @@ public class Algorithm {
     private Phase defineCurrentPhase(){
         Money bestSpread = getBestSpread();
         if(bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)
-                && blotter.getPosition_n() < tradeSystemInfo.favorable_size){
+                && Math.abs(blotter.getPosition_n()) < tradeSystemInfo.favorable_size
+                && Math.abs(blotter.getPosition_f()) < tradeSystemInfo.favorable_size){
             return Phase.ACCUMULATION;
             //getPos i think may have delay ----- keep in mind
         }else if(blotter.getPosition_n() != 0){

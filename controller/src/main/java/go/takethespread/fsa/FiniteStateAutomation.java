@@ -34,6 +34,7 @@ public class FiniteStateAutomation extends Thread {
 
         mom = new MarketOrderMaker(blotter, externalManager, consoleManager, tradeSystemInfo);
         mxm = new MixedOrderMaker(blotter, externalManager, consoleManager, mom);
+
     }
 
     @Override
@@ -77,13 +78,16 @@ public class FiniteStateAutomation extends Thread {
 
     private void executeGO() {
         Algorithm.Signal signal = algo.getSignal();
-        System.out.println("signal-->" + signal);
-        System.out.println("spread-->" + algo.getBestSpread().getAmount());
+//        System.out.println("signal-->" + signal + " phase-->" + algo.getCurrentPhase());
+//        System.out.println("spread-->" + algo.getBestSpread().getAmount() + " ent.spread: " + consoleManager.getTradeSystemInfo().entering_spread.getAmount());
         Order.Deal deal_n;
         Order.Deal deal_f;
         int size_n;
         int size_f;
         int size;
+        int filled;
+
+        algo.printMe();
 
         mom.youShouldKnow(algo.getCurrentPhase());
         switch (signal) {
@@ -96,8 +100,9 @@ public class FiniteStateAutomation extends Thread {
                         mom.getOrientedSize(Term.NEAR, Side.ASK),
                         mom.getOrientedSize(Term.FAR, Side.BID));
 
-                mom.hitTheMarket(size, Term.NEAR, deal_n);
+                filled = mom.hitTheMarket(size, Term.NEAR, deal_n);
                 mom.hitTheMarket(size, Term.FAR, deal_f);
+                mom.updateMaxSize(filled);
                 break;
             case L_M_BUY:
                 deal_n = Order.Deal.Buy;
@@ -121,7 +126,8 @@ public class FiniteStateAutomation extends Thread {
                         mom.getOrientedSize(Term.FAR, Side.ASK));
 
                 mom.hitTheMarket(size, Term.NEAR, deal_n);
-                mom.hitTheMarket(size, Term.FAR, deal_f);
+                filled = mom.hitTheMarket(size, Term.FAR, deal_f);
+                mom.updateMaxSize(filled);
                 break;
             case L_M_SELL:
                 deal_n = Order.Deal.Sell;

@@ -26,11 +26,11 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         ntTcpManager = NTTcpManager.getInstance();
         nearMarketData = new ActualMarketData(Term.NEAR);
         farMarketData = new ActualMarketData(Term.FAR);
-        attemptMaxNumbers = 40; //2 sec
+        attemptMaxNumbers = 200; //10 sec
         delay = 50;
     }
 
-    public static ExternalManager getInstance() {
+    public static synchronized ExternalManager getInstance() {
         if (instance == null) {
             instance = new NTTcpExternalManagerImpl();
 

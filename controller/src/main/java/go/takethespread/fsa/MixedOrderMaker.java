@@ -99,7 +99,8 @@ public class MixedOrderMaker {
 
     private boolean isCancelNecessary(Order actualOrder, Money newPrice, int newSize) {
         if (!actualOrder.getPrice().equals(newPrice)) return true;
-        if (actualOrder.getSize() != newSize) return true;
+        //HARDCORE HERE WITH SIZE > SIZE1!!!
+        if (actualOrder.getSize() > newSize) return true;
         return false;
     }
 
@@ -115,7 +116,8 @@ public class MixedOrderMaker {
         } else {
             reverseDeal = Order.Deal.Buy;
         }
-        mom.hitTheMarket(size, reverseTerm, reverseDeal);
+        int filled = mom.hitTheMarket(size, reverseTerm, reverseDeal);
+        mom.updateMaxSize(filled);
     }
 
     private Order orderRolling(Order order, int orientedSize) {

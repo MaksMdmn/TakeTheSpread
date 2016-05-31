@@ -26,7 +26,12 @@ public class TEST_FSA {
         while (!userMessage.equals("GJ")) {
             try {
                 userMessage = br.readLine();
-                System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
+
+                if (userMessage.contains("upd")) {
+                    cm.getTradeSystemInfo().testUpdateEnterSpread(Double.valueOf(userMessage.split(" ")[1]));
+                } else {
+                    System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ConsoleException e) {

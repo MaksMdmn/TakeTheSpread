@@ -2,8 +2,7 @@ package go.takethespread.fsa;
 
 import go.takethespread.Money;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public final class TradeSystemInfo {
@@ -13,14 +12,14 @@ public final class TradeSystemInfo {
     public final int port;
     public final String instrument_n;
     public final String instrument_f;
-    public final Money entering_spread;
-    public final Money leaving_spread;
+    public Money entering_spread;
+    public Money leaving_spread;
     public final Money entering_dev;
     public final Money leaving_dev;
-    public final int favorable_size;
-    public final boolean limit_use;
-    public final Money max_loss;
-    public final int max_loss_numbers;
+    public int favorable_size;
+    public boolean limit_use;
+    public Money max_loss;
+    public int max_loss_numbers;
     public final Money commis_per_one_contract;
 //    public final Date trade_session_time;
 //    public final Date exception_session_time;
@@ -47,8 +46,19 @@ public final class TradeSystemInfo {
         return actualProperties == null;
     }
 
-    public boolean isPropExists(String propName){
+    public boolean isPropExists(String propName) {
         return actualProperties.contains(propName);
+    }
+
+    public void testUpdateEnterSpread(double val) {
+        try (FileOutputStream out = new FileOutputStream("possibleSettings.properties")) {
+            actualProperties.setProperty("entering_spread", String.valueOf(val));
+            actualProperties.store(out, null);
+            entering_spread = Money.dollars(Double.valueOf(actualProperties.getProperty("entering_spread")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private Properties initProp(String fileName) {

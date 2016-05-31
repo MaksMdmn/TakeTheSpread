@@ -34,12 +34,13 @@ public class MarketOrderMaker {
         this.currentPhase = phase;
     }
 
-    public void hitTheMarket(int strongSize, Term term, Order.Deal deal) {
+    public int hitTheMarket(int strongSize, Term term, Order.Deal deal) {
+        System.out.println("SEND ONE: " + strongSize + " " + term + " " + deal);
         if (deal == null || term == null)
             throw new IllegalArgumentException("deal or term is null: " + deal + " " + term);
 
         if (strongSize == 0) {
-            return;
+            return 0;
         }
 
         String tempIntsr = null;
@@ -51,8 +52,7 @@ public class MarketOrderMaker {
         if (deal == Order.Deal.Buy) tempOrder = externalManager.sendMarketBuy(tempIntsr, strongSize);
         if (deal == Order.Deal.Sell) tempOrder = externalManager.sendMarketSell(tempIntsr, strongSize);
 
-        //need to check: filled size of market order: 0 or equal size ?
-        updateMaxSize(tempOrder.getFilled());
+        return tempOrder.getFilled();
     }
 
     public int getOrientedSize(Term term, Side side) {
@@ -94,19 +94,21 @@ public class MarketOrderMaker {
 
         if (currentPhase == Algorithm.Phase.ACCUMULATION) {
             return maxPossibleSize > result ? result : maxPossibleSize;
-        } else if (currentPhase == Algorithm.Phase.DISTRIBUTION){
-            return (favorableSize - maxPossibleSize) > result ? result : (favorableSize - maxPossibleSize);
-        } else{
+        } else if (currentPhase == Algorithm.Phase.DISTRIBUTION) {
+            return (favorableSize - 1) > result ? result : (favorableSize - maxPossibleSize);
+        } else {
             return 0;
         }
     }
 
-    private void updateMaxSize(int diff) {
+    public void updateMaxSize(int diff) {
         if (currentPhase == Algorithm.Phase.ACCUMULATION) {
             maxPossibleSize -= diff;
         } else {
             maxPossibleSize += diff;
         }
+
+        System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize );
 
     }
 }
