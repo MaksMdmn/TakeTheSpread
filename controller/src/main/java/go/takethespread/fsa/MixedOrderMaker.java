@@ -33,9 +33,9 @@ public class MixedOrderMaker {
 
     public void attemptToCatch(int orientedOn, Term term, Order.Deal deal) {
         if (trackingChanges(term, deal)) {
-            posEqualize();
+            mom.updateMaxSize(posEqualize());
         } else if (frontRunningOrder != null) {
-            askForHelp(trackingExecution(frontRunningOrder), term, deal);
+            mom.updateMaxSize(askForHelp(trackingExecution(frontRunningOrder), term, deal));
         }
 
         if (orientedOn == 0) {
@@ -66,16 +66,19 @@ public class MixedOrderMaker {
         }
     }
 
-    public void posEqualize() {
+    public int posEqualize() {
+        int result = 0;
         if (frontRunningOrder != null) {
             int tempSize = cancellingExecution(frontRunningOrder);
             Term tempTerm = blotter.getOrderTerm(frontRunningOrder.getInstrument());
             Order.Deal tempDeal = frontRunningOrder.getDeal();
 
-            askForHelp(tempSize, tempTerm, tempDeal);
+            result = askForHelp(tempSize, tempTerm, tempDeal);
 
             frontRunningOrder = null;
         }
+
+        return result;
     }
 
     private boolean trackingChanges(Term term, Order.Deal deal) {
@@ -104,7 +107,7 @@ public class MixedOrderMaker {
         return false;
     }
 
-    private void askForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
+    private int askForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
         if (reverseTerm == Term.NEAR) {
             reverseTerm = Term.FAR;
         } else {
@@ -116,8 +119,9 @@ public class MixedOrderMaker {
         } else {
             reverseDeal = Order.Deal.Buy;
         }
-        int filled = mom.hitTheMarket(size, reverseTerm, reverseDeal);
-        mom.updateMaxSize(filled);
+
+        return mom.hitTheMarket(size, reverseTerm, reverseDeal);
+//        mom.updateMaxSize(filled);
     }
 
     private Order orderRolling(Order order, int orientedSize) {
@@ -150,7 +154,7 @@ public class MixedOrderMaker {
 
         if (isCancelNecessary(order, price, orientedSize)) {
             filledSize = cancellingExecution(order);
-            askForHelp(filledSize, term, order.getDeal());
+            mom.updateMaxSize(askForHelp(filledSize, term, order.getDeal()));
 
             size = calcDealSize(orientedSize, filledSize);
             if (order.getDeal() == Order.Deal.Buy) {
@@ -160,9 +164,10 @@ public class MixedOrderMaker {
             }
         } else {
             filledSize = trackingExecution(order);
-            askForHelp(filledSize, term, order.getDeal());
+            mom.updateMaxSize(askForHelp(filledSize, term, order.getDeal()));
             answer = order;
         }
+
 
 
         return answer;

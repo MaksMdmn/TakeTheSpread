@@ -77,9 +77,8 @@ public class FiniteStateAutomation extends Thread {
     }
 
     private void executeGO() {
+        blotter.updateMainInfo();
         Algorithm.Signal signal = algo.getSignal();
-//        System.out.println("signal-->" + signal + " phase-->" + algo.getCurrentPhase());
-//        System.out.println("spread-->" + algo.getBestSpread().getAmount() + " ent.spread: " + consoleManager.getTradeSystemInfo().entering_spread.getAmount());
         Order.Deal deal_n;
         Order.Deal deal_f;
         int size_n;
@@ -89,18 +88,18 @@ public class FiniteStateAutomation extends Thread {
 
         algo.printMe();
 
-        mom.youShouldKnow(algo.getCurrentPhase());
+        mom.youShouldKnow(blotter.defineCurrentPhase());
         switch (signal) {
             case M_M_BUY:
                 deal_n = Order.Deal.Buy;
                 deal_f = Order.Deal.Sell;
 
-                mxm.posEqualize();
+                filled = mxm.posEqualize();//h
                 size = MarketOrderMaker.sizeForPairDeal(
                         mom.getOrientedSize(Term.NEAR, Side.ASK),
                         mom.getOrientedSize(Term.FAR, Side.BID));
 
-                filled = mom.hitTheMarket(size, Term.NEAR, deal_n);
+                filled += mom.hitTheMarket(size, Term.NEAR, deal_n); //h
                 mom.hitTheMarket(size, Term.FAR, deal_f);
                 mom.updateMaxSize(filled);
                 break;
@@ -120,13 +119,13 @@ public class FiniteStateAutomation extends Thread {
                 deal_n = Order.Deal.Sell;
                 deal_f = Order.Deal.Buy;
 
-                mxm.posEqualize();
+                filled = mxm.posEqualize();
                 size = MarketOrderMaker.sizeForPairDeal(
                         mom.getOrientedSize(Term.NEAR, Side.BID),
                         mom.getOrientedSize(Term.FAR, Side.ASK));
 
                 mom.hitTheMarket(size, Term.NEAR, deal_n);
-                filled = mom.hitTheMarket(size, Term.FAR, deal_f);
+                filled += mom.hitTheMarket(size, Term.FAR, deal_f);
                 mom.updateMaxSize(filled);
                 break;
             case L_M_SELL:
@@ -142,7 +141,8 @@ public class FiniteStateAutomation extends Thread {
                 mxm.attemptToCatch(size_f, Term.FAR, deal_f);
                 break;
             case NOTHING:
-                mxm.posEqualize();
+                filled = mxm.posEqualize();
+                mom.updateMaxSize(filled);
                 break;
             default:
                 break;

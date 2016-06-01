@@ -8,7 +8,6 @@ public class Algorithm {
     private ExternalManager externalManager;
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
-    private Phase currentPhase;
 
     protected Algorithm(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager, TradeBlotter blotter) {
         this.tradeSystemInfo = tradeSystemInfo;
@@ -17,7 +16,7 @@ public class Algorithm {
     }
 
     public void printMe(){
-        System.out.println("algo: *phase is " + currentPhase
+        System.out.println("algo: *phase is " + blotter.defineCurrentPhase()
                 + " both bid are " + blotter.getBid_n().getAmount() + " " + blotter.getBid_f().getAmount()
                 + " spreadB=" + Money.absl(blotter.getBid_f().subtract(blotter.getBid_n())).getAmount()
                 + " both ask are " + blotter.getAsk_n().getAmount() + " " + blotter.getAsk_f().getAmount()
@@ -31,46 +30,20 @@ public class Algorithm {
     }
 
     public Signal getSignal() {
-        blotter.updateMainInfo();
-        currentPhase = defineCurrentPhase();
+        TradeBlotter.Phase currentPhase = blotter.defineCurrentPhase();
 
-        if(currentPhase == Phase.ACCUMULATION){
+        if(currentPhase == TradeBlotter.Phase.ACCUMULATION){
             return getEnterSignal();
-        }else if (currentPhase == Phase.DISTRIBUTION){
+        }else if (currentPhase == TradeBlotter.Phase.DISTRIBUTION){
             return getExitSignal();
         } else{
             return Signal.NOTHING;
         }
     }
 
-    public Phase getCurrentPhase(){
-        return currentPhase;
-    }
-
-    public Money getBestSpread(){
-        if(isBidBetOrEqThanAsk()){
-            return Money.absl(blotter.getBid_n().subtract(blotter.getBid_f()));
-        }else{
-            return Money.absl(blotter.getAsk_n().subtract(blotter.getAsk_f()));
-        }
-    }
-
-    private Phase defineCurrentPhase(){
-        Money bestSpread = getBestSpread();
-        if(bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)
-                && Math.abs(blotter.getPosition_n()) < tradeSystemInfo.favorable_size
-                && Math.abs(blotter.getPosition_f()) < tradeSystemInfo.favorable_size){
-            return Phase.ACCUMULATION;
-            //getPos i think may have delay ----- keep in mind
-        }else if(blotter.getPosition_n() != 0){
-            return Phase.DISTRIBUTION;
-        } else{
-            return Phase.OFF_SEASON;
-        }
-    }
     private Signal getEnterSignal() {
         Money tempSpread;
-        if (isNearLessThanFar()) {
+        if (blotter.isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getBid_f().subtract(blotter.getAsk_n());
             if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
@@ -113,7 +86,7 @@ public class Algorithm {
 
     private Signal getExitSignal() {
         Money tempSpread;
-        if (isNearLessThanFar()) {
+        if (blotter.isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getAsk_f().subtract(blotter.getBid_n());
             if (tempSpread.lessOrEqualThan(tradeSystemInfo.leaving_spread)) {
@@ -153,20 +126,6 @@ public class Algorithm {
         return Signal.NOTHING;
     }
 
-    private boolean isNearLessThanFar(){
-        if (isBidBetOrEqThanAsk()) {
-            return blotter.getBid_n().lessOrEqualThan(blotter.getBid_f());
-        } else {
-            return blotter.getAsk_n().lessOrEqualThan(blotter.getAsk_f());
-        }
-    }
-
-    private boolean isBidBetOrEqThanAsk(){
-        Money byBid = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
-        Money byAsk = Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n()));
-        return byBid.greaterOrEqualThan(byAsk);
-    }
-
     protected enum Signal {
         M_M_BUY,
         L_M_BUY,
@@ -175,12 +134,6 @@ public class Algorithm {
         L_M_SELL,
         M_L_SELL,
         NOTHING
-    }
-
-    protected enum Phase {
-        ACCUMULATION,
-        DISTRIBUTION,
-        OFF_SEASON
     }
 
 }

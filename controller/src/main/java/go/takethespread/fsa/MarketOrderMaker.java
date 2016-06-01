@@ -12,7 +12,7 @@ public class MarketOrderMaker {
     private TradeSystemInfo tradeSystemInfo;
     private int favorableSize;
     private int maxPossibleSize;
-    private Algorithm.Phase currentPhase;
+    private TradeBlotter.Phase currentPhase;
 
 
     public MarketOrderMaker(TradeBlotter blotter, ExternalManager externalManager,
@@ -23,14 +23,14 @@ public class MarketOrderMaker {
         this.tradeSystemInfo = tradeSystemInfo;
         this.favorableSize = tradeSystemInfo.favorable_size;
         this.maxPossibleSize = favorableSize;
-        this.currentPhase = Algorithm.Phase.ACCUMULATION; //default
+        this.currentPhase = TradeBlotter.Phase.ACCUMULATION; //default
     }
 
     public static int sizeForPairDeal(int nearSize, int farSize) {
         return nearSize <= farSize ? nearSize : farSize;
     }
 
-    public void youShouldKnow(Algorithm.Phase phase) {
+    public void youShouldKnow(TradeBlotter.Phase phase) {
         this.currentPhase = phase;
     }
 
@@ -92,23 +92,23 @@ public class MarketOrderMaker {
                 break;
         }
 
-        if (currentPhase == Algorithm.Phase.ACCUMULATION) {
+        if (currentPhase == TradeBlotter.Phase.ACCUMULATION) {
             return maxPossibleSize > result ? result : maxPossibleSize;
-        } else if (currentPhase == Algorithm.Phase.DISTRIBUTION) {
-            return (favorableSize - 1) > result ? result : (favorableSize - maxPossibleSize);
+        } else if (currentPhase == TradeBlotter.Phase.DISTRIBUTION) {
+            return (favorableSize - maxPossibleSize) > result ? result : (favorableSize - maxPossibleSize);
         } else {
             return 0;
         }
     }
 
     public void updateMaxSize(int diff) {
-        if (currentPhase == Algorithm.Phase.ACCUMULATION) {
+        if (currentPhase == TradeBlotter.Phase.ACCUMULATION) {
             maxPossibleSize -= diff;
         } else {
             maxPossibleSize += diff;
         }
 
-        System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize );
+        System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize);
 
     }
 }

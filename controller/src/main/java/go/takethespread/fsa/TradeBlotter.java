@@ -120,10 +120,66 @@ public class TradeBlotter {
         // need to check pos correctly (can be delay\active orders etc)
     }
 
+    public boolean isNearLessThanFar() {
+        if (isBidBetterOrEqThanAsk()) {
+            return bid_n.lessOrEqualThan(bid_f);
+        } else {
+            return ask_n.lessOrEqualThan(ask_f);
+        }
+    }
+
+    public boolean isBidBetterOrEqThanAsk() {
+        Money byBid = Money.absl(bid_f.subtract(bid_n));
+        Money byAsk = Money.absl(ask_f.subtract(ask_n));
+        return byBid.greaterOrEqualThan(byAsk);
+    }
+
+    public Phase defineCurrentPhase() {
+        Money bestSpread = getBestSpread();
+//        if(bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)
+//                && Math.abs(position_n) < tradeSystemInfo.favorable_size
+//                && Math.abs(position_f) < tradeSystemInfo.favorable_size){
+//            return Phase.ACCUMULATION;
+//            //getPos i think may have delay ----- keep in mind
+//        }else if(position_n != 0){
+//            return Phase.DISTRIBUTION;
+//        } else{
+//            return Phase.OFF_SEASON;
+//        }
+        int pos_n = Math.abs(position_n);
+        int pos_f = Math.abs(position_f);
+        if (pos_n == pos_f
+                && pos_n > 0
+                && bestSpread.lessOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            return Phase.DISTRIBUTION;
+        } else if (pos_n < tradeSystemInfo.favorable_size
+                && bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            return Phase.ACCUMULATION;
+        } else {
+            return Phase.OFF_SEASON;
+        }
+
+    }
+
+    public Money getBestSpread() {
+        if (isBidBetterOrEqThanAsk()) {
+            return Money.absl(bid_n.subtract(bid_f));
+        } else {
+            return Money.absl(ask_n.subtract(ask_f));
+        }
+    }
+
     protected enum PositionState {
         LONG,
         SHORT,
         FLAT
+    }
+
+
+    protected enum Phase {
+        ACCUMULATION,
+        DISTRIBUTION,
+        OFF_SEASON
     }
 
     //here all market data and pos (like you are in terminal)
