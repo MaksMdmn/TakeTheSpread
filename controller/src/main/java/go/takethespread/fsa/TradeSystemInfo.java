@@ -21,6 +21,7 @@ public final class TradeSystemInfo {
     public Money max_loss;
     public int max_loss_numbers;
     public final Money commis_per_one_contract;
+    public final int spreadCalc_time_sec;
 //    public final Date trade_session_time;
 //    public final Date exception_session_time;
 
@@ -40,6 +41,7 @@ public final class TradeSystemInfo {
         max_loss = Money.dollars(Double.valueOf(actualProperties.getProperty("max_loss")));
         max_loss_numbers = Integer.valueOf(actualProperties.getProperty("max_loss_numbers"));
         commis_per_one_contract = Money.dollars(Double.valueOf(actualProperties.getProperty("commis_per_contract")));
+        spreadCalc_time_sec = Integer.valueOf(actualProperties.getProperty("spreadCalc_time_sec"));
     }
 
     public boolean isPropNull() {
