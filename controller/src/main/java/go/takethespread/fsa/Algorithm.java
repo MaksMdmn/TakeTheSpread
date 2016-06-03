@@ -46,37 +46,37 @@ public class Algorithm {
         if (blotter.isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getBid_f().subtract(blotter.getAsk_n());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.M_M_BUY;
             }
             //check n lim  f mar
 
             tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.L_M_BUY;
             }
 
             //check n mar   f lim
             tempSpread = blotter.getAsk_f().subtract(blotter.getAsk_n());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.M_L_BUY;
             }
 
         } else {
             tempSpread = blotter.getBid_n().subtract(blotter.getAsk_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.M_M_SELL;
             }
             //check n lim  f mar
 
             tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.L_M_SELL;
             }
 
             //check n mar   f lim
             tempSpread = blotter.getBid_n().subtract(blotter.getBid_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().getEnteringSpread())) {
                 return Signal.M_L_BUY;
             }
         }
@@ -89,36 +89,36 @@ public class Algorithm {
         if (blotter.isNearLessThanFar()) {
             //check market
             tempSpread = blotter.getAsk_f().subtract(blotter.getBid_n());
-            if (tempSpread.lessOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.lessOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.M_M_SELL;
             }
             //check n lim  f mar
             tempSpread = blotter.getAsk_f().subtract(blotter.getAsk_n());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.L_M_SELL;
             }
 
             //check n mar   f lim
             tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.M_L_SELL;
             }
 
         } else {
             tempSpread = blotter.getAsk_n().subtract(blotter.getBid_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.M_M_BUY;
             }
             //check n lim  f mar
 
             tempSpread = blotter.getBid_n().subtract(blotter.getBid_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.L_M_BUY;
             }
 
             //check n mar   f lim
             tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
-            if (tempSpread.greaterOrEqualThan(tradeSystemInfo.leaving_spread)) {
+            if (tempSpread.greaterOrEqualThan(blotter.getSpreadCalculator().calcSpread())) {
                 return Signal.M_L_BUY;
             }
         }

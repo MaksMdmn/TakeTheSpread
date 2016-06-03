@@ -27,11 +27,8 @@ public class TEST_FSA {
             try {
                 userMessage = br.readLine();
 
-                if (userMessage.contains("upd")) {
-                    cm.getTradeSystemInfo().testUpdateEnterSpread(Double.valueOf(userMessage.split(" ")[1]));
-                } else {
-                    System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
-                }
+                System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ConsoleException e) {

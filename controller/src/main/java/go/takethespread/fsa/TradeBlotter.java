@@ -17,6 +17,7 @@ public class TradeBlotter {
     private int askVol_f;
     private ExternalManager externalManager;
     private TradeSystemInfo tradeSystemInfo;
+    private SpreadCalculator spreadCalculator;
     private int position_n;
     private int position_f;
     private List<Order> orders;
@@ -24,6 +25,7 @@ public class TradeBlotter {
     public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager) {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
+        this.spreadCalculator = new SpreadCalculator(this, tradeSystemInfo);
     }
 
     public Term getOrderTerm(String instrument) {
@@ -90,6 +92,11 @@ public class TradeBlotter {
         return orders;
     }
 
+    public SpreadCalculator getSpreadCalculator() {
+        return spreadCalculator;
+    }
+
+
     public void updateMainInfo() {
         externalManager.refreshData();
         bid_n = externalManager.getBBid(tradeSystemInfo.instrument_n);
@@ -102,6 +109,7 @@ public class TradeBlotter {
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
+        spreadCalculator.collectCalcData();
     }
 
     public void updateOrdersInfo() {
@@ -136,29 +144,20 @@ public class TradeBlotter {
 
     public Phase defineCurrentPhase() {
         Money bestSpread = getBestSpread();
-//        if(bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)
-//                && Math.abs(position_n) < tradeSystemInfo.favorable_size
-//                && Math.abs(position_f) < tradeSystemInfo.favorable_size){
-//            return Phase.ACCUMULATION;
-//            //getPos i think may have delay ----- keep in mind
-//        }else if(position_n != 0){
-//            return Phase.DISTRIBUTION;
-//        } else{
-//            return Phase.OFF_SEASON;
-//        }
         int pos_n = Math.abs(position_n);
         int pos_f = Math.abs(position_f);
         if (pos_n == pos_f
                 && pos_n > 0
-                && bestSpread.lessOrEqualThan(tradeSystemInfo.leaving_spread)) {
+                && bestSpread.lessOrEqualThan(spreadCalculator.calcSpread())) {
             return Phase.DISTRIBUTION;
         } else if (pos_n < tradeSystemInfo.favorable_size
-                && bestSpread.greaterOrEqualThan(tradeSystemInfo.entering_spread)) {
+                &&
+                (bestSpread.greaterOrEqualThan(spreadCalculator.calcSpread().add(tradeSystemInfo.entering_dev))//omg refactor PLEASE!
+                        || bestSpread.lessOrEqualThan(spreadCalculator.calcSpread().subtract(tradeSystemInfo.entering_dev)))) {
             return Phase.ACCUMULATION;
         } else {
             return Phase.OFF_SEASON;
         }
-
     }
 
     public Money getBestSpread() {

@@ -15,7 +15,19 @@ public class TestSpreadCalc {
 
     public static void main(String[] args) {
 
-        System.out.println("already off");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+                    while (!userRow.equals("done")) {
+                        userRow = reader.readLine();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         ExternalManager manager = NTTcpExternalManagerImpl.getInstance();
 
         System.out.println("start!!!");
@@ -29,26 +41,16 @@ public class TestSpreadCalc {
         System.out.println("update");
         blotter.updateMainInfo();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                    userRow = reader.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        int sec = 0;
         while (!userRow.equals("done")) {
             try {
                 blotter.updateMainInfo();
                 calculator.collectCalcData();
-                if (calculator.isEnoughData()) {
-                    System.out.println("sprd: " + calculator.spreadCalc().getAmount());
-                } else {
-                    sec++;
+                System.out.println("sprd: " + calculator.calcSpread().getAmount());
+
+                if (userRow.equals("p")) {
+                    calculator.pause();
+                    System.out.println(calculator.isPauseEnabled());
+                    userRow = "";
                 }
 
                 Thread.sleep(400);
@@ -59,5 +61,6 @@ public class TestSpreadCalc {
 
         System.out.println("if all seems good, bb");
         manager.finishingJob();
+        System.out.println("already off");
     }
 }
