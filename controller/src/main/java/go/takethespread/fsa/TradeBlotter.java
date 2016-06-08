@@ -109,7 +109,7 @@ public class TradeBlotter {
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
-        spreadCalculator.collectCalcData();
+        spreadCalculator.makeCalculations();
     }
 
     public void updateOrdersInfo() {
@@ -148,12 +148,11 @@ public class TradeBlotter {
         int pos_f = Math.abs(position_f);
         if (pos_n == pos_f
                 && pos_n > 0
-                && bestSpread.lessOrEqualThan(spreadCalculator.calcSpread())) {
+                && bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())) {
             return Phase.DISTRIBUTION;
         } else if (pos_n < tradeSystemInfo.favorable_size
-                &&
-                (bestSpread.greaterOrEqualThan(spreadCalculator.calcSpread().add(tradeSystemInfo.entering_dev))//omg refactor PLEASE!
-                        || bestSpread.lessOrEqualThan(spreadCalculator.calcSpread().subtract(tradeSystemInfo.entering_dev)))) {
+                && bestSpread.greaterOrEqualThan(spreadCalculator.getCurSpread().add(tradeSystemInfo.entering_dev)))//omg refactor PLEASE!
+                        /*|| bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread().subtract(tradeSystemInfo.entering_dev)) ONLY FOR ONE SIDE!!!! (spread + 1 then exit, not spread - 1)*/  {
             return Phase.ACCUMULATION;
         } else {
             return Phase.OFF_SEASON;

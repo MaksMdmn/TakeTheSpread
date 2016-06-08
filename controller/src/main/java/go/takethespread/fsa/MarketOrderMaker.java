@@ -52,6 +52,8 @@ public class MarketOrderMaker {
         if (deal == Order.Deal.Buy) tempOrder = externalManager.sendMarketBuy(tempIntsr, strongSize);
         if (deal == Order.Deal.Sell) tempOrder = externalManager.sendMarketSell(tempIntsr, strongSize);
 
+        blotter.getSpreadCalculator().pause();
+
         return tempOrder.getFilled();
     }
 
@@ -108,7 +110,7 @@ public class MarketOrderMaker {
             maxPossibleSize += diff;
         }
 
-        System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize);
+        System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize + " pos n/f: " + blotter.getPosition_n() + " " + blotter.getPosition_f());
 
     }
 }

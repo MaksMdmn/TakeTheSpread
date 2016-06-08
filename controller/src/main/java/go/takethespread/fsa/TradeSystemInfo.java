@@ -20,6 +20,7 @@ public final class TradeSystemInfo {
     public final int spreadCalc_time_sec;
     public final int inPos_time_sec;
     public final boolean default_spread_use;
+    public final int min_spreadCalc_period;
     public final Money default_spread;
 //    public final Date trade_session_time;
 //    public final Date exception_session_time;
@@ -35,9 +36,10 @@ public final class TradeSystemInfo {
         commis_per_one_contract = Money.dollars(Double.valueOf(actualProperties.getProperty("commis_per_contr_dol")));
         favorable_size = Integer.valueOf(actualProperties.getProperty("favorable_size"));
         entering_dev = Money.dollars(Double.valueOf(actualProperties.getProperty("enter_pos_dev")));
-        spreadCalc_time_sec = Integer.valueOf(actualProperties.getProperty("spreadCalc_time_sec"));
-        inPos_time_sec = Integer.valueOf(actualProperties.getProperty("inPos_time_sec"));
         default_spread = Money.dollars(Double.valueOf(actualProperties.getProperty("default_spread")));
+        spreadCalc_time_sec = Integer.valueOf(actualProperties.getProperty("spreadCalc_time_sec"));
+        min_spreadCalc_period = Integer.valueOf(actualProperties.getProperty("min_spreadCalc_period"));
+        inPos_time_sec = Integer.valueOf(actualProperties.getProperty("inPos_time_sec"));
         default_spread_use = Boolean.valueOf(actualProperties.getProperty("default_spread_use"));
         limit_use = Boolean.valueOf(actualProperties.getProperty("limit_use"));
     }

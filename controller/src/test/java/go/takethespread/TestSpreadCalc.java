@@ -41,19 +41,20 @@ public class TestSpreadCalc {
         System.out.println("update");
         blotter.updateMainInfo();
 
+        int counter = 0;
         while (!userRow.equals("done")) {
             try {
                 blotter.updateMainInfo();
-                calculator.collectCalcData();
-                System.out.println("sprd: " + calculator.calcSpread().getAmount());
+                calculator.makeCalculations();
+                System.out.println("sprd: " + calculator.getCurSpread().getAmount());
 
                 if (userRow.equals("p")) {
                     calculator.pause();
                     System.out.println(calculator.isPauseEnabled());
                     userRow = "";
                 }
-
-                Thread.sleep(400);
+                System.out.println(++counter);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

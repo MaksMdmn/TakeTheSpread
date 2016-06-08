@@ -22,42 +22,98 @@ public class SpreadCalculator {
     private Money lastSumCalc;
     private Money lastRemovingElem;
 
-    private boolean isPauseEnabled;
+    private Money curSpread;
+    private Money enteringSpread;
+
+    private volatile boolean isPauseEnabled;
 
     public SpreadCalculator(TradeBlotter blotter, TradeSystemInfo tradeSystemInfo) {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
-        for (int i = 0; i < 100; i++) {
-            marketData.add(Money.dollars(0.11));
-        }
-
         this.startTime = System.currentTimeMillis();
         this.lastSumCalc = Money.dollars(0d);
+        this.lastRemovingElem = Money.dollars(0d);
+        this.curSpread = Money.dollars(0d); // mb bad default??!!
+        this.enteringSpread = Money.dollars(0d); // mb bad default??!!
         this.spreadCalcDuration = tradeSystemInfo.spreadCalc_time_sec * 1000L; //ms
         this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
         this.isPauseEnabled = false;
     }
 
-    public Money getEnteringSpread(){
-        Money answer;
-        if(blotter.isNearLessThanFar()){
-            answer = calcSpread().subtract(tradeSystemInfo.entering_dev);
-        }else{
-            answer = calcSpread().add(tradeSystemInfo.entering_dev);
-        }
-        return answer;
+    public void makeCalculations() {
+        collectCalcData();
+        calcCurSpread();
+        calcEnteringSpread();
+//        System.out.println("cur: " + curSpread.getAmount() + " ent " + enteringSpread.getAmount() + " enough? " + isEnoughData());
     }
 
-    public Money calcSpread() {
-        Money answer;
+    public void pause() {
+        startPauseTime = System.currentTimeMillis();
+        isPauseEnabled = true;
+    }
+
+    public boolean isPauseEnabled() {
+        return isPauseEnabled;
+    }
+
+    public Money getCurSpread() {
+        return curSpread;
+    }
+
+    public Money getEnteringSpread() {
+        return enteringSpread;
+    }
+
+    private void collectCalcData() {
+        if (!isPauseEnabled) {
+//            Money ask_lower;
+//            Money bid_higher;
+//            if (blotter.isNearLessThanFar()) {
+//                ask_lower = blotter.getAsk_n();
+//                bid_higher = blotter.getBid_f();
+//            } else {
+//                ask_lower = blotter.getAsk_f();
+//                bid_higher = blotter.getBid_n();
+//            }
+//
+//            Money spread = bid_higher.subtract(ask_lower);
+
+//            System.out.println(ask_lower.getAmount() + " <-ask--bid-> " + bid_higher.getAmount() + " spread-->" + spread.getAmount() + " time--> " + new Date().toString());
+
+            // market or best spread???
+            Money spread = blotter.getBestSpread();
+            if (spread.lessThan(Money.dollars(0))) {
+//                throw new IllegalArgumentException("bid lower than ask, a/b: " + ask_lower + " " + bid_higher);
+            }
+
+            if (isEnoughData()) {
+                lastRemovingElem = marketData.pollFirst();
+                marketData.addLast(spread);
+            } else {
+                marketData.addLast(spread);
+            }
+            updateTime = System.currentTimeMillis();
+        } else {
+            checkPauseNeccesity();
+        }
+    }
+
+    private void calcCurSpread() {
 
         if (!isEnoughData() && tradeSystemInfo.default_spread_use) {
-            return tradeSystemInfo.default_spread;
+            curSpread = tradeSystemInfo.default_spread;
+            return;
+        }
+
+        // default value if in prop = false??
+        if(!isEnoughData()){
+            return;
         }
 
         if (isPauseEnabled) {
-            return lastSumCalc.multiply(1d / marketData.size()); //previous value
+            curSpread = lastSumCalc.multiply(1d / marketData.size()); //previous value
+            return;
         }
 
         if (marketData == null) {
@@ -72,61 +128,33 @@ public class SpreadCalculator {
             for (Money m : marketData) {
                 lastSumCalc = lastSumCalc.add(m); //sum+=m
             }
-            answer = lastSumCalc.multiply(1d / marketData.size()); // sum/marketData.size()
+            curSpread = lastSumCalc.multiply(1d / marketData.size()); // sum/marketData.size()
         } else {
             lastSumCalc = lastSumCalc.subtract(lastRemovingElem).add(marketData.peekLast());
             double denominator = marketData.size(); //it's already new size (+1)
-            answer = lastSumCalc.multiply(1d / denominator);
-        }
-        return answer;
-    }
-
-    public void collectCalcData() {
-        if (!isPauseEnabled) {
-            Money ask_lower;
-            Money bid_higher;
-            if (blotter.isNearLessThanFar()) {
-                ask_lower = blotter.getAsk_n();
-                bid_higher = blotter.getBid_f();
-            } else {
-                ask_lower = blotter.getAsk_f();
-                bid_higher = blotter.getBid_n();
-            }
-
-            Money spread = bid_higher.subtract(ask_lower);
-
-            System.out.println(ask_lower.getAmount() + " <-ask--bid-> " + bid_higher.getAmount() + " spread-->" + spread.getAmount() + " time--> " + new Date().toString());
-
-            if (spread.lessThan(Money.dollars(0))) {
-                throw new IllegalArgumentException("bid lower than ask, a/b: " + ask_lower + " " + bid_higher);
-            }
-
-            if (isEnoughData()) {
-                lastRemovingElem = marketData.removeFirst();
-                marketData.addLast(spread);
-            } else {
-                marketData.addLast(spread);
-            }
-            updateTime = System.currentTimeMillis();
-        } else {
-            if (startPauseTime + pauseDuration < System.currentTimeMillis()) {
-                startPauseTime = 0L;
-                isPauseEnabled = false;
-            }
+            curSpread = lastSumCalc.multiply(1d / denominator);
         }
     }
 
-    public boolean isEnoughData() {
-        return (updateTime - startTime) > spreadCalcDuration;
+    private void calcEnteringSpread() {
+        if (curSpread == null) {
+            throw new NullPointerException("curSpread is null.");
+        }
+
+        enteringSpread = curSpread.add(tradeSystemInfo.entering_dev);
+
     }
 
-    public void pause() {
-        startPauseTime = System.currentTimeMillis();
-        isPauseEnabled = true;
+    private boolean isEnoughData() {
+        return (updateTime - startTime) > spreadCalcDuration
+                && marketData.size() > tradeSystemInfo.min_spreadCalc_period;
     }
 
-    public boolean isPauseEnabled() {
-        return isPauseEnabled;
+    private void checkPauseNeccesity() {
+        if (startPauseTime + pauseDuration < System.currentTimeMillis()
+               || blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
+            startPauseTime = 0L;
+            isPauseEnabled = false;
+        }
     }
-
 }
