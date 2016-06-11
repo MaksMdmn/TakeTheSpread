@@ -31,11 +31,11 @@ public class MixedOrderMaker {
         this.afterLastChangeDeal = Order.Deal.Buy; //for example
     }
 
-    public void attemptToCatch(int orientedOn, Term term, Order.Deal deal) {
+    public void placeLimitOrder(int orientedOn, Term term, Order.Deal deal) {
         if (trackingChanges(term, deal)) {
             mom.updateMaxSize(posEqualize());
         } else if (frontRunningOrder != null) {
-            mom.updateMaxSize(askForHelp(trackingExecution(frontRunningOrder), term, deal));
+            mom.updateMaxSize(askMomForHelp(trackingExecution(frontRunningOrder), term, deal));
         }
 
         if (orientedOn == 0) {
@@ -70,10 +70,10 @@ public class MixedOrderMaker {
         int result = 0;
         if (frontRunningOrder != null) {
             int tempSize = cancellingExecution(frontRunningOrder);
-            Term tempTerm = blotter.getOrderTerm(frontRunningOrder.getInstrument());
+            Term tempTerm = blotter.instrumentToTerm(frontRunningOrder.getInstrument());
             Order.Deal tempDeal = frontRunningOrder.getDeal();
 
-            result = askForHelp(tempSize, tempTerm, tempDeal);
+            result = askMomForHelp(tempSize, tempTerm, tempDeal);
 
             frontRunningOrder = null;
         }
@@ -107,7 +107,7 @@ public class MixedOrderMaker {
         return false;
     }
 
-    private int askForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
+    private int askMomForHelp(int size, Term reverseTerm, Order.Deal reverseDeal) {
         if (reverseTerm == Term.NEAR) {
             reverseTerm = Term.FAR;
         } else {
@@ -120,7 +120,7 @@ public class MixedOrderMaker {
             reverseDeal = Order.Deal.Buy;
         }
 
-        return mom.hitTheMarket(size, reverseTerm, reverseDeal);
+        return mom.hitMarketOrder(size, reverseTerm, reverseDeal);
 //        mom.updateMaxSize(filled);
     }
 
@@ -131,7 +131,7 @@ public class MixedOrderMaker {
         Money price = null;
         int size = 0;
         int filledSize = 0;
-        Term term = blotter.getOrderTerm(order.getInstrument());
+        Term term = blotter.instrumentToTerm(order.getInstrument());
 
         switch (order.getDeal()) {
             case Buy:
@@ -154,7 +154,7 @@ public class MixedOrderMaker {
 
         if (isCancelNecessary(order, price, orientedSize)) {
             filledSize = cancellingExecution(order);
-            mom.updateMaxSize(askForHelp(filledSize, term, order.getDeal()));
+            mom.updateMaxSize(askMomForHelp(filledSize, term, order.getDeal()));
 
             size = calcDealSize(orientedSize, filledSize);
             if (order.getDeal() == Order.Deal.Buy) {
@@ -164,7 +164,7 @@ public class MixedOrderMaker {
             }
         } else {
             filledSize = trackingExecution(order);
-            mom.updateMaxSize(askForHelp(filledSize, term, order.getDeal()));
+            mom.updateMaxSize(askMomForHelp(filledSize, term, order.getDeal()));
             answer = order;
         }
 

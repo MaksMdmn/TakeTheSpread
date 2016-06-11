@@ -88,57 +88,57 @@ public class FiniteStateAutomation extends Thread {
 
         algo.printMe();
 
-        mom.youShouldKnow(blotter.defineCurrentPhase());
+        mom.setCurrentPhase(blotter.defineCurrentPhase());
         switch (signal) {
             case M_M_BUY:
                 deal_n = Order.Deal.Buy;
                 deal_f = Order.Deal.Sell;
 
                 filled = mxm.posEqualize();//h
-                size = MarketOrderMaker.sizeForPairDeal(
+                size = MarketOrderMaker.calcPairDealSize(
                         mom.getOrientedSize(Term.NEAR, Side.ASK),
                         mom.getOrientedSize(Term.FAR, Side.BID));
 
-                filled += mom.hitTheMarket(size, Term.NEAR, deal_n); //h
-                mom.hitTheMarket(size, Term.FAR, deal_f);
+                filled += mom.hitMarketOrder(size, Term.NEAR, deal_n); //h
+                mom.hitMarketOrder(size, Term.FAR, deal_f);
                 mom.updateMaxSize(filled);
                 break;
             case L_M_BUY:
                 deal_n = Order.Deal.Buy;
                 size_n = mom.getOrientedSize(Term.FAR, Side.BID);
 
-                mxm.attemptToCatch(size_n, Term.NEAR, deal_n);
+                mxm.placeLimitOrder(size_n, Term.NEAR, deal_n);
                 break;
             case M_L_BUY:
                 deal_f = Order.Deal.Sell;
                 size_f = mom.getOrientedSize(Term.NEAR, Side.ASK);
 
-                mxm.attemptToCatch(size_f, Term.FAR, deal_f);
+                mxm.placeLimitOrder(size_f, Term.FAR, deal_f);
                 break;
             case M_M_SELL:
                 deal_n = Order.Deal.Sell;
                 deal_f = Order.Deal.Buy;
 
                 filled = mxm.posEqualize();
-                size = MarketOrderMaker.sizeForPairDeal(
+                size = MarketOrderMaker.calcPairDealSize(
                         mom.getOrientedSize(Term.NEAR, Side.BID),
                         mom.getOrientedSize(Term.FAR, Side.ASK));
 
-                mom.hitTheMarket(size, Term.NEAR, deal_n);
-                filled += mom.hitTheMarket(size, Term.FAR, deal_f);
+                mom.hitMarketOrder(size, Term.NEAR, deal_n);
+                filled += mom.hitMarketOrder(size, Term.FAR, deal_f);
                 mom.updateMaxSize(filled);
                 break;
             case L_M_SELL:
                 deal_n = Order.Deal.Sell;
                 size_n = mom.getOrientedSize(Term.FAR, Side.ASK);
 
-                mxm.attemptToCatch(size_n, Term.NEAR, deal_n);
+                mxm.placeLimitOrder(size_n, Term.NEAR, deal_n);
                 break;
             case M_L_SELL:
                 deal_f = Order.Deal.Buy;
                 size_f = mom.getOrientedSize(Term.NEAR, Side.BID);
 
-                mxm.attemptToCatch(size_f, Term.FAR, deal_f);
+                mxm.placeLimitOrder(size_f, Term.FAR, deal_f);
                 break;
             case NOTHING:
                 filled = mxm.posEqualize();

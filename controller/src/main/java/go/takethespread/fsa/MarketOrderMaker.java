@@ -26,15 +26,15 @@ public class MarketOrderMaker {
         this.currentPhase = TradeBlotter.Phase.ACCUMULATION; //default
     }
 
-    public static int sizeForPairDeal(int nearSize, int farSize) {
+    public static int calcPairDealSize(int nearSize, int farSize) {
         return nearSize <= farSize ? nearSize : farSize;
     }
 
-    public void youShouldKnow(TradeBlotter.Phase phase) {
+    public void setCurrentPhase(TradeBlotter.Phase phase) {
         this.currentPhase = phase;
     }
 
-    public int hitTheMarket(int strongSize, Term term, Order.Deal deal) {
+    public int hitMarketOrder(int strongSize, Term term, Order.Deal deal) {
         System.out.println("SEND ONE: " + strongSize + " " + term + " " + deal);
         if (deal == null || term == null)
             throw new IllegalArgumentException("deal or term is null: " + deal + " " + term);
@@ -112,5 +112,11 @@ public class MarketOrderMaker {
 
         System.out.println("diff = " + diff + " after that maxSize= " + maxPossibleSize + " pos n/f: " + blotter.getPosition_n() + " " + blotter.getPosition_f());
 
+    }
+
+
+    private class PositionControlHelper{
+        int posN = blotter.getPosition_n();
+        int posF = blotter.getPosition_f();
     }
 }

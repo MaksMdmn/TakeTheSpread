@@ -28,7 +28,7 @@ public class TradeBlotter {
         this.spreadCalculator = new SpreadCalculator(this, tradeSystemInfo);
     }
 
-    public Term getOrderTerm(String instrument) {
+    public Term instrumentToTerm(String instrument) {
         if (instrument.equals(tradeSystemInfo.instrument_n)) {
             return Term.NEAR;
         }
@@ -37,7 +37,19 @@ public class TradeBlotter {
             return Term.FAR;
         }
 
-        throw new IllegalArgumentException("Incorrect instrument name: " + instrument);
+        throw new IllegalArgumentException("Incorrect instrument: " + instrument);
+    }
+
+    public String termToInstrument(Term term) {
+        if (term == Term.NEAR) {
+            return tradeSystemInfo.instrument_n;
+        }
+
+        if (term == Term.FAR) {
+            return tradeSystemInfo.instrument_f;
+        }
+
+        throw new IllegalArgumentException("Incorrect term: " + term);
     }
 
     public Money getBid_n() {
@@ -96,6 +108,10 @@ public class TradeBlotter {
         return spreadCalculator;
     }
 
+    public TradeSystemInfo getTradeSystemInfo() {
+        return tradeSystemInfo;
+    }
+
 
     public void updateMainInfo() {
         externalManager.refreshData();
@@ -152,7 +168,7 @@ public class TradeBlotter {
             return Phase.DISTRIBUTION;
         } else if (pos_n < tradeSystemInfo.favorable_size
                 && bestSpread.greaterOrEqualThan(spreadCalculator.getCurSpread().add(tradeSystemInfo.entering_dev)))//omg refactor PLEASE!
-                        /*|| bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread().subtract(tradeSystemInfo.entering_dev)) ONLY FOR ONE SIDE!!!! (spread + 1 then exit, not spread - 1)*/  {
+                        /*|| bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread().subtract(tradeSystemInfo.entering_dev)) ONLY FOR ONE SIDE!!!! (spread + 1 then exit, not spread - 1)*/ {
             return Phase.ACCUMULATION;
         } else {
             return Phase.OFF_SEASON;
