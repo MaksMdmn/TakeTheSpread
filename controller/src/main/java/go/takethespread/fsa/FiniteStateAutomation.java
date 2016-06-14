@@ -88,7 +88,7 @@ public class FiniteStateAutomation extends Thread {
 
         algo.printMe();
 
-        mom.setCurrentPhase(blotter.defineCurrentPhase());
+        mom.setCurrentPhase(blotter.defineCurPhase());
         switch (signal) {
             case M_M_BUY:
                 deal_n = Order.Deal.Buy;

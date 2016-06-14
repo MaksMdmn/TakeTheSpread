@@ -48,6 +48,17 @@ public class LimitMaker {
         return result;
     }
 
+    public int trackFilledSize() {
+        return defineRemainingSize();
+    }
+
+    public int cancelOrderSize() {
+        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
+        int result = defineRemainingSize();
+        frontRunOrder = null;
+        return result;
+    }
+
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {
         if (deal == Order.Deal.Buy) {
             return externalManager.sendLimitBuy(instr, price, size);
@@ -110,17 +121,6 @@ public class LimitMaker {
 
     private int defineDealSize(int size, int filled) {
         return size - filled;
-    }
-
-    public int trackFilledSize() {
-        return defineRemainingSize();
-    }
-
-    public int cancelOrderSize() {
-        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
-        int result = defineRemainingSize();
-        frontRunOrder = null;
-        return result;
     }
 
     private int defineRemainingSize() {

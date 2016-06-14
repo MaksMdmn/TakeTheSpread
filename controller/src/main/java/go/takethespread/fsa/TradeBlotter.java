@@ -21,11 +21,13 @@ public class TradeBlotter {
     private int position_n;
     private int position_f;
     private List<Order> orders;
+    private Phase curPhase;
 
     public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager) {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.spreadCalculator = new SpreadCalculator(this, tradeSystemInfo);
+        this.curPhase = Phase.OFF_SEASON;
     }
 
     public Term instrumentToTerm(String instrument) {
@@ -112,6 +114,9 @@ public class TradeBlotter {
         return tradeSystemInfo;
     }
 
+    public Phase getCurPhase() {
+        return curPhase;
+    }
 
     public void updateMainInfo() {
         externalManager.refreshData();
@@ -126,6 +131,7 @@ public class TradeBlotter {
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
         spreadCalculator.makeCalculations();
+        curPhase = defineCurPhase();
     }
 
     public void updateOrdersInfo() {
@@ -133,15 +139,10 @@ public class TradeBlotter {
     }
 
     public PositionState nearestPosState() {
-        checkPositionsEquivalent();
         if (position_n > 0) return PositionState.LONG;
         if (position_n == 0) return PositionState.FLAT;
         if (position_n < 0) return PositionState.SHORT;
         throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + position_n);
-    }
-
-    private void checkPositionsEquivalent() {
-        // need to check pos correctly (can be delay\active orders etc)
     }
 
     public boolean isNearLessThanFar() {
@@ -152,27 +153,34 @@ public class TradeBlotter {
         }
     }
 
+    private Phase defineCurPhase() {
+        int pos_n = Math.abs(position_n);
+        int pos_f = Math.abs(position_f);
+
+        if (pos_n != pos_f){
+            throw new IllegalArgumentException("pos in algo calcs are not equal, n and f: " + position_n + " " + position_f);
+        }
+
+        Money bestSpread = getBestSpread();
+
+        if(bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
+                && pos_n > 0){
+            return Phase.DISTRIBUTION;
+        }
+
+        if(bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                && pos_n < tradeSystemInfo.favorable_size){
+            return Phase.ACCUMULATION;
+        }
+
+        return Phase.OFF_SEASON;
+
+    }
+
     public boolean isBidBetterOrEqThanAsk() {
         Money byBid = Money.absl(bid_f.subtract(bid_n));
         Money byAsk = Money.absl(ask_f.subtract(ask_n));
         return byBid.greaterOrEqualThan(byAsk);
-    }
-
-    public Phase defineCurrentPhase() {
-        Money bestSpread = getBestSpread();
-        int pos_n = Math.abs(position_n);
-        int pos_f = Math.abs(position_f);
-        if (pos_n == pos_f
-                && pos_n > 0
-                && bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())) {
-            return Phase.DISTRIBUTION;
-        } else if (pos_n < tradeSystemInfo.favorable_size
-                && bestSpread.greaterOrEqualThan(spreadCalculator.getCurSpread().add(tradeSystemInfo.entering_dev)))//omg refactor PLEASE!
-                        /*|| bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread().subtract(tradeSystemInfo.entering_dev)) ONLY FOR ONE SIDE!!!! (spread + 1 then exit, not spread - 1)*/ {
-            return Phase.ACCUMULATION;
-        } else {
-            return Phase.OFF_SEASON;
-        }
     }
 
     public Money getBestSpread() {

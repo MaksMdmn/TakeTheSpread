@@ -16,7 +16,7 @@ public class Algorithm {
     }
 
     public void printMe(){
-        System.out.println("algo: *phase is " + blotter.defineCurrentPhase()
+        System.out.println("algo: *phase is " + blotter.defineCurPhase()
 //                + " both bid are " + blotter.getBid_n().getAmount() + " " + blotter.getBid_f().getAmount()
                 + " spreadB=" + Money.absl(blotter.getBid_f().subtract(blotter.getBid_n())).getAmount()
 //                + " both ask are " + blotter.getAsk_n().getAmount() + " " + blotter.getAsk_f().getAmount()
@@ -30,7 +30,7 @@ public class Algorithm {
     }
 
     public Signal getSignal() {
-        TradeBlotter.Phase currentPhase = blotter.defineCurrentPhase();
+        TradeBlotter.Phase currentPhase = blotter.defineCurPhase();
 
         if(currentPhase == TradeBlotter.Phase.ACCUMULATION){
             return getEnterSignal();
