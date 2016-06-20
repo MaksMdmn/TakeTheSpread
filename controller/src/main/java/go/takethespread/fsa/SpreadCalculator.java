@@ -3,7 +3,6 @@ package go.takethespread.fsa;
 
 import go.takethespread.Money;
 
-import java.util.Date;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -95,7 +94,7 @@ public class SpreadCalculator {
             }
             updateTime = System.currentTimeMillis();
         } else {
-            checkPauseNeccesity();
+            checkPauseNecessity();
         }
     }
 
@@ -150,7 +149,7 @@ public class SpreadCalculator {
                 && marketData.size() > tradeSystemInfo.min_spreadCalc_period;
     }
 
-    private void checkPauseNeccesity() {
+    private void checkPauseNecessity() {
         if (startPauseTime + pauseDuration < System.currentTimeMillis()
                || blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
             startPauseTime = 0L;

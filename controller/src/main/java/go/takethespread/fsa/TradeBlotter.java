@@ -118,7 +118,7 @@ public class TradeBlotter {
         return curPhase;
     }
 
-    public void updateMainInfo() {
+    public void updateMarketData() {
         externalManager.refreshData();
         bid_n = externalManager.getBBid(tradeSystemInfo.instrument_n);
         ask_n = externalManager.getBAsk(tradeSystemInfo.instrument_n);
@@ -128,13 +128,19 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
+    }
+
+    public void updatePositionData(){
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
+    }
+    public void updateAuxiliaryData(){
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
     }
 
-    public void updateOrdersInfo() {
+
+    public void updateOrdersData() {
         orders = externalManager.getOrders();
     }
 

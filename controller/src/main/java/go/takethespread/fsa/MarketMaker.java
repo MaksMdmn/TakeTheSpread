@@ -7,9 +7,9 @@ public class MarketMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
 
-    public MarketMaker(TradeBlotter blotter, ExternalManager externalManager) {
-        this.blotter = blotter;
+    public MarketMaker(ExternalManager externalManager, TradeBlotter blotter) {
         this.externalManager = externalManager;
+        this.blotter = blotter;
     }
 
     public static int choosePairDealSize(int size1, int size2) {

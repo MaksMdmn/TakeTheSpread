@@ -39,12 +39,12 @@ public class TestSpreadCalc {
         SpreadCalculator calculator = new SpreadCalculator(blotter, info);
 
         System.out.println("update");
-        blotter.updateMainInfo();
+        blotter.updateMarketData();
 
         int counter = 0;
         while (!userRow.equals("done")) {
             try {
-                blotter.updateMainInfo();
+                blotter.updateMarketData();
                 calculator.makeCalculations();
                 System.out.println("sprd: " + calculator.getCurSpread().getAmount());
 

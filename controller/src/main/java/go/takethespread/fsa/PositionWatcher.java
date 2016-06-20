@@ -5,13 +5,41 @@ import go.takethespread.Order;
 public class PositionWatcher {
     private TradeBlotter blotter;
     private MarketMaker marketMaker;
+    private int prevPos_n;
+    private int prevPos_f;
+    private int curPos_n;
+    private int curPos_f;
 
     public PositionWatcher(TradeBlotter blotter, MarketMaker marketMaker) {
         this.blotter = blotter;
         this.marketMaker = marketMaker;
+        this.prevPos_n = 0;
+        this.prevPos_f = 0;
+        this.curPos_n = 0;
+        this.curPos_f = 0;
     }
 
-    public int defineMaxSize(int marketSize) {
+    public void equalizePositions() {
+        updateCurValues();
+        int diff_n = curPos_n - prevPos_n;
+        int diff_f = curPos_f - prevPos_f;
+
+        if (curPos_n != curPos_f) {
+
+            if (diff_n == 0 && diff_f == 0) {
+                throw new RuntimeException("fatal error in algorithm,  both pos are different, but both diffs = 0: " + diff_n + " " + diff_f);
+            }
+
+            if (diff_n != 0) {
+                fillTheDiff(diff_n, Term.FAR);
+            } else {
+                fillTheDiff(diff_f, Term.NEAR);
+            }
+        }
+        updatePrevValues();
+    }
+
+    public int defineMaxPossibleSize(int marketSize) {
         TradeBlotter.Phase phase = blotter.getCurPhase();
         int absPos = Math.abs(blotter.getPosition_n());
         int calcSize = 0;
@@ -32,17 +60,21 @@ public class PositionWatcher {
         return pos_n == pos_f;
     }
 
-    public void cancelFilledEqualize(int filled, Term term, Order.Deal deal) {
-
+    private void fillTheDiff(int diff, Term fillTerm) {
+        if (diff > 0) {
+            marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, Order.Deal.Sell);
+        } else if (diff < 0) {
+            marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, Order.Deal.Buy);
+        }
     }
 
-    public void limitFilledEqualize() {
-
+    private void updatePrevValues() {
+        prevPos_n = curPos_n;
+        prevPos_f = curPos_f;
     }
 
-    public void checkPosEqualize() {
-
+    private void updateCurValues() {
+        curPos_n = blotter.getPosition_n();
+        curPos_f = blotter.getPosition_f();
     }
-
-
 }

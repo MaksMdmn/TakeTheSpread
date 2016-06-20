@@ -20,15 +20,14 @@ public class LimitMaker {
     public LimitMaker(ExternalManager externalManager, TradeBlotter blotter) {
         this.externalManager = externalManager;
         this.blotter = blotter;
-        alreadyFilledMap = new HashMap<>();
+        this.alreadyFilledMap = new HashMap<>();
     }
 
     //return filled size only if order was rolled!!!!!!!!! NOT FILLED SIZE OF ACTIVE ORDER
-    public int rollLimitOrder(int size, Term term, Order.Deal deal) {
+    public void rollLimitOrder(int size, Term term, Order.Deal deal) {
         String tmpInstr = blotter.termToInstrument(term);
         Money tmpPrice = defineLimitPrice(term, deal);
         boolean isRollNecessary = isRollNecessary(size, term, deal);
-        int result = 0;
         lastTermVal = term;
         lastDealVal = deal;
 
@@ -40,12 +39,10 @@ public class LimitMaker {
             frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, size);
         } else {
             if (isRollNecessary) {
-                result = cancelOrderSize();
-                frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, defineDealSize(size, result));
+                frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, defineDealSize(size, cancelOrderSize()));
             }
         }
 
-        return result;
     }
 
     public int trackFilledSize() {

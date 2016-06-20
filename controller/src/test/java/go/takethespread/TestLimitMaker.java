@@ -17,7 +17,7 @@ public class TestLimitMaker {
 //        OrderMaker orderMaker = new OrderMaker(blotter, externalManager, infoManager);
 
         while (curQ < q) {
-            blotter.updateMainInfo();
+            blotter.updateMarketData();
 //            orderMaker.doNearBuyFarSell();
 
             try {
