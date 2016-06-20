@@ -1,15 +1,20 @@
 package go.takethespread.fsa;
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MarketMaker {
     private TradeBlotter blotter;
     private ExternalManager externalManager;
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
     public MarketMaker(ExternalManager externalManager, TradeBlotter blotter) {
         this.externalManager = externalManager;
         this.blotter = blotter;
+        logger.debug("MM created");
     }
 
     public static int choosePairDealSize(int size1, int size2) {
@@ -18,6 +23,7 @@ public class MarketMaker {
 
     public void hitOrderToMarket(int size, Term term, Order.Deal deal) {
 
+        logger.debug("hit order by following args: ", term, deal, size);
         if (deal == null || term == null || size <= 0) { //size, what should I do ????
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
         }
@@ -31,6 +37,7 @@ public class MarketMaker {
             externalManager.sendMarketSell(tmpInstr, size);
         }
 
+        logger.debug("pause starting...");
         blotter.getSpreadCalculator().pause();
     }
 

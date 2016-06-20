@@ -1,8 +1,11 @@
 package go.takethespread.fsa;
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +17,8 @@ public class LimitMaker {
     private TradeBlotter blotter;
     private Map<String, Integer> alreadyFilledMap;
 
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
+
     private Term lastTermVal;
     private Order.Deal lastDealVal;
 
@@ -21,6 +26,7 @@ public class LimitMaker {
         this.externalManager = externalManager;
         this.blotter = blotter;
         this.alreadyFilledMap = new HashMap<>();
+        logger.debug("LM created");
     }
 
     //return filled size only if order was rolled!!!!!!!!! NOT FILLED SIZE OF ACTIVE ORDER
@@ -43,6 +49,7 @@ public class LimitMaker {
             }
         }
 
+        logger.debug("rolling order: " + frontRunOrder);
     }
 
     public int trackFilledSize() {
@@ -57,6 +64,7 @@ public class LimitMaker {
     }
 
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {
+        logger.debug("place order by following args: " + instr, deal, price, size);
         if (deal == Order.Deal.Buy) {
             return externalManager.sendLimitBuy(instr, price, size);
         }

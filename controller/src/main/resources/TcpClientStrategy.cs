@@ -202,6 +202,9 @@ namespace NinjaTrader.Strategy
 							break;
 						case "BYID":
 							Order ord = Orders.FindByOrderId(ordId);
+
+							Print("id: " + msgId + " msg: " + ord.ToString() + " Time=" + "'" + ord.Time.ToString() + "'");
+
 							SendMessages(msgId, ord.ToString() + " Time=" + "'" + ord.Time.ToString() + "'");
 							break;
 						case "POS":
@@ -234,6 +237,9 @@ namespace NinjaTrader.Strategy
 							break;
 						case "BMRT":
 							tempIOrd = SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
+							while(tempIOrd.OrderState != OrderState.Filled){
+//								NOP ---- trying to get sure-filled market order D:
+							}
 							AddToOrderMap(tempIOrd);
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
@@ -244,6 +250,9 @@ namespace NinjaTrader.Strategy
 							break;
 						case "SMRT":
 							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
+							while(tempIOrd.OrderState != OrderState.Filled){
+//								NOP ---- trying to get sure-filled market order D:
+							}
 							AddToOrderMap(tempIOrd);
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
 							break;
@@ -289,15 +298,17 @@ namespace NinjaTrader.Strategy
 
 		private void SendMessages(String messageId, String message)
 		{
-			Print(messageId + " " + message);
-			try{
-				if (message != "")
-					{
-						tcpWriter.WriteLine(messageId + String.Concat(ntToken) + message);
-						tcpWriter.Flush();
-					}
-			}catch(Exception e6){
-				Print("send message exception: " + e6.ToString());
+//			Print(messageId + " " + message);
+			lock(tcpWriter){
+				try{
+					if (message != "")
+						{
+							tcpWriter.WriteLine(messageId + String.Concat(ntToken) + message);
+							tcpWriter.Flush();
+						}
+				}catch(Exception e6){
+					Print("send message exception: " + e6.ToString());
+				}
 			}
 		}
 

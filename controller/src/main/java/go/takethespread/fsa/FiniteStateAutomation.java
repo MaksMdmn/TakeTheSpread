@@ -1,12 +1,15 @@
 package go.takethespread.fsa;
 
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Order;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FiniteStateAutomation extends Thread {
     private ConsoleManager consoleManager;
@@ -18,12 +21,15 @@ public class FiniteStateAutomation extends Thread {
     private LimitMaker lm;
     private MarketMaker mm;
     private PositionWatcher pw;
-
     private Algorithm algo;
 
     private volatile boolean isWorking;
 
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
+
     public FiniteStateAutomation() {
+        logger.info("creation of FSA, logger started");
+
         consoleManager = ConsoleManager.getInstance();
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
@@ -35,6 +41,8 @@ public class FiniteStateAutomation extends Thread {
         lm = new LimitMaker(externalManager, blotter);
         mm = new MarketMaker(externalManager, blotter);
         pw = new PositionWatcher(blotter, mm);
+
+        logger.info("creation of FSA success");
     }
 
     @Override
@@ -47,6 +55,9 @@ public class FiniteStateAutomation extends Thread {
                 do {
                     currentTask = taskManager.getCurrentTask();
                 } while (currentTask == null);
+
+                logger.debug("current task: " + currentTask);
+                logger.debug("current command: " + currentTask.getCommand());
 
                 switch (currentTask.getCommand()) {
                     case GO:
@@ -77,22 +88,31 @@ public class FiniteStateAutomation extends Thread {
     }
 
     private void executeGO() {
+        logger.info("execute GO");
+
         blotter.updateMarketData();
         blotter.updatePositionData();
+
+        logger.debug("market and pos data updated");
+        logger.debug("is pos equal: + " + blotter.getPosition_n() + " " + blotter.getPosition_f() + " " + pw.isPosEqual());
 
         if (pw.isPosEqual()) {
             pw.equalizePositions();
             blotter.updatePositionData();
         }
 
+        blotter.updateAuxiliaryData();
+
+        logger.debug("auxiliary data updated");
+
         Algorithm.Signal signal = algo.getSignal();
+
+        logger.info("current signal: " + signal);
 
         int size;
         int size_n;
         int size_f;
         int tmpSize;
-
-        algo.printMe();
 
         switch (signal) {
             case M_M_BUY:
@@ -144,12 +164,15 @@ public class FiniteStateAutomation extends Thread {
             default:
                 break;
         }
+        logger.info("GO executed, pos status: " + blotter.getPosition_n() + " " + blotter.getPosition_f());
     }
 
     private void executeGJ() {
         // correcting completion of work!
+        logger.info("execute GJ");
         externalManager.finishingJob();
         isWorking = false;
+        logger.info("GJ executed");
     }
 
     private void executeRN(String item, String values) {

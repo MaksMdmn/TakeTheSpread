@@ -1,8 +1,11 @@
 package go.takethespread.fsa;
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class TradeBlotter {
     private int position_f;
     private List<Order> orders;
     private Phase curPhase;
+
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
     public TradeBlotter(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager) {
         this.tradeSystemInfo = tradeSystemInfo;
@@ -119,6 +124,7 @@ public class TradeBlotter {
     }
 
     public void updateMarketData() {
+        logger.info("data updating...");
         externalManager.refreshData();
         bid_n = externalManager.getBBid(tradeSystemInfo.instrument_n);
         ask_n = externalManager.getBAsk(tradeSystemInfo.instrument_n);
@@ -128,27 +134,27 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
+        logger.debug("new market data: " + bid_n + " " + bidVol_n + " " + ask_n + " " + askVol_n + " " + bid_f + " " + bidVol_f + " " + ask_f + " " + askVol_f);
+
     }
 
-    public void updatePositionData(){
+    public void updatePositionData() {
+        logger.info("position updating...");
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
+        logger.debug("pos n and f: " + position_n + " " + position_f);
     }
-    public void updateAuxiliaryData(){
+
+    public void updateAuxiliaryData() {
+        logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
+        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread() + " cPh " +  curPhase);
     }
 
 
     public void updateOrdersData() {
         orders = externalManager.getOrders();
-    }
-
-    public PositionState nearestPosState() {
-        if (position_n > 0) return PositionState.LONG;
-        if (position_n == 0) return PositionState.FLAT;
-        if (position_n < 0) return PositionState.SHORT;
-        throw new IllegalArgumentException("IT'S IMPOSSIBLE: " + position_n);
     }
 
     public boolean isNearLessThanFar() {
@@ -163,19 +169,19 @@ public class TradeBlotter {
         int pos_n = Math.abs(position_n);
         int pos_f = Math.abs(position_f);
 
-        if (pos_n != pos_f){
+        if (pos_n != pos_f) {
             throw new IllegalArgumentException("pos in algo calcs are not equal, n and f: " + position_n + " " + position_f);
         }
 
         Money bestSpread = getBestSpread();
 
-        if(bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
-                && pos_n > 0){
+        if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
+                && pos_n > 0) {
             return Phase.DISTRIBUTION;
         }
 
-        if(bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                && pos_n < tradeSystemInfo.favorable_size){
+        if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                && pos_n < tradeSystemInfo.favorable_size) {
             return Phase.ACCUMULATION;
         }
 
@@ -209,6 +215,7 @@ public class TradeBlotter {
         DISTRIBUTION,
         OFF_SEASON
     }
+
 
     //here all market data and pos (like you are in terminal)
 }

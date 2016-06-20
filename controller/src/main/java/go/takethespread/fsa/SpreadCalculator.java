@@ -1,7 +1,10 @@
 package go.takethespread.fsa;
 
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Money;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -26,6 +29,8 @@ public class SpreadCalculator {
 
     private volatile boolean isPauseEnabled;
 
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
+
     public SpreadCalculator(TradeBlotter blotter, TradeSystemInfo tradeSystemInfo) {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
@@ -38,18 +43,22 @@ public class SpreadCalculator {
         this.spreadCalcDuration = tradeSystemInfo.spreadCalc_time_sec * 1000L; //ms
         this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
         this.isPauseEnabled = false;
+
+        logger.debug("SC created");
     }
 
     public void makeCalculations() {
         collectCalcData();
         calcCurSpread();
         calcEnteringSpread();
+        logger.debug("calculations in SC completed");
 //        System.out.println("cur: " + curSpread.getAmount() + " ent " + enteringSpread.getAmount() + " enough? " + isEnoughData());
     }
 
     public void pause() {
         startPauseTime = System.currentTimeMillis();
         isPauseEnabled = true;
+        logger.debug("pause started at: ", startPauseTime);
     }
 
     public boolean isPauseEnabled() {

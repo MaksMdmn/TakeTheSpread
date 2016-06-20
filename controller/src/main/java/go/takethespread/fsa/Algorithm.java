@@ -1,30 +1,35 @@
 package go.takethespread.fsa;
 
+import go.takethespread.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.managers.ExternalManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class Algorithm {
     private ExternalManager externalManager;
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
     protected Algorithm(TradeSystemInfo tradeSystemInfo, ExternalManager externalManager, TradeBlotter blotter) {
+        logger.info("Creation of Algorithm object");
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.blotter = blotter;
-    }
-
-    public void printMe(){
-        System.out.println("algo: *phase is " + blotter.getCurPhase()
-                + " spreadB=" + Money.absl(blotter.getBid_f().subtract(blotter.getBid_n())).getAmount()
-                + " spreadA=" + Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n())).getAmount()
-                + " spread calc is " + blotter.getSpreadCalculator().getCurSpread().getAmount());
-
+        logger.info("Algorithm created");
     }
 
     public Signal getSignal() {
+        logger.debug("Signal definition, market spreads: " +
+                " spreadBID=" + Money.absl(blotter.getBid_f().subtract(blotter.getBid_n())).getAmount()
+                + " spreadASK=" + Money.absl(blotter.getAsk_f().subtract(blotter.getAsk_n())).getAmount()
+                + " spreadCALC=" + blotter.getSpreadCalculator().getCurSpread().getAmount());
+
         TradeBlotter.Phase currentPhase = blotter.getCurPhase();
+
+        logger.debug("phase is: " + currentPhase);
 
         if(currentPhase == TradeBlotter.Phase.ACCUMULATION){
             return getEnterSignal();
