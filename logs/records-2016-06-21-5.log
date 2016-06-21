@@ -1,0 +1,1265 @@
+2016-06-21 22:36:52,034 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:52,039 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:52,240 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:52,240 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:52,240 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:52,240 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:52,240 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:52,240 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:52,240 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:52,240 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:52,240 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:52,240 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:52,241 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:52,241 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:52,341 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:52,341 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:52,542 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:52,542 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:52,542 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:52,542 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:52,542 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:52,542 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:52,542 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:52,542 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:52,743 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:52,743 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:52,743 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:52,743 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:52,743 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:52,743 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:52,743 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:52,743 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:52,743 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:52,743 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:52,743 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:52,743 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:52,844 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:52,844 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:53,044 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:53,044 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:53,044 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:53,044 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:53,044 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:53,044 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:53,045 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:53,045 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:53,245 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:53,245 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:53,245 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:53,245 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:53,245 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:53,246 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:53,246 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:53,246 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:53,246 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:53,246 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:53,246 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:53,246 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:53,346 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:53,346 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:53,546 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:53,546 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:53,546 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:53,546 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:53,546 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:53,546 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:53,547 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:53,547 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:53,747 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:53,747 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:53,747 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:53,747 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:53,747 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:53,748 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:53,748 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:53,748 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:53,748 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:53,748 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:53,748 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:53,748 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:53,848 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:53,848 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:54,049 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:54,049 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:54,049 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:54,049 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:54,049 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:54,049 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:54,049 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:54,049 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:54,250 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:54,250 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:54,250 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:54,250 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:54,250 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:54,250 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:54,250 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:54,250 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:54,250 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:54,250 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:54,250 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:54,250 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:54,350 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:54,350 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:54,551 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:54,551 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:54,551 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:54,551 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:54,551 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:54,551 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:54,551 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:54,551 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:54,752 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:54,752 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:54,752 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:54,752 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:54,752 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:54,752 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:54,752 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:54,752 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:54,752 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:54,752 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:54,752 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:54,752 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:54,853 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:54,853 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:55,053 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:55,053 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:55,053 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:55,053 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:55,053 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:55,053 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:55,053 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:55,054 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:55,254 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:55,254 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:55,254 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:55,254 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:55,254 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:55,254 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:55,255 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:55,255 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:55,255 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:55,255 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:55,255 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:55,255 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:55,355 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:55,355 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:55,555 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:55,555 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:55,555 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:55,555 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:55,555 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:55,555 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:55,555 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:55,556 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:55,756 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:55,756 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:55,756 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:55,756 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:55,756 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:55,756 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:55,757 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:55,757 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:55,757 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:55,757 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:55,757 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:55,757 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:55,857 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 73 50.34 24 50.35 19
+2016-06-21 22:36:55,857 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:56,058 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:56,058 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:56,058 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:56,058 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:56,058 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:56,058 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:56,058 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:56,058 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:56,259 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:56,259 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:56,259 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:56,259 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:56,259 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:56,259 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:56,259 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:56,259 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:56,259 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:56,259 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:56,259 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:56,259 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:56,359 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 72 50.34 24 50.35 19
+2016-06-21 22:36:56,359 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:56,560 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:56,560 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:56,560 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:56,560 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:56,560 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:56,560 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:56,560 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:56,560 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:56,761 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:56,761 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:56,761 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:56,761 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:56,761 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:56,761 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:56,761 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:56,761 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:56,761 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:56,761 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:56,761 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:56,761 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:56,862 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 71 50.34 24 50.35 19
+2016-06-21 22:36:56,862 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:57,062 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:57,062 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:57,062 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:57,062 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:57,062 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:57,062 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:57,062 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:57,062 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:57,263 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:57,263 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:57,263 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:57,263 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:57,263 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:57,263 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:57,264 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:57,264 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:57,264 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:57,264 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:57,264 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:57,264 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:57,364 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 71 50.34 24 50.35 19
+2016-06-21 22:36:57,364 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:57,564 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:57,564 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:57,564 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:57,564 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:57,564 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:57,564 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:57,565 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:57,565 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:57,765 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:57,765 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:57,765 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:57,765 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:57,765 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:57,765 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:57,765 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:57,766 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:57,766 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:57,766 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:57,766 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:57,766 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:57,866 DEBUG TradeBlotter:137 - new market data: 49.74 22 49.75 73 50.34 23 50.35 19
+2016-06-21 22:36:57,866 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:58,067 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:58,067 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:58,067 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:58,067 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:58,067 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:58,067 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:58,067 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:58,067 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:58,268 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:58,268 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:58,268 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:58,268 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:58,268 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:58,268 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:58,268 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:58,268 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:58,268 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:58,268 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:58,268 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:58,268 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:58,369 DEBUG TradeBlotter:137 - new market data: 49.74 22 49.75 73 50.34 22 50.35 19
+2016-06-21 22:36:58,369 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:58,569 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:58,569 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:58,569 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:58,569 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:58,569 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:58,569 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:58,569 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:58,570 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:58,770 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:58,770 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:58,770 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:58,770 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:58,770 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:58,770 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:58,771 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:58,771 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:58,771 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:58,771 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:58,771 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:58,771 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:58,871 DEBUG TradeBlotter:137 - new market data: 49.74 23 49.75 67 50.34 24 50.35 19
+2016-06-21 22:36:58,871 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:59,071 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:59,071 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:59,071 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:59,072 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:59,072 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:59,072 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:59,072 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:59,072 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:59,273 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:59,273 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:59,273 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:59,273 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:59,273 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:59,273 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:59,273 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:59,273 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:59,273 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:59,273 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:59,273 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:59,273 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:59,374 DEBUG TradeBlotter:137 - new market data: 49.74 22 49.75 69 50.34 23 50.35 19
+2016-06-21 22:36:59,374 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:59,574 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:59,574 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:36:59,574 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:36:59,574 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:36:59,574 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:36:59,574 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:36:59,575 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:36:59,575 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:36:59,775 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:36:59,775 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:36:59,775 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:36:59,775 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:36:59,775 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:36:59,775 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:36:59,776 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:36:59,776 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:36:59,776 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:36:59,776 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:36:59,776 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:36:59,776 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:36:59,876 DEBUG TradeBlotter:137 - new market data: 49.74 24 49.75 67 50.34 25 50.35 19
+2016-06-21 22:36:59,876 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:00,078 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:00,078 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:00,078 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:00,078 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:00,078 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:00,078 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:00,078 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:00,078 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:00,279 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:00,279 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:00,279 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:00,279 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:00,279 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:00,279 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:00,279 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:00,279 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:00,279 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:00,279 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:00,279 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:00,279 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:00,380 DEBUG TradeBlotter:137 - new market data: 49.74 27 49.75 56 50.34 30 50.35 18
+2016-06-21 22:37:00,380 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:00,580 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:00,580 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:00,580 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:00,580 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:00,580 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:00,580 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:00,580 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:00,581 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:00,781 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:00,781 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:00,781 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:00,781 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:00,781 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:00,782 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:00,782 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:00,782 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:00,782 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:00,782 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:00,782 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:00,782 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:00,882 DEBUG TradeBlotter:137 - new market data: 49.74 24 49.75 58 50.34 25 50.35 18
+2016-06-21 22:37:00,882 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:01,082 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:01,082 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:01,082 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:01,082 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:01,082 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:01,082 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:01,082 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:01,082 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:01,283 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:01,283 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:01,283 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:01,283 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:01,283 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:01,283 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:01,283 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:01,284 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:01,284 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:01,284 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:01,284 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:01,284 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:01,384 DEBUG TradeBlotter:137 - new market data: 49.74 24 49.75 58 50.34 25 50.35 18
+2016-06-21 22:37:01,384 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:01,585 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:01,585 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:01,585 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:01,585 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:01,585 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:01,585 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:01,585 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:01,585 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:01,786 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:01,786 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:01,786 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:01,786 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:01,786 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:01,786 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:01,786 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:01,786 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:01,786 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:01,786 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:01,786 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:01,786 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:01,886 DEBUG TradeBlotter:137 - new market data: 49.74 16 49.75 64 50.34 16 50.35 18
+2016-06-21 22:37:01,886 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:02,087 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:02,087 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:02,087 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:02,087 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:02,087 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:02,087 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:02,087 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:02,087 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:02,288 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:02,288 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:02,288 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:02,288 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:02,288 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:02,288 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:02,288 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:02,288 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:02,288 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:02,288 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:02,288 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:02,288 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:02,389 DEBUG TradeBlotter:137 - new market data: 49.74 16 49.75 64 50.34 16 50.35 18
+2016-06-21 22:37:02,389 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:02,590 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:02,590 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:02,590 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:02,590 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:02,590 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:02,590 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:02,590 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:02,590 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:02,790 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:02,790 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:02,790 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:02,790 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:02,790 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:02,790 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:02,790 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:02,790 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:02,790 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:02,790 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:02,790 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:02,790 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:02,891 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 68 50.34 17 50.35 18
+2016-06-21 22:37:02,891 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:03,091 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:03,091 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:03,091 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:03,091 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:03,092 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:03,092 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:03,092 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:03,092 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:03,292 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:03,292 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:03,292 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:03,292 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:03,292 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:03,292 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:03,292 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:03,292 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:03,293 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:03,293 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:03,293 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:03,293 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:03,393 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 70 50.34 17 50.35 20
+2016-06-21 22:37:03,393 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:03,594 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:03,594 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:03,594 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:03,594 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:03,594 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:03,594 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:03,594 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:03,594 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:03,795 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:03,795 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:03,795 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:03,795 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:03,795 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:03,795 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:03,796 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:03,796 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:03,796 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:03,796 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:03,796 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:03,796 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:03,896 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 68 50.34 17 50.35 18
+2016-06-21 22:37:03,896 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:04,096 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:04,096 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:04,096 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:04,096 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:04,096 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:04,096 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:04,096 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:04,097 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:04,297 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:04,297 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:04,297 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:04,297 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:04,297 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:04,297 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:04,298 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:04,298 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:04,298 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:04,298 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:04,298 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:04,298 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:04,398 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:04,398 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:04,598 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:04,598 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:04,598 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:04,598 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:04,598 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:04,598 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:04,598 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:04,599 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:04,799 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:04,799 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:04,799 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:04,799 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:04,799 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:04,799 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:04,799 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:04,800 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:04,800 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:04,800 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:04,800 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:04,800 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:04,900 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 69 50.34 19 50.35 18
+2016-06-21 22:37:04,900 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:05,101 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:05,101 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:05,101 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:05,101 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:05,101 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:05,101 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:05,101 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:05,101 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:05,302 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:05,302 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:05,302 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:05,302 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:05,302 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:05,302 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:05,302 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:05,302 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:05,302 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:05,302 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:05,302 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:05,302 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:05,403 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 69 50.34 19 50.35 18
+2016-06-21 22:37:05,403 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:05,603 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:05,603 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:05,603 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:05,603 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:05,603 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:05,603 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:05,604 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:05,604 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:05,804 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:05,804 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:05,804 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:05,804 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:05,804 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:05,804 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:05,805 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:05,805 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:05,805 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:05,805 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:05,805 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:05,805 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:05,905 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:05,905 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:06,105 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:06,105 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:06,105 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:06,105 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:06,105 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:06,105 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:06,105 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:06,105 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:06,306 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:06,306 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:06,306 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:06,306 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:06,306 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:06,306 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:06,306 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:06,307 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:06,307 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:06,307 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:06,307 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:06,307 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:06,407 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:06,407 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:06,608 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:06,608 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:06,608 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:06,608 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:06,608 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:06,608 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:06,608 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:06,608 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:06,809 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:06,809 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:06,809 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:06,809 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:06,809 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:06,809 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:06,809 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:06,809 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:06,809 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:06,809 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:06,809 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:06,809 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:06,909 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:06,909 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:07,110 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:07,110 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:07,110 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:07,110 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:07,110 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:07,110 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:07,110 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:07,110 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:07,311 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:07,311 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:07,311 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:07,311 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:07,311 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:07,311 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:07,311 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:07,311 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:07,311 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:07,311 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:07,311 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:07,311 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:07,412 DEBUG TradeBlotter:137 - new market data: 49.74 20 49.75 67 50.34 20 50.35 18
+2016-06-21 22:37:07,412 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:07,612 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:07,612 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:07,612 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:07,612 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:07,612 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:07,612 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:07,612 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:07,612 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:07,813 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:07,813 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:07,813 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:07,813 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:07,813 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:07,813 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:07,814 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:07,814 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:07,814 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:07,814 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:07,814 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:07,814 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:07,914 DEBUG TradeBlotter:137 - new market data: 49.74 20 49.75 67 50.34 20 50.35 18
+2016-06-21 22:37:07,914 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:08,114 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:08,114 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:08,114 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:08,114 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:08,114 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:08,114 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:08,114 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:08,115 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:08,315 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:08,315 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:08,315 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:08,315 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:08,315 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:08,315 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:08,316 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:08,316 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:08,316 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:08,316 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:08,316 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:08,316 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:08,416 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:08,416 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:08,617 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:08,617 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:08,617 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:08,617 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:08,617 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:08,617 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:08,617 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:08,617 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:08,818 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:08,818 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:08,818 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:08,818 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:08,818 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:08,818 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:08,818 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:08,818 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:08,818 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:08,818 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:08,818 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:08,818 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:08,918 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:08,918 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:09,119 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:09,119 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:09,119 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:09,119 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:09,119 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:09,119 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:09,119 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:09,119 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:09,320 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:09,320 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:09,320 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:09,320 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:09,320 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:09,321 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:09,321 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:09,321 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:09,321 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:09,321 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:09,321 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:09,321 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:09,421 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 72 50.34 17 50.35 18
+2016-06-21 22:37:09,421 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:09,621 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:09,621 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:09,621 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:09,621 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:09,621 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:09,621 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:09,621 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:09,622 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:09,823 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:09,823 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:09,823 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:09,823 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:09,823 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:09,823 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:09,823 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:09,823 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:09,823 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:09,823 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:09,823 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:09,823 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:09,923 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 72 50.34 17 50.35 18
+2016-06-21 22:37:09,923 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:10,123 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:10,123 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:10,123 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:10,123 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:10,123 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:10,123 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:10,123 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:10,123 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:10,324 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:10,324 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:10,324 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:10,324 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:10,324 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:10,324 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:10,324 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:10,324 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:10,324 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:10,324 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:10,324 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:10,324 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:10,424 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 72 50.34 17 50.35 18
+2016-06-21 22:37:10,424 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:10,624 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:10,624 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:10,624 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:10,624 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:10,624 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:10,624 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:10,624 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:10,624 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:10,825 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:10,825 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:10,825 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:10,825 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:10,825 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:10,825 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:10,826 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:10,826 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:10,826 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:10,826 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:10,826 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:10,826 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:10,926 DEBUG TradeBlotter:137 - new market data: 49.74 17 49.75 72 50.34 17 50.35 18
+2016-06-21 22:37:10,926 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:11,126 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:11,126 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:11,126 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:11,126 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:11,126 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:11,126 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:11,126 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:11,127 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:11,327 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:11,327 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:11,327 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:11,327 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:11,327 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:11,327 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:11,328 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:11,328 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:11,328 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:11,328 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:11,328 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:11,328 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:11,428 DEBUG TradeBlotter:137 - new market data: 49.74 19 49.75 67 50.34 19 50.35 18
+2016-06-21 22:37:11,428 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:11,628 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:11,628 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:11,628 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:11,628 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:11,628 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:11,628 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:11,628 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:11,628 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:11,829 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:11,829 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:11,829 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:11,829 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:11,829 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:11,829 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:11,829 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:11,829 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:11,829 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:11,829 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:11,829 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:11,829 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:11,929 DEBUG TradeBlotter:137 - new market data: 49.74 16 49.75 69 50.34 16 50.35 18
+2016-06-21 22:37:11,929 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:12,129 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:12,129 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:12,129 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:12,129 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:12,129 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:12,129 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:12,129 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:12,130 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:12,330 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:12,330 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:12,330 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:12,330 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:12,330 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:12,330 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:12,330 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:12,330 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:12,331 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:12,331 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:12,331 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:12,331 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:12,431 DEBUG TradeBlotter:137 - new market data: 49.74 16 49.75 71 50.34 16 50.35 18
+2016-06-21 22:37:12,431 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:12,632 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:12,632 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:12,632 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:12,632 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:12,632 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:12,632 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:12,632 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:12,632 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:12,833 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:12,833 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:12,833 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:12,833 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:12,833 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:12,833 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:12,833 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:12,833 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:12,833 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:12,833 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:12,833 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:12,833 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:12,933 DEBUG TradeBlotter:137 - new market data: 49.74 16 49.75 71 50.34 16 50.35 18
+2016-06-21 22:37:12,933 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:13,134 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:13,134 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:13,134 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:13,134 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:13,134 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:13,134 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:13,134 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:13,134 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:13,335 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:13,335 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:13,335 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:13,335 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:13,335 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:13,335 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:13,335 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:13,335 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:13,335 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:13,335 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:13,335 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:13,335 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:13,435 DEBUG TradeBlotter:137 - new market data: 49.73 31 49.74 26 50.33 36 50.34 6
+2016-06-21 22:37:13,435 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:13,636 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:13,636 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:13,636 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:13,636 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:13,636 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:13,636 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:13,636 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:13,636 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:13,837 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:13,837 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:13,837 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:13,837 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:13,837 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:13,837 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:13,837 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:13,837 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:13,837 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:13,837 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:13,837 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:13,837 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:13,938 DEBUG TradeBlotter:137 - new market data: 49.73 30 49.74 29 50.33 35 50.34 6
+2016-06-21 22:37:13,938 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:14,138 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:14,138 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:14,138 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:14,138 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:14,138 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:14,138 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:14,138 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:14,138 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:14,339 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:14,339 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:14,339 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:14,339 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:14,339 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:14,339 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:14,339 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:14,340 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:14,340 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:14,340 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:14,340 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:14,340 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:14,440 DEBUG TradeBlotter:137 - new market data: 49.73 34 49.74 26 50.33 40 50.34 6
+2016-06-21 22:37:14,440 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:14,640 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:14,640 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:14,640 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:14,640 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:14,640 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:14,640 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:14,640 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:14,640 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:14,841 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:14,841 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:14,841 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:14,841 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:14,841 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:14,842 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:14,842 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:14,842 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:14,842 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:14,842 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:14,842 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:14,842 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:14,942 DEBUG TradeBlotter:137 - new market data: 49.73 35 49.74 26 50.33 40 50.34 6
+2016-06-21 22:37:14,942 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:15,143 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:15,143 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:15,143 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:15,143 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:15,143 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:15,143 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:15,143 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:15,143 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:15,344 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:15,344 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:15,344 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:15,344 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:15,344 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:15,344 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:15,344 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:15,344 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:15,344 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:15,344 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:15,344 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:15,344 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:15,444 DEBUG TradeBlotter:137 - new market data: 49.73 34 49.74 29 50.33 39 50.34 6
+2016-06-21 22:37:15,444 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:15,645 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:15,645 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:15,645 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:15,645 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:15,645 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:15,645 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:15,645 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:15,645 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:15,846 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:15,846 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:15,846 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:15,846 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:15,846 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:15,846 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:15,846 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:15,846 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:15,846 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:15,846 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:15,846 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:15,846 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:15,947 DEBUG TradeBlotter:137 - new market data: 49.73 34 49.74 25 50.33 39 50.34 6
+2016-06-21 22:37:15,947 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:16,147 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:16,147 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:16,147 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:16,147 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:16,147 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:16,147 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:16,148 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:16,148 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:16,348 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:16,348 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:16,348 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:16,348 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:16,348 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:16,348 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:16,348 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:16,349 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:16,349 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:16,349 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:16,349 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:16,349 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:16,449 DEBUG TradeBlotter:137 - new market data: 49.73 35 49.74 25 50.33 40 50.34 6
+2016-06-21 22:37:16,449 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:16,649 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:16,649 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:16,649 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:16,649 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:16,649 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:16,649 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:16,649 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:16,649 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:16,850 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:16,850 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:16,850 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:16,850 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:16,850 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:16,850 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:16,850 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:16,851 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:16,851 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:16,851 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:16,851 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:16,851 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:16,951 DEBUG TradeBlotter:137 - new market data: 49.73 35 49.74 25 50.33 40 50.34 6
+2016-06-21 22:37:16,951 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:17,152 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:17,152 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:17,152 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:17,152 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:17,152 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:17,152 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:17,152 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:17,152 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:17,353 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:17,353 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:17,353 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:17,353 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:17,353 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:17,353 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:17,353 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:17,353 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:17,353 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:17,353 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:17,353 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:17,353 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:17,454 DEBUG TradeBlotter:137 - new market data: 49.73 35 49.74 26 50.33 40 50.34 6
+2016-06-21 22:37:17,454 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:17,654 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:17,654 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:17,654 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:17,654 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:17,654 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:17,654 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:17,655 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:17,655 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:17,855 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:17,855 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:17,855 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:17,855 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:17,855 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:17,855 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:17,856 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:17,856 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:17,856 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:17,856 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:17,856 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:17,856 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:17,956 DEBUG TradeBlotter:137 - new market data: 49.73 26 49.74 34 50.33 29 50.34 7
+2016-06-21 22:37:17,956 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:18,156 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:18,156 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:18,156 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:18,156 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:18,156 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:18,156 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:18,157 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:18,157 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:18,357 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:18,357 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:18,357 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:18,357 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:18,357 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:18,357 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:18,357 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:18,358 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:18,358 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:18,358 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:18,358 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:18,358 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:18,458 DEBUG TradeBlotter:137 - new market data: 49.73 28 49.74 32 50.33 32 50.34 6
+2016-06-21 22:37:18,458 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:18,658 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:18,658 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:18,658 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:18,658 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:18,658 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:18,658 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:18,658 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:18,658 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:18,859 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:18,859 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:18,859 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:18,859 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:18,859 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:18,859 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:18,859 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:18,859 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:18,859 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:18,859 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:18,859 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:18,859 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:18,959 DEBUG TradeBlotter:137 - new market data: 49.73 28 49.74 29 50.33 32 50.34 6
+2016-06-21 22:37:18,959 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:19,160 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:19,160 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:19,160 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:19,160 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:19,160 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:19,160 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:19,160 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:19,160 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:19,361 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:19,361 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:19,361 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:19,361 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:19,361 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:19,361 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:19,361 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:19,361 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:19,361 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:19,361 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:19,361 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:19,361 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:19,462 DEBUG TradeBlotter:137 - new market data: 49.73 29 49.74 14 50.33 34 50.34 4
+2016-06-21 22:37:19,462 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:19,662 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:19,662 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:19,662 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:19,662 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:19,662 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:19,662 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:19,662 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:19,663 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:19,863 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:19,863 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:19,863 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:19,863 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:19,863 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:19,863 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:19,863 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:19,864 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:19,864 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:19,864 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:19,864 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:19,864 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:19,964 DEBUG TradeBlotter:137 - new market data: 49.73 29 49.74 14 50.33 34 50.34 4
+2016-06-21 22:37:19,964 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:20,164 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:20,164 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:20,164 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:20,164 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:20,164 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:20,164 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:20,164 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:20,165 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:20,366 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:20,366 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:20,366 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:20,366 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:20,366 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:20,366 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:20,366 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:20,366 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:20,366 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:37:20,366 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-21 22:37:20,366 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-21 22:37:20,366 INFO  TradeBlotter:127 - data updating...
+2016-06-21 22:37:20,466 DEBUG TradeBlotter:137 - new market data: 49.73 29 49.74 14 50.33 34 50.34 4
+2016-06-21 22:37:20,466 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:20,667 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:20,667 DEBUG FiniteStateAutomation:97 - market and pos data updated
+2016-06-21 22:37:20,667 DEBUG FiniteStateAutomation:98 - is pos equal: + 0 0 true
+2016-06-21 22:37:20,667 DEBUG PositionWatcher:29 - cur values before update: 0 0
+2016-06-21 22:37:20,667 DEBUG PositionWatcher:31 - cur values after update: 0 0
+2016-06-21 22:37:20,667 DEBUG PositionWatcher:47 - prev values before update: 
+2016-06-21 22:37:20,667 DEBUG PositionWatcher:49 - prev values after update: 
+2016-06-21 22:37:20,667 INFO  TradeBlotter:145 - position updating...
+2016-06-21 22:37:20,868 DEBUG TradeBlotter:148 - pos n and f: 0 0
+2016-06-21 22:37:20,868 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-21 22:37:20,868 DEBUG SpreadCalculator:54 - calculations in SC completed
+2016-06-21 22:37:20,868 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:37:20,868 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:37:20,868 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:37:20,868 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:37:20,868 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:37:20,868 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0

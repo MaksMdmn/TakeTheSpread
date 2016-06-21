@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="DEBUG">
 
     <Properties>
         <Property name="log-path">logs/</Property>
     </Properties>
     <Appenders>
-        <!--<Console name="ConsoleAppender" target="SYSTEM_OUT">-->
-        <!--<PatternLayout>-->
-        <!--%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n-->
-        <!--</PatternLayout>-->
-        <!--</Console>-->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout>
+                %d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n
+            </PatternLayout>
+        </Console>
 
-        <!--<File name="FileAppender" fileName="logs/log55.txt" append = "true">-->
-        <!--<PatternLayout>-->
-        <!--<Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %c{1}:%L - %m%n</Pattern>-->
-        <!--</PatternLayout>-->
-        <!--</File>-->
-
-        <RollingFile name="RollingFileAppender" fileName="${log-path}/records"
-                     filePattern="${log-path}/records-%d{yyyy-MM-dd HH-mm-ss}">
+        <RollingFile name="RollingFileAppender" fileName="${log-path}/records.log"
+                     filePattern="${log-path}/records-%d{yyyy-MM-dd}-%i.log" bufferedIO="true" bufferedSize="500" immediateFlush="true">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %c{1}:%L - %m%n</Pattern>
             </PatternLayout>
+            <!--<CronTriggeringPolicy schedule="* * * * * ?"/>-->
+            <!---->
             <Policies>
-                <!--<SizeBasedTriggeringPolicy size="1 KB"/>-->
+                <TimeBasedTriggeringPolicy/>
                 <OnStartupTriggeringPolicy/>
+                <!--<SizeBasedTriggeringPolicy size="100 KB"/>-->
             </Policies>
-            <DefaultRolloverStrategy max="10"/>
+
+            <DefaultRolloverStrategy max="100"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
-        <!--<Logger name="go.takethespread.fsa.FiniteStateAutomation" level="all" additivity="false">-->
-        <!--<AppenderRef ref="ConsoleAppender"/>-->
-        <!--</Logger>-->
-
-        <Root level="debug">
+        <Logger name="go.takethespread" level="debug" additivity="false">
             <AppenderRef ref="RollingFileAppender"/>
-        </Root>
+        </Logger>
+
+        <!--<Root level="debug">-->
+        <!--<AppenderRef ref="RollingFileAppender"/>-->
+        <!--</Root>-->
     </Loggers>
 
 

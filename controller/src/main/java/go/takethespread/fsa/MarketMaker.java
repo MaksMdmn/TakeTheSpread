@@ -23,7 +23,7 @@ public class MarketMaker {
 
     public void hitOrderToMarket(int size, Term term, Order.Deal deal) {
 
-        logger.debug("hit order by following args: ", term, deal, size);
+        logger.debug("hit order by following args: " + term + " " + deal + " " + size);
         if (deal == null || term == null || size <= 0) { //size, what should I do ????
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
         }

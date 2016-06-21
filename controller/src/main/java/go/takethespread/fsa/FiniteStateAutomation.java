@@ -56,7 +56,6 @@ public class FiniteStateAutomation extends Thread {
                     currentTask = taskManager.getCurrentTask();
                 } while (currentTask == null);
 
-                logger.debug("current task: " + currentTask);
                 logger.debug("current command: " + currentTask.getCommand());
 
                 switch (currentTask.getCommand()) {
@@ -82,8 +81,10 @@ public class FiniteStateAutomation extends Thread {
 
             } catch (TradeException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                logger.error(e);
+                executeGJ();
             }
-
         }
     }
 

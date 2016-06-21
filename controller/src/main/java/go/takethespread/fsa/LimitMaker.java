@@ -64,7 +64,7 @@ public class LimitMaker {
     }
 
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {
-        logger.debug("place order by following args: " + instr, deal, price, size);
+        logger.debug("place order by following args: " + instr + " " + deal + " " + price + " " + size);
         if (deal == Order.Deal.Buy) {
             return externalManager.sendLimitBuy(instr, price, size);
         }

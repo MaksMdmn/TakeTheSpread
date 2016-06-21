@@ -1,0 +1,9 @@
+2016-06-21 22:35:14,434 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.6 cPh OFF_SEASON
+2016-06-21 22:35:14,438 DEBUG FiniteStateAutomation:107 - auxiliary data updated
+2016-06-21 22:35:14,438 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.6 spreadASK=0.6 spreadCALC=0.6
+2016-06-21 22:35:14,438 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-21 22:35:14,438 INFO  FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-21 22:35:14,438 INFO  FiniteStateAutomation:168 - GO executed, pos status: 0 0
+2016-06-21 22:35:14,438 DEBUG FiniteStateAutomation:59 - current command: GJ
+2016-06-21 22:35:14,438 INFO  FiniteStateAutomation:173 - execute GJ
+2016-06-21 22:35:14,439 INFO  FiniteStateAutomation:176 - GJ executed

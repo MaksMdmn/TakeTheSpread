@@ -1,0 +1,16 @@
+2016-06-21 22:33:00,689 INFO  FiniteStateAutomation:31 - creation of FSA, logger started
+2016-06-21 22:33:00,699 DEBUG SpreadCalculator:47 - SC created
+2016-06-21 22:33:00,700 INFO  Algorithm:17 - Creation of Algorithm object
+2016-06-21 22:33:00,700 INFO  Algorithm:21 - Algorithm created
+2016-06-21 22:33:00,701 DEBUG LimitMaker:29 - LM created
+2016-06-21 22:33:00,702 DEBUG MarketMaker:17 - MM created
+2016-06-21 22:33:00,702 DEBUG PositionWatcher:25 - PW created
+2016-06-21 22:33:00,703 INFO  FiniteStateAutomation:45 - creation of FSA success
+2016-06-21 22:33:16,689 INFO  FiniteStateAutomation:31 - creation of FSA, logger started
+2016-06-21 22:33:16,708 DEBUG SpreadCalculator:47 - SC created
+2016-06-21 22:33:16,711 INFO  Algorithm:17 - Creation of Algorithm object
+2016-06-21 22:33:16,712 INFO  Algorithm:21 - Algorithm created
+2016-06-21 22:33:16,713 DEBUG LimitMaker:29 - LM created
+2016-06-21 22:33:16,713 DEBUG MarketMaker:17 - MM created
+2016-06-21 22:33:16,714 DEBUG PositionWatcher:25 - PW created
+2016-06-21 22:33:16,714 INFO  FiniteStateAutomation:45 - creation of FSA success

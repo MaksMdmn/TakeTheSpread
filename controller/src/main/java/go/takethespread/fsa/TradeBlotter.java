@@ -134,7 +134,10 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
-        logger.debug("new market data: " + bid_n + " " + bidVol_n + " " + ask_n + " " + askVol_n + " " + bid_f + " " + bidVol_f + " " + ask_f + " " + askVol_f);
+        logger.debug("new market data: " + bid_n.getAmount() + " " + bidVol_n + " " +
+                ask_n.getAmount() + " " + askVol_n + " " +
+                bid_f.getAmount() + " " + bidVol_f + " " +
+                ask_f.getAmount() + " " + askVol_f);
 
     }
 
@@ -149,7 +152,7 @@ public class TradeBlotter {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
-        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread() + " cPh " +  curPhase);
+        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread().getAmount() + " cPh " +  curPhase);
     }
 
 
