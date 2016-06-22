@@ -16,26 +16,34 @@ public class LimitMaker {
     private ExternalManager externalManager;
     private TradeBlotter blotter;
     private Map<String, Integer> alreadyFilledMap;
+    private boolean isRollNecessary;
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
-    private Term lastTermVal;
-    private Order.Deal lastDealVal;
+    private Term prevTerm;
+    private Order.Deal prevDeal;
 
     public LimitMaker(ExternalManager externalManager, TradeBlotter blotter) {
         this.externalManager = externalManager;
         this.blotter = blotter;
         this.alreadyFilledMap = new HashMap<>();
-        logger.debug("LM created");
+        this.prevTerm = null; //for example, may wonder
+        this.prevDeal = null; //for example, may wonder
+
+        logger.info("LM created");
     }
 
-    //return filled size only if order was rolled!!!!!!!!! NOT FILLED SIZE OF ACTIVE ORDER
     public void rollLimitOrder(int size, Term term, Order.Deal deal) {
+        if (isPrevCancellingDangerous(term, deal)) {
+            //leave, because it already has changed the position
+            return;
+        }
+
         String tmpInstr = blotter.termToInstrument(term);
         Money tmpPrice = defineLimitPrice(term, deal);
-        boolean isRollNecessary = isRollNecessary(size, term, deal);
-        lastTermVal = term;
-        lastDealVal = deal;
+        isRollNecessary = isRollNecessary(size, term, deal);
+
+        logger.debug("is roll necessary: " + isRollNecessary);
 
         if (deal == null || term == null || size <= 0) { //size, what should I do ????
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
@@ -52,19 +60,43 @@ public class LimitMaker {
         logger.debug("rolling order: " + frontRunOrder);
     }
 
+    public boolean isOrderPlaced() {
+        return frontRunOrder != null;
+    }
+
     public int trackFilledSize() {
         return defineRemainingSize();
     }
 
     public int cancelOrderSize() {
         frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
+        logger.debug("order cancelled: " + frontRunOrder);
         int result = defineRemainingSize();
         frontRunOrder = null;
         return result;
     }
 
+    private boolean isPrevCancellingDangerous(Term term, Order.Deal deal) {
+        boolean result = false;
+
+        if (prevTerm == null && prevDeal == null) {
+            result = false;
+        } else if (term != prevTerm || deal != prevDeal) {
+            if (cancelOrderSize() > 0) {
+                prevTerm = null;
+                prevDeal = null;
+                result = true;
+            }
+        }
+
+        prevTerm = term;
+        prevDeal = deal;
+
+        return result;
+    }
+
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {
-        logger.debug("place order by following args: " + instr + " " + deal + " " + price + " " + size);
+        logger.info("place order by following args: " + instr + " " + deal + " " + price.getAmount() + " " + size);
         if (deal == Order.Deal.Buy) {
             return externalManager.sendLimitBuy(instr, price, size);
         }

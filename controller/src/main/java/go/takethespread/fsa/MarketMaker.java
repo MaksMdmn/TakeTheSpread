@@ -14,7 +14,7 @@ public class MarketMaker {
     public MarketMaker(ExternalManager externalManager, TradeBlotter blotter) {
         this.externalManager = externalManager;
         this.blotter = blotter;
-        logger.debug("MM created");
+        logger.info("MM created");
     }
 
     public static int choosePairDealSize(int size1, int size2) {
@@ -37,7 +37,7 @@ public class MarketMaker {
             externalManager.sendMarketSell(tmpInstr, size);
         }
 
-        logger.debug("pause starting...");
+        logger.info("pause starting...");
         blotter.getSpreadCalculator().pause();
     }
 

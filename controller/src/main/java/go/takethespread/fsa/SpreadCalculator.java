@@ -44,21 +44,21 @@ public class SpreadCalculator {
         this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
         this.isPauseEnabled = false;
 
-        logger.debug("SC created");
+        logger.info("SC created");
     }
 
     public void makeCalculations() {
         collectCalcData();
         calcCurSpread();
         calcEnteringSpread();
-        logger.debug("calculations in SC completed");
+        logger.info("calculations in SC completed");
 //        System.out.println("cur: " + curSpread.getAmount() + " ent " + enteringSpread.getAmount() + " enough? " + isEnoughData());
     }
 
     public void pause() {
         startPauseTime = System.currentTimeMillis();
         isPauseEnabled = true;
-        logger.debug("pause started at: ", startPauseTime);
+        logger.info("pause started at: " + startPauseTime);
     }
 
     public boolean isPauseEnabled() {

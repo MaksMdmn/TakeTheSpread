@@ -1,8 +1,924 @@
-2016-06-21 22:40:05,809 INFO  FiniteStateAutomation:31 - creation of FSA, logger started
-2016-06-21 22:40:05,819 DEBUG SpreadCalculator:47 - SC created
-2016-06-21 22:40:05,820 INFO  Algorithm:17 - Creation of Algorithm object
-2016-06-21 22:40:05,820 INFO  Algorithm:21 - Algorithm created
-2016-06-21 22:40:05,821 DEBUG LimitMaker:29 - LM created
-2016-06-21 22:40:05,821 DEBUG MarketMaker:17 - MM created
-2016-06-21 22:40:05,823 DEBUG PositionWatcher:25 - PW created
-2016-06-21 22:40:05,823 INFO  FiniteStateAutomation:45 - creation of FSA success
+2016-06-22 21:05:43,644 INFO  FiniteStateAutomation:31 - creation of FSA, logger started
+2016-06-22 21:05:43,657 INFO  SpreadCalculator:47 - SC created
+2016-06-22 21:05:43,659 INFO  Algorithm:17 - Creation of Algorithm object
+2016-06-22 21:05:43,659 INFO  Algorithm:21 - Algorithm created
+2016-06-22 21:05:43,659 INFO  LimitMaker:33 - LM created
+2016-06-22 21:05:43,660 INFO  MarketMaker:17 - MM created
+2016-06-22 21:05:43,661 INFO  PositionWatcher:25 - PW created
+2016-06-22 21:05:43,661 INFO  FiniteStateAutomation:45 - creation of FSA success
+2016-06-22 21:05:53,181 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:53,183 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:53,183 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:53,284 DEBUG TradeBlotter:137 - new market data: 48.58 27 48.59 36 49.23 4 49.24 45
+2016-06-22 21:05:53,285 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:53,514 DEBUG TradeBlotter:148 - position updated: 0 0
+2016-06-22 21:05:53,514 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:53,514 DEBUG FiniteStateAutomation:98 - is pos equal: 0 0 true
+2016-06-22 21:05:53,515 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:53,515 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:53,515 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh ACCUMULATION
+2016-06-22 21:05:53,515 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:53,515 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:53,515 DEBUG Algorithm:32 - phase is: ACCUMULATION
+2016-06-22 21:05:53,516 DEBUG FiniteStateAutomation:111 - current signal: M_M_BUY
+2016-06-22 21:05:53,516 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=4 favor.size=1 phase: ACCUMULATION
+2016-06-22 21:05:53,517 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:05:53,517 DEBUG MarketMaker:26 - hit order by following args: NEAR Buy 1
+2016-06-22 21:05:54,127 INFO  MarketMaker:40 - pause starting...
+2016-06-22 21:05:54,127 INFO  SpreadCalculator:61 - pause started at: 1466618754127
+2016-06-22 21:05:54,127 DEBUG MarketMaker:26 - hit order by following args: FAR Sell 1
+2016-06-22 21:05:54,730 INFO  MarketMaker:40 - pause starting...
+2016-06-22 21:05:54,730 INFO  SpreadCalculator:61 - pause started at: 1466618754730
+2016-06-22 21:05:54,730 INFO  FiniteStateAutomation:171 - GO executed, pos status: 0 0
+2016-06-22 21:05:54,730 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:54,731 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:54,731 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:54,831 DEBUG TradeBlotter:137 - new market data: 48.58 27 48.59 48 49.23 3 49.24 57
+2016-06-22 21:05:54,831 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:55,032 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:55,032 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:55,032 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:55,032 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:55,033 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:55,033 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:55,033 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:55,033 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:55,033 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:55,033 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:55,033 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:55,033 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:55,033 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:55,034 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:55,134 DEBUG TradeBlotter:137 - new market data: 48.58 27 48.59 48 49.23 3 49.24 57
+2016-06-22 21:05:55,134 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:55,335 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:55,335 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:55,335 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:55,335 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:55,336 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:55,336 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:55,336 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:55,336 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:55,336 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:55,336 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:55,336 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:55,336 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:55,337 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:55,337 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:55,437 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 49 49.23 3 49.24 58
+2016-06-22 21:05:55,437 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:55,638 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:55,638 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:55,638 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:55,639 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:55,639 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:55,639 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:55,639 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:55,639 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:55,639 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:55,639 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:55,639 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:55,639 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:55,640 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:55,640 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:55,741 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 49 49.23 3 49.24 58
+2016-06-22 21:05:55,741 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:55,941 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:55,942 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:55,942 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:55,942 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:55,942 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:55,942 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:55,942 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:55,942 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:55,943 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:55,943 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:55,943 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:55,943 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:55,943 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:55,943 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:56,044 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 49 49.23 3 49.24 58
+2016-06-22 21:05:56,044 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:56,245 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:56,245 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:56,245 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:56,245 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:56,246 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:56,246 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:56,246 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:56,246 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:56,246 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:56,246 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:56,246 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:56,246 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:56,246 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:56,246 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:56,346 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 49 49.23 2 49.24 60
+2016-06-22 21:05:56,346 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:56,548 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:56,548 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:56,548 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:56,548 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:56,548 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:56,548 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:56,549 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:56,549 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:56,549 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:56,549 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:56,549 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:56,549 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:56,549 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:56,549 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:56,650 DEBUG TradeBlotter:137 - new market data: 48.58 21 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:56,650 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:56,851 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:56,851 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:56,851 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:56,851 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:56,852 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:56,852 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:56,852 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:56,852 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:56,852 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:56,852 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:56,852 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:56,852 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:56,852 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:56,852 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:56,953 DEBUG TradeBlotter:137 - new market data: 48.58 23 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:56,953 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:57,153 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:57,153 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:57,153 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:57,154 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:57,154 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:57,154 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:57,154 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:57,154 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:57,155 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:57,155 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:57,155 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:57,155 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:57,155 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:57,155 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:57,256 DEBUG TradeBlotter:137 - new market data: 48.58 23 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:57,257 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:57,457 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:57,457 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:57,457 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:57,457 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:57,458 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:57,458 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:57,458 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:57,458 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:57,458 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:57,458 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:57,458 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:57,458 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:57,458 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:57,458 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:57,559 DEBUG TradeBlotter:137 - new market data: 48.58 23 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:57,559 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:57,760 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:57,760 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:57,760 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:57,761 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:57,761 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:57,761 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:57,761 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:57,761 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:57,762 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:57,762 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:57,762 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:57,762 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:57,762 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:57,762 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:57,863 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:57,863 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:58,064 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:58,064 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:58,064 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:58,064 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:58,064 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:58,064 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:58,064 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:58,064 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:58,065 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:58,065 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:58,065 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:58,065 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:58,065 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:58,065 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:58,165 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:58,165 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:58,366 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:58,366 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:58,366 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:58,366 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:58,367 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:58,367 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:58,368 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:58,368 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:58,368 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:58,368 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:58,369 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:58,369 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:58,369 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:58,369 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:58,469 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 51 49.23 2 49.24 60
+2016-06-22 21:05:58,470 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:58,671 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:58,671 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:58,671 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:58,671 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:58,672 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:58,672 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:58,672 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:58,672 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:58,672 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:58,672 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:58,672 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:58,672 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:58,672 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:58,672 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:58,773 DEBUG TradeBlotter:137 - new market data: 48.58 25 48.59 51 49.23 7 49.24 54
+2016-06-22 21:05:58,773 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:58,973 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:58,973 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:58,973 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:58,973 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:58,974 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:58,974 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:58,974 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:58,974 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:58,974 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:58,974 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:58,974 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:58,974 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:58,975 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:58,975 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:59,075 DEBUG TradeBlotter:137 - new market data: 48.58 35 48.59 44 49.23 4 49.24 51
+2016-06-22 21:05:59,076 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:59,278 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:59,278 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:59,278 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:59,278 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:59,278 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:59,278 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:59,278 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:59,279 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:59,279 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:59,279 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:59,279 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:59,279 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:59,279 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:59,279 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:59,380 DEBUG TradeBlotter:137 - new market data: 48.58 35 48.59 44 49.23 4 49.24 51
+2016-06-22 21:05:59,380 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:59,580 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:59,580 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:59,580 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:59,580 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:59,581 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:59,581 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:59,581 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:59,581 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:59,581 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:59,581 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:59,581 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:59,581 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:59,581 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:59,581 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:59,682 DEBUG TradeBlotter:137 - new market data: 48.58 35 48.59 45 49.23 4 49.24 52
+2016-06-22 21:05:59,682 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:05:59,883 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:05:59,884 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:05:59,884 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:05:59,884 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:05:59,884 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:05:59,884 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:05:59,884 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:05:59,884 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:05:59,884 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:05:59,885 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:05:59,885 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:05:59,885 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:05:59,885 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:05:59,885 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:05:59,986 DEBUG TradeBlotter:137 - new market data: 48.58 28 48.59 46 49.23 4 49.24 55
+2016-06-22 21:05:59,986 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:00,188 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:00,188 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:00,188 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:00,188 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:00,188 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:00,188 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:00,188 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:00,188 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:00,188 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:00,189 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:00,189 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:00,189 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:00,189 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:00,189 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:00,289 DEBUG TradeBlotter:137 - new market data: 48.58 28 48.59 47 49.23 4 49.24 55
+2016-06-22 21:06:00,290 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:00,491 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:00,491 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:00,491 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:00,491 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:00,492 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:00,492 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:00,492 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:00,492 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:00,492 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:00,492 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:00,492 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:00,492 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:00,492 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:00,492 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:00,593 DEBUG TradeBlotter:137 - new market data: 48.58 28 48.59 47 49.23 2 49.24 59
+2016-06-22 21:06:00,593 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:00,793 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:00,793 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:00,793 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:00,793 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:00,794 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:00,794 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:00,794 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:00,794 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:00,794 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:00,794 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:00,794 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:00,795 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:00,795 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:00,795 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:00,895 DEBUG TradeBlotter:137 - new market data: 48.58 26 48.59 51 49.23 3 49.24 61
+2016-06-22 21:06:00,895 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:01,096 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:01,096 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:01,096 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:01,096 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:01,097 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:01,097 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:01,097 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:01,097 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:01,097 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:01,097 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:01,097 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:01,097 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:01,097 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:01,097 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:01,198 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 46 49.23 4 49.24 55
+2016-06-22 21:06:01,198 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:01,399 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:01,399 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:01,399 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:01,399 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:01,399 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:01,402 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:01,403 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:01,403 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:01,403 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:01,403 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:01,403 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:01,403 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:01,404 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:01,404 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:01,510 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 46 49.23 4 49.24 55
+2016-06-22 21:06:01,510 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:01,719 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:01,720 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:01,720 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:01,720 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:01,720 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:01,722 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:01,722 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:01,724 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:01,724 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:01,724 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:01,724 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:01,724 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:01,724 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:01,724 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:01,825 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 46 49.23 4 49.24 55
+2016-06-22 21:06:01,825 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:02,030 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:02,030 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:02,030 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:02,031 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:02,031 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:02,031 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:02,031 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:02,031 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:02,031 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:02,031 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:02,031 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:02,032 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:02,032 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:02,032 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:02,132 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 46 49.23 4 49.24 55
+2016-06-22 21:06:02,132 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:02,333 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:02,333 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:02,333 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:02,333 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:02,333 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:02,333 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:02,333 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:02,333 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:02,333 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:02,334 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:02,334 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:02,334 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:02,334 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:02,334 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:02,434 DEBUG TradeBlotter:137 - new market data: 48.58 30 48.59 47 49.23 4 49.24 57
+2016-06-22 21:06:02,434 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:02,635 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:02,635 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:02,635 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:02,635 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:02,636 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:02,636 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:02,636 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:02,636 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:02,636 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:02,636 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:02,636 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:02,636 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:02,636 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:02,636 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:02,737 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 47 49.23 4 49.24 57
+2016-06-22 21:06:02,737 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:02,938 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:02,938 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:02,938 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:02,938 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:02,938 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:02,938 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:02,938 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:02,939 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:02,939 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:02,939 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:02,939 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:02,939 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:02,939 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:02,939 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:03,039 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 47 49.23 4 49.24 61
+2016-06-22 21:06:03,039 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:03,240 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:03,240 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:03,240 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:03,240 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:03,241 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:03,241 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:03,241 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:03,241 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:03,241 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:03,241 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:03,241 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:03,241 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:03,241 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:03,241 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:03,342 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:03,342 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:03,543 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:03,543 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:03,543 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:03,543 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:03,544 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:03,544 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:03,544 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:03,544 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:03,544 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:03,544 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:03,544 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:03,544 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:03,544 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:03,544 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:03,644 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:03,644 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:03,846 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:03,846 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:03,846 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:03,846 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:03,846 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:03,846 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:03,846 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:03,846 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:03,846 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:03,847 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:03,847 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:03,847 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:03,847 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:03,847 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:03,947 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:03,947 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:04,147 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:04,147 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:04,147 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:04,148 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:04,148 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:04,148 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.63 cPh OFF_SEASON
+2016-06-22 21:06:04,148 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:04,149 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.63
+2016-06-22 21:06:04,149 DEBUG Algorithm:32 - phase is: OFF_SEASON
+2016-06-22 21:06:04,149 DEBUG FiniteStateAutomation:111 - current signal: NOTHING
+2016-06-22 21:06:04,149 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:04,149 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:04,149 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:04,149 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:04,250 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:04,250 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:04,455 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:04,455 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:04,455 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:04,455 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:04,456 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:04,456 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:04,456 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:04,456 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:04,456 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:04,457 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:04,457 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=61 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:04,457 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:04,457 INFO  LimitMaker:97 - place order by following args: CL 08-16 Sell 48.59 1
+2016-06-22 21:06:04,560 DEBUG LimitMaker:58 - rolling order: Order{id='9862aaee2eeb4e8c8b20612b215937f2', instrument='CL 08-16', date=Wed Jun 22 21:06:04 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.59, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:04,561 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:04,561 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:04,561 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:04,561 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:04,661 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:04,661 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:04,862 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:04,862 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:04,862 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:04,862 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:04,862 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:04,862 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:04,862 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:04,862 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:04,862 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:04,862 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:04,862 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=61 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:04,863 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:04,863 DEBUG LimitMaker:58 - rolling order: Order{id='9862aaee2eeb4e8c8b20612b215937f2', instrument='CL 08-16', date=Wed Jun 22 21:06:04 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.59, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:04,863 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:04,863 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:04,863 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:04,863 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:04,963 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 4 49.24 61
+2016-06-22 21:06:04,963 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:05,164 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:05,164 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:05,164 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:05,164 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:05,164 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:05,165 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:05,165 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:05,165 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:05,165 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:05,165 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:05,165 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=61 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:05,165 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:05,165 DEBUG LimitMaker:58 - rolling order: Order{id='9862aaee2eeb4e8c8b20612b215937f2', instrument='CL 08-16', date=Wed Jun 22 21:06:04 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.59, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:05,165 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:05,165 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:05,165 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:05,165 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:05,266 DEBUG TradeBlotter:137 - new market data: 48.58 31 48.59 52 49.23 2 49.24 66
+2016-06-22 21:06:05,266 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:05,467 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:05,467 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:05,467 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:05,467 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:05,468 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:05,468 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:05,468 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:05,468 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:05,468 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:05,468 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:05,468 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=66 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:05,468 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:05,468 DEBUG LimitMaker:58 - rolling order: Order{id='9862aaee2eeb4e8c8b20612b215937f2', instrument='CL 08-16', date=Wed Jun 22 21:06:04 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.59, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:05,468 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:05,468 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:05,468 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:05,469 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:05,569 DEBUG TradeBlotter:137 - new market data: 48.57 67 48.58 25 49.22 11 49.23 28
+2016-06-22 21:06:05,569 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:05,770 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:05,770 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:05,770 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:05,770 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:05,770 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:05,771 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:05,771 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:05,771 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:05,771 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:05,771 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:05,771 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=28 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:05,771 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:06,130 DEBUG LimitMaker:71 - order cancelled: Order{id='9862aaee2eeb4e8c8b20612b215937f2', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=1, price=48.59, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:06,232 INFO  LimitMaker:97 - place order by following args: CL 08-16 Sell 48.58 1
+2016-06-22 21:06:06,332 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:06,333 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:06,333 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:06,333 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:06,333 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:06,433 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 28 49.22 16 49.23 35
+2016-06-22 21:06:06,433 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:06,635 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:06,635 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:06,635 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:06,635 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:06,635 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:06,635 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:06,635 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:06,635 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:06,635 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:06,635 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:06,636 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=35 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:06,636 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:06,636 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:06,636 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:06,636 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:06,636 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:06,636 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:06,737 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 28 49.22 19 49.23 33
+2016-06-22 21:06:06,737 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:06,938 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:06,938 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:06,938 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:06,938 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:06,939 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:06,939 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:06,939 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:06,939 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:06,939 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:06,939 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:06,939 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=33 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:06,939 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:06,939 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:06,939 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:06,939 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:06,939 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:06,939 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:07,040 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 28 49.22 19 49.23 32
+2016-06-22 21:06:07,040 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:07,240 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:07,240 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:07,240 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:07,240 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:07,240 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:07,241 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:07,241 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:07,241 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:07,241 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:07,241 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:07,241 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=32 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:07,241 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:07,241 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:07,241 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:07,241 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:07,241 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:07,241 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:07,342 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 28 49.22 19 49.23 32
+2016-06-22 21:06:07,342 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:07,542 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:07,542 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:07,542 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:07,542 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:07,542 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:07,543 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:07,543 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:07,543 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:07,543 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:07,543 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:07,543 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=32 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:07,543 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:07,543 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:07,543 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:07,543 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:07,543 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:07,543 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:07,644 DEBUG TradeBlotter:137 - new market data: 48.57 82 48.58 28 49.22 19 49.23 32
+2016-06-22 21:06:07,644 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:07,844 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:07,844 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:07,844 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:07,845 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:07,845 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:07,845 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:07,845 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:07,845 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:07,845 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:07,845 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:07,845 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=32 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:07,845 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:07,845 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:07,845 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:07,845 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:07,846 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:07,846 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:07,946 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 37 49.22 18 49.23 42
+2016-06-22 21:06:07,946 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:08,147 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:08,147 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:08,147 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:08,147 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:08,147 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:08,148 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:08,148 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:08,148 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:08,148 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:08,148 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:08,148 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=42 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:08,148 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:08,148 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:08,148 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:08,148 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:08,148 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:08,148 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:08,249 DEBUG TradeBlotter:137 - new market data: 48.57 83 48.58 42 49.22 18 49.23 47
+2016-06-22 21:06:08,249 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:08,449 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:08,449 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:08,449 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:08,449 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:08,449 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:08,450 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:08,450 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:08,450 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:08,450 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:08,450 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:08,450 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=47 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:08,450 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:08,450 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:08,450 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:08,450 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:08,450 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:08,450 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:08,550 DEBUG TradeBlotter:137 - new market data: 48.57 82 48.58 42 49.22 18 49.23 47
+2016-06-22 21:06:08,550 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:08,751 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:08,751 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:08,751 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:08,751 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:08,752 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:08,752 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:08,752 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:08,752 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:08,752 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:08,752 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:08,752 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=47 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:08,752 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:08,752 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:08,752 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:08,752 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:08,752 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:08,752 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:08,853 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 42 49.22 18 49.23 47
+2016-06-22 21:06:08,853 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:09,054 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:09,054 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:09,054 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:09,054 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:09,054 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:09,054 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:09,054 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:09,054 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:09,054 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:09,054 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:09,054 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=47 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:09,055 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:09,055 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:09,055 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:09,055 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:09,055 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:09,055 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:09,155 DEBUG TradeBlotter:137 - new market data: 48.57 81 48.58 42 49.22 18 49.23 47
+2016-06-22 21:06:09,155 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:09,356 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:09,356 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:09,356 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:09,356 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:09,356 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:09,356 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:09,356 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:09,356 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:09,356 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:09,356 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:09,356 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=47 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:09,356 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:09,357 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:09,357 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:09,357 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:09,357 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:09,357 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:09,457 DEBUG TradeBlotter:137 - new market data: 48.57 82 48.58 42 49.22 19 49.23 47
+2016-06-22 21:06:09,457 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:09,660 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:09,660 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:09,660 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:09,660 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:09,660 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:09,661 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:09,661 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:09,661 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:09,661 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:09,661 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:09,661 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=47 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:09,661 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:09,661 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:09,661 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:09,661 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:09,661 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:09,661 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:09,762 DEBUG TradeBlotter:137 - new market data: 48.57 82 48.58 47 49.22 19 49.23 52
+2016-06-22 21:06:09,762 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:09,963 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:09,963 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:09,963 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:09,963 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:09,963 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:09,963 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:09,963 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:09,963 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:09,963 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:09,964 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:09,964 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=52 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:09,964 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:09,964 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:09,964 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:09,964 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:09,964 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:09,964 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:10,065 DEBUG TradeBlotter:137 - new market data: 48.57 85 48.58 40 49.22 20 49.23 43
+2016-06-22 21:06:10,065 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:10,266 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:10,266 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:10,266 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:10,266 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:10,266 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:10,266 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:10,266 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:10,267 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:10,267 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:10,267 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:10,267 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=43 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:10,267 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:10,267 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:10,267 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:10,267 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:10,267 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:10,267 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:10,368 DEBUG TradeBlotter:137 - new market data: 48.57 85 48.58 40 49.22 20 49.23 39
+2016-06-22 21:06:10,368 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:10,569 DEBUG TradeBlotter:148 - position updated: 0 -1
+2016-06-22 21:06:10,569 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:10,569 DEBUG FiniteStateAutomation:98 - is pos equal: 0 -1 false
+2016-06-22 21:06:10,569 INFO  PositionWatcher:29 - cur values before update: 0 0
+2016-06-22 21:06:10,569 INFO  PositionWatcher:31 - cur values after update: 0 -1
+2016-06-22 21:06:10,569 INFO  PositionWatcher:77 - equalizing: NEAR -1
+2016-06-22 21:06:10,569 DEBUG MarketMaker:26 - hit order by following args: NEAR Buy 1
+2016-06-22 21:06:11,171 INFO  MarketMaker:40 - pause starting...
+2016-06-22 21:06:11,171 INFO  SpreadCalculator:61 - pause started at: 1466618771171
+2016-06-22 21:06:11,171 INFO  PositionWatcher:47 - prev values before update: 0 0
+2016-06-22 21:06:11,171 INFO  PositionWatcher:49 - prev values after update: 0 -1
+2016-06-22 21:06:11,171 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:11,372 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:11,372 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:11,372 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:11,372 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:11,372 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:11,372 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.65 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:11,372 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:11,372 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:11,372 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=39 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:11,372 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:11,372 DEBUG LimitMaker:58 - rolling order: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:06 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=1, price=48.58, filled=0, priceFilled=Money{amount=0.0, currency=USD}}
+2016-06-22 21:06:11,372 INFO  FiniteStateAutomation:171 - GO executed, pos status: 1 -1
+2016-06-22 21:06:11,373 DEBUG FiniteStateAutomation:59 - current command: GO
+2016-06-22 21:06:11,373 INFO  FiniteStateAutomation:92 - execute GO
+2016-06-22 21:06:11,373 INFO  TradeBlotter:127 - data updating...
+2016-06-22 21:06:11,473 DEBUG TradeBlotter:137 - new market data: 48.59 22 48.6 57 49.23 35 49.25 65
+2016-06-22 21:06:11,473 INFO  TradeBlotter:145 - position updating...
+2016-06-22 21:06:11,674 DEBUG TradeBlotter:148 - position updated: 1 -1
+2016-06-22 21:06:11,674 INFO  FiniteStateAutomation:97 - market and pos data updated
+2016-06-22 21:06:11,674 DEBUG FiniteStateAutomation:98 - is pos equal: 1 -1 true
+2016-06-22 21:06:11,674 INFO  TradeBlotter:152 - auxiliary data updating...
+2016-06-22 21:06:11,674 INFO  SpreadCalculator:54 - calculations in SC completed
+2016-06-22 21:06:11,674 DEBUG TradeBlotter:155 - new auxiliary data: cSpr 0.65 cPh DISTRIBUTION
+2016-06-22 21:06:11,674 INFO  FiniteStateAutomation:107 - auxiliary data updated
+2016-06-22 21:06:11,674 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.64 spreadASK=0.65 spreadCALC=0.65
+2016-06-22 21:06:11,674 DEBUG Algorithm:32 - phase is: DISTRIBUTION
+2016-06-22 21:06:11,674 DEBUG FiniteStateAutomation:111 - current signal: L_M_SELL
+2016-06-22 21:06:11,674 INFO  PositionWatcher:54 - defineMaxPossibleSize makretSize=65 favor.size=1 phase: DISTRIBUTION
+2016-06-22 21:06:11,674 DEBUG PositionWatcher:66 - possible size: 1
+2016-06-22 21:06:11,775 DEBUG LimitMaker:71 - order cancelled: Order{id='c68576d374e1447fa96d02826cf2d91c', instrument='CL 08-16', date=Wed Jun 22 21:06:10 EEST 2016, deal=Sell, type=Limit, state=Filled, size=1, price=48.58, filled=1, priceFilled=Money{amount=48.58, currency=USD}}
+2016-06-22 21:06:11,876 INFO  LimitMaker:97 - place order by following args: CL 08-16 Sell 48.6 0
+2016-06-22 21:06:21,961 ERROR FiniteStateAutomation:85 - java.lang.RuntimeException: delay is too big for correcting work : 10000 ms.
+2016-06-22 21:06:21,961 INFO  FiniteStateAutomation:176 - execute GJ
+2016-06-22 21:06:21,962 INFO  FiniteStateAutomation:179 - GJ executed

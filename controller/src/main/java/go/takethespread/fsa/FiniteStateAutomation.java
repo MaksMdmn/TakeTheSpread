@@ -94,21 +94,21 @@ public class FiniteStateAutomation extends Thread {
         blotter.updateMarketData();
         blotter.updatePositionData();
 
-        logger.debug("market and pos data updated");
-        logger.debug("is pos equal: + " + blotter.getPosition_n() + " " + blotter.getPosition_f() + " " + pw.isPosEqual());
+        logger.info("market and pos data updated");
+        logger.debug("is pos equal: " + blotter.getPosition_n() + " " + blotter.getPosition_f() + " " + pw.isPosEqual());
 
-        if (pw.isPosEqual()) {
+        if (!pw.isPosEqual()) {
             pw.equalizePositions();
             blotter.updatePositionData();
         }
 
         blotter.updateAuxiliaryData();
 
-        logger.debug("auxiliary data updated");
+        logger.info("auxiliary data updated");
 
         Algorithm.Signal signal = algo.getSignal();
 
-        logger.info("current signal: " + signal);
+        logger.debug("current signal: " + signal);
 
         int size;
         int size_n;
@@ -160,6 +160,9 @@ public class FiniteStateAutomation extends Thread {
                 lm.rollLimitOrder(size, Term.FAR, Order.Deal.Buy);
                 break;
             case NOTHING:
+                if(lm.isOrderPlaced()){
+                    lm.cancelOrderSize();
+                }
                 //?????? what should I do here?
                 break;
             default:

@@ -145,7 +145,7 @@ public class TradeBlotter {
         logger.info("position updating...");
         position_n = externalManager.getPosition(tradeSystemInfo.instrument_n);
         position_f = externalManager.getPosition(tradeSystemInfo.instrument_f);
-        logger.debug("pos n and f: " + position_n + " " + position_f);
+        logger.debug("position updated: " + position_n + " " + position_f);
     }
 
     public void updateAuxiliaryData() {

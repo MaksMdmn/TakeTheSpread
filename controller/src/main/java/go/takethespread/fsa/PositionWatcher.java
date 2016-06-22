@@ -22,17 +22,17 @@ public class PositionWatcher {
         this.prevPos_f = 0;
         this.curPos_n = 0;
         this.curPos_f = 0;
-        logger.debug("PW created");
+        logger.info("PW created");
     }
 
     public void equalizePositions() {
-        logger.debug("cur values before update: "+ curPos_n+ " " + curPos_f);
+        logger.info("cur values before update: " + curPos_n + " " + curPos_f);
         updateCurValues();
-        logger.debug("cur values after update: "+ curPos_n+ " " + curPos_f);
+        logger.info("cur values after update: " + curPos_n + " " + curPos_f);
         int diff_n = curPos_n - prevPos_n;
         int diff_f = curPos_f - prevPos_f;
 
-        if (curPos_n != curPos_f) {
+        if (Math.abs(curPos_n) != Math.abs(curPos_f)) {
 
             if (diff_n == 0 && diff_f == 0) {
                 throw new RuntimeException("fatal error in algorithm,  both pos are different, but both diffs = 0: " + diff_n + " " + diff_f);
@@ -44,14 +44,14 @@ public class PositionWatcher {
                 fillTheDiff(diff_f, Term.NEAR);
             }
         }
-        logger.debug("prev values before update: ", prevPos_n, prevPos_f);
+        logger.info("prev values before update: " + prevPos_n + " " + prevPos_f);
         updatePrevValues();
-        logger.debug("prev values after update: ", prevPos_n, prevPos_f);
+        logger.info("prev values after update: " + prevPos_n + " " + prevPos_f);
     }
 
     public int defineMaxPossibleSize(int marketSize) {
         TradeBlotter.Phase phase = blotter.getCurPhase();
-        logger.debug("defineMaxPossibleSize makretSize=" + marketSize + " favor.size=" + blotter.getTradeSystemInfo().favorable_size + " phase: " + phase);
+        logger.info("defineMaxPossibleSize marketSize=" + marketSize + " favor.size=" + blotter.getTradeSystemInfo().favorable_size + " phase: " + phase);
         int result;
         int absPos = Math.abs(blotter.getPosition_n());
         int calcSize = 0;
@@ -63,7 +63,7 @@ public class PositionWatcher {
             calcSize = absPos;
         }
         result = marketSize < calcSize ? marketSize : calcSize;
-        logger.debug("possible size: "+ result);
+        logger.debug("possible size: " + result);
         return result;
     }
 
@@ -74,7 +74,7 @@ public class PositionWatcher {
     }
 
     private void fillTheDiff(int diff, Term fillTerm) {
-        logger.debug("before diff'll have filled: " + fillTerm+ " " + diff);
+        logger.info("equalizing: " + fillTerm + " " + diff);
         if (diff > 0) {
             marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, Order.Deal.Sell);
         } else if (diff < 0) {
