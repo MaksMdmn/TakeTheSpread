@@ -134,7 +134,8 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
-        logger.debug("new market data: " + bid_n.getAmount() + " " + bidVol_n + " " +
+        logger.debug("new market data: " +
+                bid_n.getAmount() + " " + bidVol_n + " " +
                 ask_n.getAmount() + " " + askVol_n + " " +
                 bid_f.getAmount() + " " + bidVol_f + " " +
                 ask_f.getAmount() + " " + askVol_f);
@@ -152,7 +153,7 @@ public class TradeBlotter {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
-        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread().getAmount() + " cPh " +  curPhase);
+        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread().getAmount() + " cPh " + curPhase);
     }
 
 
@@ -173,10 +174,15 @@ public class TradeBlotter {
         int pos_f = Math.abs(position_f);
 
         if (pos_n != pos_f) {
-            throw new IllegalArgumentException("pos in algo calcs are not equal, n and f: " + position_n + " " + position_f);
+            throw new IllegalArgumentException("pos are not equal, n and f: " + position_n + " " + position_f);
         }
 
-        Money bestSpread = getBestSpread();
+        //okay, abs positions are equalize, but they must have different sign
+        if (position_n == position_f && position_n != 0){
+            throw new IllegalArgumentException("both pos are totally equal and have the same sign, n and f: " + position_n + " " + position_f);
+        }
+
+            Money bestSpread = getBestSpread();
 
         if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
                 && pos_n > 0) {

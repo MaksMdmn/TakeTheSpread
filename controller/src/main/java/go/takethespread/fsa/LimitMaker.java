@@ -72,27 +72,32 @@ public class LimitMaker {
         frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
         logger.debug("order cancelled: " + frontRunOrder);
         int result = defineRemainingSize();
+        logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderSize() result: " + result);
         frontRunOrder = null;
         return result;
     }
 
     private boolean isPrevCancellingDangerous(Term term, Order.Deal deal) {
-        boolean result = false;
+        if (prevTerm == null && prevDeal == null
+                || frontRunOrder == null) {
+            prevTerm = term;
+            prevDeal = deal;
+            return false;
 
-        if (prevTerm == null && prevDeal == null) {
-            result = false;
         } else if (term != prevTerm || deal != prevDeal) {
-            if (cancelOrderSize() > 0) {
-                prevTerm = null;
-                prevDeal = null;
-                result = true;
+            int cancelSize = cancelOrderSize();
+
+            logger.debug("cancelling dangerous: size is " + cancelSize);
+            if (cancelSize > 0) {
+                logger.debug("cancelling dangerous: prevTerm/prevDeal " + prevTerm + " " + prevDeal);
             }
+
+            prevTerm = null;
+            prevDeal = null;
+            return true;
         }
 
-        prevTerm = term;
-        prevDeal = deal;
-
-        return result;
+        return false;
     }
 
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {

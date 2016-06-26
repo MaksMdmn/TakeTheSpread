@@ -6,10 +6,11 @@ import go.takethespread.Order;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
-import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
 
 public class FiniteStateAutomation extends Thread {
     private ConsoleManager consoleManager;
@@ -79,10 +80,11 @@ public class FiniteStateAutomation extends Thread {
                         break;
                 }
 
-            } catch (TradeException e) {
-                e.printStackTrace();
+//            } catch (TradeException e) {
+//                e.printStackTrace();
             } catch (Exception e) {
                 logger.error(e);
+                logger.error(Arrays.toString(e.getStackTrace()));
                 executeGJ();
             }
         }
@@ -97,11 +99,14 @@ public class FiniteStateAutomation extends Thread {
         logger.info("market and pos data updated");
         logger.debug("is pos equal: " + blotter.getPosition_n() + " " + blotter.getPosition_f() + " " + pw.isPosEqual());
 
-        if (!pw.isPosEqual()) {
+        if (pw.isPosEqual()) {
+            //set cur and prev
+            pw.updateEqualAndRelevantPos();
+        } else{
+            //set cur
             pw.equalizePositions();
             blotter.updatePositionData();
         }
-
         blotter.updateAuxiliaryData();
 
         logger.info("auxiliary data updated");

@@ -35,6 +35,9 @@ public class SpreadCalculator {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
+        for (int i = 0; i < 100; i++) {
+            marketData.add(Money.dollars(0.62d));
+        }
         this.startTime = System.currentTimeMillis();
         this.lastSumCalc = Money.dollars(0d);
         this.lastRemovingElem = Money.dollars(0d);
@@ -120,7 +123,7 @@ public class SpreadCalculator {
         }
 
         if (isPauseEnabled) {
-            curSpread = lastSumCalc.multiply(1d / marketData.size()); //previous value
+            //previous value and last element is excess
             return;
         }
 
@@ -163,6 +166,8 @@ public class SpreadCalculator {
                || blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
             startPauseTime = 0L;
             isPauseEnabled = false;
+
+            logger.debug("pause ended.");
         }
     }
 }

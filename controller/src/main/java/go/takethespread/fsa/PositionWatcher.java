@@ -26,9 +26,9 @@ public class PositionWatcher {
     }
 
     public void equalizePositions() {
-        logger.info("cur values before update: " + curPos_n + " " + curPos_f);
+        logger.info("equalize START prev&cur values before CUR_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
         updateCurValues();
-        logger.info("cur values after update: " + curPos_n + " " + curPos_f);
+        logger.info("equalize START prev&cur values after CUR_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
         int diff_n = curPos_n - prevPos_n;
         int diff_f = curPos_f - prevPos_f;
 
@@ -44,9 +44,10 @@ public class PositionWatcher {
                 fillTheDiff(diff_f, Term.NEAR);
             }
         }
-        logger.info("prev values before update: " + prevPos_n + " " + prevPos_f);
+        logger.info("equalize END prev&cur values before CUR_PREV_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
+        updateCurValues();
         updatePrevValues();
-        logger.info("prev values after update: " + prevPos_n + " " + prevPos_f);
+        logger.info("equalize END prev&cur values after CUR_PREV_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
     }
 
     public int defineMaxPossibleSize(int marketSize) {
@@ -67,19 +68,35 @@ public class PositionWatcher {
         return result;
     }
 
+    protected void updateEqualAndRelevantPos() {
+        logger.info("update prev and cur values, cause pos are equal, but changed: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
+        updateCurValues();
+        updatePrevValues();
+        logger.info("pos updated: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
+    }
+
     public boolean isPosEqual() {
-        int pos_n = Math.abs(blotter.getPosition_n());
-        int pos_f = Math.abs(blotter.getPosition_f());
+        updateCurValues();
+        int pos_n = Math.abs(curPos_n);
+        int pos_f = Math.abs(curPos_f);
         return pos_n == pos_f;
     }
 
     private void fillTheDiff(int diff, Term fillTerm) {
-        logger.info("equalizing: " + fillTerm + " " + diff);
+        Order.Deal deal;
+
         if (diff > 0) {
-            marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, Order.Deal.Sell);
+            deal = Order.Deal.Sell;
         } else if (diff < 0) {
-            marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, Order.Deal.Buy);
+            deal = Order.Deal.Buy;
+            logger.info("equalizing: " + fillTerm + " " + Math.abs(diff) + " " + Order.Deal.Buy);
+        } else {
+            logger.info("equalizing size is zero: " + diff);
+            return; //exception here?
         }
+        marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, deal);
+
+        logger.info("equalizing: " + fillTerm + " " + Math.abs(diff) + " " + deal);
     }
 
     private void updatePrevValues() {
