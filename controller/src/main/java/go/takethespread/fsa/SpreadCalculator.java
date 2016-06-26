@@ -78,22 +78,15 @@ public class SpreadCalculator {
 
     private void collectCalcData() {
         if (!isPauseEnabled) {
-//            Money ask_lower;
-//            Money bid_higher;
-//            if (blotter.isNearLessThanFar()) {
-//                ask_lower = blotter.getAsk_n();
-//                bid_higher = blotter.getBid_f();
-//            } else {
-//                ask_lower = blotter.getAsk_f();
-//                bid_higher = blotter.getBid_n();
-//            }
-//
-//            Money spread = bid_higher.subtract(ask_lower);
+            Money spread;
 
-//            System.out.println(ask_lower.getAmount() + " <-ask--bid-> " + bid_higher.getAmount() + " spread-->" + spread.getAmount() + " time--> " + new Date().toString());
+            //the idea is: to get lower spread (for increasing chance to enter to pos), while we have zero pos. And get higher spread to increase chance leave from market when we already have pos.
+            if(blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0){
+                spread = blotter.getBestSpread(false);
+            }else{
+                spread = blotter.getBestSpread(true);
+            }
 
-            // market or best spread???
-            Money spread = blotter.getBestSpread();
             if (spread.lessThan(Money.dollars(0))) {
 //                throw new IllegalArgumentException("bid lower than ask, a/b: " + ask_lower + " " + bid_higher);
             }

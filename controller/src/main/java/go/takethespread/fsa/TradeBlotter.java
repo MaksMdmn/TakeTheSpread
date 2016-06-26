@@ -153,7 +153,7 @@ public class TradeBlotter {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
-        logger.debug("new auxiliary data: cSpr " + spreadCalculator.getCurSpread().getAmount() + " cPh " + curPhase);
+        logger.debug("new auxiliary data: curSpread " + spreadCalculator.getCurSpread().getAmount() + " curPhase " + curPhase);
     }
 
 
@@ -162,7 +162,7 @@ public class TradeBlotter {
     }
 
     public boolean isNearLessThanFar() {
-        if (isBidBetterOrEqThanAsk()) {
+        if (isBidBetterOrEqualAsk()) {
             return bid_n.lessOrEqualThan(bid_f);
         } else {
             return ask_n.lessOrEqualThan(ask_f);
@@ -178,11 +178,11 @@ public class TradeBlotter {
         }
 
         //okay, abs positions are equalize, but they must have different sign
-        if (position_n == position_f && position_n != 0){
+        if (position_n == position_f && position_n != 0) {
             throw new IllegalArgumentException("both pos are totally equal and have the same sign, n and f: " + position_n + " " + position_f);
         }
 
-            Money bestSpread = getBestSpread();
+        Money bestSpread = getBestSpread();
 
         if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
                 && pos_n > 0) {
@@ -198,24 +198,40 @@ public class TradeBlotter {
 
     }
 
-    public boolean isBidBetterOrEqThanAsk() {
+    public boolean isBidBetterOrEqualAsk() {
         Money byBid = Money.absl(bid_f.subtract(bid_n));
         Money byAsk = Money.absl(ask_f.subtract(ask_n));
         return byBid.greaterOrEqualThan(byAsk);
     }
 
     public Money getBestSpread() {
-        if (isBidBetterOrEqThanAsk()) {
+        if (isBidBetterOrEqualAsk()) {
             return Money.absl(bid_n.subtract(bid_f));
         } else {
             return Money.absl(ask_n.subtract(ask_f));
         }
     }
 
-    protected enum PositionState {
-        LONG,
-        SHORT,
-        FLAT
+    public Money getBestSpread(boolean isGreaterSpread) {
+        Money greater;
+        Money smaller;
+        Money byBid = Money.absl(bid_f.subtract(bid_n));
+        Money byAsk = Money.absl(ask_f.subtract(ask_n));
+
+        if (byBid.greaterOrEqualThan(byAsk)) {
+            greater = byBid;
+            smaller = byAsk;
+        } else {
+            smaller = byBid;
+            greater = byAsk;
+        }
+
+        if (isGreaterSpread) {
+            return greater;
+        } else {
+            return smaller;
+        }
+
     }
 
 

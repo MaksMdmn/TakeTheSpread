@@ -37,8 +37,13 @@ public class MarketMaker {
             externalManager.sendMarketSell(tmpInstr, size);
         }
 
-        logger.info("pause starting...");
-        blotter.getSpreadCalculator().pause();
+        if (blotter.getCurPhase() == TradeBlotter.Phase.ACCUMULATION) {
+            logger.info("pause starting...");
+            blotter.getSpreadCalculator().pause();
+        } else {
+            logger.info("pause is not necessary, cause phase is: " + blotter.getCurPhase());
+        }
+
     }
 
     public int defineMaxMarketSize(Term term, Side side) {
