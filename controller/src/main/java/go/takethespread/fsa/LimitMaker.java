@@ -45,7 +45,7 @@ public class LimitMaker {
 
         logger.debug("is roll necessary: " + isRollNecessary);
 
-        if (deal == null || term == null || size <= 0) { //size, what should I do ????
+        if (deal == null || term == null) {
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
         }
 
@@ -69,6 +69,9 @@ public class LimitMaker {
     }
 
     public int cancelOrderSize() {
+        if (frontRunOrder == null) {
+            return 0;
+        }
         frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
         logger.debug("order cancelled: " + frontRunOrder);
         int result = defineRemainingSize();
@@ -102,6 +105,10 @@ public class LimitMaker {
 
     private Order placeAnOrder(String instr, Order.Deal deal, Money price, int size) {
         logger.info("place order by following args: " + instr + " " + deal + " " + price.getAmount() + " " + size);
+        if (size <= 0) {
+            logger.debug("placeAnOrder: order size <=0: " + instr + " " + deal + " " + price.getAmount() + " " + size);
+            return null; // what should I do ????
+        }
         if (deal == Order.Deal.Buy) {
             return externalManager.sendLimitBuy(instr, price, size);
         }

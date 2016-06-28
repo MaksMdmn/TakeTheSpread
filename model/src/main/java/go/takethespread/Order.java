@@ -138,7 +138,7 @@ public class Order implements Serializable {
                 ", size=" + size +
                 ", price=" + price.getAmount() +
                 ", filled=" + filled +
-                ", priceFilled=" + priceFilled +
+                ", priceFilled=" + priceFilled.getAmount() +
                 '}';
     }
 }

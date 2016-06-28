@@ -26,9 +26,13 @@ public class TEST_FSA {
         while (!userMessage.equals("GJ")) {
             try {
                 userMessage = br.readLine();
-
-                System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
-
+                if (userMessage.equals("PH")) {
+                    fsa.testPhonyGetterBlotter().getSpreadCalculator().testAddPhonyData();
+                    System.out.println("PHONY DONE");
+                    userMessage = "";
+                } else {
+                    System.out.println("answer: " + cm.parseConsoleMsg(userMessage));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ConsoleException e) {
@@ -36,6 +40,8 @@ public class TEST_FSA {
             } catch (TradeException e) {
                 e.printStackTrace();
             }
+
+
         }
 
         System.out.println("main off");

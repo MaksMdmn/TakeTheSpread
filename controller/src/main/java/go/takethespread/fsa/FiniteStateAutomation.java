@@ -46,6 +46,10 @@ public class FiniteStateAutomation extends Thread {
         logger.info("creation of FSA success");
     }
 
+    public TradeBlotter testPhonyGetterBlotter() {
+        return blotter;
+    }
+
     @Override
     public void run() {
         isWorking = true;
@@ -100,12 +104,10 @@ public class FiniteStateAutomation extends Thread {
         logger.debug("is pos equal: " + blotter.getPosition_n() + " " + blotter.getPosition_f() + " " + pw.isPosEqual());
 
         if (pw.isPosEqual()) {
-            //set cur and prev
             pw.updateEqualAndRelevantPos();
-        } else{
-            //set cur
+        } else {
             pw.equalizePositions();
-            blotter.updatePositionData();
+
         }
         blotter.updateAuxiliaryData();
 
@@ -122,13 +124,15 @@ public class FiniteStateAutomation extends Thread {
 
         switch (signal) {
             case M_M_BUY:
-                size_n = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                size_f = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
-                size = pw.defineMaxPossibleSize(tmpSize);
+                if (lm.cancelOrderSize() == 0) {
+                    size_n = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
+                    size_f = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                    tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                    size = pw.defineMaxPossibleSize(tmpSize);
 
-                mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Buy);
-                mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Sell);
+                    mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Buy);
+                    mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Sell);
+                }
                 break;
             case L_M_BUY:
                 tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
@@ -143,14 +147,16 @@ public class FiniteStateAutomation extends Thread {
                 lm.rollLimitOrder(size, Term.FAR, Order.Deal.Sell);
                 break;
             case M_M_SELL:
-                size_n = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                size_f = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                if (lm.cancelOrderSize() == 0) {
+                    size_n = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                    size_f = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                    tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
 
-                size = pw.defineMaxPossibleSize(tmpSize);
+                    size = pw.defineMaxPossibleSize(tmpSize);
 
-                mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Sell);
-                mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Buy);
+                    mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Sell);
+                    mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Buy);
+                }
                 break;
             case L_M_SELL:
                 tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
@@ -165,7 +171,7 @@ public class FiniteStateAutomation extends Thread {
                 lm.rollLimitOrder(size, Term.FAR, Order.Deal.Buy);
                 break;
             case NOTHING:
-                if(lm.isOrderPlaced()){
+                if (lm.isOrderPlaced()) {
                     lm.cancelOrderSize();
                 }
                 //?????? what should I do here?

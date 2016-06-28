@@ -35,9 +35,6 @@ public class SpreadCalculator {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
-        for (int i = 0; i < 100; i++) {
-            marketData.add(Money.dollars(0.62d));
-        }
         this.startTime = System.currentTimeMillis();
         this.lastSumCalc = Money.dollars(0d);
         this.lastRemovingElem = Money.dollars(0d);
@@ -48,6 +45,13 @@ public class SpreadCalculator {
         this.isPauseEnabled = false;
 
         logger.info("SC created");
+    }
+
+
+    public synchronized void testAddPhonyData(){
+        for (int i = 0; i < 300; i++) {
+            marketData.add(Money.dollars(0.65d));
+        }
     }
 
     public void makeCalculations() {

@@ -45,6 +45,7 @@ public class PositionWatcher {
             }
         }
         logger.info("equalize END prev&cur values before CUR_PREV_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
+        blotter.updatePositionData();
         updateCurValues();
         updatePrevValues();
         logger.info("equalize END prev&cur values after CUR_PREV_UPDATE: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
@@ -69,7 +70,7 @@ public class PositionWatcher {
     }
 
     protected void updateEqualAndRelevantPos() {
-        logger.info("update prev and cur values, cause pos are equal, but changed: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
+        logger.info("update prev and cur values, cause pos are equal, but can be changed: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
         updateCurValues();
         updatePrevValues();
         logger.info("pos updated: " + prevPos_n + " " + prevPos_f + " <=prev  cur=> " + curPos_n + " " + curPos_f);
