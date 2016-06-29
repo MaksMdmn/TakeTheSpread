@@ -21,13 +21,15 @@ public class SpreadCalculator {
     private long startPauseTime;
     private long pauseDuration;
 
-    private Money lastSumCalc;
+    private Money lastCalcSum;
+    private int lastCalcSize;
     private Money lastRemovingElem;
 
     private Money curSpread;
     private Money enteringSpread;
 
     private volatile boolean isPauseEnabled;
+    private boolean isEnoughData;
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
@@ -36,25 +38,28 @@ public class SpreadCalculator {
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
         this.startTime = System.currentTimeMillis();
-        this.lastSumCalc = Money.dollars(0d);
+        this.lastCalcSum = Money.dollars(0d);
+        this.lastCalcSize = 0;
         this.lastRemovingElem = Money.dollars(0d);
         this.curSpread = Money.dollars(0d); // mb bad default??!!
         this.enteringSpread = Money.dollars(0d); // mb bad default??!!
         this.spreadCalcDuration = tradeSystemInfo.spreadCalc_time_sec * 1000L; //ms
         this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
         this.isPauseEnabled = false;
+        this.isEnoughData = false;
 
         logger.info("SC created");
     }
 
 
-    public synchronized void testAddPhonyData(){
-        for (int i = 0; i < 300; i++) {
-            marketData.add(Money.dollars(0.65d));
+    public synchronized void testAddPhonyData() {
+        for (int i = 0; i < 50; i++) {
+            marketData.add(Money.dollars(0.5d));
         }
     }
 
     public void makeCalculations() {
+        isEnoughData = isEnoughData();
         collectCalcData();
         calcCurSpread();
         calcEnteringSpread();
@@ -85,9 +90,9 @@ public class SpreadCalculator {
             Money spread;
 
             //the idea is: to get lower spread (for increasing chance to enter to pos), while we have zero pos. And get higher spread to increase chance leave from market when we already have pos.
-            if(blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0){
+            if (blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
                 spread = blotter.getBestSpread(false);
-            }else{
+            } else {
                 spread = blotter.getBestSpread(true);
             }
 
@@ -95,7 +100,7 @@ public class SpreadCalculator {
 //                throw new IllegalArgumentException("bid lower than ask, a/b: " + ask_lower + " " + bid_higher);
             }
 
-            if (isEnoughData()) {
+            if (isEnoughData) {
                 lastRemovingElem = marketData.pollFirst();
                 marketData.addLast(spread);
             } else {
@@ -109,18 +114,19 @@ public class SpreadCalculator {
 
     private void calcCurSpread() {
 
-        if (!isEnoughData() && tradeSystemInfo.default_spread_use) {
+        if (!isEnoughData && tradeSystemInfo.default_spread_use) {
             curSpread = tradeSystemInfo.default_spread;
             return;
         }
 
         // default value if in prop = false??
-        if(!isEnoughData()){
+        if (!isEnoughData) {
             return;
         }
 
         if (isPauseEnabled) {
             //previous value and last element is excess
+            logger.debug("pause now, should to be old spread value: " + curSpread + " and old size: " + marketData.size());
             return;
         }
 
@@ -132,15 +138,18 @@ public class SpreadCalculator {
             throw new IllegalArgumentException("market data is empty, cannot calc that, man.");
         }
 
-        if (lastSumCalc.equals(Money.dollars(0d))) {
+        if (lastCalcSum.equals(Money.dollars(0d)) || marketData.size() != lastCalcSize) {
+            logger.debug("first calc or queue size was changed: both sizes is " + marketData.size() + " " + lastCalcSize + " lastCalcSum: " + lastCalcSum.getAmount());
+            lastCalcSum = Money.dollars(0d);
             for (Money m : marketData) {
-                lastSumCalc = lastSumCalc.add(m); //sum+=m
+                lastCalcSum = lastCalcSum.add(m); //sum+=m
             }
-            curSpread = lastSumCalc.multiply(1d / marketData.size()); // sum/marketData.size()
+            lastCalcSize = marketData.size();
+            curSpread = lastCalcSum.multiply(1d / lastCalcSize); // sum/marketData.size()
+
         } else {
-            lastSumCalc = lastSumCalc.subtract(lastRemovingElem).add(marketData.peekLast());
-            double denominator = marketData.size(); //it's already new size (+1)
-            curSpread = lastSumCalc.multiply(1d / denominator);
+            lastCalcSum = lastCalcSum.subtract(lastRemovingElem).add(marketData.peekLast());
+            curSpread = lastCalcSum.multiply(1d / lastCalcSize);
         }
     }
 
@@ -160,7 +169,7 @@ public class SpreadCalculator {
 
     private void checkPauseNecessity() {
         if (startPauseTime + pauseDuration < System.currentTimeMillis()
-               || blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
+                || blotter.getPosition_n() == 0 && blotter.getPosition_f() == 0) {
             startPauseTime = 0L;
             isPauseEnabled = false;
 

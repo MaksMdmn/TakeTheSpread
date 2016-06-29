@@ -1,6 +1,5 @@
 package go.takethespread;
 
-import go.takethespread.fsa.SpreadCalculator;
 import go.takethespread.fsa.TradeBlotter;
 import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.ExternalManager;
@@ -36,8 +35,6 @@ public class TestSpreadCalc {
         TradeSystemInfo info = new TradeSystemInfo();
         TradeBlotter blotter = new TradeBlotter(info, manager);
 
-        SpreadCalculator calculator = new SpreadCalculator(blotter, info);
-
         System.out.println("update");
         blotter.updateMarketData();
 
@@ -45,12 +42,16 @@ public class TestSpreadCalc {
         while (!userRow.equals("done")) {
             try {
                 blotter.updateMarketData();
-                calculator.makeCalculations();
-                System.out.println("sprd: " + calculator.getCurSpread().getAmount());
+                blotter.updateAuxiliaryData();
+                System.out.println("sprd: " + blotter.getSpreadCalculator().getCurSpread().getAmount());
 
-                if (userRow.equals("p")) {
-                    calculator.pause();
-                    System.out.println(calculator.isPauseEnabled());
+                if (userRow.equals("pa")) {
+                    blotter.getSpreadCalculator().pause();
+                    System.out.println(blotter.getSpreadCalculator().isPauseEnabled());
+                    userRow = "";
+                } else if(userRow.equals("ph")){
+                    blotter.getSpreadCalculator().testAddPhonyData();
+                    System.out.println("phony data added");
                     userRow = "";
                 }
                 System.out.println(++counter);
