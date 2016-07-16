@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MainPage</title>
+    <title>Take the spread</title>
     <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="js/jsHelper.js"></script>
     
@@ -15,7 +15,55 @@
 
 </head>
 <body>
-    <div id="headInfo">
+    <div class="header clearfix">
+        HEADER
+        <div class="settings">
+            SETTINGS1
+            SETTINGS2
+        </div>
+
+        <div class="login-info">
+            LOG <br>
+            PAS
+        </div>
+    </div>
+
+    <div class="features clearfix">
+        FEATURES<br>
+        <div class="console-feature">
+            CONSOLE_ALL<br>
+            <div class="console">
+                CONSOLE_LEFT
+            </div>
+            <div class="console-bars">
+                CONSOLE_BARS
+            </div>
+
+            <div class="console-stack">
+                STACK
+            </div>
+            
+            <div class="console-info">
+                CONSOLE_INFO
+            </div>
+        </div>
+
+        <div = class="table-feature">
+            TABLES
+        </div>
+
+        <div class="chart-feature">
+            CHART
+        </div>
+    </div>
+
+    <div class="footer">
+        FOOTER ??? (MB MOST IMPORTANT STATISTIC)
+    </div>
+
+
+
+    <!-- <div id="headInfo">
         <div id="loginDiv">
             <input id ="name" type="text"  placeholder="usename" />
             <input id ="password" type="text" placeholder="password" />
@@ -97,6 +145,6 @@
             </tr>
         </table>
     </div>
-</div>
+</div> -->
 </body>
 </html>

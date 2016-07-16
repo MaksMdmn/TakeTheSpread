@@ -1,71 +1,97 @@
-html, body{
+html{
 	margin:0px;
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
-}
-#headInfo{
-	background-color:red;
-	width:100%;
-	height:12%;
+	text-align: center;
 }
 
-#loginDiv{
+.header{
+	vertical-align: center;
+	border: 2px solid black;
+	padding:15px;
+	margin-bottom: 20px;
+}
+
+.settings{
+	float:left;
+	border: 2px solid black;
+}
+
+.login-info{
+	float:right;
+	margin-right: 30px;
+	border: 2px solid black;
+}
+
+.features{
+	border: 2px solid black;	
+	padding:20px;
+	margin-bottom: 20px;
+}
+
+.console-feature{
+	float:left;
+	margin-right: 50px;
+	margin-bottom: 10px;
+	border: 2px solid black;	
+	min-height: 370px;
+	width: 300px;
+	padding: 5px;
+}
+
+.console{
+	float:left;
+	margin-right:5px;
+	margin-bottom: 10px;
+	border: 2px solid black;
+	min-height: 170px;
+	width: 260px;
+}
+
+.console-bars{
+	float:right;	
+	border: 2px solid green;
+	width:20px;
+	min-height: 40px;
+	margin-bottom: 10px;
+}
+
+.console-stack{
 	float: right;
-	margin: 5px;
-	background: white;
+	border: 2px solid red;
+	width:20px;
+	min-height: 120px;
 }
 
-#mainInfo{
-	margin:0px;
-	width: 100%;
-	height: 88%;
-	background-color: green;
+.console-info{
+	border: 2px solid blue;
+	clear: both;
+	min-height: 160px;
 }
 
-
-#userInfo{
-	background-color:yellow;
-	width:30%;
-	height: 100%;
+.table-feature{
 	float:left;
-}
-#tradingInfo{
-	background-color:blue;
-	width:30%;
-	height: 100%;
-	float:left;
+	border: 2px solid black;	
+	width: 450px;
+	min-height: 370px;
 }
 
-#marketInfo{
-	background-color:orange;
-	width:40%;
-	height: 100%;
-	float:left;
+.chart-feature{
+	float:right;
+	border: 2px solid black;	
+	width: 450px;
+	min-height: 370px;
 }
 
-#console{
-	margin: 5px;
-	width: 95%;
-	height: 30%;
-	resize: none;
-}
-#answers{
-	margin: 5px;
-	width: 80%;
-	height:60%;
-	float: left;
-	clear: left;
-}
-#cmd_stack{
-	margin: 5px;
-	width: 10%;
-	height:60%;
-	float: right;
+.footer{
+	min-height: 50px;
+	border: 2px solid orange;
 }
 
-table{
-	width: 80%;
-	height: 30%;
-	margin:auto;
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
