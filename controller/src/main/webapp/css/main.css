@@ -30,19 +30,23 @@ input, button, label {
 	width: 200px;
 	margin-top: 20px;
 	height: 30px;
-
-	
 }
 
-#settings-table{
-	z-index: 9999;
+.indicators{
+    float: left;
+    border: 2px solid blue;
+    width:400px;
+    margin-top:20px;
+    height: 30px;
+    margin-left: 100px;
+    vertical-align: center;
 }
 
 
 .login-info{
 	float:right;
 	margin-right: 10px;
-	border: 2px solid red;	
+	border: 2px solid red;
 	min-height: 50px;
 }
 
@@ -98,11 +102,11 @@ input, button, label {
 	height: 19px;
 	background: url("../img/arrow.png") 0 0 no-repeat;
 }
-
+/*^^^^^^^^^^^^^^^HEADER^^^^^^^^^^^^^^^*/
 
 
 .features{
-	border: 2px solid black;	
+	border: 2px solid black;
 	padding:20px;
 	margin-bottom: 20px;
 }
@@ -111,52 +115,67 @@ input, button, label {
 	float:left;
 	margin-right: 50px;
 	margin-bottom: 10px;
-	border: 2px solid black;	
-	min-height: 370px;
+	border: 2px solid black;
+	height: 370px;
 	width: 300px;
 	padding: 5px;
 }
 
-.console{
+.console-messages{
 	float:left;
 	margin-right:5px;
-	margin-bottom: 10px;
-	border: 2px solid black;
-	min-height: 170px;
+	margin-bottom: 30px;
+	height: 180px;
 	width: 260px;
 }
 
 .console-bars{
-	float:right;	
-	border: 2px solid green;
+	float:right;
 	width:20px;
-	min-height: 40px;
-	margin-bottom: 10px;
+	height: 40px;
+	margin-bottom: 5px;
+
 }
 
 .console-stack{
 	float: right;
-	border: 2px solid red;
 	width:20px;
-	min-height: 120px;
+	height: 135px;
+    margin-right:5px;
 }
 
-.console-info{
-	border: 2px solid blue;
+.console-answers{
 	clear: both;
-	min-height: 160px;
+	height: 150px;
+    margin-right:5px;
+}
+
+
+#messages, #stack, #answers{
+   display: block;
+   width: 100%;
+   height: 100%;
+   resize: none;
+}
+
+#message-bar, #connection-bar {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .table-feature{
 	float:left;
-	border: 2px solid black;	
+	border: 2px solid yellow;
 	width: 450px;
 	min-height: 370px;
 }
 
 .chart-feature{
 	float:right;
-	border: 2px solid black;	
+	border: 2px solid green;
 	width: 450px;
 	min-height: 370px;
 }

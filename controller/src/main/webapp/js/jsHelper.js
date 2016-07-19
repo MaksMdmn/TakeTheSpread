@@ -22,3 +22,8 @@ function checkCommandSend(event) {
         handleCommand();
     }
 }
+
+jQuery(document).ready(function() {
+    jQuery('#message-bar').css('background-color', '#FFA500');
+    jQuery('#connection-bar').css('background-color', '#00FF00');
+});

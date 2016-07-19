@@ -8,17 +8,20 @@
     <link type="text/css" rel="stylesheet" href="css/main.css" />
 
     <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
-    <script type="text/javascript" src="i18n/grid.locale-en.js" ></script>
+    <script type="text/javascript" src="js/i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="js/jquery.jqgrid.min.js"></script>
     <script type="text/javascript" src="js/jsHelper.js"></script>
-    <script type="text/javascript" src="js/stTable.js"></script>
+    <script type="text/javascript" src="js/tableHelper.js"></script>
 
 </head>
 <body>
     <div class="header clearfix">
         <div class="settings">
             <table id="settingsTable"></table>
-            <div id="settingsPager"></div>
+        </div>
+
+        <div class="indicators">
+            <table id="indicatorTable"></table>
         </div>
 
         <div class="login-info">
@@ -40,28 +43,28 @@
       </div>
   </div>
 
-  <!-- <div class="features clearfix">
-    FEATURES<br>
+  <div class="features clearfix">
     <div class="console-feature">
-        CONSOLE_ALL<br>
-        <div class="console">
-            CONSOLE_LEFT
+        <div class="console-messages">
+            <textarea id="messages" type="textarea"  onkeypress="checkCommandSend(event)"> message here</textarea>
+            <!-- <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/> -->
         </div>
         <div class="console-bars">
-            CONSOLE_BARS
+            <div id="message-bar"></div>
+            <div id="connection-bar"></div>
         </div>
-
         <div class="console-stack">
-            STACK
+            <textarea id="stack" type="text" readonly wrap="soft">stack here</textarea>
         </div>
 
-        <div class="console-info">
-            CONSOLE_INFO
+        <div class="console-answers">
+            <textarea id="answers" type="text" readonly wrap="soft">answer here</textarea>
         </div>
     </div>
 
     <div = class="table-feature">
-        TABLES
+        <table id="orderTable"></table>
+        <div id="orderPager"></div>
     </div>
 
     <div class="chart-feature">
@@ -71,46 +74,6 @@
 
 <div class="footer">
     FOOTER ??? (MB MOST IMPORTANT STATISTIC)
-</div> -->
-
-<!-- 
-<div id="mainInfo">
-    <div id="userInfo">
-        <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/>
-        <textarea id="console" type="textarea" cols="40" rows="40" onkeypress="checkCommandSend(event)"> </textarea>
-        <textarea id="answers" type="text" readonly wrap="soft"></textarea>
-        <textarea id="cmd_stack" type="text" readonly wrap="soft"></textarea>
-    </div>
-    <div id="tdadingInfo">
-        <table id="informTable" >
-            <script type="text/javascript">
-                jQuery(document).ready(function(){ 
-                  jQuery("#informTable").jqGrid({
-                        // url:'example.php',
-                        datatype: 'xml',
-                        mtype: 'GET',
-                        colNames:['Inv No','Date', 'Amount','Tax','Total','Notes'],
-                        colModel :[ 
-                        {name:'invid', index:'invid', width:55}, 
-                        {name:'invdate', index:'invdate', width:90}, 
-                        {name:'amount', index:'amount', width:80, align:'right'}, 
-                        {name:'tax', index:'tax', width:80, align:'right'}, 
-                        {name:'total', index:'total', width:80, align:'right'}, 
-                        {name:'note', index:'note', width:150, sortable:false} 
-                        ],
-                        pager: '#pager',
-                        rowNum:10,
-                        rowList:[10,20,30],
-                        sortname: 'invid',
-                        sortorder: 'desc',
-                        viewrecords: tdue,
-                        caption: 'My first grid'
-                    }); 
-              }); 
-          </script>
-      </table>
-  </div>
-</div>  -->
-
+</div>
 </body>
 </html>
