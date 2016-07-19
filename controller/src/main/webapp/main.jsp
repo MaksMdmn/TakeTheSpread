@@ -1,91 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Take the spread</title>
+    <link type="text/css" rel="stylesheet" media="screen" href="css/jquery-ui-1.12.0/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" media="screen" href="css/ui.jqgrid.css" />
+    <link type="text/css" rel="stylesheet" href="css/main.css" />
+
     <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
-    <script type="text/javascript" src="js/jsHelper.js"></script>
-    
-    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" mce_href="css/ui.jqgrid.css" />
-    <script type="text/javascript" src="js/i18n/grid.locale-ru.js"></script>
+    <script type="text/javascript" src="i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="js/jquery.jqgrid.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css" type="text/css"/>
-
+    <script type="text/javascript" src="js/jsHelper.js"></script>
+    <script type="text/javascript" src="js/stTable.js"></script>
 
 </head>
 <body>
     <div class="header clearfix">
-        HEADER
         <div class="settings">
-            SETTINGS1
-            SETTINGS2
+            <table id="settingsTable"></table>
+            <div id="settingsPager"></div>
         </div>
 
         <div class="login-info">
-            LOG <br>
-            PAS
+            <form method="post" action="" class="login">
+                <p>
+                    <label for="login">Login:</label>
+                    <input type="text" name="login" id="login" value="your login">
+                </p>
+
+                <p>
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" id="password" value="4815162342">
+              </p>
+
+              <p class="login-submit">
+                  <button type="submit" class="login-button"></button>
+              </p>
+          </form>
+      </div>
+  </div>
+
+  <!-- <div class="features clearfix">
+    FEATURES<br>
+    <div class="console-feature">
+        CONSOLE_ALL<br>
+        <div class="console">
+            CONSOLE_LEFT
+        </div>
+        <div class="console-bars">
+            CONSOLE_BARS
+        </div>
+
+        <div class="console-stack">
+            STACK
+        </div>
+
+        <div class="console-info">
+            CONSOLE_INFO
         </div>
     </div>
 
-    <div class="features clearfix">
-        FEATURES<br>
-        <div class="console-feature">
-            CONSOLE_ALL<br>
-            <div class="console">
-                CONSOLE_LEFT
-            </div>
-            <div class="console-bars">
-                CONSOLE_BARS
-            </div>
-
-            <div class="console-stack">
-                STACK
-            </div>
-            
-            <div class="console-info">
-                CONSOLE_INFO
-            </div>
-        </div>
-
-        <div = class="table-feature">
-            TABLES
-        </div>
-
-        <div class="chart-feature">
-            CHART
-        </div>
+    <div = class="table-feature">
+        TABLES
     </div>
 
-    <div class="footer">
-        FOOTER ??? (MB MOST IMPORTANT STATISTIC)
+    <div class="chart-feature">
+        CHART
     </div>
+</div>
 
+<div class="footer">
+    FOOTER ??? (MB MOST IMPORTANT STATISTIC)
+</div> -->
 
-
-    <!-- <div id="headInfo">
-        <div id="loginDiv">
-            <input id ="name" type="text"  placeholder="usename" />
-            <input id ="password" type="text" placeholder="password" />
-            <br>
-            <br>
-            <input id="logIn" value ="login" type="button"/>
-            <input id="out" value ="logout" type="button"/>
-        </div>
+<!-- 
+<div id="mainInfo">
+    <div id="userInfo">
+        <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/>
+        <textarea id="console" type="textarea" cols="40" rows="40" onkeypress="checkCommandSend(event)"> </textarea>
+        <textarea id="answers" type="text" readonly wrap="soft"></textarea>
+        <textarea id="cmd_stack" type="text" readonly wrap="soft"></textarea>
     </div>
-
-    <div id="mainInfo">
-        <div id="userInfo">
-            <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/>
-            <textarea id="console" type="textarea" cols="40" rows="40" onkeypress="checkCommandSend(event)"> </textarea>
-            <textarea id="answers" type="text" readonly wrap="soft"></textarea>
-            <textarea id="cmd_stack" type="text" readonly wrap="soft"></textarea>
-        </div>
-        <div id="tradingInfo">
-            <table id="informTable" >
-                <script type="text/javascript">
-                    jQuery(document).ready(function(){ 
-                      jQuery("#informTable").jqGrid({
+    <div id="tdadingInfo">
+        <table id="informTable" >
+            <script type="text/javascript">
+                jQuery(document).ready(function(){ 
+                  jQuery("#informTable").jqGrid({
                         // url:'example.php',
                         datatype: 'xml',
                         mtype: 'GET',
@@ -103,48 +103,14 @@
                         rowList:[10,20,30],
                         sortname: 'invid',
                         sortorder: 'desc',
-                        viewrecords: true,
+                        viewrecords: tdue,
                         caption: 'My first grid'
                     }); 
-                  }); 
-              </script>
-          </table>
+              }); 
+          </script>
+      </table>
+  </div>
+</div>  -->
 
-
-
-
-
-      </div>
-      <div id="marketInfo">
-        <br>
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <table border="1">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-    </div>
-</div> -->
 </body>
 </html>

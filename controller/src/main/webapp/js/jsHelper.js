@@ -6,9 +6,10 @@ function handleCommand() {
         url: "parsing",
         type: 'post',
         cache: false,
-        data: {"msg": cmd},
-        success: function(text)
-        {
+        data: {
+            "msg": cmd
+        },
+        success: function(text) {
             var temp = $('#answers').val();
             $('#answers').val(temp + "\n" + text);
             $('#cmd_stack').val($('#cmd_stack').val() + "\n" + cmd);
