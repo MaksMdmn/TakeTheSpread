@@ -2,7 +2,7 @@ html{
 	margin:0px;
 	height: 100%;
 	width: 100%;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	text-align: center;
 }
 
@@ -18,36 +18,33 @@ input, button, label {
 
 .header{
 	vertical-align: center;
-	border: 2px solid black;
 	padding:5px;
 	margin-bottom: 20px;
-	min-height: 80px;
+	height: 10%;
 }
 
 .settings{
 	float:left;
-	border: 2px solid black;
-	width: 200px;
-	margin-top: 20px;
-	height: 30px;
+	/*width: 200px;*/
+    width:10%;
+    height: 10px;
+    margin-right:20px;
+    margin-left:120px;
 }
 
 .indicators{
     float: left;
-    border: 2px solid blue;
-    width:400px;
-    margin-top:20px;
-    height: 30px;
-    margin-left: 100px;
+    /*width:740px;*/
+    width:60%;
     vertical-align: center;
+    height: 10px;
 }
 
 
 .login-info{
 	float:right;
 	margin-right: 10px;
-	border: 2px solid red;
-	min-height: 50px;
+	border: 2px solid #E9967A ;
 }
 
 .login-info input{
@@ -63,10 +60,10 @@ input, button, label {
 
 .login-submit {
 	position: absolute;
-	top: 21px;
+	top: 17px;
 	right: 15px;
-	width: 30px;
-	height: 30px;
+	width: 34px;
+	height: 34px;
 	padding: 8px;
 	border-radius: 32px;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
@@ -96,7 +93,7 @@ input, button, label {
 .login-button:after {
 	content: '';
 	position: absolute;
-	top:12px;
+	top:14px;
 	left: 12px;
 	width: 25px;
 	height: 19px;
@@ -106,32 +103,32 @@ input, button, label {
 
 
 .features{
-	border: 2px solid black;
-	padding:20px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+    margin-left:15px;
 }
 
 .console-feature{
 	float:left;
-	margin-right: 50px;
-	margin-bottom: 10px;
-	border: 2px solid black;
-	height: 370px;
-	width: 300px;
+	margin-right: 10px;
+	height: 400px;
+	/*width: 300px;*/
+    width:20%;
 	padding: 5px;
 }
 
 .console-messages{
 	float:left;
-	margin-right:5px;
-	margin-bottom: 30px;
-	height: 180px;
-	width: 260px;
+	margin-right:10px;
+	margin-bottom: 10px;
+	height: 240px;
+	/*width: 260px;*/
+    width:89%;
 }
 
 .console-bars{
 	float:right;
-	width:20px;
+	/*width:20px;*/
+    width:7%;
 	height: 40px;
 	margin-bottom: 5px;
 
@@ -139,15 +136,16 @@ input, button, label {
 
 .console-stack{
 	float: right;
-	width:20px;
-	height: 135px;
-    margin-right:5px;
+	/*width:20px;*/
+    width:7%;
+	height: 195px;
 }
 
 .console-answers{
 	clear: both;
-	height: 150px;
-    margin-right:5px;
+	height: 140px;
+    /*width: 295px;*/
+    width:100%;
 }
 
 
@@ -164,28 +162,31 @@ input, button, label {
     border-radius: 5px;
     display: inline-block;
     vertical-align: middle;
+    background-color: #00BFFF;
 }
 
 .table-feature{
 	float:left;
-	border: 2px solid yellow;
-	width: 450px;
-	min-height: 370px;
+	/*width: 450px;*/
+    width:36%;
+	height: 400px;
 }
 
 .chart-feature{
 	float:right;
-	border: 2px solid green;
-	width: 450px;
-	min-height: 370px;
+	/*width: 515px;*/
+    width:41%;
+	height: 400px;
+    margin-right:15px;
 }
 
 .footer{
-	min-height: 50px;
-	border: 2px solid orange;
+	height: 50px;
 }
 
-
+.footer img{
+    height: 50px;
+}
 .clearfix::after {
 	content: "";
 	display: table;

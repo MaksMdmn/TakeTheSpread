@@ -1,7 +1,58 @@
-jQuery(document).ready(function() {
+$(document).ready(function() {
+    var myjsondata = [{
+        setting: "commission",
+        value: "0.4"
+    }, {
+        setting: "PnL",
+        value: "345$"
+    }, {
+        setting: "deals",
+        value: "332"
+    }];
+    var myjsondata2 = [{
+        profit: "+3444$",
+        deals: "321",
+        commis: "-23$",
+        status: "WORKING",
+        dich1: "TUT",
+        dich2: "ZDES",
+        dich3: "YA",
+        dich4: "AA?!"
+    }];
+
+    var myjsondata3 = [{
+        id: "1",
+        deal: "BUY",
+        type: "MARKET",
+        price: "46.23",
+        quantity: "12",
+        filled: "12",
+        pos_after: "32",
+        result: "-43$"
+    }, {
+        id: "2",
+        deal: "BUY",
+        type: "MARKET",
+        price: "46.23",
+        quantity: "12",
+        filled: "12",
+        pos_after: "32",
+        result: "-43$"
+    }, {
+        id: "3",
+        deal: "BUY",
+        type: "MARKET",
+        price: "46.23",
+        quantity: "12",
+        filled: "12",
+        pos_after: "32",
+        result: "-43$"
+    }];
+
     var settingWdth = jQuery('.settings').width();
     var indicatorWdth = jQuery('.indicators').width();
     var tableFeatureWdth = jQuery('.table-feature').width();
+
 
     jQuery('#settingsTable').jqGrid({
         // url: 'example.php',
@@ -84,7 +135,7 @@ jQuery(document).ready(function() {
     jQuery('#orderTable').jqGrid({
         data: myjsondata3,
         datatype: 'local',
-        height: 450,
+        height: 320,
         width: tableFeatureWdth,
         rowNum: 20,
         rowList: [10, 20, 30],
@@ -134,57 +185,62 @@ jQuery(document).ready(function() {
         viewrecords: true,
         caption: 'ORDERS'
     });
+
+
+
+    var data = {
+        // A labels array that can contain any sort of values
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        // Our series array that contains series objects or in this case series data arrays
+        series: [
+            [5, 2, 4, 2, 0],
+            [2, 7, 2, 18, 8],
+            [8, 7, 6, 3, -5]
+        ]
+    };
+    var options = {
+        // width: 300,
+        // height: 200
+
+    };
+
+    // Create a new line chart object where as first parameter we pass in a selector
+    // that is resolving to our chart container element. The Second parameter
+    // is the actual data object.
+    new Chartist.Line('.chart-feature', data, options);
 });
 
-var myjsondata = [{
-    setting: "commission",
-    value: "0.4"
-}, {
-    setting: "PnL",
-    value: "345$"
-}, {
-    setting: "deals",
-    value: "332"
-}];
-var myjsondata2 = [{
-    profit: "+3444$",
-    deals: "321",
-    commis: "-23$",
-    status: "WORKING",
-    dich1: "TUT",
-    dich2: "ZDES",
-    dich3: "YA",
-    dich4: "AA?!"
-}];
+// function handleCommand() {
+//     var cmd = $('#console').val();
 
-var myjsondata3 = [{
-    id: "1",
-    deal: "BUY",
-    type: "MARKET",
-    price: "46.23",
-    quantity: "12",
-    filled: "12",
-    pos_after: "32",
-    result: "-43$"
-}, {
-    id: "2",
-    deal: "BUY",
-    type: "MARKET",
-    price: "46.23",
-    quantity: "12",
-    filled: "12",
-    pos_after: "32",
-    result: "-43$"
-}, {
-    id: "3",
-    deal: "BUY",
-    type: "MARKET",
-    price: "46.23",
-    quantity: "12",
-    filled: "12",
-    pos_after: "32",
-    result: "-43$"
-}];
+//     console.log(cmd)
+//     $.ajax({
+//         url: "parsing",
+//         type: 'post',
+//         cache: false,
+//         data: {
+//             "msg": cmd
+//         },
+//         success: function(text) {
+//             var temp = $('#answers').val();
+//             $('#answers').val(temp + "\n" + text);
+//             $('#cmd_stack').val($('#cmd_stack').val() + "\n" + cmd);
+//         }
+//     })
+// }
+
+// function checkCommandSend(event) {
+//     if ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0xD))) {
+//         handleCommand();
+//     }
+// }
+
+// jQuery(document).ready(function() {
+//     jQuery('#message-bar').css('background-color', '#FFA500');
+//     jQuery('#connection-bar').css('background-color', '#00FF00');
+// });
+
+
 
 // $(document).ready(function() {
 //       // $('#settingsTable').addToJSON(myjsondata);

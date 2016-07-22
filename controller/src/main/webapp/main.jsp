@@ -6,12 +6,13 @@
     <link type="text/css" rel="stylesheet" media="screen" href="css/jquery-ui-1.12.0/jquery-ui.css"/>
     <link type="text/css" rel="stylesheet" media="screen" href="css/ui.jqgrid.css" />
     <link type="text/css" rel="stylesheet" href="css/main.css" />
+    <link type="text/css" rel="stylesheet" href="css/chartist.min.css" />
 
     <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="js/i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="js/jquery.jqgrid.min.js"></script>
-    <script type="text/javascript" src="js/jsHelper.js"></script>
-    <script type="text/javascript" src="js/tableHelper.js"></script>
+    <script type="text/javascript" src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/lobstaHelper.js"></script>
 
 </head>
 <body>
@@ -50,7 +51,7 @@
             <!-- <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/> -->
         </div>
         <div class="console-bars">
-            <div id="message-bar"></div>
+            <div id="message-bar"></div><br>
             <div id="connection-bar"></div>
         </div>
         <div class="console-stack">
@@ -68,12 +69,26 @@
     </div>
 
     <div class="chart-feature">
-        CHART
     </div>
 </div>
 
 <div class="footer">
-    FOOTER ??? (MB MOST IMPORTANT STATISTIC)
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/leftlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
+    <img src="img/rightlobster.jpg" alt="lobster say hello">
 </div>
 </body>
 </html>
