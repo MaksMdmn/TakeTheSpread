@@ -30,6 +30,8 @@ public class ConsoleManager {
         String item = "";
         String values = "";
 
+        String answer = "";
+
         switch (msg.split(" ").length) {
             case 1:
                 command = msg.split(" ")[0];
@@ -44,19 +46,23 @@ public class ConsoleManager {
                 values = msg.split(" ")[2];
                 break;
             default:
-                throw new IllegalArgumentException("array length lower that 1 or higher than 3: " + msg);
+//                throw new IllegalArgumentException("array length lower that 1 or higher than 3: " + msg); //??
+                return  msg + " couldn't be parsed";
         }
 
+        try {
+            executeConsoleCommand(command, item, values);
+            return msg + " executed. All seems good.";
+        } catch (Exception e) { //???
+            return msg + " was not executed. Trouble with verification.";
+        }
 
-        executeConsoleCommand(command, item, values);
-
-        String answer = "ANSWEROK";
-        return answer;
     }
 
-    public TradeSystemInfo getTradeSystemInfo(){
+    public TradeSystemInfo getTradeSystemInfo() {
         return tradeSystemInfo;
     }
+
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
         itemVerification(item);
@@ -80,13 +86,13 @@ public class ConsoleManager {
     }
 
     private boolean itemVerification(String item) throws ConsoleException {
-        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty" );
+        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
         return tradeSystemInfo.isPropExists(item);
 
     }
 
     private boolean valuesVerification(String values) throws ConsoleException {
-        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty" );
+        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
         return tradeSystemInfo.isPropExists(values);
     }
 

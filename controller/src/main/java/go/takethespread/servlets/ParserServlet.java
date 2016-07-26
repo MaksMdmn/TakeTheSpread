@@ -4,6 +4,7 @@ import go.takethespread.fsa.FiniteStateAutomation;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.exceptions.ConsoleException;
 import go.takethespread.exceptions.TradeException;
+import go.takethespread.managers.TaskManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

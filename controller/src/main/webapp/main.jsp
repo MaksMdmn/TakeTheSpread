@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,11 +9,14 @@
     <link type="text/css" rel="stylesheet" href="css/main.css" />
     <link type="text/css" rel="stylesheet" href="css/chartist.min.css" />
 
-    <script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
-    <script type="text/javascript" src="js/i18n/grid.locale-en.js" ></script>
-    <script type="text/javascript" src="js/jquery.jqgrid.min.js"></script>
-    <script type="text/javascript" src="js/chartist.min.js"></script>
-    <script type="text/javascript" src="js/lobstaHelper.js"></script>
+    <script>var pathToContext = "${pageContext.request.contextPath}" </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/i18n/grid.locale-en.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/chartist.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/lobstaHelper.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/consoleManager.js"></script>
+    <!-- <script type="text/javascript" src="js/dataUpdater.js"></script> -->
 
 </head>
 <body>
@@ -47,7 +51,7 @@
   <div class="features clearfix">
     <div class="console-feature">
         <div class="console-messages">
-            <textarea id="messages" type="textarea"  onkeypress="checkCommandSend(event)"> message here</textarea>
+            <textarea id="messages" type="textarea"></textarea>
             <!-- <input id="userButton" value = "testButton" type="button" onclick="handleCommand()"/> -->
         </div>
         <div class="console-bars">
@@ -55,15 +59,15 @@
             <div id="connection-bar"></div>
         </div>
         <div class="console-stack">
-            <textarea id="stack" type="text" readonly wrap="soft">stack here</textarea>
+            <textarea id="stack" type="text" readonly wrap="soft"></textarea>
         </div>
 
         <div class="console-answers">
-            <textarea id="answers" type="text" readonly wrap="soft">answer here</textarea>
+            <textarea id="answers" type="text" readonly wrap="soft"></textarea>
         </div>
     </div>
 
-    <div = class="table-feature">
+    <div class="table-feature">
         <table id="orderTable"></table>
         <div id="orderPager"></div>
     </div>
