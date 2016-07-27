@@ -37,6 +37,9 @@ public class NTTcpManager {
         bridge = server.getDataBridge();
     }
 
+    protected boolean isServerWork(){
+        return server.isServerWorking();
+    }
     //always last
 
     protected void finishingTodayJob() {

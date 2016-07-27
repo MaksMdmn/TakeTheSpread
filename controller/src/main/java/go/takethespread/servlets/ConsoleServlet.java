@@ -3,7 +3,6 @@ package go.takethespread.servlets;
 import go.takethespread.exceptions.ConsoleException;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.ConsoleManager;
-import go.takethespread.managers.TaskManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,6 @@ public class ConsoleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ConsoleManager manager = ConsoleManager.getInstance();
-        TaskManager taskManager = TaskManager.getInstance(); //for test
         String userMessage = req.getParameter("userMessage");
         String answer;
 

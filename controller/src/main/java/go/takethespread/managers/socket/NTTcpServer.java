@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -30,11 +31,15 @@ public class NTTcpServer {
         isConn = true;
         try {
             serverSocket = new ServerSocket(8085, 0, InetAddress.getByName("localhost"));
+            serverSocket.setSoTimeout(10 * 1000);
             if (socket == null) {
                 socket = serverSocket.accept();
                 br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 pw = new PrintWriter(socket.getOutputStream());
             }
+        } catch (SocketTimeoutException e) {
+            isConn = false;
+            System.out.println("Socket time out");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,7 +54,7 @@ public class NTTcpServer {
         closeConnEntities();
     }
 
-    public boolean isServerWorking(){
+    public boolean isServerWorking() {
         return isConn;
     }
 
@@ -84,8 +89,12 @@ public class NTTcpServer {
 
     private void closeConnEntities() {
         try {
-            br.close();
-            pw.close();
+            if (br != null) {
+                br.close();
+            }
+            if (pw != null) {
+                pw.close();
+            }
             if (reading != null) {
                 reading.interrupt();
             }
@@ -153,11 +162,11 @@ public class NTTcpServer {
             return answers.pollFirst();
         }
 
-        protected String acceptNearMarketData(){
+        protected String acceptNearMarketData() {
             return nearMarketData.peekLast();
         }
 
-        protected String acceptFarMarketData(){
+        protected String acceptFarMarketData() {
             return farMarketData.peekLast();
         }
 
@@ -169,7 +178,9 @@ public class NTTcpServer {
             return !answers.isEmpty();
         }
 
-        protected boolean haveMarketData() {return !nearMarketData.isEmpty() && !farMarketData.isEmpty();}
+        protected boolean haveMarketData() {
+            return !nearMarketData.isEmpty() && !farMarketData.isEmpty();
+        }
 
     }
 

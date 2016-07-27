@@ -1,5 +1,5 @@
 /.idea
-/OilSpreader.iml
+/oilspreader.iml
 /dao/target
 /model/target
 /controller/target
@@ -7,3 +7,4 @@
 /model/model.iml
 /controller/controller.iml
 /README.md
+controller/src/main/webapp/WEB-INF/lobstaUsers.properties

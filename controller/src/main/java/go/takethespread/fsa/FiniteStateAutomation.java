@@ -3,6 +3,7 @@ package go.takethespread.fsa;
 
 import go.takethespread.ClassNameUtil;
 import go.takethespread.Order;
+import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.TaskManager;
@@ -53,6 +54,7 @@ public class FiniteStateAutomation extends Thread {
     @Override
     public void run() {
         isWorking = true;
+        externalManager.startingJob();
         TaskManager.TradeTask currentTask;
 
         while (isWorking) {
@@ -174,7 +176,6 @@ public class FiniteStateAutomation extends Thread {
                 if (lm.isOrderPlaced()) {
                     lm.cancelOrderSize();
                 }
-                //?????? what should I do here?
                 break;
             default:
                 break;
@@ -186,8 +187,13 @@ public class FiniteStateAutomation extends Thread {
         // correcting completion of work!
         logger.info("execute GJ");
         externalManager.finishingJob();
-        isWorking = false;
+        isWorking = false; //? may be better have OFF command for that?
         logger.info("GJ executed");
+        try {
+            taskManager.removeAllTasks();
+        } catch (TradeException e) {
+            e.printStackTrace();
+        }
     }
 
     private void executeRN(String item, String values) {

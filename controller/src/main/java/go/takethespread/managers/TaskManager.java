@@ -48,6 +48,13 @@ public class TaskManager {
         taskPool.remove(task);
     }
 
+    public synchronized void removeAllTasks() throws TradeException{
+        if (taskPool == null) {
+            throw new TradeException("taskPool wasn't initialized: " + taskPool);
+        }
+        taskPool.clear();
+    }
+
     public synchronized TradeTask getCurrentTask() throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);

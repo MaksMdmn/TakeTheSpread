@@ -209,6 +209,15 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         System.out.println("job finished");
     }
 
+    public void refreshData() {
+        nearMarketData.updateActualMarketData();
+        farMarketData.updateActualMarketData();
+    }
+
+    public boolean isConnOkay(){
+        return ntTcpManager.isServerWork();
+    }
+
     private Term identifyTerm(String instr) {
         if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
             return Term.NEAR;
@@ -217,10 +226,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }
 
-    public void refreshData() {
-        nearMarketData.updateActualMarketData();
-        farMarketData.updateActualMarketData();
-    }
+
 
     private Order parseTheOrder(String tempOrder) {
         Order order = new Order();

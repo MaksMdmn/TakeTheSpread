@@ -49,4 +49,6 @@ public interface ExternalManager {
 
     public void finishingJob();
 
+    public boolean isConnOkay();
+
 }
