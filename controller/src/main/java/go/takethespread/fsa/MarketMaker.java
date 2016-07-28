@@ -44,6 +44,7 @@ public class MarketMaker {
             logger.info("pause is not necessary, cause phase is: " + blotter.getCurPhase());
         }
 
+        blotter.updateOrdersData(); // new, can happen something D:
     }
 
     public int defineMaxMarketSize(Term term, Side side) {
