@@ -1,7 +1,6 @@
 package go.takethespread.servlets;
 
 import go.takethespread.fsa.FiniteStateAutomation;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ public class LoginServlet extends HttpServlet {
 
         if(prop.containsKey(log)){
             if(prop.getProperty(log).equals(pas)){
-                startWork();
                 resp.getWriter().write("true");
             }else{
                 resp.getWriter().write("false");

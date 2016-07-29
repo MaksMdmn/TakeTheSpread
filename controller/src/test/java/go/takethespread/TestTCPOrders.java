@@ -1,5 +1,6 @@
 package go.takethespread;
 
+import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
@@ -9,8 +10,11 @@ public class TestTCPOrders {
 
     public static void main(String[] args) {
         try {
-            String instr1 = ConsoleManager.getInstance().getTradeSystemInfo().instrument_n;
-            String instr2 = ConsoleManager.getInstance().getTradeSystemInfo().instrument_f;
+            TradeSystemInfo info = new TradeSystemInfo();
+            info.updateProp();
+
+            String instr1 = info.instrument_n;
+            String instr2 = info.instrument_f;
 
             ntTcpExternalManager.startingJob();
 

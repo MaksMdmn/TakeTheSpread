@@ -7,25 +7,25 @@ import java.util.Properties;
 
 public final class TradeSystemInfo {
     private Properties actualProperties;
-    public final String account;
-    public final String host;
-    public final int port;
-    public final String instrument_n;
-    public final String instrument_f;
-    public final Money entering_dev;
+    public String account;
+    public String host;
+    public int port;
+    public String instrument_n;
+    public String instrument_f;
+    public Money entering_dev;
     public int favorable_size;
     public boolean limit_use;
     public int max_loss_numbers;
-    public final Money commis_per_one_contract;
-    public final int spreadCalc_time_sec;
-    public final int inPos_time_sec;
-    public final boolean default_spread_use;
-    public final int min_spreadCalc_period;
-    public final Money default_spread;
+    public Money commis_per_one_contract;
+    public int spreadCalc_time_sec;
+    public int inPos_time_sec;
+    public boolean default_spread_use;
+    public int min_spreadCalc_period;
+    public Money default_spread;
 //    public final Date trade_session_time;
 //    public final Date exception_session_time;
 
-    public TradeSystemInfo() {
+    public void updateProp(){
         actualProperties = initProp("possibleSettings.properties");
         account = actualProperties.getProperty("account");
         host = actualProperties.getProperty("host");

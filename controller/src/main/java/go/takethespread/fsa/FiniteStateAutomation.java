@@ -6,6 +6,7 @@ import go.takethespread.Order;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
+import go.takethespread.managers.InfoManager;
 import go.takethespread.managers.TaskManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +20,7 @@ public class FiniteStateAutomation extends Thread {
     private ExternalManager externalManager;
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
+    private InfoManager infoManager;
 
     private LimitMaker lm;
     private MarketMaker mm;
@@ -36,8 +38,13 @@ public class FiniteStateAutomation extends Thread {
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
 
-        tradeSystemInfo = consoleManager.getTradeSystemInfo();
+        tradeSystemInfo = new TradeSystemInfo();
+        tradeSystemInfo.updateProp();
         blotter = new TradeBlotter(tradeSystemInfo, externalManager);
+
+        infoManager = InfoManager.getInstance();
+        infoManager.setBlotter(blotter);
+
         algo = new Algorithm(tradeSystemInfo, externalManager, blotter);
 
         lm = new LimitMaker(externalManager, blotter);

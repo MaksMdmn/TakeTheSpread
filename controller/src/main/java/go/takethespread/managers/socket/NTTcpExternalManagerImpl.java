@@ -3,6 +3,7 @@ package go.takethespread.managers.socket;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.fsa.Term;
+import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 
@@ -219,9 +220,11 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     private Term identifyTerm(String instr) {
-        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_n))
+        TradeSystemInfo info = new TradeSystemInfo();
+        info.updateProp();
+        if (instr.equals(info.instrument_n))
             return Term.NEAR;
-        if (instr.equals(consoleManager.getTradeSystemInfo().instrument_f))
+        if (instr.equals(info.instrument_f))
             return Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }

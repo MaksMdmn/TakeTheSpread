@@ -24,6 +24,9 @@ public class TradeBlotter {
     private int position_n;
     private int position_f;
     private List<Order> orders;
+    private Money cash;
+    private Money buypow;
+    private Money pnl;
     private Phase curPhase;
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
@@ -59,67 +62,79 @@ public class TradeBlotter {
         throw new IllegalArgumentException("Incorrect term: " + term);
     }
 
-    public Money getBid_n() {
+    public synchronized Money getBid_n() {
         return bid_n;
     }
 
-    public Money getAsk_n() {
+    public synchronized Money getAsk_n() {
         return ask_n;
     }
 
-    public Money getBid_f() {
+    public synchronized Money getBid_f() {
         return bid_f;
     }
 
-    public Money getAsk_f() {
+    public synchronized Money getAsk_f() {
         return ask_f;
     }
 
-    public int getBidVol_n() {
+    public synchronized int getBidVol_n() {
         return bidVol_n;
     }
 
-    public int getAskVol_n() {
+    public synchronized int getAskVol_n() {
         return askVol_n;
     }
 
-    public int getBidVol_f() {
+    public synchronized int getBidVol_f() {
         return bidVol_f;
     }
 
-    public int getAskVol_f() {
+    public synchronized int getAskVol_f() {
         return askVol_f;
     }
 
-    public String getInstrument_n() {
+    public synchronized String getInstrument_n() {
         return tradeSystemInfo.instrument_n;
     }
 
-    public String getInstrument_f() {
+    public synchronized String getInstrument_f() {
         return tradeSystemInfo.instrument_f;
     }
 
-    public int getPosition_n() {
+    public synchronized int getPosition_n() {
         return position_n;
     }
 
-    public int getPosition_f() {
+    public synchronized int getPosition_f() {
         return position_f;
     }
 
-    public List<Order> getOrders() {
+    public synchronized Money getCash() {
+        return cash;
+    }
+
+    public synchronized Money getBuypow() {
+        return buypow;
+    }
+
+    public synchronized Money getPnl() {
+        return pnl;
+    }
+
+    public synchronized List<Order> getOrders() {
         return orders;
     }
 
-    public SpreadCalculator getSpreadCalculator() {
+    public synchronized SpreadCalculator getSpreadCalculator() {
         return spreadCalculator;
     }
 
-    public TradeSystemInfo getTradeSystemInfo() {
+    public synchronized TradeSystemInfo getTradeSystemInfo() {
         return tradeSystemInfo;
     }
 
-    public Phase getCurPhase() {
+    public synchronized Phase getCurPhase() {
         return curPhase;
     }
 
@@ -134,6 +149,9 @@ public class TradeBlotter {
         askVol_n = externalManager.getBAskVolume(tradeSystemInfo.instrument_n);
         bidVol_f = externalManager.getBBidVolume(tradeSystemInfo.instrument_f);
         askVol_f = externalManager.getBAskVolume(tradeSystemInfo.instrument_f);
+        cash = externalManager.getCashValue();
+        buypow = externalManager.getBuyingPower();
+        pnl = externalManager.getPnL();
         logger.debug("new market data: " +
                 bid_n.getAmount() + " " + bidVol_n + " " +
                 ask_n.getAmount() + " " + askVol_n + " " +
@@ -204,7 +222,7 @@ public class TradeBlotter {
         return byBid.greaterOrEqualThan(byAsk);
     }
 
-    public Money getBestSpread() {
+    public synchronized Money getBestSpread() {
         if (isBidBetterOrEqualAsk()) {
             return Money.absl(bid_n.subtract(bid_f));
         } else {
@@ -212,7 +230,7 @@ public class TradeBlotter {
         }
     }
 
-    public Money getBestSpread(boolean isGreaterSpread) {
+    public synchronized Money getBestSpread(boolean isGreaterSpread) {
         Money greater;
         Money smaller;
         Money byBid = Money.absl(bid_f.subtract(bid_n));

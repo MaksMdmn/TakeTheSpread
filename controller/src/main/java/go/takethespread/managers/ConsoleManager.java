@@ -12,6 +12,7 @@ public class ConsoleManager {
 
     private ConsoleManager() {
         tradeSystemInfo = new TradeSystemInfo();
+        tradeSystemInfo.updateProp();
         taskManager = TaskManager.getInstance();
     }
 
@@ -57,10 +58,6 @@ public class ConsoleManager {
             return msg + " was not executed. Trouble with verification.";
         }
 
-    }
-
-    public TradeSystemInfo getTradeSystemInfo() {
-        return tradeSystemInfo;
     }
 
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
