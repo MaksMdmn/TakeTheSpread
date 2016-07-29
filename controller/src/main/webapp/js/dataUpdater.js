@@ -92,82 +92,184 @@
              return temp;
          }
      }
+
+
+     var settingWdth = jQuery('.settings').width();
+     var indicatorWdth = jQuery('.indicators').width();
+     var tableFeatureWdth = jQuery('.table-feature').width();
+
+
+     jQuery('#settingsTable').jqGrid({
+         url: 'update',
+         datatype: 'json',
+         mtype: 'POST',
+         height: 150,
+         width: settingWdth,
+         rowNum: 10,
+         rowList: [10, 20, 30],
+         viewrecords: true,
+         caption: 'SETTINGS',
+         colNames: ['Setting', 'Val'],
+         colModel: [{
+             name: 'name',
+             index: 'name',
+             width: 120,
+             editable: true
+         }, {
+             name: 'value',
+             index: 'value',
+             width: 50,
+             editable: true
+         }],
+
+     });
+
+
+     var myjsondata2 = [{
+         profit: "+3444$",
+         deals: "321",
+         commis: "-23$",
+         status: "WORKING",
+         dich1: "TUT",
+         dich2: "ZDES",
+         dich3: "YA",
+         dich4: "AA?!"
+     }];
+
+     var myjsondata3 = [{
+         id: "1",
+         deal: "BUY",
+         type: "MARKET",
+         price: "46.23",
+         quantity: "12",
+         filled: "12",
+         pos_after: "32",
+         result: "-43$"
+     }, {
+         id: "2",
+         deal: "BUY",
+         type: "MARKET",
+         price: "46.23",
+         quantity: "12",
+         filled: "12",
+         pos_after: "32",
+         result: "-43$"
+     }, {
+         id: "3",
+         deal: "BUY",
+         type: "MARKET",
+         price: "46.23",
+         quantity: "12",
+         filled: "12",
+         pos_after: "32",
+         result: "-43$"
+     }];
+
+     jQuery('#indicatorTable').jqGrid({
+         data: myjsondata2,
+         datatype: 'local', //'xml'
+         height: 40,
+         width: indicatorWdth,
+         rowNum: 10,
+         rowList: [10, 20, 30],
+         colNames: ['PROFIT', 'DEALS', 'COMMIS', 'STATUS', 'DICH1', 'DICH2', 'DICH3', 'DICH4'],
+         colModel: [{
+             name: 'profit',
+             index: 'profit',
+             width: 55,
+             editable: true
+         }, {
+             name: 'deals',
+             index: 'deals',
+             width: 55,
+             editable: true
+         }, {
+             name: 'commis',
+             index: 'commis',
+             width: 55,
+             editable: true
+         }, {
+             name: 'status',
+             index: 'status',
+             width: 55,
+             editable: true
+         }, {
+             name: 'dich1',
+             index: 'dich1',
+             width: 55,
+             editable: true
+         }, {
+             name: 'dich2',
+             index: 'dich2',
+             width: 55,
+             editable: true
+         }, {
+             name: 'dich3',
+             index: 'dich3',
+             width: 55,
+             editable: true
+         }, {
+             name: 'dich4',
+             index: 'dich4',
+             width: 55,
+             editable: true
+         }],
+         viewrecords: true,
+         caption: 'INDICATORS'
+     });
+
+     jQuery('#orderTable').jqGrid({
+         data: myjsondata3,
+         datatype: 'local',
+         height: 320,
+         width: tableFeatureWdth,
+         rowNum: 20,
+         rowList: [10, 20, 30],
+         colNames: ['ID', 'DEAL', 'TYPE', 'PRICE', 'QUANTITY', 'FILLED', 'POSITION_AFTER', 'RESULT'],
+         colModel: [{
+             name: 'id',
+             index: 'id',
+             width: 55,
+             editable: false
+         }, {
+             name: 'deal',
+             index: 'deal',
+             width: 55,
+             editable: false
+         }, {
+             name: 'type',
+             index: 'type',
+             width: 70,
+             editable: false
+         }, {
+             name: 'price',
+             index: 'price',
+             width: 70,
+             editable: false
+         }, {
+             name: 'quantity',
+             index: 'quantity',
+             width: 55,
+             editable: false
+         }, {
+             name: 'filled',
+             index: 'filled',
+             width: 55,
+             editable: false
+         }, {
+             name: 'pos_after',
+             index: 'pos_after',
+             width: 55,
+             editable: false
+         }, {
+             name: 'result',
+             index: 'result',
+             width: 70,
+             editable: false
+         }],
+         pager: 'orderPager',
+         viewrecords: true,
+         caption: 'ORDERS'
+     });
+
  });
- // setInterval(function() {
- //     var x = new Date(); // current time
- //     data.push([x, Math.random(), Math.random()]);
- //     g.updateOptions({
- //         'file': data
- //     });
- // }, 1000);
-
- // var t = new Date();
- // for (var i = 10; i >= 0; i--) {
- //     var x = new Date(t.getTime() - i * 1000);
- //     // data.push([x, Math.random(), Math.random()]);
-
- //     if (i === 4) {
- //         data.push([x, Math.random(), Math.random(), Math.random()]);
- //     } else {
- //         data.push([x, Math.random(), Math.random(), null]);
- //     }
- // }
-
-
-
- // var bid_nArr = [];
- // var bid_fArr = [];
- // var ask_nArr = [];
- // var ask_fArr = [];
- // var deal_nArr = [];
- // var deal_fArr = [];
- // var xScaleArr = [];
- // var myChart;
-
- // $(document).ready(function() {
- //     var data = {
- //         labels: xScaleArr,
- //         series: [bid_nArr, bid_fArr, ask_nArr, ask_fArr, {
- //             name: 'deal1',
- //             data: deal_nArr
- //         }, {
- //             name: 'deal2',
- //             data: deal_fArr
- //         }]
- //     };
- //     var options = {
- //         fullWidth: true,
- //         chartPadding: {
- //             right: 40
- //         }
- //     };
- //     myChart = new Chartist.Line('.chart-feature', data, options);
-
- // });
-
-
-
- // var updateTimeMls = 500;
- // setInterval(dataUpdRand, updateTimeMls);
-
-
- // function dataUpd(bidN, bidF, askN, askF, dealN, dealF) {
- //     bid_nArr.push(bidN);
- //     bid_fArr.push(bidF);
- //     ask_nArr.push(bidN);
- //     ask_fArr.push(askF);
- //     deal_nArr.push(dealN);
- //     deal_fArr.push(dealF);
-
- //     xScaleArr.push(new Date().toTimeString());
- //     myChart.data.labels = xScaleArr;
- //     myChart.data.series = [bid_nArr, bid_fArr, ask_nArr, ask_fArr, deal_nArr, deal_fArr];
- //     myChart.update();
- // }
-
-
-
- // function dataUpdRand() {
- //     var deal = getRandDeal();
- //     dataUpd(getRandomPrice(), getRandomPrice(), getRandomPrice(), getRandomPrice(), deal, deal - 3);
- // }
