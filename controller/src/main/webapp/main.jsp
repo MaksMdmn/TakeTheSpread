@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,20 +9,20 @@
     <link type="text/css" rel="stylesheet" href="css/main.css" />
     <link type="text/css" rel="stylesheet" href="css/chartist.min.css" />
 
-<!--     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/dygraph-combined-dev.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/dataUpdater.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/consoleManager.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/loginChecker.js"></script> -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/loginChecker.js"></script>
 
-    <script type="text/javascript" src="js/lib/jquery-1.12.2.min.js"></script>
+   <!--  <script type="text/javascript" src="js/lib/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="js/lib/i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="js/lib/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="js/lib/dygraph-combined-dev.js"></script>
     <script type="text/javascript" src="js/consoleManager.js"></script>
-    <script type="text/javascript" src="js/dataUpdater.js"></script>
+    <script type="text/javascript" src="js/dataUpdater.js"></script> -->
 
 
 </head>

@@ -99,83 +99,85 @@
      var tableFeatureWdth = jQuery('.table-feature').width();
 
 
+     var lastsel;
      jQuery('#settingsTable').jqGrid({
          url: 'update',
          datatype: 'json',
-         mtype: 'POST',
-         height: 150,
+         postData: {
+             'whichTable': 'settings'
+         },
+         mtype: 'GET',
+         height: '100%',
          width: settingWdth,
-         rowNum: 10,
-         rowList: [10, 20, 30],
-         viewrecords: true,
+         hiddengrid: true,
+         rowNum: 20,
+         scrollOffset: 0,
          caption: 'SETTINGS',
-         colNames: ['Setting', 'Val'],
+         colNames: ['Setting', 'Value'],
          colModel: [{
              name: 'name',
              index: 'name',
              width: 120,
-             editable: true
+             editable: false
          }, {
              name: 'value',
              index: 'value',
              width: 50,
              editable: true
          }],
-
      });
 
-
-     var myjsondata2 = [{
-         profit: "+3444$",
-         deals: "321",
-         commis: "-23$",
-         status: "WORKING",
-         dich1: "TUT",
-         dich2: "ZDES",
-         dich3: "YA",
-         dich4: "AA?!"
-     }];
-
-     var myjsondata3 = [{
-         id: "1",
-         deal: "BUY",
-         type: "MARKET",
-         price: "46.23",
-         quantity: "12",
-         filled: "12",
-         pos_after: "32",
-         result: "-43$"
-     }, {
-         id: "2",
-         deal: "BUY",
-         type: "MARKET",
-         price: "46.23",
-         quantity: "12",
-         filled: "12",
-         pos_after: "32",
-         result: "-43$"
-     }, {
-         id: "3",
-         deal: "BUY",
-         type: "MARKET",
-         price: "46.23",
-         quantity: "12",
-         filled: "12",
-         pos_after: "32",
-         result: "-43$"
-     }];
-
      jQuery('#indicatorTable').jqGrid({
-         data: myjsondata2,
-         datatype: 'local', //'xml'
-         height: 40,
+         url: 'update',
+         datatype: 'json',
+         postData: {
+             'whichTable': 'indicators'
+         },
+         mtype: 'GET',
+         caption: 'INDICATORS',
+         height: '100%',
          width: indicatorWdth,
-         rowNum: 10,
-         rowList: [10, 20, 30],
-         colNames: ['PROFIT', 'DEALS', 'COMMIS', 'STATUS', 'DICH1', 'DICH2', 'DICH3', 'DICH4'],
+         rowNum: 1,
+         scrollOffset: 0,
+         colNames: ['POS_N', 'POS_F', 'SPOT_N', 'SPOT_F', 'CALC_SPRD', 'MRT_SPRD', 'CASH', 'BUYPW', 'D', 'D+', 'D-', 'COMMIS', 'PnL'],
          colModel: [{
-             name: 'profit',
-             index: 'profit',
+             name: 'pos_n',
+             index: 'pos_n',
+             width: 55,
+             editable: true
+         }, {
+             name: 'pos_f',
+             index: 'pos_f',
+             width: 55,
+             editable: true
+         }, {
+             name: 'spot_n',
+             index: 'spot_n',
+             width: 55,
+             editable: true
+         }, {
+             name: 'spot_f',
+             index: 'spot_f',
+             width: 55,
+             editable: true
+         }, {
+             name: 'calcSpr',
+             index: 'calcSpr',
+             width: 55,
+             editable: true
+         }, {
+             name: 'curSpr',
+             index: 'curSpr',
+             width: 55,
+             editable: true
+         }, {
+             name: 'cash',
+             index: 'cash',
+             width: 55,
+             editable: true
+         }, {
+             name: 'buyPw',
+             index: 'buyPw',
              width: 55,
              editable: true
          }, {
@@ -184,92 +186,90 @@
              width: 55,
              editable: true
          }, {
+             name: 'deals_prf',
+             index: 'deals_prf',
+             width: 55,
+             editable: true
+         }, {
+             name: 'deals_ls',
+             index: 'deals_ls',
+             width: 55,
+             editable: true
+         }, {
              name: 'commis',
              index: 'commis',
              width: 55,
              editable: true
          }, {
-             name: 'status',
-             index: 'status',
-             width: 55,
-             editable: true
-         }, {
-             name: 'dich1',
-             index: 'dich1',
-             width: 55,
-             editable: true
-         }, {
-             name: 'dich2',
-             index: 'dich2',
-             width: 55,
-             editable: true
-         }, {
-             name: 'dich3',
-             index: 'dich3',
-             width: 55,
-             editable: true
-         }, {
-             name: 'dich4',
-             index: 'dich4',
+             name: 'pnl',
+             index: 'pnl',
              width: 55,
              editable: true
          }],
-         viewrecords: true,
-         caption: 'INDICATORS'
      });
 
      jQuery('#orderTable').jqGrid({
-         data: myjsondata3,
-         datatype: 'local',
-         height: 320,
+         url: 'update',
+         datatype: 'json',
+         postData: {
+             'whichTable': 'orders'
+         },
+         mtype: 'GET',
+         height: 300,
          width: tableFeatureWdth,
-         rowNum: 20,
+         rowNum: 10,
          rowList: [10, 20, 30],
-         colNames: ['ID', 'DEAL', 'TYPE', 'PRICE', 'QUANTITY', 'FILLED', 'POSITION_AFTER', 'RESULT'],
+         viewrecords: true,
+         caption: 'ORDERS',
+         scrollOffset: 0,
+         colNames: ['DATE', 'INSTR', 'DEAL', 'TYPE', 'PRICE', 'SIZE', 'PRICE_FLD', 'SIZE_FLD', 'STATUS'],
          colModel: [{
-             name: 'id',
-             index: 'id',
-             width: 55,
+             name: 'date',
+             index: 'date',
+             width: 100,
+             editable: false
+         }, {
+             name: 'instrument',
+             index: 'instrument',
+             width: 50,
              editable: false
          }, {
              name: 'deal',
              index: 'deal',
-             width: 55,
+             width: 30,
              editable: false
          }, {
              name: 'type',
              index: 'type',
-             width: 70,
+             width: 30,
              editable: false
          }, {
              name: 'price',
              index: 'price',
-             width: 70,
+             width: 40,
              editable: false
          }, {
-             name: 'quantity',
-             index: 'quantity',
-             width: 55,
+             name: 'size',
+             index: 'size',
+             width: 30,
              editable: false
          }, {
-             name: 'filled',
-             index: 'filled',
-             width: 55,
+             name: 'priceFilled',
+             index: 'priceFilled',
+             width: 60,
              editable: false
          }, {
-             name: 'pos_after',
-             index: 'pos_after',
-             width: 55,
+             name: 'sizeFilled',
+             index: 'sizeFilled',
+             width: 50,
              editable: false
          }, {
-             name: 'result',
-             index: 'result',
-             width: 70,
+             name: 'status',
+             index: 'status',
+             width: 40,
              editable: false
          }],
-         pager: 'orderPager',
-         viewrecords: true,
-         caption: 'ORDERS'
+         pager: 'orderPager'
      });
 
  });

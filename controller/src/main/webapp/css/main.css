@@ -26,7 +26,7 @@ input, button, label {
 .settings{
 	float:left;
 	/*width: 200px;*/
-    width:13%;
+    width:21%;
     height: 10px;
     margin-right:20px;
     margin-left:15px;
@@ -35,7 +35,7 @@ input, button, label {
 .indicators{
     float: left;
     /*width:740px;*/
-    width:66%;
+    width:76%;
     vertical-align: center;
     height: 10px;
 }
@@ -60,7 +60,7 @@ input, button, label {
 
 .login-submit {
 	position: absolute;
-	top: 17px;
+	top: 27px;
 	right: 15px;
 	width: 34px;
 	height: 34px;
