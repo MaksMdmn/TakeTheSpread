@@ -34,7 +34,7 @@ public class UpdateServlet extends HttpServlet {
 
         switch (frontRequest) {
             case PRICE_REQ:
-//                jsonObj = priceDataToJson(null, mapper);
+                jsonObj = priceDataToJson(null, mapper);
                 break;
             case SET_REQ:
                 jsonObj = settingsToJson(null, mapper);
@@ -60,11 +60,24 @@ public class UpdateServlet extends HttpServlet {
 
     private String priceDataToJson(InfoManager manager, ObjectMapper mapper) throws JsonProcessingException {
         double[] priceData = new double[4];
-        priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
-        priceData[1] = manager.getPrice(Term.NEAR, Side.ASK).getAmount();
-        priceData[2] = manager.getPrice(Term.FAR, Side.BID).getAmount();
-        priceData[3] = manager.getPrice(Term.FAR, Side.ASK).getAmount();
+//        priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
+//        priceData[1] = manager.getPrice(Term.NEAR, Side.ASK).getAmount();
+//        priceData[2] = manager.getPrice(Term.FAR, Side.BID).getAmount();
+//        priceData[3] = manager.getPrice(Term.FAR, Side.ASK).getAmount();
+
+        int zeroOne = getRandomInt(0, 1);
+        priceData[0] = (double) getRandomInt(60, 80);
+        priceData[1] = (double) getRandomInt(30, 50);
+        priceData[2] = (double) getRandomInt(60, 80) * zeroOne;
+        priceData[3] = (double) getRandomInt(30, 50) * zeroOne;
+
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(priceData);
+    }
+
+    private int getRandomInt(int minimum, int maximum) {
+        Random rn = new Random();
+        int range = maximum - minimum + 1;
+        return rn.nextInt(range) + minimum;
     }
 
     private String settingsToJson(InfoManager manager, ObjectMapper mapper) throws JsonProcessingException {
@@ -164,6 +177,6 @@ public class UpdateServlet extends HttpServlet {
         indicData.setCommis(94);
         indicData.setPnl(-321d);
 
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString( indicData );
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(indicData);
     }
 }

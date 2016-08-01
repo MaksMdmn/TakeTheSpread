@@ -1,12 +1,15 @@
  $(document).ready(function() {
-     var maxDataLength = 5 * 60;
-     var data = defineStartChartData();
+     var maxDataLength = 0.5 * 60;
+     var settingWdth = jQuery('.settings').width();
+     var indicatorWdth = jQuery('.indicators').width();
+     var tableFeatureWdth = jQuery('.table-feature').width();
+
+     var chartData = defineStartChartData();
+     var startPriceValues = $.makeArray(updatePrices());
      var maxPrice = defineMaxPrice();
-     var nearFarColors = defineNearFarColors();
+     var nearFarColors = defineNearFarColors(startPriceValues[0], startPriceValues[1]);
 
-     defineNearFarColors(40, 60);
-
-     var g = new Dygraph($('.chart-feature').get(0), data, {
+     var g = new Dygraph($('.chart-feature').get(0), chartData, {
          animatedZooms: false,
          drawPoints: true,
          showRoller: false,
@@ -14,7 +17,7 @@
          isZoomedIgnoreProgrammaticZoom: true,
          valueRange: [0, maxPrice],
          xRangePad: 20,
-         labels: ['Time', 'near', 'far', 'n_Deals', 'f_Deals'],
+         labels: ['time', 'near', 'far', 'n_Deals', 'f_Deals'],
          'near': {
              pointSize: 2,
              color: '#8A2BE2'
@@ -36,70 +39,6 @@
 
      });
 
-     setInterval(testUpd, 2000);
-
-     function updateChartData(updData) {
-         if (data.length > maxDataLength) {
-             data.splice(0, 1);
-             data.push(updData);
-         } else {
-             data.push(updData);
-         }
-
-         g.updateOptions({
-             'file': data
-         });
-     }
-
-     function defineMaxPrice() {
-         return 170.0;
-     }
-
-     function defineStartChartData() {
-         return [];
-     }
-
-     function defineNearFarColors(priceNear, priceFar) {
-         var result = [];
-         if (priceNear <= priceFar) {
-             result[0] = '#00FF7F';
-             result[1] = '#800000';
-         } else {
-             result[0] = '#800000';
-             result[1] = '#00FF7F';
-         }
-
-         return result;
-     }
-
-     function testUpd() {
-         updateChartData([new Date(), getRandomInt(20, maxPrice * 0.5), getRandomInt(maxPrice * 0.5, maxPrice * 0.8), getRandomDeal(), getRandomDeal()]);
-     }
-
-     function getRandomInt(min, max) {
-         return Math.floor(Math.random() * (max - min + 1)) + min;
-     }
-
-     function getRandomPrice() {
-         return getRandomInt(1, maxPrice * 0.7);
-     }
-
-     function getRandomDeal() {
-         var temp = getRandomInt(0, 1) * getRandomInt(10, maxPrice * 0.7);
-         if (temp === 0) {
-             return null;
-         } else {
-             return temp;
-         }
-     }
-
-
-     var settingWdth = jQuery('.settings').width();
-     var indicatorWdth = jQuery('.indicators').width();
-     var tableFeatureWdth = jQuery('.table-feature').width();
-
-
-     var lastsel;
      jQuery('#settingsTable').jqGrid({
          url: 'update',
          datatype: 'json',
@@ -271,5 +210,64 @@
          }],
          pager: 'orderPager'
      });
+
+     setInterval(updatePrices, 1000);
+
+     function updatePrices() {
+         $.ajax({
+             url: 'update',
+             type: 'GET',
+             data: {
+                 'whichTable': 'prices'
+             },
+             success: function(data) {
+                 if (chartData.length > maxDataLength) {
+                     chartData.splice(0, 1);
+                 }
+
+                 var tempArr = $.makeArray(data);
+                 tempArr.unshift(new Date());
+
+                 for (var i = 0; i < tempArr.length; i++) {
+                     if (tempArr[i] === 0) {
+                         tempArr[i] = null;
+                     }
+                 }
+
+                 chartData.push(tempArr);
+
+                 g.updateOptions({
+                     'file': chartData
+                 });
+
+                 return tempArr;
+             },
+         });
+     }
+
+
+     function defineMaxPrice() {
+         return startPriceValues[0] * 2; // 100% increase of nearest futures price
+     }
+
+     function defineStartChartData() {
+         return [];
+     }
+
+     function defineNearFarColors(priceNear, priceFar) {
+         var result = [];
+         if (priceNear <= priceFar) {
+             result[0] = '#00FF7F';
+             result[1] = '#800000';
+         } else {
+             result[0] = '#800000';
+             result[1] = '#00FF7F';
+         }
+
+         return result;
+     }
+
+     defineNearFarColors(40, 60);
+
 
  });
