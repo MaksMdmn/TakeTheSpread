@@ -1,6 +1,6 @@
-package go.takethespread;
+package go.takethespread.util;
 
-public class JSONSettingsData {
+public class JsonSettingsData {
     private String name;
     private Object value;
 

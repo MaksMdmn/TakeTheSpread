@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function startConsoleWork() {
     var msgElem = $('#messages');
     var anwElem = $('#answers');
     var stkElem = $('#stack');
@@ -49,16 +49,17 @@ $(document).ready(function() {
             // alert('full stack: ' + stkElem.val() + ' size: ' + stkElem.val().length);
         }
     });
-});
 
-function checkEmptyVal(text) {
-    if (text === undefined || text === '') {
-        return '';
-    } else {
-        return text;
+    function checkEmptyVal(text) {
+        if (text === undefined || text === '') {
+            return '';
+        } else {
+            return text;
+        }
     }
-}
 
-function completeAnsBeforeFill(newText, oldText) {
-    return (new Date().toLocaleString() + ' ' + newText + '\n' + oldText);
+    function completeAnsBeforeFill(newText, oldText) {
+        return (new Date().toLocaleString() + ' ' + newText + '\n' + oldText);
+    }
+
 }

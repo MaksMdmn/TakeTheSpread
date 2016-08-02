@@ -17,7 +17,7 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus) {
                 if (textStatus === 'timeout') {
-                    alert('timeout is over, try again.')
+                    alert('timeout is over, try again.');
                 } else {
                     alert('unknown error, man. Call somebody to help');
                 }
@@ -26,6 +26,8 @@ $(document).ready(function() {
                 if (data === 'true') {
                     $('.hide').css('visibility', 'visible');
                     $('.login-info').css('visibility', 'hidden');
+                    startDataUpdate();
+                    startConsoleWork();
                 } else {
                     alert('input data was incorrect, please try again.');
                 }
@@ -33,4 +35,5 @@ $(document).ready(function() {
             timeout: 5000
         });
     });
+
 });

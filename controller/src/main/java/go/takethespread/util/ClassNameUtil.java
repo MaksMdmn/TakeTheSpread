@@ -1,4 +1,4 @@
-package go.takethespread;
+package go.takethespread.util;
 
 public final class ClassNameUtil {
     private ClassNameUtil() {

@@ -1,7 +1,7 @@
 package go.takethespread.fsa;
 
 
-import go.takethespread.ClassNameUtil;
+import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,8 +1,10 @@
-package go.takethespread;
+package go.takethespread.util;
+
+import go.takethespread.Order;
 
 import java.text.SimpleDateFormat;
 
-public class JSONOrderData {
+public class JsonOrderData {
     private String date;
     private String instrument;
     private char deal;
@@ -14,11 +16,11 @@ public class JSONOrderData {
     private String status;
 
 
-    public JSONOrderData() {
+    public JsonOrderData() {
 
     }
 
-    public JSONOrderData(Order order) {
+    public JsonOrderData(Order order) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
         this.date = sdf.format(order.getDate());
         this.instrument = order.getInstrument();

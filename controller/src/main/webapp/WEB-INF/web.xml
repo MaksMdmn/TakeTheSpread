@@ -20,8 +20,23 @@
     </servlet>
 
     <servlet>
-        <servlet-name>updateServlet</servlet-name>
-        <servlet-class>go.takethespread.servlets.UpdateServlet</servlet-class>
+        <servlet-name>chartServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.ChartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>indicatorServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.IndicatorServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ordersServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.OrdersServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>settingsServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.SettingsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -35,8 +50,23 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>updateServlet</servlet-name>
-        <url-pattern>/update</url-pattern>
+        <servlet-name>chartServlet</servlet-name>
+        <url-pattern>/chart</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>indicatorServlet</servlet-name>
+        <url-pattern>/indicator</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ordersServlet</servlet-name>
+        <url-pattern>/orders</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>settingsServlet</servlet-name>
+        <url-pattern>/settings</url-pattern>
     </servlet-mapping>
 
     <login-config>

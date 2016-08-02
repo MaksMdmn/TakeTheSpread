@@ -1,6 +1,6 @@
-package go.takethespread;
+package go.takethespread.util;
 
-public class JSONIndicData {
+public class JsonIndicData {
     private int pos_n;
     private int pos_f;
     private double spot_n;

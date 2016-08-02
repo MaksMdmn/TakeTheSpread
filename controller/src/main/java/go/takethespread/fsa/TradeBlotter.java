@@ -1,6 +1,6 @@
 package go.takethespread.fsa;
 
-import go.takethespread.ClassNameUtil;
+import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
