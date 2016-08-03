@@ -2,7 +2,7 @@ package go.takethespread.util;
 
 public class JsonSettingsData {
     private String name;
-    private Object value;
+    private String value;
 
     public String getName() {
         return name;
@@ -16,7 +16,7 @@ public class JsonSettingsData {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

@@ -35,5 +35,8 @@ $(document).ready(function() {
             timeout: 5000
         });
     });
-
+    // $('.hide').css('visibility', 'visible');
+    // $('.login-info').css('visibility', 'hidden');
+    // startDataUpdate();
+    // startConsoleWork();
 });

@@ -106,7 +106,7 @@ input, button, label {
 
 .console-feature{
 	float:left;
-	margin-right: 10px;
+	margin-right: 25px;
 	height: 400px;
 	/*width: 300px;*/
     width:20%;
@@ -171,7 +171,7 @@ input, button, label {
 .chart-feature{
 	float:right;
 	/*width: 515px;*/
-    width:41%;
+    width:40%;
 	height: 440px;
     margin-right:15px;
 }

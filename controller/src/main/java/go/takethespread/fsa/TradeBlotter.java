@@ -208,7 +208,7 @@ public class TradeBlotter {
         }
 
         if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                && pos_n < tradeSystemInfo.favorable_size) {
+                && pos_n < tradeSystemInfo.max_size) {
             return Phase.ACCUMULATION;
         }
 

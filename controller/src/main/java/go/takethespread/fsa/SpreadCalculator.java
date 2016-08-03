@@ -114,7 +114,7 @@ public class SpreadCalculator {
 
     private void calcCurSpread() {
 
-        if (!isEnoughData && tradeSystemInfo.default_spread_use) {
+        if (!isEnoughData && tradeSystemInfo.default_spread_using) {
             curSpread = tradeSystemInfo.default_spread;
             return;
         }
@@ -164,7 +164,7 @@ public class SpreadCalculator {
 
     private boolean isEnoughData() {
         return (updateTime - startTime) > spreadCalcDuration
-                && marketData.size() > tradeSystemInfo.min_spreadCalc_period;
+                && marketData.size() > tradeSystemInfo.min_spreadCalc_n;
     }
 
     private void checkPauseNecessity() {

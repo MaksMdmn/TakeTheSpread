@@ -4,18 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import go.takethespread.Money;
 import go.takethespread.Order;
+import go.takethespread.fsa.Settings;
 import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.InfoManager;
-import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
 import java.util.*;
 
-public final class JsonParseUtil {
+public final class ParseJsonUtil {
 
     private static InfoManager manager = InfoManager.getInstance();
     private static ObjectMapper mapper = new ObjectMapper();
 
-    private JsonParseUtil(){
+    private ParseJsonUtil(){
     }
 
     public static boolean checkConn(){
@@ -24,31 +24,16 @@ public final class JsonParseUtil {
     }
 
     public static String settingsToJson() throws JsonProcessingException {
-        LinkedHashMap<String, Object> settingsMap = new LinkedHashMap();
-//        TradeSystemInfo info = manager.getProps();
-        TradeSystemInfo info = new TradeSystemInfo();
-        info.updateProp();
-        settingsMap.put("HOST", info.host);
-        settingsMap.put("PORT", info.port);
-        settingsMap.put("NEAR FUTURES", info.instrument_n);
-        settingsMap.put("FAR FUTURES", info.instrument_f);
-        settingsMap.put("ACCOUNT", info.account);
-        settingsMap.put("COMMISSION_VALUE, usd", info.commis_per_one_contract.getAmount());
-        settingsMap.put("DEFAULT SPREAD", info.default_spread.getAmount());
-        settingsMap.put("DEFAULT SPREAD USING", info.default_spread_use);
-        settingsMap.put("ENTER SIGNAL DEV", info.entering_dev.getAmount());
-        settingsMap.put("MAX SIZE, n", info.favorable_size);
-        settingsMap.put("TIME IN POS, sec", info.inPos_time_sec);
-        settingsMap.put("LIMIT ORDERS USING", info.limit_use);
-        settingsMap.put("MAX LOSS NUMBERS", info.max_loss_numbers);
-        settingsMap.put("MIN SPREAD CALC TIME, sec", info.min_spreadCalc_period);
-        settingsMap.put("SPREAD CALC TIME, sec", info.spreadCalc_time_sec);
+        TradeSystemInfo info = TradeSystemInfo.getInstance();
+        info.initProp();
+        LinkedHashMap<Settings, String> settingsMap = info.getSettingsMap();
+
 
         JsonSettingsData tempObj;
         List<JsonSettingsData> jsonList = new ArrayList<>();
-        for (Map.Entry<String, Object> pair : settingsMap.entrySet()) {
+        for (Map.Entry<Settings, String> pair : settingsMap.entrySet()) {
             tempObj = new JsonSettingsData();
-            tempObj.setName(pair.getKey());
+            tempObj.setName(pair.getKey().name());
             tempObj.setValue(pair.getValue());
             jsonList.add(tempObj);
         }
@@ -144,5 +129,6 @@ public final class JsonParseUtil {
         int range = maximum - minimum + 1;
         return rn.nextInt(range) + minimum;
     }
+
 }
 

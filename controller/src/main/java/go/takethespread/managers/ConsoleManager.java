@@ -11,8 +11,8 @@ public class ConsoleManager {
     private TaskManager taskManager;
 
     private ConsoleManager() {
-        tradeSystemInfo = new TradeSystemInfo();
-        tradeSystemInfo.updateProp();
+        tradeSystemInfo = TradeSystemInfo.getInstance();
+//        tradeSystemInfo.initProp();  mb trouble here
         taskManager = TaskManager.getInstance();
     }
 

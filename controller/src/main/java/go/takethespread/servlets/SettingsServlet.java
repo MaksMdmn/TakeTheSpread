@@ -1,6 +1,6 @@
 package go.takethespread.servlets;
 
-import go.takethespread.util.JsonParseUtil;
+import go.takethespread.util.ParseJsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +12,8 @@ public class SettingsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
-        if (JsonParseUtil.checkConn()) {
-            jsonObj = JsonParseUtil.settingsToJson();
+        if (ParseJsonUtil.checkConn()) {
+            jsonObj = ParseJsonUtil.settingsToJson();
         } else {
             jsonObj = null; //HERE????
         }

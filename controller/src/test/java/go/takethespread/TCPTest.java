@@ -2,7 +2,6 @@ package go.takethespread;
 
 
 import go.takethespread.fsa.TradeSystemInfo;
-import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
@@ -12,8 +11,8 @@ public class TCPTest {
     static ExternalManager ntTcpExternalManager = NTTcpExternalManagerImpl.getInstance();
     public static void main(String[] args) {
         try {
-            TradeSystemInfo info = new TradeSystemInfo();
-            info.updateProp();
+            TradeSystemInfo info = TradeSystemInfo.getInstance();
+            info.initProp();
 
             String instr1 = info.instrument_n;
             String instr2 = info.instrument_f;

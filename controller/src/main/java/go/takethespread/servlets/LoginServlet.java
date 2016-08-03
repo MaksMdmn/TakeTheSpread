@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
         if(prop.containsKey(log)){
             if(prop.getProperty(log).equals(pas)){
                 resp.getWriter().write("true");
+//                startWork();
             }else{
                 resp.getWriter().write("false");
             }

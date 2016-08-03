@@ -220,8 +220,8 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     private Term identifyTerm(String instr) {
-        TradeSystemInfo info = new TradeSystemInfo();
-        info.updateProp();
+        TradeSystemInfo info = TradeSystemInfo.getInstance();
+        info.initProp();
         if (instr.equals(info.instrument_n))
             return Term.NEAR;
         if (instr.equals(info.instrument_f))

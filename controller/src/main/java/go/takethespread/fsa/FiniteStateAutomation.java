@@ -38,8 +38,8 @@ public class FiniteStateAutomation extends Thread {
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
 
-        tradeSystemInfo = new TradeSystemInfo();
-        tradeSystemInfo.updateProp();
+        tradeSystemInfo = TradeSystemInfo.getInstance();
+        tradeSystemInfo.initProp();
         blotter = new TradeBlotter(tradeSystemInfo, externalManager);
 
         infoManager = InfoManager.getInstance();

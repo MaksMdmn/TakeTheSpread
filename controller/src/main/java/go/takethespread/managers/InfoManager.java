@@ -23,8 +23,7 @@ public class InfoManager {
             instance = new InfoManager();
         } else {
             if (  instance.blotter == null) {
-                throw new RuntimeException("class cannot be used - please, initialize: " +
-                        ", blotter=" + instance.blotter);
+                throw new RuntimeException("class cannot be used - please, initialize: blotter=" + instance.blotter);
             }
         }
         return instance;

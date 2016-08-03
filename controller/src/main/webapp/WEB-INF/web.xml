@@ -39,6 +39,11 @@
         <servlet-class>go.takethespread.servlets.SettingsServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>settingsUpdateServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.SettingsUpdateServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>consoleServlet</servlet-name>
         <url-pattern>/toconsole</url-pattern>
@@ -67,6 +72,11 @@
     <servlet-mapping>
         <servlet-name>settingsServlet</servlet-name>
         <url-pattern>/settings</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>settingsUpdateServlet</servlet-name>
+        <url-pattern>/settingsupdate</url-pattern>
     </servlet-mapping>
 
     <login-config>

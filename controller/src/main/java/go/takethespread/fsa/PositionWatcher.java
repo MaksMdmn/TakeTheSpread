@@ -53,12 +53,12 @@ public class PositionWatcher {
 
     public int defineMaxPossibleSize(int marketSize) {
         TradeBlotter.Phase phase = blotter.getCurPhase();
-        logger.info("defineMaxPossibleSize marketSize=" + marketSize + " favor.size=" + blotter.getTradeSystemInfo().favorable_size + " phase: " + phase);
+        logger.info("defineMaxPossibleSize marketSize=" + marketSize + " favor.size=" + blotter.getTradeSystemInfo().max_size + " phase: " + phase);
         int result;
         int absPos = Math.abs(blotter.getPosition_n());
         int calcSize = 0;
         if (phase == TradeBlotter.Phase.ACCUMULATION) {
-            calcSize = blotter.getTradeSystemInfo().favorable_size - absPos;
+            calcSize = blotter.getTradeSystemInfo().max_size - absPos;
         }
 
         if (phase == TradeBlotter.Phase.DISTRIBUTION) {

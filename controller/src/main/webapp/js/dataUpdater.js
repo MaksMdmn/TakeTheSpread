@@ -5,6 +5,7 @@ function startDataUpdate() {
     var startPriceValues = $.makeArray(updatePrices());
     var maxPrice = defineMaxPrice();
     var nearFarColors = defineNearFarColors(startPriceValues[0], startPriceValues[1]);
+    var acceptableKeyValues = [6, 7, 8, 9, 10, 11, 12, 13, 14];
 
     var g = new Dygraph($('.chart-feature').get(0), chartData, {
         animatedZooms: false,
@@ -36,7 +37,8 @@ function startDataUpdate() {
 
     });
 
-    jQuery('#settingsTable').jqGrid({
+    var lastchoise;
+    $('#settingsTable').jqGrid({
         url: 'settings',
         datatype: 'json',
         mtype: 'GET',
@@ -58,9 +60,17 @@ function startDataUpdate() {
             width: 50,
             editable: true
         }],
+        cellEdit: true,
+        cellsubmit: 'clientArray',
+        ajaxGridOptions: {
+            async: false
+        },
+        afterSaveCell: function(rowid, cellname, value, iRow, iCol) {
+            setNewSettings($('#settingsTable'), rowid, value, iRow, iCol);
+        }
     });
 
-    jQuery('#indicatorTable').jqGrid({
+    $('#indicatorTable').jqGrid({
         url: 'indicator',
         datatype: 'json',
         mtype: 'GET',
@@ -138,7 +148,7 @@ function startDataUpdate() {
         }],
     });
 
-    jQuery('#orderTable').jqGrid({
+    $('#orderTable').jqGrid({
         url: 'orders',
         datatype: 'json',
         mtype: 'GET',
@@ -200,13 +210,17 @@ function startDataUpdate() {
     });
 
 
-    $(window).resize(function() {
-        setNewTablesWidth();
-    });
-    //--------------------------------
+    //--------------------------------------------------------------------
 
 
     setInterval(updatePrices, 1000);
+
+    $(window).resize(function() {
+        setNewTablesWidth();
+    });
+
+
+    //--------------------------------------------------------------------
 
     function updatePrices() {
         var tempArr;
@@ -266,13 +280,36 @@ function startDataUpdate() {
         var ordWdt = $('.table-feature').width();
         var prcWdt = $('chart-feature').width();
 
-        jQuery('#orderTable').setGridWidth(ordWdt);
-        jQuery('#indicatorTable').setGridWidth(indWdt);
-        jQuery('#settingsTable').setGridWidth(setWdt);
+        $('#orderTable').setGridWidth(ordWdt);
+        $('#indicatorTable').setGridWidth(indWdt);
+        $('#settingsTable').setGridWidth(setWdt);
 
         g.update({
             'width': prcWdt
         });
 
+    }
+
+    function setNewSettings(grid, rowid, value, iRow, iCol) {
+        var name = grid.getCell(rowid, 'name');
+        var answer;
+        $.ajax({
+            url: 'settingsupdate',
+            type: 'GET',
+            data: {
+                key: name,
+                value: value
+            },
+            datatype: 'text',
+            async: false,
+            success: function(response) {
+                answer = response;
+            }
+        });
+
+
+        if (answer.localeCompare(value) !== 0) {
+            grid.restoreCell(iRow, iCol);
+        }
     }
 }

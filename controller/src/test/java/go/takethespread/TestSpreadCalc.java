@@ -32,7 +32,7 @@ public class TestSpreadCalc {
         System.out.println("start!!!");
         manager.startingJob();
 
-        TradeSystemInfo info = new TradeSystemInfo();
+        TradeSystemInfo info = TradeSystemInfo.getInstance();
         TradeBlotter blotter = new TradeBlotter(info, manager);
 
         System.out.println("update");
