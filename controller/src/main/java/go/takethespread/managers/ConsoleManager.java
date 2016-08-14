@@ -96,9 +96,12 @@ public class ConsoleManager {
     public enum ConsoleCommand {
         GO, //start
         GJ, //stop
-        RN, //ReturN the Value
-        PL, //PLace the Value
-
+        OF, //off
+        RS, //restart
+        TT, //test operability
+        LN, //launch terminal
+        OS, // one side market order
+        BS, // both side market order   ---- all of them remove automatic control and switch to manual control!!
     }
 }
 

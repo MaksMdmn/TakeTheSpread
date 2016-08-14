@@ -70,28 +70,36 @@ public class FiniteStateAutomation extends Thread {
                     currentTask = taskManager.getCurrentTask();
                 } while (currentTask == null);
 
-                logger.debug("current command: " + currentTask.getCommand());
-
+                logger.info("execute " + currentTask.getCommand());
                 switch (currentTask.getCommand()) {
                     case GO:
                         executeGO();
-                        //standart logical: check prices, waiting for signal and when signal - do the deal
                         break;
                     case GJ:
                         executeGJ();
-                        // break the cycle
                         break;
-                    case RN:
-                        executeRN(currentTask.getItem(), currentTask.getValues());
-                        // return the item and handle the values
+                    case OF:
+                        executeOF();
                         break;
-                    case PL:
-                        executePL(currentTask.getItem(), currentTask.getValues());
-                        // change the item and handle the values
+                    case TT:
+                        executeTT();
+                        break;
+                    case LN:
+                        executeLN();
+                        break;
+                    case RS:
+                        executeRS();
+                        break;
+                    case OS:
+                        executeOS();
+                        break;
+                    case BS:
+                        executeBS();
                         break;
                     default:
                         break;
                 }
+                logger.info(currentTask.getCommand() + " executed");
 
 //            } catch (TradeException e) {
 //                e.printStackTrace();
@@ -191,11 +199,8 @@ public class FiniteStateAutomation extends Thread {
     }
 
     private void executeGJ() {
-        // correcting completion of work!
-        logger.info("execute GJ");
+        // correct completion of work!
         externalManager.finishingJob();
-        isWorking = false; //? may be better have OFF command for that?
-        logger.info("GJ executed");
         try {
             taskManager.removeAllTasks();
         } catch (TradeException e) {
@@ -203,13 +208,28 @@ public class FiniteStateAutomation extends Thread {
         }
     }
 
-    private void executeRN(String item, String values) {
+    private void executeOF() {
+        executeGJ();
+        isWorking = false;
+    }
+
+    private void executeTT() {
 
     }
 
-    private void executePL(String item, String values) {
+    private void executeOS() {
 
     }
 
+    private void executeBS() {
+
+    }
+
+    private void executeLN() {
+    }
+
+    private void executeRS() {
+
+    }
 
 }

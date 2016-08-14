@@ -37,7 +37,7 @@ public class NTTcpMessage {
     }
 
     protected enum NTTcpCommand {
-        GJ, //off
+        OFF, //off
         ORDS,//all orders
         BYID,//order by id
         POS,//positiong

@@ -185,7 +185,7 @@ namespace NinjaTrader.Strategy
 					}
 
 					switch (msgCmd){
-						case "GJ":
+						case "OFF":
 							Print("Good buy, Blue Sky!");
 							closeTcpEntities();
 							break;

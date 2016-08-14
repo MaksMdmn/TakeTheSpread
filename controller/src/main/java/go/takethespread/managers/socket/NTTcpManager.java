@@ -49,7 +49,7 @@ public class NTTcpManager {
     }
 
     protected void sendOffMessage() {
-        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.GJ, "").prepareToSending());
+        bridge.addMessage(new NTTcpMessage(NTTcpMessage.NTTcpCommand.OFF, "").prepareToSending());
     }
 
     protected long sendOrdersMessage() {
