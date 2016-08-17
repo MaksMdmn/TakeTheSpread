@@ -2,7 +2,7 @@ package go.takethespread.managers.socket;
 
 import go.takethespread.Money;
 import go.takethespread.Order;
-import go.takethespread.fsa.Term;
+import go.takethespread.Term;
 import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
@@ -246,7 +246,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
             int filled = Integer.valueOf(searchTheParameter("Filled", tempOrder));
             Money priceFilled = Money.dollars(Double.valueOf(searchTheParameter("Fill price", tempOrder)));
 
-            order.setId(id);
+            order.setOrdId(id);
             order.setInstrument(instr);
             order.setDate(date);
             order.setDeal(deal);

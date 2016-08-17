@@ -2,9 +2,10 @@ package go.takethespread;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 2L;
 
+    private Integer id;
     private int roleId;
     private String name;
     private String password;
@@ -44,5 +45,10 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    @Override
+    public Integer getId() {
+      return id;
     }
 }

@@ -1,5 +1,6 @@
 package go.takethespread.fsa;
 
+import go.takethespread.Term;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;

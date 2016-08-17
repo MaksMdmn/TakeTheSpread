@@ -1,34 +1,51 @@
 package go.takethespread.impl;
 
+import go.takethespread.AbstractJDBCao;
 import go.takethespread.MarketData;
 import go.takethespread.MarketDataDao;
-import go.takethespread.exceptions.DbException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
-public class MarketDataDaoImpl implements MarketDataDao {
+public class MarketDataDaoImpl extends AbstractJDBCao<MarketData, Integer> implements MarketDataDao {
+    public MarketDataDaoImpl(Connection connection) {
+        super(connection);
+    }
+
     @Override
-    public MarketData getById(int id) throws DbException {
+    public String getSelectQuery() {
         return null;
     }
 
     @Override
-    public List<MarketData> getAll() throws DbException {
+    public String getUpdateQuery() {
         return null;
     }
 
     @Override
-    public int insert(MarketData marketData) throws DbException {
-        return 0;
+    public String getDeleteQuery() {
+        return null;
     }
 
     @Override
-    public void update(MarketData marketData, int id) throws DbException {
+    public String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    protected List<MarketData> parseResultSet(ResultSet resultSet) {
+        return null;
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement ps, MarketData object) {
 
     }
 
     @Override
-    public void deleteById(int id) throws DbException {
+    protected void prepareStatementForInsert(PreparedStatement ps, MarketData object) {
 
     }
 }

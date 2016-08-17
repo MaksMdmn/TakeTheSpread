@@ -1,39 +1,34 @@
 package go.takethespread;
 
-import go.takethespread.exceptions.DbException;
-import go.takethespread.impl.UserDaoImpl;
 
 public class UserDaoImplTest {
     public static void main(String[] args) {
-        User user0 = new User();
-        User user1 = new User();
+        Test t = new Test("ABALSDS");
+        System.out.println(t.getName());
+        testChange(t);
+        System.out.println(t.getName());
 
-        user0.setRoleId(0);
-        user0.setName("BARRY");
-        user0.setPassword("BAPTIST");
 
-        user1.setRoleId(1);
-        user1.setName("GARRY");
-        user1.setPassword("AXE");
+    }
 
-        UserDao dao = new UserDaoImpl();
-        try {
-            int id0 = dao.insert(user0);
-            int id1 = dao.insert(user1);
-            System.out.println(dao.getAll());
+    public static void testChange(Test t){
+        t.setName("HAHA, CHANGED");
+    }
 
-            user0.setPassword("I'M SAY - THE BAPTIST");
-            dao.update(user0, id0);
-            System.out.println(dao.getById(id0));
 
-            dao.deleteById(id0);
-            System.out.println(dao.getAll());
+    static class Test {
+        private String name;
 
-            dao.deleteByName(user1.getName());
-            System.out.println(dao.getAll().isEmpty());
+        public Test(String name) {
+            this.name = name;
+        }
 
-        } catch (DbException e) {
-            e.printStackTrace();
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }

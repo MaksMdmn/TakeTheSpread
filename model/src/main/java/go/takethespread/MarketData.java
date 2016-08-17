@@ -1,12 +1,15 @@
 package go.takethespread;
 
+
 import java.io.Serializable;
 import java.sql.Date;
 
-public class MarketData implements Serializable {
+public class MarketData implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 3L;
 
+    private Integer id;
     private Date date;
+    private Term term;
     private Money bid;
     private Money ask;
     private Money last;
@@ -23,6 +26,14 @@ public class MarketData implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Term getTerm() {
+        return term;
+    }
+
+    public void setTerm(Term term) {
+        this.term = term;
     }
 
     public Money getBid() {
@@ -63,5 +74,10 @@ public class MarketData implements Serializable {
 
     public void setAskSize(int askSize) {
         this.askSize = askSize;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }

@@ -1,19 +1,17 @@
 package go.takethespread;
 
-
-import go.takethespread.exceptions.DbException;
+import go.takethespread.exceptions.PersistException;
 
 import java.util.List;
 
-public interface MarketDataDao extends GenericDao<MarketData> {
+public interface MarketDataDao {
+    public Integer persist(MarketData object) throws PersistException;
 
-    public MarketData getById(int id) throws DbException;
+    public MarketData read(int key) throws PersistException;
 
-    public List<MarketData> getAll() throws DbException;
+    public void update(MarketData object) throws PersistException;
 
-    public int insert(MarketData marketData) throws DbException;
+    public void delete(MarketData object) throws PersistException;
 
-    public void update(MarketData marketData, int id) throws DbException;
-
-    public void deleteById(int id) throws DbException;
+    public List<MarketData> readAll() throws PersistException;
 }

@@ -1,5 +1,6 @@
 package go.takethespread.fsa;
 
+import go.takethespread.Term;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
@@ -72,7 +73,7 @@ public class LimitMaker {
         if (frontRunOrder == null) {
             return 0;
         }
-        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getId());
+        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getOrdId());
         logger.debug("order cancelled: " + frontRunOrder);
         int result = defineRemainingSize();
         logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderSize() result: " + result);
@@ -173,7 +174,7 @@ public class LimitMaker {
     }
 
     private int defineRemainingSize() {
-        String key = frontRunOrder.getId();
+        String key = frontRunOrder.getOrdId();
         int val = externalManager.getOrderFilled(key);
         int result;
         if (alreadyFilledMap.containsKey(key)) {

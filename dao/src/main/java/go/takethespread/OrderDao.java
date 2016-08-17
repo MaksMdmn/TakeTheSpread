@@ -1,18 +1,17 @@
 package go.takethespread;
 
-import go.takethespread.exceptions.DbException;
+import go.takethespread.exceptions.PersistException;
 
 import java.util.List;
 
-public interface OrderDao extends GenericDao<Order> {
+public interface OrderDao {
+    public Integer persist(Order object) throws PersistException;
 
-    public Order getById(int id) throws DbException;
+    public Order read(int key) throws PersistException;
 
-    public List<Order> getAll() throws DbException;
+    public void update(Order object) throws PersistException;
 
-    public int insert(Order order) throws DbException;
+    public void delete(Order object) throws PersistException;
 
-    public void update(Order order, int id) throws DbException;
-
-    public void deleteById(int id) throws DbException;
+    public List<Order> readAll() throws PersistException;
 }

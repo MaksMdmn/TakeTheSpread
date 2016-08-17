@@ -1,35 +1,51 @@
 package go.takethespread.impl;
 
+import go.takethespread.AbstractJDBCao;
 import go.takethespread.Order;
 import go.takethespread.OrderDao;
-import go.takethespread.exceptions.DbException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
-public class OrderDaoImpl implements OrderDao {
+public class OrderDaoImpl extends AbstractJDBCao<Order, Integer> implements OrderDao {
+    public OrderDaoImpl(Connection connection) {
+        super(connection);
+    }
 
     @Override
-    public Order getById(int id) throws DbException {
+    public String getSelectQuery() {
         return null;
     }
 
     @Override
-    public List<Order> getAll() throws DbException {
+    public String getUpdateQuery() {
         return null;
     }
 
     @Override
-    public int insert(Order order) throws DbException {
-        return 0;
+    public String getDeleteQuery() {
+        return null;
     }
 
     @Override
-    public void update(Order order, int id) throws DbException {
+    public String getInsertQuery() {
+        return null;
+    }
+
+    @Override
+    protected List<Order> parseResultSet(ResultSet resultSet) {
+        return null;
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement ps, Order object) {
 
     }
 
     @Override
-    public void deleteById(int id) throws DbException {
+    protected void prepareStatementForInsert(PreparedStatement ps, Order object) {
 
     }
 }

@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="css/main.css" />
     <link type="text/css" rel="stylesheet" href="css/chartist.min.css" />
 
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/i18n/grid.locale-en.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/jquery.jqGrid.min.js"></script>
@@ -31,26 +31,26 @@
 <body>
     <div class="header clearfix">
         <div class="settings hide">
-            <table id="settingsTable"></table>
+            <table ordId="settingsTable"></table>
         </div>
 
         <div class="indicators hide">
-            <table id="indicatorTable"></table>
+            <table ordId="indicatorTable"></table>
         </div>
 
         <div class="login-info">
             <p>
                 <label for="login">Login:</label>
-                <input type="text" name="login" id="login" value="your login">
+                <input type="text" name="login" ordId="login" value="your login">
             </p>
 
             <p>
               <label for="password">Password:</label>
-              <input type="password" name="password" id="password" value="your password">
+              <input type="password" name="password" ordId="password" value="your password">
           </p>
 
           <p class="login-submit">
-              <button type="submit" class="login-button" id="login-button"></button>
+              <button type="submit" class="login-button" ordId="login-button"></button>
           </p>
       </div>
   </div>
@@ -58,24 +58,24 @@
   <div class="features clearfix hide">
     <div class="console-feature">
         <div class="console-messages">
-            <textarea id="messages" type="textarea"></textarea>
+            <textarea ordId="messages" type="textarea"></textarea>
         </div>
         <div class="console-bars">
-            <div id="message-bar"></div><br>
-            <div id="connection-bar"></div>
+            <div ordId="message-bar"></div><br>
+            <div ordId="connection-bar"></div>
         </div>
         <div class="console-stack">
-            <textarea id="stack" type="text" readonly wrap="soft"></textarea>
+            <textarea ordId="stack" type="text" readonly wrap="soft"></textarea>
         </div>
 
         <div class="console-answers">
-            <textarea id="answers" type="text" readonly wrap="soft"></textarea>
+            <textarea ordId="answers" type="text" readonly wrap="soft"></textarea>
         </div>
     </div>
 
     <div class="table-feature">
-        <table id="orderTable"></table>
-        <div id="orderPager"></div>
+        <table ordId="orderTable"></table>
+        <div ordId="orderPager"></div>
     </div>
 
     <div class="chart-feature" >

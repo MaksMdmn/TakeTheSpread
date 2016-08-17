@@ -1,4 +1,4 @@
-package go.takethespread.fsa;
+package go.takethespread;
 
 public enum Term {
     NEAR,

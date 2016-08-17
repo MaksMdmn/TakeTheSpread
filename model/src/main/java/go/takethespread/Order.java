@@ -4,10 +4,11 @@ package go.takethespread;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Order implements Serializable {
+public class Order implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private Integer id;
+    private String ordId;
     private String instrument;
     private Date date;
     private Deal deal;
@@ -22,12 +23,12 @@ public class Order implements Serializable {
 
     }
 
-    public String getId() {
-        return id;
+    public String getOrdId() {
+        return ordId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrdId(String ordId) {
+        this.ordId = ordId;
     }
 
     public String getInstrument() {
@@ -102,6 +103,11 @@ public class Order implements Serializable {
         this.priceFilled = priceFilled;
     }
 
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
     public enum Deal {
         Buy,
         Sell
@@ -129,7 +135,7 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
+                "ordId='" + ordId + '\'' +
                 ", instrument='" + instrument + '\'' +
                 ", date=" + date +
                 ", deal=" + deal +

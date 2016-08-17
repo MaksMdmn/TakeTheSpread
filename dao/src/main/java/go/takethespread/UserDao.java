@@ -1,22 +1,17 @@
 package go.takethespread;
 
-import go.takethespread.exceptions.DbException;
+import go.takethespread.exceptions.PersistException;
 
 import java.util.List;
 
-public interface UserDao  extends GenericDao<User>{
+public interface UserDao {
+    public Integer persist(User object) throws PersistException;
 
-    public User getById(int id) throws DbException;
+    public User read(int key) throws PersistException;
 
-    public User getByName(String name) throws DbException;
+    public void update(User object) throws PersistException;
 
-    public List<User> getAll() throws DbException;
+    public void delete(User object) throws PersistException;
 
-    public int insert(User user) throws DbException;
-
-    public void update(User user, int id) throws DbException;
-
-    public void deleteById(int id) throws DbException;
-
-    public void deleteByName(String name) throws DbException;
+    public List<User> readAll() throws PersistException;
 }

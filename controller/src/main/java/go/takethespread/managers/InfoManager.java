@@ -2,8 +2,8 @@ package go.takethespread.managers;
 
 import go.takethespread.Money;
 import go.takethespread.Order;
-import go.takethespread.fsa.Side;
-import go.takethespread.fsa.Term;
+import go.takethespread.Side;
+import go.takethespread.Term;
 import go.takethespread.fsa.TradeBlotter;
 import go.takethespread.fsa.TradeSystemInfo;
 

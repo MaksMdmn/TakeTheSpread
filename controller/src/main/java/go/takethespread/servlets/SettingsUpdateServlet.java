@@ -1,6 +1,6 @@
 package go.takethespread.servlets;
 
-import go.takethespread.fsa.Settings;
+import go.takethespread.Settings;
 import go.takethespread.fsa.TradeSystemInfo;
 
 import javax.servlet.ServletException;

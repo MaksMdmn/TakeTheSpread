@@ -22,11 +22,11 @@ public class TestTCPOrders {
             System.out.println(ntTcpExternalManager.getPosition(instr1));
 
             System.out.println(ord);
-            System.out.println(ntTcpExternalManager.getOrderFilled(ord.getId()));
+            System.out.println(ntTcpExternalManager.getOrderFilled(ord.getOrdId()));
 
             System.out.println(ntTcpExternalManager.getPosition(instr1));
 
-            ord = ntTcpExternalManager.sendCancelOrder(ord.getId());
+            ord = ntTcpExternalManager.sendCancelOrder(ord.getOrdId());
             System.out.println(ord);
             System.out.println(ord.getFilled());
 
@@ -35,7 +35,7 @@ public class TestTCPOrders {
 //            System.out.println(ord);
 //            Thread.sleep(2000);
 //            System.out.println("send change");
-//            ord = ntTcpExternalManager.sendChangeOrder(ord.getId(), Money.dollars(47.7), 6);
+//            ord = ntTcpExternalManager.sendChangeOrder(ord.getOrdId(), Money.dollars(47.7), 6);
 //            System.out.println(ord);
 
 

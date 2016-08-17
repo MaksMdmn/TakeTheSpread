@@ -1,6 +1,6 @@
 package go.takethespread.managers.socket;
 
-import go.takethespread.fsa.Term;
+import go.takethespread.Term;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,18 +1,20 @@
 package go.takethespread;
 
-import go.takethespread.exceptions.DbException;
+import go.takethespread.exceptions.PersistException;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface GenericDao<T> {
+public interface GenericDao<T, PK extends Serializable> {
 
-    public T getById(int id) throws DbException;
+    public Integer persist(T object) throws PersistException;
 
-    public List<T> getAll() throws DbException;
+    public T read(int key) throws PersistException;
 
-    public int insert(T object) throws DbException;
+    public void update(T object) throws PersistException;
 
-    public void update(T object, int id) throws DbException;
+    public void delete(T object) throws PersistException;
 
-    public void deleteById(int id) throws DbException;
+    public List<T> readAll() throws PersistException;
+
 }

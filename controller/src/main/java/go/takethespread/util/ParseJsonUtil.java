@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import go.takethespread.Money;
 import go.takethespread.Order;
-import go.takethespread.fsa.Settings;
+import go.takethespread.Settings;
 import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.InfoManager;
 
@@ -49,7 +49,7 @@ public final class ParseJsonUtil {
         o1.setDate(new Date());
         o1.setDeal(Order.Deal.Buy);
         o1.setFilled(3);
-        o1.setId("123421321");
+        o1.setOrdId("123421321");
         o1.setInstrument("CL 09-16");
         o1.setPrice(Money.dollars(56.2));
         o1.setSize(10);
@@ -60,7 +60,7 @@ public final class ParseJsonUtil {
         o2.setDate(new Date());
         o2.setDeal(Order.Deal.Buy);
         o2.setFilled(3);
-        o2.setId("71321");
+        o2.setOrdId("71321");
         o2.setInstrument("CL 09-16");
         o2.setPrice(Money.dollars(6.2));
         o2.setSize(3);
@@ -71,7 +71,7 @@ public final class ParseJsonUtil {
         o3.setDate(new Date());
         o3.setDeal(Order.Deal.Buy);
         o3.setFilled(3);
-        o3.setId("178321");
+        o3.setOrdId("178321");
         o3.setInstrument("CL 08-16");
         o3.setPrice(Money.dollars(5.2));
         o3.setSize(10);

@@ -1,6 +1,7 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Money;
+import go.takethespread.Settings;
 
 import java.io.*;
 import java.util.LinkedHashMap;

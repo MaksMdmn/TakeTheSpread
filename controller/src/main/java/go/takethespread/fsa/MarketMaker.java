@@ -1,5 +1,7 @@
 package go.takethespread.fsa;
 
+import go.takethespread.Side;
+import go.takethespread.Term;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Order;
 import go.takethespread.managers.ExternalManager;
