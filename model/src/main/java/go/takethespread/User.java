@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 2L;
 
-    private Integer id;
+    private Integer id= null;
     private int roleId;
     private String name;
     private String password;
@@ -41,7 +41,8 @@ public class User implements Serializable, Identified<Integer> {
     @Override
     public String toString() {
         return "User{" +
-                "roleId=" + roleId +
+                "id=" + id +
+                ", roleId=" + roleId +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -50,5 +51,9 @@ public class User implements Serializable, Identified<Integer> {
     @Override
     public Integer getId() {
       return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

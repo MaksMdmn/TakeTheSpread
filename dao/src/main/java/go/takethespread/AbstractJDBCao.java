@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serializable> implements GenericDao<T, PK> {
 
     private Connection connection;
+    private static final String ADD_TO_SELECT = " WHERE id = ?";
 
     public AbstractJDBCao(Connection connection) {
         this.connection = connection;
@@ -25,11 +26,11 @@ public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serial
 
     public abstract String getInsertQuery();
 
-    protected abstract List<T> parseResultSet(ResultSet resultSet);
+    protected abstract List<T> parseResultSet(ResultSet rs) throws PersistException;
 
-    protected abstract void prepareStatementForUpdate(PreparedStatement ps, T object);
+    protected abstract void prepareStatementForUpdate(PreparedStatement ps, T object) throws PersistException;
 
-    protected abstract void prepareStatementForInsert(PreparedStatement ps, T object);
+    protected abstract void prepareStatementForInsert(PreparedStatement ps, T object) throws PersistException;
 
     @Override
     public Integer persist(T object) throws PersistException {
@@ -62,7 +63,7 @@ public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serial
         T answer;
 
         String sql = getSelectQuery();
-        sql += " WHERE id = ?";
+        sql += ADD_TO_SELECT;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, key);
@@ -118,8 +119,11 @@ public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serial
     public void delete(T object) throws PersistException {
         String sql = getDeleteQuery();
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, object.getId());
+            ps.setObject(1, object.getId());
             int count = ps.executeUpdate();
+            if (count == 0) {
+                throw new PersistException("Object with such id doesn't exist: " + object.getId() + " db answer: " + count);
+            }
             if (count != 1) {
                 throw new PersistException("Were deleted more than 1 record: " + count + ", object: " + object.toString());
             }

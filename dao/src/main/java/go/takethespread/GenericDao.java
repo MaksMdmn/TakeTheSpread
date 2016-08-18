@@ -5,7 +5,7 @@ import go.takethespread.exceptions.PersistException;
 import java.io.Serializable;
 import java.util.List;
 
-public interface GenericDao<T, PK extends Serializable> {
+public interface GenericDao<T extends Identified<PK>, PK extends Serializable> {
 
     public Integer persist(T object) throws PersistException;
 

@@ -7,7 +7,7 @@ import java.util.Date;
 public class Order implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private Integer id = null;
     private String ordId;
     private String instrument;
     private Date date;
@@ -108,6 +108,10 @@ public class Order implements Serializable, Identified<Integer> {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public enum Deal {
         Buy,
         Sell
@@ -135,6 +139,7 @@ public class Order implements Serializable, Identified<Integer> {
     @Override
     public String toString() {
         return "Order{" +
+                "id='" + id + "\'" +
                 "ordId='" + ordId + '\'' +
                 ", instrument='" + instrument + '\'' +
                 ", date=" + date +

@@ -2,12 +2,12 @@ package go.takethespread;
 
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class MarketData implements Serializable, Identified<Integer> {
     private static final long serialVersionUID = 3L;
 
-    private Integer id;
+    private Integer id = null;
     private Date date;
     private Term term;
     private Money bid;
@@ -18,6 +18,10 @@ public class MarketData implements Serializable, Identified<Integer> {
 
     public MarketData() {
 
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -79,5 +83,19 @@ public class MarketData implements Serializable, Identified<Integer> {
     @Override
     public Integer getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "MarketData{" +
+                "id=" + id +
+                ", date=" + date +
+                ", term=" + term +
+                ", bid=" + bid +
+                ", ask=" + ask +
+                ", last=" + last +
+                ", bidSize=" + bidSize +
+                ", askSize=" + askSize +
+                '}';
     }
 }
