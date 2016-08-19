@@ -1,6 +1,9 @@
 package go.takethespread.servlets;
 
 import go.takethespread.fsa.FiniteStateAutomation;
+import go.takethespread.managers.StatusListener;
+import go.takethespread.managers.StatusManager;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class LoginServlet extends HttpServlet {
+    private StatusListener statusListener = StatusManager.getInstance();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Properties prop = loadProp(req);
@@ -19,6 +24,7 @@ public class LoginServlet extends HttpServlet {
         if(prop.containsKey(log)){
             if(prop.getProperty(log).equals(pas)){
                 resp.getWriter().write("true");
+                statusListener.loginStatusChanged();
 //                startWork();
             }else{
                 resp.getWriter().write("false");

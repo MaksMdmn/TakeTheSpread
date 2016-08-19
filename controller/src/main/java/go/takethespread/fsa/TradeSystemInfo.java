@@ -79,7 +79,7 @@ public final class TradeSystemInfo {
         } catch (IllegalArgumentException e) {
             settingsMap.put(setting, oldVal);
             updateLocalValues();
-            System.out.println("try again madafuk, cause " + e.getMessage());
+            System.out.println("try again, cause " + e.getMessage());
             result = oldVal;
         }
 

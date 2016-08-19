@@ -8,6 +8,7 @@ import java.util.Deque;
 public class TaskManager {
 
     private static TaskManager instance;
+    private  StatusListener statusListener = StatusManager.getInstance();
 
     private Deque<TradeTask> taskPool = new ArrayDeque<TradeTask>();
 
@@ -32,6 +33,7 @@ public class TaskManager {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
         taskPool.push(task);
+        statusListener.runStatusChanged();
     }
 
     public synchronized void pollTask(TradeTask task) throws TradeException {

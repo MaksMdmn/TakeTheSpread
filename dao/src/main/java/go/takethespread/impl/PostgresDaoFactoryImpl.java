@@ -59,7 +59,6 @@ public class PostgresDaoFactoryImpl implements DaoFactory<Connection> {
             public GenericDao create(Connection connection) {
                 return new UserDaoImpl(connection);
             }
-
         });
 
         creatorsMap.put(Order.class, new DaoCreator<Connection>() {
@@ -67,7 +66,13 @@ public class PostgresDaoFactoryImpl implements DaoFactory<Connection> {
             public GenericDao create(Connection connection) {
                 return new OrderDaoImpl(connection);
             }
+        });
 
+        creatorsMap.put(Setting.class, new DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new SettingDaoImpl(connection);
+            }
         });
 
     }
