@@ -1,4 +1,4 @@
-function startConsoleWork() {
+function runConsoleManager() {
     var msgElem = $('#messages');
     var anwElem = $('#answers');
     var stkElem = $('#stack');

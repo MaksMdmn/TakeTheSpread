@@ -2,88 +2,56 @@ package go.takethespread.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import go.takethespread.Money;
-import go.takethespread.Order;
-import go.takethespread.Settings;
+import go.takethespread.*;
+import go.takethespread.exceptions.PersistException;
 import go.takethespread.fsa.TradeSystemInfo;
+import go.takethespread.impl.MarketDataDaoImpl;
+import go.takethespread.impl.PostgresDaoFactoryImpl;
 import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.StatusManager;
+import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
+import java.sql.Connection;
 import java.util.*;
 
 public final class ParseJsonUtil {
 
     private static InfoManager manager = InfoManager.getInstance();
     private static ObjectMapper mapper = new ObjectMapper();
+    private static StatusManager statusManager = StatusManager.getInstance();
+    private static DaoFactory<Connection> daoFactory = new PostgresDaoFactoryImpl();
 
-    private ParseJsonUtil(){
+    private ParseJsonUtil() {
     }
 
-    public static boolean checkConn(){
-//        return NTTcpExternalManagerImpl.getInstance().isConnOkay();
-        return true;
+    public static boolean checkConn() {
+        return NTTcpExternalManagerImpl.getInstance().isConnOkay();
     }
 
     public static String settingsToJson() throws JsonProcessingException {
+        String answer = "";
         TradeSystemInfo info = TradeSystemInfo.getInstance();
         info.initProp();
         LinkedHashMap<Settings, String> settingsMap = info.getSettingsMap();
+        if(info.fullSettingsVerification()){
+            JsonSettingsData tempObj;
+            List<JsonSettingsData> jsonList = new ArrayList<>();
+            for (Map.Entry<Settings, String> pair : settingsMap.entrySet()) {
+                tempObj = new JsonSettingsData();
+                tempObj.setName(pair.getKey().name());
+                tempObj.setValue(pair.getValue());
+                jsonList.add(tempObj);
+            }
 
-
-        JsonSettingsData tempObj;
-        List<JsonSettingsData> jsonList = new ArrayList<>();
-        for (Map.Entry<Settings, String> pair : settingsMap.entrySet()) {
-            tempObj = new JsonSettingsData();
-            tempObj.setName(pair.getKey().name());
-            tempObj.setValue(pair.getValue());
-            jsonList.add(tempObj);
+            answer = mapper.writeValueAsString(jsonList);
         }
 
-        return mapper.writeValueAsString(jsonList);
+        return answer;
     }
 
     public static String ordersToJson() throws JsonProcessingException {
-        Order o1 = new Order();
-        Order o2 = new Order();
-        Order o3 = new Order();
-
-        o1.setDate(new Date());
-        o1.setDeal(Order.Deal.Buy);
-        o1.setFilled(3);
-        o1.setOrdId("123421321");
-        o1.setInstrument("CL 09-16");
-        o1.setPrice(Money.dollars(56.2));
-        o1.setSize(10);
-        o1.setPriceFilled(Money.dollars(56.2));
-        o1.setState(Order.State.Filled);
-        o1.setType(Order.Type.Market);
-
-        o2.setDate(new Date());
-        o2.setDeal(Order.Deal.Buy);
-        o2.setFilled(3);
-        o2.setOrdId("71321");
-        o2.setInstrument("CL 09-16");
-        o2.setPrice(Money.dollars(6.2));
-        o2.setSize(3);
-        o2.setPriceFilled(Money.dollars(5.2));
-        o2.setState(Order.State.Filled);
-        o2.setType(Order.Type.Market);
-
-        o3.setDate(new Date());
-        o3.setDeal(Order.Deal.Buy);
-        o3.setFilled(3);
-        o3.setOrdId("178321");
-        o3.setInstrument("CL 08-16");
-        o3.setPrice(Money.dollars(5.2));
-        o3.setSize(10);
-        o3.setPriceFilled(Money.dollars(6.2));
-        o3.setState(Order.State.Accepted);
-        o3.setType(Order.Type.Market);
-
-//        List<Order> orders = manager.getAllOrders();
-        List<Order> orders = new ArrayList<>();
-        orders.add(o1);
-        orders.add(o2);
-        orders.add(o3);
+        String answer = "";
+        List<Order> orders = manager.getAllOrders();
 
         List<JsonOrderData> filteredOrders = new ArrayList<>();
         for (Order o : orders) {
@@ -91,44 +59,50 @@ public final class ParseJsonUtil {
                 filteredOrders.add(new JsonOrderData(o));
             }
         }
+        answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(filteredOrders);
 
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(filteredOrders);
+        return answer;
     }
 
     public static String indicatorsToJson() throws JsonProcessingException {
-        //test only
         JsonIndicData indicData = new JsonIndicData();
-        indicData.setBuyPw(43123212d);
-        indicData.setCalcSpr(32.5);
-        indicData.setCurSpr(33.66);
-        indicData.setCash(12111d);
-        indicData.setCommis(94);
-        indicData.setPnl(-321d);
+        indicData.setPos_n(manager.getPosition(Term.NEAR));
+        indicData.setPos_f(manager.getPosition(Term.FAR));
+        indicData.setSpot_n(manager.getPrice(Term.NEAR, Side.BID).getAmount()); //HARDCORE: IN THIS CASE NEAREST ALWAYS LOWER THEN FAR
+        indicData.setSpot_f(manager.getPrice(Term.FAR, Side.ASK).getAmount());
+        indicData.setCalcSpr(manager.getCurentSpread().getAmount());
+        indicData.setCurSpr(manager.getBestSpread().getAmount());
+        indicData.setCash(manager.getCash().getAmount());
+        indicData.setBuyPw(manager.getBuyingPwr().getAmount());
+        indicData.setDeals(0);
+        indicData.setDeals_prf(0);
+        indicData.setDeals_ls(0);
+        indicData.setCommis(0d);
+        indicData.setPnl(manager.getPnL().getAmount());
 
         return "[" + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(indicData) + "]";
     }
 
-    public static String priceDataToJson() throws JsonProcessingException {
-        double[] priceData = new double[4];
-//        priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
-//        priceData[1] = manager.getPrice(Term.NEAR, Side.ASK).getAmount();
-//        priceData[2] = manager.getPrice(Term.FAR, Side.BID).getAmount();
-//        priceData[3] = manager.getPrice(Term.FAR, Side.ASK).getAmount();
+    public static String priceDataToJson(boolean appendHistorical) throws JsonProcessingException {
+        String answer = null;
+        if (appendHistorical) {
+            try {
+                MarketDataDaoImpl mdDao = new MarketDataDaoImpl(daoFactory.getContext());
+                answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mdDao.readLastActualMarketData(100)); //HARDCORE
+            } catch (PersistException e) {
+                e.printStackTrace();
+            }
+        } else {
+            double[] priceData = new double[4];
+            priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
+            priceData[1] = manager.getPrice(Term.NEAR, Side.ASK).getAmount();
+            priceData[2] = manager.getPrice(Term.FAR, Side.BID).getAmount();
+            priceData[3] = manager.getPrice(Term.FAR, Side.ASK).getAmount();
 
-        int zeroOne = getRandomInt(0, 1);
-        priceData[0] = (double) getRandomInt(60, 80);
-        priceData[1] = (double) getRandomInt(30, 50);
-        priceData[2] = (double) getRandomInt(60, 80) * zeroOne;
-        priceData[3] = (double) getRandomInt(30, 50) * zeroOne;
+            answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(priceData);
+        }
 
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(priceData);
+        return answer;
     }
-
-    private static int getRandomInt(int minimum, int maximum) {
-        Random rn = new Random();
-        int range = maximum - minimum + 1;
-        return rn.nextInt(range) + minimum;
-    }
-
 }
 

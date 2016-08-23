@@ -11,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SettingsServlet extends HttpServlet {
-    private StatusListener statusListener = StatusManager.getInstance();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
         if (ParseJsonUtil.checkConn()) {
             jsonObj = ParseJsonUtil.settingsToJson();
-            statusListener.settingsStatucChanged();
         } else {
             jsonObj = null; //HERE????
         }

@@ -1,11 +1,14 @@
 package go.takethespread.fsa;
 
-import go.takethespread.Money;
-import go.takethespread.Settings;
+import go.takethespread.*;
+import go.takethespread.exceptions.PersistException;
+import go.takethespread.impl.PostgresDaoFactoryImpl;
+import go.takethespread.impl.SettingDaoImpl;
+import go.takethespread.managers.StatusListener;
+import go.takethespread.managers.StatusManager;
 
-import java.io.*;
-import java.util.LinkedHashMap;
-import java.util.Properties;
+import java.sql.Connection;
+import java.util.*;
 
 public final class TradeSystemInfo {
     private static TradeSystemInfo instance;
@@ -25,14 +28,11 @@ public final class TradeSystemInfo {
     public boolean default_spread_using;
     public int min_spreadCalc_n;
     public Money default_spread;
+    //    public final Date trade_session_time;
     //    public final Date exception_session_time;
-//    public final Date trade_session_time;
-
-    private Properties actualProperties;
-    private LinkedHashMap<Settings, String> settingsMap;
+    private Map<Settings, String> settingsMap = null;
 
     private TradeSystemInfo() {
-
     }
 
     public static TradeSystemInfo getInstance() {
@@ -47,72 +47,85 @@ public final class TradeSystemInfo {
     }
 
     public void initProp() {
-        actualProperties = newProp("possibleSettings.properties");
-        settingsMap = new LinkedHashMap();
+        if (settingsMap == null) {
+            PostgresDaoFactoryImpl daoFactory = new PostgresDaoFactoryImpl();
+            settingsMap = new LinkedHashMap();
+            try {
+                GenericDao<Setting, Integer> stDao = daoFactory.getDao(daoFactory.getContext(), Setting.class);
+                List<Setting> settings = stDao.readAll();
 
-        settingsMap.put(Settings.HOST, actualProperties.getProperty("host"));
-        settingsMap.put(Settings.PORT, actualProperties.getProperty("port"));
-        settingsMap.put(Settings.INSTRUMENT_N, actualProperties.getProperty("instrument_n"));
-        settingsMap.put(Settings.INSTRUMENT_F, actualProperties.getProperty("instrument_f"));
-        settingsMap.put(Settings.ACCOUNT, actualProperties.getProperty("account"));
-        settingsMap.put(Settings.COMMISSION, actualProperties.getProperty("commis_per_contr_dol"));
-        settingsMap.put(Settings.DEFAULT_SPREAD, actualProperties.getProperty("default_spread"));
-        settingsMap.put(Settings.DEFAULT_SPREAD_USING, actualProperties.getProperty("default_spread_use"));
-        settingsMap.put(Settings.ENTER_DEVIATION, actualProperties.getProperty("enter_pos_dev"));
-        settingsMap.put(Settings.MAX_SIZE, actualProperties.getProperty("favorable_size"));
-        settingsMap.put(Settings.TIME_IN_POS_SEC, actualProperties.getProperty("inPos_time_sec"));
-        settingsMap.put(Settings.LIMIT_USING, actualProperties.getProperty("limit_use"));
-        settingsMap.put(Settings.MAX_LOSS_N, actualProperties.getProperty("max_loss_numbers"));
-        settingsMap.put(Settings.MIN_SPR_CALC_PERIOD_N, actualProperties.getProperty("min_spreadCalc_period"));
-        settingsMap.put(Settings.SPR_CALC_TIME_SEC, actualProperties.getProperty("spreadCalc_time_sec"));
+                for (Setting s : settings) {
+                    settingsMap.put(s.getName(), s.getValue());
+                }
 
-        updateLocalValues();
+            } catch (PersistException e) {
+                e.printStackTrace();
+            }
+
+            updateVal();
+        }
     }
 
     public synchronized String updateLocalValue(Settings setting, String value) {
         String oldVal = settingsMap.get(setting);
         String result = "";
         try {
+            DaoFactory<Connection> daoFactory = new PostgresDaoFactoryImpl();
+            SettingDaoImpl settingDao = new SettingDaoImpl(daoFactory.getContext());
+
             settingsMap.put(setting, value);
-            updateLocalValues();
             result = value;
+
+            Setting tempSetting = settingDao.readSettingByName(setting.name());
+            tempSetting.setLastUpdate(new Date());
+            tempSetting.setValue(value);
+            settingDao.update(tempSetting);
         } catch (IllegalArgumentException e) {
             settingsMap.put(setting, oldVal);
-            updateLocalValues();
+            System.out.println("try again, cause " + e.getMessage());
+            result = oldVal;
+        } catch (PersistException e) {
             System.out.println("try again, cause " + e.getMessage());
             result = oldVal;
         }
-
+        updateVal();
         return result;
     }
 
-    public boolean isPropNull() {
-        return actualProperties == null && settingsMap == null;
-    }
-
-    public boolean isPropExists(String propName) {
-        return settingsMap.containsKey(propName);
+    public boolean isSettingExists(String settingName) {
+        return settingsMap.containsKey(Settings.valueOf(settingName));
     }
 
     public LinkedHashMap<Settings, String> getSettingsMap() {
         return new LinkedHashMap<>(settingsMap);
     }
 
-    private Properties newProp(String fileName) {
-        Properties prop = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(fileName)) {
-            if (input == null) {
-                throw new RuntimeException("Settings-example file was unable to find");
-            }
-            prop.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public boolean fullSettingsVerification() {
+        Settings[] settingsArr = Settings.values();
+        List<Settings> settingsList = Arrays.asList(settingsArr);
+
+        if (settingsMap.isEmpty() || settingsMap == null) {
+            return false;
         }
 
-        return prop;
+        if (settingsArr.length != settingsMap.size()) {
+            return false;
+        }
+
+        for (Map.Entry<Settings, String> pair : settingsMap.entrySet()) {
+            if (!settingsList.contains(pair.getKey())) {
+                return false;
+            }
+            if (pair.getValue() == null) {
+                return false;
+            }
+        }
+
+        return true;
+
     }
 
-    private void updateLocalValues() {
+    private void updateVal() {
         account = settingsMap.get(Settings.ACCOUNT);
         host = settingsMap.get(Settings.HOST);
         port = Integer.valueOf(settingsMap.get(Settings.PORT));

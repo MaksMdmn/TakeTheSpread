@@ -10,12 +10,14 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserDaoImpl extends AbstractJDBCao<User, Integer>  {
+public class UserDaoImpl extends AbstractJDBCao<User, Integer> {
 
-    private static final String SELECT_USER = "SELECT id, roleid, name, password FROM users";
-    private static final String UPDATE_USER = "UPDATE users SET roleid = ?, name = ?, password = ? WHERE id = ?";
-    private static final String INSERT_USER = "INSERT INTO users(roleid, name, password) VALUES(?,?,?)";
-    private static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
+    private static String SELECT_USER = "SELECT id, roleid, name, password FROM users";
+    private static String UPDATE_USER = "UPDATE users SET roleid = ?, name = ?, password = ? WHERE id = ?";
+    private static String INSERT_USER = "INSERT INTO users(roleid, name, password) VALUES(?,?,?)";
+    private static String DELETE_USER = "DELETE FROM users WHERE id = ?";
+
+    private static String SPECIAL_SELECT_USER = SELECT_USER + " WHERE name = ";
 
     public UserDaoImpl(Connection connection) {
         super(connection);
@@ -81,5 +83,25 @@ public class UserDaoImpl extends AbstractJDBCao<User, Integer>  {
         } catch (Exception e) {
             throw new PersistException("preparing user to insert error: ", e);
         }
+    }
+
+    public User readUserByName(String name) throws PersistException {
+        User answer;
+        String oldQuery = SELECT_USER;
+        SELECT_USER = SPECIAL_SELECT_USER + name;
+        List<User> userList = this.readAll();
+        SELECT_USER = oldQuery;
+
+        if (userList == null || userList.size() == 0) {
+            answer = null;
+        } else {
+            answer = userList.iterator().next();
+        }
+
+        if (userList.size() > 1) {
+            throw new PersistException("Received more than 1 record by name!.");
+        }
+
+        return answer;
     }
 }

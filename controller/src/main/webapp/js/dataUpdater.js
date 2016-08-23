@@ -1,4 +1,4 @@
-function startDataUpdate() {
+function runDataUpdater() {
     var maxDataLength = 0.5 * 60; // minutes here <----
 
     var chartData = defineStartChartData();
@@ -37,7 +37,6 @@ function startDataUpdate() {
 
     });
 
-    var lastchoise;
     $('#settingsTable').jqGrid({
         url: 'settings',
         datatype: 'json',
@@ -213,7 +212,10 @@ function startDataUpdate() {
     //--------------------------------------------------------------------
 
 
-    setInterval(updatePrices, 1000);
+    setInterval(function() {
+        updatePrices();
+        updateIndicators();
+    }, 1000);
 
     $(window).resize(function() {
         setNewTablesWidth();
@@ -252,6 +254,9 @@ function startDataUpdate() {
         return tempArr;
     }
 
+    function updateIndicators() {
+        $('#indicatorTable').editCell()
+    }
 
     function defineMaxPrice() {
         return startPriceValues[0] * 2; // 100% increase of nearest futures price
@@ -294,7 +299,7 @@ function startDataUpdate() {
         var name = grid.getCell(rowid, 'name');
         var answer;
         $.ajax({
-            url: 'settingsupdate',
+            url: 'settingschange',
             type: 'GET',
             data: {
                 key: name,

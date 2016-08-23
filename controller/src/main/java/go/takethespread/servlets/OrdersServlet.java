@@ -12,6 +12,7 @@ public class OrdersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
+
         if (ParseJsonUtil.checkConn()) {
             jsonObj = ParseJsonUtil.ordersToJson();
         } else {

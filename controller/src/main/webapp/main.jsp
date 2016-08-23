@@ -15,6 +15,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/lib/dygraph-combined-dev.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/dataUpdater.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/consoleManager.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/statusChecker.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/loginChecker.js"></script>
 
 

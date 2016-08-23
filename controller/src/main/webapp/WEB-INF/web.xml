@@ -40,8 +40,13 @@
     </servlet>
 
     <servlet>
-        <servlet-name>settingsUpdateServlet</servlet-name>
-        <servlet-class>go.takethespread.servlets.SettingsUpdateServlet</servlet-class>
+        <servlet-name>settingsChangeServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.SettingsChangeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>statusCheckServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.StatusCheckServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -75,8 +80,13 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>settingsUpdateServlet</servlet-name>
-        <url-pattern>/settingsupdate</url-pattern>
+        <servlet-name>settingsChangeServlet</servlet-name>
+        <url-pattern>/settingschange</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>statusCheckServlet</servlet-name>
+        <url-pattern>/status</url-pattern>
     </servlet-mapping>
 
     <login-config>

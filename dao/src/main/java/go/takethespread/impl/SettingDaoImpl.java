@@ -14,10 +14,10 @@ import java.util.List;
 
 public class SettingDaoImpl extends AbstractJDBCao<Setting, Integer> {
 
-    private static final String SELECT_SETTING = "SELECT id, name, value, dt FROM settings";
-    private static final String UPDATE_SETTING = "UPDATE settings SET name = ?, value = ?, dt = ? WHERE id = ?";
-    private static final String INSERT_SETTING = "INSERT INTO settings(name, value, dt) VALUES(?,?,?)";
-    private static final String DELETE_SETTING = "DELETE FROM settings WHERE id = ?";
+    private static  String SELECT_SETTING = "SELECT id, name, value, dt FROM settings";
+    private static  String UPDATE_SETTING = "UPDATE settings SET name = ?, value = ?, dt = ? WHERE id = ?";
+    private static  String INSERT_SETTING = "INSERT INTO settings(name, value, dt) VALUES(?,?,?)";
+    private static  String DELETE_SETTING = "DELETE FROM settings WHERE id = ?";
 
     public SettingDaoImpl(Connection connection) {
         super(connection);
@@ -84,5 +84,25 @@ public class SettingDaoImpl extends AbstractJDBCao<Setting, Integer> {
         } catch (Exception e) {
             throw new PersistException("Parsing resultSet error: ", e);
         }
+    }
+
+    private static String SPECIAL_SELECT_SETTING = SELECT_SETTING + " WHERE name = " ;
+
+    public Setting readSettingByName(String name) throws PersistException {
+        List<Setting> answer = null;
+        String oldQuery = SELECT_SETTING;
+        SELECT_SETTING = SPECIAL_SELECT_SETTING + name;
+        answer = this.readAll();
+        SELECT_SETTING = oldQuery;
+
+        if(answer == null){
+            throw new PersistException("answer list is null.");
+        }
+
+        if(answer.size() != 1){
+            throw new PersistException("few settings in db have equals names: " + answer);
+        }
+
+        return answer.get(0);
     }
 }

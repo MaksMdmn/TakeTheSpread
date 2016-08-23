@@ -13,6 +13,7 @@ public class MarketDataDaoImplTest {
         md1.setTerm(Term.NEAR);
         md1.setBid(Money.dollars(43.2));
         md1.setAsk(Money.dollars(43.7));
+        md1.setLast(Money.dollars(412.2d));
         md1.setBidSize(412);
         md1.setAskSize(666);
         md1.setDate(new Date());
@@ -20,6 +21,7 @@ public class MarketDataDaoImplTest {
         md2.setTerm(Term.FAR);
         md2.setBid(Money.dollars(48.1));
         md2.setAsk(Money.dollars(49.4));
+        md2.setLast(Money.dollars(41112.2d));
         md2.setBidSize(12);
         md2.setAskSize(555);
         md2.setDate(new Date(new Date().getTime() + 50000L));

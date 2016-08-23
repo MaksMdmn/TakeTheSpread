@@ -26,13 +26,14 @@ $(document).ready(function() {
                 if (data === 'true') {
                     $('.hide').css('visibility', 'visible');
                     $('.login-info').css('visibility', 'hidden');
-                    startDataUpdate();
-                    startConsoleWork();
+                    runViewPreparation();
+                    runDataUpdater();
+                    runConsoleManager();
                 } else {
                     alert('input data was incorrect, please try again.');
                 }
             },
-            timeout: 5000
+            timeout: 15000
         });
     });
     // $('.hide').css('visibility', 'visible');

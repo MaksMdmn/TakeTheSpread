@@ -83,14 +83,14 @@ public class ConsoleManager {
     }
 
     private boolean itemVerification(String item) throws ConsoleException {
-        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
-        return tradeSystemInfo.isPropExists(item);
+//        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
+        return tradeSystemInfo.isSettingExists(item);
 
     }
 
     private boolean valuesVerification(String values) throws ConsoleException {
-        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
-        return tradeSystemInfo.isPropExists(values);
+//        if (tradeSystemInfo.isPropNull()) throw new ConsoleException("Settings-example file is empty");
+        return tradeSystemInfo.isSettingExists(values);
     }
 
     public enum ConsoleCommand {

@@ -6,15 +6,20 @@ import go.takethespread.Order;
 import go.takethespread.exceptions.PersistException;
 
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalField;
+import java.util.*;
+import java.util.Date;
 
 public class OrderDaoImpl extends AbstractJDBCao<Order, Integer> {
 
-    private static final String SELECT_ORDER = "SELECT id, ordid, instrument, dt, type, state, size, price, filled, pricefilled, deal FROM orders";
-    private static final String UPDATE_ORDER = "UPDATE orders SET ordid = ?, instrument = ?,  dt=?, type = ?, state = ?, size = ?, price = ?, filled = ?, pricefilled = ?, deal=? WHERE id = ?";
-    private static final String INSERT_ORDER = "INSERT INTO orders(ordid, instrument, dt, type, state, size, price, filled, pricefilled, deal) VALUES(?,?,?,?,?,?,?,?,?,?)";
-    private static final String DELETE_ORDER = "DELETE FROM orders WHERE id = ?";
+    private static  String SELECT_ORDER = "SELECT id, ordid, instrument, dt, type, state, size, price, filled, pricefilled, deal FROM orders";
+    private static  String UPDATE_ORDER = "UPDATE orders SET ordid = ?, instrument = ?,  dt=?, type = ?, state = ?, size = ?, price = ?, filled = ?, pricefilled = ?, deal=? WHERE id = ?";
+    private static  String INSERT_ORDER = "INSERT INTO orders(ordid, instrument, dt, type, state, size, price, filled, pricefilled, deal) VALUES(?,?,?,?,?,?,?,?,?,?)";
+    private static  String DELETE_ORDER = "DELETE FROM orders WHERE id = ?";
+
+    private static String SPECIAL_SELECT_ORDER = SELECT_ORDER + " WHERE dt > " + getStartDayTime();
 
     public OrderDaoImpl(Connection connection) {
         super(connection);
@@ -99,9 +104,30 @@ public class OrderDaoImpl extends AbstractJDBCao<Order, Integer> {
             ps.setDouble(7, object.getPrice().getAmount());
             ps.setInt(8, object.getFilled());
             ps.setDouble(9, object.getPriceFilled().getAmount());
-            ps.setString(10,object.getDeal().name());
+            ps.setString(10, object.getDeal().name());
         } catch (Exception e) {
             throw new PersistException("Parsing resultSet error: ", e);
         }
+    }
+
+
+    public List<Order> readTodayOrders() throws PersistException {
+        List<Order> answer = null;
+        String oldQuery = SELECT_ORDER;
+        SELECT_ORDER = SPECIAL_SELECT_ORDER;
+        answer = this.readAll();
+        SELECT_ORDER = oldQuery;
+
+        return answer;
+    }
+
+    private static long getStartDayTime(){
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTimeInMillis();
     }
 }

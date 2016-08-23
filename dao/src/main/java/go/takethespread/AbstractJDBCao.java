@@ -3,10 +3,7 @@ package go.takethespread;
 import go.takethespread.exceptions.PersistException;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serializable> implements GenericDao<T, PK> {

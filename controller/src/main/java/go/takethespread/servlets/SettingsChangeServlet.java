@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SettingsUpdateServlet extends HttpServlet {
-    private StatusListener statusListener = StatusManager.getInstance();
+public class SettingsChangeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,9 +23,6 @@ public class SettingsUpdateServlet extends HttpServlet {
         System.out.println("java answer: " + answer);
         resp.getWriter().write(answer);
         resp.getWriter().flush();
-
-        statusListener.settingsStatucChanged();
         System.out.println(info.getSettingsMap().toString());
-        System.out.println(info.commis);
     }
 }

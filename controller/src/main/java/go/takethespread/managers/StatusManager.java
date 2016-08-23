@@ -1,14 +1,12 @@
 package go.takethespread.managers;
 
 public class StatusManager implements StatusListener {
-
-    private  boolean isLogin = false;
-    private  boolean isRun = false;
-    private  boolean isSettingsActual = false;
-
     private static StatusManager instance;
 
-    private StatusManager(){
+    private volatile boolean isRunStatusChanged = false;
+    private volatile boolean isOrdersInfoUpdated = false;
+
+    private StatusManager() {
     }
 
     public static StatusManager getInstance() {
@@ -18,31 +16,39 @@ public class StatusManager implements StatusListener {
         return instance;
     }
 
+    @Override
+    public void runStatusChanged(ConsoleManager.ConsoleCommand command) {
+        switch (command) {
+            case GO:
+                isRunStatusChanged = true;
+                break;
+            case GJ:
+                isRunStatusChanged = false;
+                break;
+            case OF:
+                isRunStatusChanged = false;
+                break;
+            default:
+                /*NOP*/
+                break;
+        }
+
+    }
 
     @Override
-    public void loginStatusChanged() {
-
+    public void ordersInfoUpdated() {
+        isOrdersInfoUpdated = true;
     }
 
-    @Override
-    public void runStatusChanged() {
-
+    public synchronized boolean isRunStatusChanged() {
+        return isRunStatusChanged;
     }
 
-    @Override
-    public void settingsStatucChanged() {
-
+    public synchronized boolean isOrdersInfoUpdated() {
+        return isOrdersInfoUpdated;
     }
 
-    public synchronized boolean isLogin() {
-        return isLogin;
-    }
-
-    public synchronized boolean isRun() {
-        return isRun;
-    }
-
-    public synchronized boolean isSettingsActual() {
-        return isSettingsActual;
+    public synchronized void restoreOrdersInfoStatus() {
+        isOrdersInfoUpdated = false;
     }
 }

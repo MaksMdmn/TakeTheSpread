@@ -16,5 +16,4 @@ public interface GenericDao<T extends Identified<PK>, PK extends Serializable> {
     public void delete(T object) throws PersistException;
 
     public List<T> readAll() throws PersistException;
-
 }

@@ -33,7 +33,7 @@ public class TaskManager {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }
         taskPool.push(task);
-        statusListener.runStatusChanged();
+        statusListener.runStatusChanged(task.getCommand());
     }
 
     public synchronized void pollTask(TradeTask task) throws TradeException {

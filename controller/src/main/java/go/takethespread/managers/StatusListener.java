@@ -2,10 +2,8 @@ package go.takethespread.managers;
 
 public interface StatusListener {
 
-    public void loginStatusChanged();
+    public void runStatusChanged(ConsoleManager.ConsoleCommand command);
 
-    public void runStatusChanged();
-
-    public void settingsStatucChanged();
+    public void ordersInfoUpdated();
 
 }

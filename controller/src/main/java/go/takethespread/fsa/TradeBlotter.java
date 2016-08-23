@@ -1,6 +1,8 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Term;
+import go.takethespread.managers.StatusListener;
+import go.takethespread.managers.StatusManager;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
@@ -29,6 +31,7 @@ public class TradeBlotter {
     private Money buypow;
     private Money pnl;
     private Phase curPhase;
+    private StatusListener listener = StatusManager.getInstance();
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
@@ -178,6 +181,7 @@ public class TradeBlotter {
 
     public void updateOrdersData() {
         orders = externalManager.getOrders();
+        listener.ordersInfoUpdated();
     }
 
     public boolean isNearLessThanFar() {
