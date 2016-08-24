@@ -36,7 +36,7 @@ public class TaskManager {
         statusListener.runStatusChanged(task.getCommand());
     }
 
-    public synchronized void pollTask(TradeTask task) throws TradeException {
+    public synchronized void pollTask() throws TradeException {
         if (taskPool == null) {
             throw new TradeException("taskPool wasn't initialized: " + taskPool);
         }

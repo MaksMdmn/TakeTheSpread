@@ -1,6 +1,7 @@
 package go.takethespread;
 
 import go.takethespread.fsa.FiniteStateAutomation;
+import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.managers.ConsoleManager;
 import go.takethespread.managers.ExternalManager;
 import go.takethespread.exceptions.ConsoleException;
@@ -14,12 +15,12 @@ import java.io.InputStreamReader;
 public class TEST_FSA {
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        TradeSystemInfo info = TradeSystemInfo.getInstance();
         FiniteStateAutomation fsa = new FiniteStateAutomation();
         ExternalManager edm = NTTcpExternalManagerImpl.getInstance();
         ConsoleManager cm = ConsoleManager.getInstance();
 
-        edm.startingJob();
+        edm.startingJob(info.host, info.port);
         fsa.start();
 
         String userMessage = "";

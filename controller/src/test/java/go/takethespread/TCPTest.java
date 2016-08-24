@@ -19,7 +19,7 @@ public class TCPTest {
 
 
             System.out.println("start!!!");
-            ntTcpExternalManager.startingJob();
+            ntTcpExternalManager.startingJob(info.host, info.port);
 
             System.out.println("update");
             ntTcpExternalManager.refreshData();

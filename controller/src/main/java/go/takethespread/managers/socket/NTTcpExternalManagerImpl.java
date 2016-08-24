@@ -17,13 +17,11 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     private static int attemptMaxNumbers;
     private static int attempts;
     private int delay;
-    private ConsoleManager consoleManager;
     private NTTcpManager ntTcpManager;
     private ActualMarketData nearMarketData;
     private ActualMarketData farMarketData;
 
     private NTTcpExternalManagerImpl() {
-        consoleManager = ConsoleManager.getInstance();
         ntTcpManager = NTTcpManager.getInstance();
         nearMarketData = new ActualMarketData(Term.NEAR);
         farMarketData = new ActualMarketData(Term.FAR);
@@ -200,8 +198,14 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         ntTcpManager.sendCancelAllMessage();
     }
 
-    public void startingJob() {
-        ntTcpManager.startUpServer();
+    @Override
+    public void startingJob(String host, int port) {
+        ntTcpManager.startUpServer(host, port);
+        if(ntTcpManager.isServerWork()){
+            System.out.println("server started");
+        }else{
+            System.out.println("have some trouble, man");
+        }
     }
 
     public void finishingJob() {
@@ -221,7 +225,6 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
 
     private Term identifyTerm(String instr) {
         TradeSystemInfo info = TradeSystemInfo.getInstance();
-        info.initProp();
         if (instr.equals(info.instrument_n))
             return Term.NEAR;
         if (instr.equals(info.instrument_f))

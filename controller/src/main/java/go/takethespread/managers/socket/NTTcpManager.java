@@ -31,8 +31,10 @@ public class NTTcpManager {
         }
     }
 
-    protected void startUpServer() {
+    protected void startUpServer(String host, int port) {
         server = new NTTcpServer();
+        server.setHost(host);
+        server.setPort(port);
         server.initServerWork();
         bridge = server.getDataBridge();
     }

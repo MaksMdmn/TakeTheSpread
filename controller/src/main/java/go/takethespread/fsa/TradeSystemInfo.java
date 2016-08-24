@@ -40,7 +40,7 @@ public final class TradeSystemInfo {
             instance = new TradeSystemInfo();
         } else {
             if (instance.settingsMap == null) {
-                throw new RuntimeException("class cannot be used - please, initialize:  settingsMap=" + instance.settingsMap + " (use initProp, when you 1st init.");
+                throw new RuntimeException("class cannot be used - please, initialize:  settingsMap=" + instance.settingsMap + " (use initProp, when you 1st init).");
             }
         }
         return instance;

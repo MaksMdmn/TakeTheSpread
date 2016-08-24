@@ -62,8 +62,8 @@ public class ConsoleManager {
 
     private void executeConsoleCommand(String command, String item, String values) throws ConsoleException, TradeException {
         commandVerification(command);
-        itemVerification(item);
-        valuesVerification(values);
+//        itemVerification(item);
+//        valuesVerification(values);
 
         ConsoleCommand consoleCommand = ConsoleCommand.valueOf(command);
 
@@ -95,6 +95,7 @@ public class ConsoleManager {
 
     public enum ConsoleCommand {
         GO, //start
+        CN,
         GJ, //stop
         OF, //off
         RS, //restart

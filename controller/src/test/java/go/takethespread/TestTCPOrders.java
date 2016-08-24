@@ -15,7 +15,7 @@ public class TestTCPOrders {
             String instr1 = info.instrument_n;
             String instr2 = info.instrument_f;
 
-            ntTcpExternalManager.startingJob();
+            ntTcpExternalManager.startingJob(info.host, info.port);
 
             Order ord = ntTcpExternalManager.sendMarketBuy(instr1, 1);
 

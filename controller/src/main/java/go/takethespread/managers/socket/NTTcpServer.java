@@ -18,9 +18,19 @@ public class NTTcpServer {
     private PrintWriter pw;
     private Thread reading;
     private Thread writing;
+    private String host;
+    private int port;
 
     public NTTcpServer() {
         dataBridge = new NTTcpDataBridge();
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public NTTcpDataBridge getDataBridge() {
@@ -30,7 +40,7 @@ public class NTTcpServer {
     public void initServerWork() {
         isConn = true;
         try {
-            serverSocket = new ServerSocket(8085, 0, InetAddress.getByName("localhost"));
+            serverSocket = new ServerSocket(port, 0, InetAddress.getByName(host));
             serverSocket.setSoTimeout(10 * 1000);
             if (socket == null) {
                 socket = serverSocket.accept();

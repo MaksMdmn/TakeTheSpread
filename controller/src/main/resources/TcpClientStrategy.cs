@@ -51,7 +51,7 @@ namespace NinjaTrader.Strategy
 
 		//handle by myself
 		private String[] ntToken = new[]{":-:"};
-		private String secondInstrTicker = "CL 09-16";
+		private String secondInstrTicker = "CL 11-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
 		private int sendingDelayMs = 200;
@@ -83,8 +83,8 @@ namespace NinjaTrader.Strategy
 			}
 			catch (Exception e2)
 			{
+				Print("InitializeConnection exception " + e2.ToString());
 				closeTcpEntities();
-				Print("Initialize exception " + e2.ToString());
 			}
 		}
 
@@ -187,6 +187,7 @@ namespace NinjaTrader.Strategy
 					switch (msgCmd){
 						case "OFF":
 							Print("Good buy, Blue Sky!");
+							CancelAllOrders(true,true);
 							closeTcpEntities();
 							break;
 						case "ORDS":
@@ -323,7 +324,7 @@ namespace NinjaTrader.Strategy
 
 		protected override void OnTermination()
 		{
-			Print("termination...");
+			Print("calling termination method.");
 			closeTcpEntities();
 		}
 
@@ -344,8 +345,8 @@ namespace NinjaTrader.Strategy
 				}
 
 			}catch(Exception e3){
-				closeTcpEntities();
 				Print("onMarketData exception: " + e3.ToString());
+				closeTcpEntities();
 			}
 		}
 
@@ -370,28 +371,25 @@ namespace NinjaTrader.Strategy
 
 		private void closeTcpEntities(){
 			isCon = false;
-			timer.Stop();
-			timer.Dispose();
-
+			if(timer != null){
+				timer.Stop();
+				timer.Dispose();
+			}
 			if (thrGetting != null) {
 				thrGetting = null;
 			}
-
 			if (tcpWriter != null) {
 				tcpWriter.Close();
 				tcpWriter = null;
 			}
-
 			if (tcpReader != null) {
 				tcpReader.Close();
 				tcpReader = null;
 			}
-
 			if (tcpClient != null) {
 				tcpClient.Close();
 				tcpClient = null;
 			}
-
 //			Disable();
 		}
 

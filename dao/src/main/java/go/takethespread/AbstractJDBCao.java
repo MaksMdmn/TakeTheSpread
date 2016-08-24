@@ -43,7 +43,7 @@ public abstract class AbstractJDBCao<T extends Identified<PK>, PK extends Serial
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                answer = rs.getInt(1);
+                answer = rs.getInt("id");
             } else {
                 throw new PersistException("cannot read id of inserted object.");
             }

@@ -36,12 +36,13 @@ public class FiniteStateAutomation extends Thread {
     public FiniteStateAutomation() {
         logger.info("creation of FSA, logger started");
 
+        tradeSystemInfo = TradeSystemInfo.getInstance();
+        tradeSystemInfo.initProp();
+
         consoleManager = ConsoleManager.getInstance();
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
 
-        tradeSystemInfo = TradeSystemInfo.getInstance();
-        tradeSystemInfo.initProp();
         blotter = new TradeBlotter(tradeSystemInfo, externalManager);
 
         infoManager = InfoManager.getInstance();
@@ -63,7 +64,6 @@ public class FiniteStateAutomation extends Thread {
     @Override
     public void run() {
         isWorking = true;
-        externalManager.startingJob();
         TaskManager.TradeTask currentTask;
 
         while (isWorking) {
@@ -76,6 +76,9 @@ public class FiniteStateAutomation extends Thread {
                 switch (currentTask.getCommand()) {
                     case GO:
                         executeGO();
+                        break;
+                    case CN:
+                        executeCN();
                         break;
                     case GJ:
                         executeGJ();
@@ -200,10 +203,19 @@ public class FiniteStateAutomation extends Thread {
         logger.info("GO executed, pos status: " + blotter.getPosition_n() + " " + blotter.getPosition_f());
     }
 
+    private void executeCN() {
+        try {
+            taskManager.pollTask();
+        } catch (TradeException e) {
+            e.printStackTrace();
+        }
+        externalManager.startingJob(tradeSystemInfo.host, tradeSystemInfo.port);
+    }
+
     private void executeGJ() {
         // correct completion of work!
-        externalManager.finishingJob();
         try {
+            externalManager.sendCancelOrders();
             taskManager.removeAllTasks();
         } catch (TradeException e) {
             e.printStackTrace();
@@ -211,7 +223,7 @@ public class FiniteStateAutomation extends Thread {
     }
 
     private void executeOF() {
-        executeGJ();
+        externalManager.finishingJob();
         isWorking = false;
     }
 

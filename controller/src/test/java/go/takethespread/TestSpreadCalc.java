@@ -29,10 +29,10 @@ public class TestSpreadCalc {
 
         ExternalManager manager = NTTcpExternalManagerImpl.getInstance();
 
-        System.out.println("start!!!");
-        manager.startingJob();
-
         TradeSystemInfo info = TradeSystemInfo.getInstance();
+        System.out.println("start!!!");
+        manager.startingJob(info.host, info.port);
+
         TradeBlotter blotter = new TradeBlotter(info, manager);
 
         System.out.println("update");

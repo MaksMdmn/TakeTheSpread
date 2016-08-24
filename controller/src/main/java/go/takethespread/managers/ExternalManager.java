@@ -45,7 +45,7 @@ public interface ExternalManager {
 
     public void refreshData();
 
-    public void startingJob();
+    public void startingJob(String host, int port);
 
     public void finishingJob();
 
