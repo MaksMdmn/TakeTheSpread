@@ -145,6 +145,7 @@ function runDataUpdater() {
             width: 55,
             editable: true
         }],
+        loadonce: true
     });
 
     $('#orderTable').jqGrid({
@@ -254,8 +255,22 @@ function runDataUpdater() {
         return tempArr;
     }
 
+
     function updateIndicators() {
-        $('#indicatorTable').editCell()
+
+        $.ajax({
+            url: 'indicator',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var tempObj = data[0];
+                for (var prop in tempObj) {
+                    if (tempObj.hasOwnProperty(prop)) {
+                        $('#indicatorTable').jqGrid("setCell", 1, prop, tempObj[prop]);
+                    }
+                }
+            }
+        });
     }
 
     function defineMaxPrice() {

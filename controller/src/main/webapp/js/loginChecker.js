@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('.hide').css('visibility', 'hidden');
 
+    $('.hide').css('visibility', 'hidden');
     $('#login, #password').focus(function() {
         $(this).val('');
     });
@@ -26,7 +26,6 @@ $(document).ready(function() {
                 if (data === 'true') {
                     $('.hide').css('visibility', 'visible');
                     $('.login-info').css('visibility', 'hidden');
-                    runViewPreparation();
                     runDataUpdater();
                     runConsoleManager();
                 } else {
@@ -36,8 +35,5 @@ $(document).ready(function() {
             timeout: 15000
         });
     });
-    // $('.hide').css('visibility', 'visible');
-    // $('.login-info').css('visibility', 'hidden');
-    // startDataUpdate();
-    // startConsoleWork();
+
 });

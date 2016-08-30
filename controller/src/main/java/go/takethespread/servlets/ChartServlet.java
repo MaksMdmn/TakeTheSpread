@@ -13,13 +13,13 @@ public class ChartServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
         if(ParseJsonUtil.checkConn()){
-//            jsonObj = ParseJsonUtil.priceDataToJson();
+            jsonObj = ParseJsonUtil.priceDataToJson(false);
         } else{
             jsonObj = null; //HERE????
         }
 
         resp.setContentType("application/json");
-//        resp.getWriter().print(jsonObj);
+        resp.getWriter().print(jsonObj);
         resp.getWriter().flush();
 
     }

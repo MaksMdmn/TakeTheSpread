@@ -88,7 +88,7 @@ public class UserDaoImpl extends AbstractJDBCao<User, Integer> {
     public User readUserByName(String name) throws PersistException {
         User answer;
         String oldQuery = SELECT_USER;
-        SELECT_USER = SPECIAL_SELECT_USER + name;
+        SELECT_USER = SPECIAL_SELECT_USER + "\'" + name + "\'";
         List<User> userList = this.readAll();
         SELECT_USER = oldQuery;
 
