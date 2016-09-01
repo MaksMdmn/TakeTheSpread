@@ -164,14 +164,14 @@ input, button, label {
 .table-feature{
 	float:left;
 	/*width: 450px;*/
-    width:36%;
+    width:37%;
 	height: 440px;
 }
 
 .chart-feature{
 	float:right;
 	/*width: 515px;*/
-    width:40%;
+    width:39%;
 	height: 440px;
     margin-right:15px;
 }

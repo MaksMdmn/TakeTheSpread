@@ -6,8 +6,10 @@ import go.takethespread.*;
 import go.takethespread.exceptions.PersistException;
 import go.takethespread.fsa.TradeSystemInfo;
 import go.takethespread.impl.MarketDataDaoImpl;
+import go.takethespread.impl.OrderDaoImpl;
 import go.takethespread.impl.PostgresDaoFactoryImpl;
 import go.takethespread.managers.InfoManager;
+import go.takethespread.managers.OrderManager;
 import go.takethespread.managers.StatusManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 
@@ -18,6 +20,7 @@ public final class ParseJsonUtil {
 
     private static InfoManager manager = InfoManager.getInstance();
     private static ObjectMapper mapper = new ObjectMapper();
+    private static OrderManager orderManager = OrderManager.getInstance();
     private static StatusManager statusManager = StatusManager.getInstance();
     private static DaoFactory<Connection> daoFactory = new PostgresDaoFactoryImpl();
 
@@ -33,7 +36,7 @@ public final class ParseJsonUtil {
         String answer = "";
         TradeSystemInfo info = TradeSystemInfo.getInstance();
         info.initProp();
-        LinkedHashMap<Settings, String> settingsMap = info.getSettingsMap();
+        Map<Settings, String> settingsMap = info.getSettingsMap();
         if (info.fullSettingsVerification()) {
             JsonSettingsData tempObj;
             List<JsonSettingsData> jsonList = new ArrayList<>();
@@ -52,15 +55,22 @@ public final class ParseJsonUtil {
 
     public static String ordersToJson() throws JsonProcessingException {
         String answer = "";
-//        List<Order> orders = manager.getAllOrders();
-//
-//        List<JsonOrderData> filteredOrders = new ArrayList<>();
-//        for (Order o : orders) {
-//            if (o.getState() == Order.State.Filled) { // only full filled order FOR NOW!
-//                filteredOrders.add(new JsonOrderData(o));
-//            }
-//        }
-//        answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(filteredOrders);
+        if(statusManager.isOrdersInfoUpdated()) {
+            List<JsonOrderData> jsonOrders = new ArrayList<>();
+            ;
+            try {
+                OrderDaoImpl dao = new OrderDaoImpl(daoFactory.getContext());
+                for (Order o : dao.readTodayOrdersDesc()) {
+                    jsonOrders.add(new JsonOrderData(o));
+                }
+
+            } catch (PersistException e) {
+                e.printStackTrace();
+            }
+
+            answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonOrders);
+            statusManager.restoreOrdersInfoStatus();
+        }
 
         return answer;
     }

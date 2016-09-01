@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SettingsChangeServlet extends HttpServlet {
+public class UpdateSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,9 +20,7 @@ public class SettingsChangeServlet extends HttpServlet {
         TradeSystemInfo info = TradeSystemInfo.getInstance();
         String answer = info.updateLocalValue(key, value);
 
-        System.out.println("java answer: " + answer);
         resp.getWriter().write(answer);
         resp.getWriter().flush();
-        System.out.println(info.getSettingsMap().toString());
     }
 }

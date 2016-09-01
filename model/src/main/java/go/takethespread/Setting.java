@@ -45,7 +45,7 @@ public class Setting implements Serializable, Identified<Integer>{
 
     @Override
     public Integer getId() {
-        return null;
+        return id;
     }
 
     @Override

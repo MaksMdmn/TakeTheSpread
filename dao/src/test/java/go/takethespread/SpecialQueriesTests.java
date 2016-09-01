@@ -24,7 +24,7 @@ public class SpecialQueriesTests {
             printList(list);
 
             OrderDaoImpl orderDao = new OrderDaoImpl(daoFactory.getContext());
-            List<Order> orderList = orderDao.readTodayOrders();
+            List<Order> orderList = orderDao.readTodayOrdersDesc();
 
             printList(orderList);
 

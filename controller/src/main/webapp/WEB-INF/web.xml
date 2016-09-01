@@ -40,8 +40,8 @@
     </servlet>
 
     <servlet>
-        <servlet-name>settingsChangeServlet</servlet-name>
-        <servlet-class>go.takethespread.servlets.SettingsChangeServlet</servlet-class>
+        <servlet-name>updateSettingsServlet</servlet-name>
+        <servlet-class>go.takethespread.servlets.UpdateSettingsServlet</servlet-class>
     </servlet>
 
     <servlet>
@@ -80,7 +80,7 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>settingsChangeServlet</servlet-name>
+        <servlet-name>updateSettingsServlet</servlet-name>
         <url-pattern>/settingschange</url-pattern>
     </servlet-mapping>
 

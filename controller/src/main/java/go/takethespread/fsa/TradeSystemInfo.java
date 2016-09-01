@@ -49,7 +49,7 @@ public final class TradeSystemInfo {
     public void initProp() {
         if (settingsMap == null) {
             PostgresDaoFactoryImpl daoFactory = new PostgresDaoFactoryImpl();
-            settingsMap = new LinkedHashMap();
+            settingsMap = new TreeMap<Settings, String>();
             try {
                 GenericDao<Setting, Integer> stDao = daoFactory.getDao(daoFactory.getContext(), Setting.class);
                 List<Setting> settings = stDao.readAll();
@@ -75,20 +75,23 @@ public final class TradeSystemInfo {
 
             settingsMap.put(setting, value);
             result = value;
+            updateVal();
 
             Setting tempSetting = settingDao.readSettingByName(setting.name());
             tempSetting.setLastUpdate(new Date());
             tempSetting.setValue(value);
             settingDao.update(tempSetting);
+
         } catch (IllegalArgumentException e) {
             settingsMap.put(setting, oldVal);
             System.out.println("try again, cause " + e.getMessage());
             result = oldVal;
+            updateVal();
         } catch (PersistException e) {
             System.out.println("try again, cause " + e.getMessage());
             result = oldVal;
+            updateVal();
         }
-        updateVal();
         return result;
     }
 
@@ -96,8 +99,8 @@ public final class TradeSystemInfo {
         return settingsMap.containsKey(Settings.valueOf(settingName));
     }
 
-    public LinkedHashMap<Settings, String> getSettingsMap() {
-        return new LinkedHashMap<>(settingsMap);
+    public Map<Settings, String> getSettingsMap() {
+        return new TreeMap<Settings, String>(settingsMap);
     }
 
     public boolean fullSettingsVerification() {

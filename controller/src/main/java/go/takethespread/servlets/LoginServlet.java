@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
+    private StatusManager statusManager = StatusManager.getInstance();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String log = req.getParameter("login");
@@ -19,7 +21,10 @@ public class LoginServlet extends HttpServlet {
         boolean isUserLogin = new LoginChecker().verifyUser(log, pas);
 
         if (isUserLogin) {
+            if(!statusManager.isRunning()){
+                startWork();
 //                startWork(); NOT HERE MAN!!!! I'M TELLING YOU
+            }
         }
 
         resp.getWriter().write(String.valueOf(isUserLogin));

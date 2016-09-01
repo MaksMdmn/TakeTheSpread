@@ -181,7 +181,7 @@ public class TradeBlotter {
 
     public void updateOrdersData() {
         orders = externalManager.getOrders();
-        listener.ordersInfoUpdated();
+        listener.ordersInfoUpdated(orders);
     }
 
     public boolean isNearLessThanFar() {

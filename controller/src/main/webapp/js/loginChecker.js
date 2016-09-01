@@ -37,3 +37,16 @@ $(document).ready(function() {
     });
 
 });
+
+function checkRunStatus() {
+    $.ajax({
+        url: 'status',
+        type: 'get',
+        data: {
+            'checkParam': 'isRun'
+        },
+        success: function(data) {
+
+        }
+    });
+}

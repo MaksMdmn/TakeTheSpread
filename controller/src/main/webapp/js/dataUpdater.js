@@ -52,7 +52,7 @@ function runDataUpdater() {
             name: 'name',
             index: 'name',
             width: 120,
-            editable: false
+            editable: false,
         }, {
             name: 'value',
             index: 'value',
@@ -154,8 +154,8 @@ function runDataUpdater() {
         mtype: 'GET',
         height: 350,
         autowidth: true,
-        rowNum: 10,
-        rowList: [10, 20, 30],
+        rowNum: 1000,
+        rowList: [1000],
         viewrecords: true,
         caption: 'ORDERS',
         scrollOffset: 0,
@@ -216,6 +216,7 @@ function runDataUpdater() {
     setInterval(function() {
         updatePrices();
         updateIndicators();
+        updateOrders();
     }, 1000);
 
     $(window).resize(function() {
@@ -257,7 +258,6 @@ function runDataUpdater() {
 
 
     function updateIndicators() {
-
         $.ajax({
             url: 'indicator',
             type: 'GET',
@@ -268,6 +268,19 @@ function runDataUpdater() {
                     if (tempObj.hasOwnProperty(prop)) {
                         $('#indicatorTable').jqGrid("setCell", 1, prop, tempObj[prop]);
                     }
+                }
+            }
+        });
+    }
+
+    function updateOrders() {
+        $.ajax({
+            url: 'orders',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                if (data !== "") {
+                    $('#orderTable')[0].addJSONData(data);
                 }
             }
         });

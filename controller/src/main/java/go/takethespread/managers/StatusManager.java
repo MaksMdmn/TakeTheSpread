@@ -1,10 +1,15 @@
 package go.takethespread.managers;
 
+import go.takethespread.Order;
+
+import java.util.List;
+
 public class StatusManager implements StatusListener {
     private static StatusManager instance;
 
-    private volatile boolean isRunStatusChanged = false;
-    private volatile boolean isOrdersInfoUpdated = false;
+    private OrderManager orderManager = null;
+    private volatile boolean isRunning = false;
+    private volatile boolean isOrdersInfoUpdated = true;
 
     private StatusManager() {
     }
@@ -20,13 +25,13 @@ public class StatusManager implements StatusListener {
     public void runStatusChanged(ConsoleManager.ConsoleCommand command) {
         switch (command) {
             case GO:
-                isRunStatusChanged = true;
+                isRunning = true;
                 break;
             case GJ:
-                isRunStatusChanged = false;
+                isRunning = false;
                 break;
             case OF:
-                isRunStatusChanged = false;
+                isRunning = false;
                 break;
             default:
                 /*NOP*/
@@ -36,12 +41,16 @@ public class StatusManager implements StatusListener {
     }
 
     @Override
-    public void ordersInfoUpdated() {
+    public void ordersInfoUpdated(List<Order> orders) {
+        if (orderManager == null) {
+            orderManager = OrderManager.getInstance();
+        }
+        orderManager.addOrderToDBWithoutDuplicates(orders);
         isOrdersInfoUpdated = true;
     }
 
-    public synchronized boolean isRunStatusChanged() {
-        return isRunStatusChanged;
+    public synchronized boolean isRunning() {
+        return isRunning;
     }
 
     public synchronized boolean isOrdersInfoUpdated() {

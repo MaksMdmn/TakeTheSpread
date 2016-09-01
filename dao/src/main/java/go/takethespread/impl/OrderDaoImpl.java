@@ -19,7 +19,7 @@ public class OrderDaoImpl extends AbstractJDBCao<Order, Integer> {
     private static  String INSERT_ORDER = "INSERT INTO orders(ordid, instrument, dt, type, state, size, price, filled, pricefilled, deal) VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static  String DELETE_ORDER = "DELETE FROM orders WHERE id = ?";
 
-    private static String SPECIAL_SELECT_ORDER = SELECT_ORDER + " WHERE dt > " + getStartDayTime();
+    private static String SPECIAL_SELECT_ORDER = SELECT_ORDER + " WHERE dt > " + getStartDayTime() + " ORDER BY dt DESC";
 
     public OrderDaoImpl(Connection connection) {
         super(connection);
@@ -111,7 +111,7 @@ public class OrderDaoImpl extends AbstractJDBCao<Order, Integer> {
     }
 
 
-    public List<Order> readTodayOrders() throws PersistException {
+    public List<Order> readTodayOrdersDesc() throws PersistException {
         List<Order> answer = null;
         String oldQuery = SELECT_ORDER;
         SELECT_ORDER = SPECIAL_SELECT_ORDER;
