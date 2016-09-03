@@ -33,6 +33,7 @@ public final class TradeSystemInfo {
     private Map<Settings, String> settingsMap = null;
 
     private TradeSystemInfo() {
+        initProp();
     }
 
     public static TradeSystemInfo getInstance() {
@@ -46,7 +47,7 @@ public final class TradeSystemInfo {
         return instance;
     }
 
-    public void initProp() {
+    private void initProp() {
         if (settingsMap == null) {
             PostgresDaoFactoryImpl daoFactory = new PostgresDaoFactoryImpl();
             settingsMap = new TreeMap<Settings, String>();

@@ -40,6 +40,9 @@ public class NTTcpManager {
     }
 
     protected boolean isServerWork(){
+        if(server == null){
+            return false;
+        }
         return server.isServerWorking();
     }
     //always last

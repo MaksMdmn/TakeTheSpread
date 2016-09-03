@@ -1,11 +1,10 @@
 function runDataUpdater() {
-    var maxDataLength = 0.5 * 60; // minutes here <----
+    var maxDataLength = 2 * 60; // minutes here <----
 
     var chartData = defineStartChartData();
     var startPriceValues = $.makeArray(updatePrices());
     var maxPrice = defineMaxPrice();
     var nearFarColors = defineNearFarColors(startPriceValues[0], startPriceValues[1]);
-    var acceptableKeyValues = [6, 7, 8, 9, 10, 11, 12, 13, 14];
 
     var g = new Dygraph($('.chart-feature').get(0), chartData, {
         animatedZooms: false,
@@ -144,8 +143,7 @@ function runDataUpdater() {
             index: 'pnl',
             width: 55,
             editable: true
-        }],
-        loadonce: true
+        }]
     });
 
     $('#orderTable').jqGrid({
@@ -156,68 +154,76 @@ function runDataUpdater() {
         autowidth: true,
         rowNum: 1000,
         rowList: [1000],
-        viewrecords: true,
         caption: 'ORDERS',
         scrollOffset: 0,
-        colNames: ['DATE', 'INSTR', 'DEAL', 'TYPE', 'PRICE', 'SIZE', 'PRICE_FLD', 'SIZE_FLD', 'STATUS'],
+        colNames: ['Date', 'Term', 'Deal', 'Type', 'Price', 'Size', 'PriceFilled', 'Filled', 'Status'],
         colModel: [{
             name: 'date',
             index: 'date',
-            width: 100,
-            editable: false
+            width: 80,
+            editable: false,
+            align: 'center'
         }, {
-            name: 'instrument',
-            index: 'instrument',
-            width: 50,
-            editable: false
+            name: 'term',
+            index: 'term',
+            width: 30,
+            editable: false,
+            align: 'center'
         }, {
             name: 'deal',
             index: 'deal',
             width: 30,
-            editable: false
+            editable: false,
+            align: 'center'
         }, {
             name: 'type',
             index: 'type',
             width: 30,
-            editable: false
+            editable: false,
+            align: 'center'
         }, {
             name: 'price',
             index: 'price',
             width: 40,
-            editable: false
+            editable: false,
+            align: 'center'
         }, {
             name: 'size',
             index: 'size',
             width: 30,
-            editable: false
+            editable: false,
+            align: 'center'
         }, {
             name: 'priceFilled',
             index: 'priceFilled',
             width: 60,
-            editable: false
+            editable: false,
+            align: 'center'
         }, {
             name: 'sizeFilled',
             index: 'sizeFilled',
-            width: 50,
-            editable: false
+            width: 40,
+            editable: false,
+            align: 'center'
         }, {
             name: 'status',
             index: 'status',
-            width: 40,
-            editable: false
+            width: 50,
+            editable: false,
+            align: 'center'
         }],
-        pager: 'orderPager'
+        pager: 'orderPager',
     });
 
 
     //--------------------------------------------------------------------
 
 
-    setInterval(function() {
-        updatePrices();
-        updateIndicators();
-        updateOrders();
-    }, 1000);
+    // setInterval(function() {
+    //     updatePrices();
+    //     updateIndicators();
+    //     updateOrders();
+    // }, 1000);
 
     $(window).resize(function() {
         setNewTablesWidth();
@@ -247,8 +253,14 @@ function runDataUpdater() {
 
                 chartData.push(tempArr);
 
+                // var spr = Math.abs(tempArr[1] - tempArr[2]);
+                // var dwn = (tempArr[1] <= tempArr[2]) ? tempArr[1] : tempArr[2];
+                // var up = (dwn === tempArr[1]) ? tempArr[2] : tempArr[1];
+                var dwn = 0.1;
+                var up = 0.1;
                 g.updateOptions({
-                    'file': chartData
+                    'file': chartData,
+                    'valueRange': [tempArr[1] - dwn, tempArr[2] + up]
                 });
             },
         });
@@ -287,7 +299,7 @@ function runDataUpdater() {
     }
 
     function defineMaxPrice() {
-        return startPriceValues[0] * 2; // 100% increase of nearest futures price
+        return 100;
     }
 
     function defineStartChartData() {

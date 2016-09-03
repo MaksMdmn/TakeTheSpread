@@ -1,7 +1,5 @@
 package go.takethespread.servlets;
 
-import go.takethespread.managers.StatusListener;
-import go.takethespread.managers.StatusManager;
 import go.takethespread.util.ParseJsonUtil;
 
 import javax.servlet.ServletException;
@@ -11,16 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SettingsServlet extends HttpServlet {
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
-        if (ParseJsonUtil.checkConn()) {
-            jsonObj = ParseJsonUtil.settingsToJson();
-        } else {
-            jsonObj = null; //HERE????
-        }
+        jsonObj = ParseJsonUtil.settingsToJson();
 
         resp.setContentType("application/json");
         resp.getWriter().print(jsonObj);

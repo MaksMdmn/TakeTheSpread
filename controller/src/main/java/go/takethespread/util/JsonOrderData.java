@@ -1,12 +1,15 @@
 package go.takethespread.util;
 
 import go.takethespread.Order;
+import go.takethespread.Term;
+import go.takethespread.fsa.TradeSystemInfo;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class JsonOrderData {
     private String date;
-    private String instrument;
+    private char term;
     private char deal;
     private char type;
     private double price;
@@ -21,9 +24,9 @@ public class JsonOrderData {
     }
 
     public JsonOrderData(Order order) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM HH:mm:ss", Locale.ENGLISH);
         this.date = sdf.format(order.getDate());
-        this.instrument = order.getInstrument();
+        this.term = instrumentToTerm(order.getInstrument());
         this.deal = order.getDeal().name().charAt(0);
         this.type = order.getType().name().charAt(0);
         this.price = order.getPrice().getAmount();
@@ -31,6 +34,18 @@ public class JsonOrderData {
         this.priceFilled = order.getPriceFilled().getAmount();
         this.sizeFilled = order.getFilled();
         this.status = order.getState().name();
+    }
+
+    private char instrumentToTerm(String instrument) {
+        if (instrument.equals(TradeSystemInfo.getInstance().instrument_n)) {
+            return Term.NEAR.name().toUpperCase().charAt(0);
+        }
+
+        if (instrument.equals(TradeSystemInfo.getInstance().instrument_f)) {
+            return Term.FAR.name().toUpperCase().charAt(0);
+        }
+
+        throw new IllegalArgumentException("Incorrect instrument: " + instrument);
     }
 
     public String getDate() {
@@ -41,12 +56,12 @@ public class JsonOrderData {
         this.date = date;
     }
 
-    public String getInstrument() {
-        return instrument;
+    public char getTerm() {
+        return term;
     }
 
-    public void setInstrument(String instrument) {
-        this.instrument = instrument;
+    public void setTerm(char term) {
+        this.term = term;
     }
 
     public char getDeal() {

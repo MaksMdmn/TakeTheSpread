@@ -4,6 +4,7 @@ function runConsoleManager() {
     var stkElem = $('#stack');
     var msgBarElem = $('#message-bar');
     var conBarElem = $('#connection-bar');
+    var possibleCommands = ['GO', 'CN', 'GJ', 'OF', 'RS', 'TT', 'LN', 'OS', 'BS'];
     var userCommand;
 
     function handleCommand() {
@@ -32,7 +33,7 @@ function runConsoleManager() {
         if (event.keyCode == 13) {
             userCommand = msgElem.val();
             //just 2 cmds for now
-            if (userCommand === 'GO' || userCommand === 'GJ') {
+            if (possibleCommands.indexOf(userCommand) !== -1) {
                 msgBarElem.css('background-color', '#FF8C00');
                 handleCommand();
                 msgBarElem.css('background-color', '#228B22');

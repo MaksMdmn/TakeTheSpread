@@ -2324,7 +2324,7 @@
 2016-08-24 22:25:44,340 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:44,340 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:25:44,341 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 13
-2016-08-24 22:25:44,444 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:44,444 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:44,444 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:44,444 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:44,444 INFO  FiniteStateAutomation:75 - execute GO
@@ -2347,7 +2347,7 @@
 2016-08-24 22:25:45,048 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:45,048 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:45,048 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:45,048 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:45,048 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:45,048 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:45,048 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:45,048 INFO  FiniteStateAutomation:75 - execute GO
@@ -2370,7 +2370,7 @@
 2016-08-24 22:25:45,651 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:45,651 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:45,651 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:45,651 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:45,651 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:45,651 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:45,651 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:45,651 INFO  FiniteStateAutomation:75 - execute GO
@@ -2393,7 +2393,7 @@
 2016-08-24 22:25:46,254 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:46,254 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:46,254 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:46,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:46,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:46,254 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:46,254 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:46,254 INFO  FiniteStateAutomation:75 - execute GO
@@ -2416,7 +2416,7 @@
 2016-08-24 22:25:46,857 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:46,857 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:46,858 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:46,858 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:46,858 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:46,858 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:46,858 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:46,858 INFO  FiniteStateAutomation:75 - execute GO
@@ -2439,7 +2439,7 @@
 2016-08-24 22:25:47,460 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:47,460 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:47,460 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:47,460 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:47,460 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:47,460 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:47,460 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:47,460 INFO  FiniteStateAutomation:75 - execute GO
@@ -2462,7 +2462,7 @@
 2016-08-24 22:25:48,063 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:48,063 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:48,064 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:48,064 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:48,064 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:48,064 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:48,064 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:48,064 INFO  FiniteStateAutomation:75 - execute GO
@@ -2485,7 +2485,7 @@
 2016-08-24 22:25:48,668 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:48,668 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:48,668 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:48,668 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:48,668 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:48,668 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:48,668 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:48,668 INFO  FiniteStateAutomation:75 - execute GO
@@ -2508,7 +2508,7 @@
 2016-08-24 22:25:49,271 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:49,271 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:25:49,271 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:49,271 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:49,271 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:49,271 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:49,271 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:49,271 INFO  FiniteStateAutomation:75 - execute GO
@@ -2531,7 +2531,7 @@
 2016-08-24 22:25:49,874 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:49,874 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:49,874 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:49,874 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:49,874 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:49,874 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:49,874 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:49,874 INFO  FiniteStateAutomation:75 - execute GO
@@ -2554,7 +2554,7 @@
 2016-08-24 22:25:50,477 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:50,477 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:50,477 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:50,477 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:50,477 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:50,478 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:50,478 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:50,478 INFO  FiniteStateAutomation:75 - execute GO
@@ -2577,7 +2577,7 @@
 2016-08-24 22:25:51,080 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:51,080 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:51,080 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:51,080 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:51,080 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:51,081 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:51,081 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:51,081 INFO  FiniteStateAutomation:75 - execute GO
@@ -2600,7 +2600,7 @@
 2016-08-24 22:25:51,684 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:51,684 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:51,684 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:51,684 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:51,684 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:51,684 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:51,684 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:51,684 INFO  FiniteStateAutomation:75 - execute GO
@@ -2623,7 +2623,7 @@
 2016-08-24 22:25:52,288 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:52,288 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:52,288 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:52,288 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:52,288 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:52,288 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:52,288 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:52,288 INFO  FiniteStateAutomation:75 - execute GO
@@ -2646,7 +2646,7 @@
 2016-08-24 22:25:52,891 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:52,891 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:52,891 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:52,891 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:52,891 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:52,892 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:52,892 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:52,892 INFO  FiniteStateAutomation:75 - execute GO
@@ -2669,7 +2669,7 @@
 2016-08-24 22:25:53,494 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:53,494 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:53,494 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:53,494 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:53,494 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:53,495 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:53,495 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:53,495 INFO  FiniteStateAutomation:75 - execute GO
@@ -2692,7 +2692,7 @@
 2016-08-24 22:25:54,098 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:54,098 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:54,098 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:54,099 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:54,099 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:54,099 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:54,099 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:54,099 INFO  FiniteStateAutomation:75 - execute GO
@@ -2715,7 +2715,7 @@
 2016-08-24 22:25:54,701 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:54,701 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:54,701 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:54,701 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:54,701 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:54,701 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:54,701 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:54,701 INFO  FiniteStateAutomation:75 - execute GO
@@ -2738,7 +2738,7 @@
 2016-08-24 22:25:55,309 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:55,309 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:55,309 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:55,309 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:55,309 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:55,309 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:55,309 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:55,309 INFO  FiniteStateAutomation:75 - execute GO
@@ -2761,7 +2761,7 @@
 2016-08-24 22:25:55,912 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:55,912 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:55,912 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:55,912 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:55,912 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:55,912 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:55,912 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:55,912 INFO  FiniteStateAutomation:75 - execute GO
@@ -2784,7 +2784,7 @@
 2016-08-24 22:25:56,516 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:56,516 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:56,516 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:56,516 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:56,516 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:56,517 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:56,517 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:56,517 INFO  FiniteStateAutomation:75 - execute GO
@@ -2807,7 +2807,7 @@
 2016-08-24 22:25:57,119 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:57,119 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:57,119 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:57,120 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:57,120 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:57,120 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:57,120 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:57,120 INFO  FiniteStateAutomation:75 - execute GO
@@ -2830,7 +2830,7 @@
 2016-08-24 22:25:57,722 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:57,722 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:57,722 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:57,722 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:57,722 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:57,722 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:57,723 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:57,723 INFO  FiniteStateAutomation:75 - execute GO
@@ -2853,7 +2853,7 @@
 2016-08-24 22:25:58,327 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:58,327 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:58,327 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:58,327 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:58,327 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:58,327 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:58,327 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:58,327 INFO  FiniteStateAutomation:75 - execute GO
@@ -2876,7 +2876,7 @@
 2016-08-24 22:25:58,930 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:58,930 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:58,930 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:58,930 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:58,930 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:58,930 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:58,930 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:58,930 INFO  FiniteStateAutomation:75 - execute GO
@@ -2899,7 +2899,7 @@
 2016-08-24 22:25:59,533 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:25:59,533 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:25:59,533 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:25:59,533 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:25:59,533 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:25:59,533 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:25:59,533 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:25:59,533 INFO  FiniteStateAutomation:75 - execute GO
@@ -2922,7 +2922,7 @@
 2016-08-24 22:26:00,136 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:00,136 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:00,136 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:00,136 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:00,136 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:00,136 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:00,136 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:00,136 INFO  FiniteStateAutomation:75 - execute GO
@@ -2945,7 +2945,7 @@
 2016-08-24 22:26:00,738 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:00,738 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:00,738 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:00,738 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:00,738 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:00,738 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:00,739 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:00,739 INFO  FiniteStateAutomation:75 - execute GO
@@ -2968,7 +2968,7 @@
 2016-08-24 22:26:01,341 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:01,341 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:01,341 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:01,342 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:01,342 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:25:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:01,342 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:01,342 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:01,342 INFO  FiniteStateAutomation:75 - execute GO
@@ -2991,10 +2991,10 @@
 2016-08-24 22:26:01,944 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:01,944 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:01,944 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:26:02,347 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:02,347 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='415b14d5bf6a4b06ad69af6717053dcb', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:02,447 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:26:02,447 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 12
-2016-08-24 22:26:02,548 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:02,548 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:02,548 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:02,548 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:02,548 INFO  FiniteStateAutomation:75 - execute GO
@@ -3017,7 +3017,7 @@
 2016-08-24 22:26:03,151 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:03,151 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:03,151 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:03,151 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:03,151 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:03,151 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:03,151 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:03,151 INFO  FiniteStateAutomation:75 - execute GO
@@ -3040,7 +3040,7 @@
 2016-08-24 22:26:03,754 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:03,754 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:03,754 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:03,754 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:03,754 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:03,754 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:03,754 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:03,754 INFO  FiniteStateAutomation:75 - execute GO
@@ -3063,7 +3063,7 @@
 2016-08-24 22:26:04,357 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:04,357 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:04,357 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:04,357 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:04,357 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:04,358 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:04,358 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:04,358 INFO  FiniteStateAutomation:75 - execute GO
@@ -3086,7 +3086,7 @@
 2016-08-24 22:26:04,960 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:04,960 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:04,960 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:04,960 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:04,960 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:04,961 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:04,961 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:04,961 INFO  FiniteStateAutomation:75 - execute GO
@@ -3109,7 +3109,7 @@
 2016-08-24 22:26:05,564 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:05,564 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:05,565 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:05,565 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:05,565 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:05,565 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:05,565 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:05,565 INFO  FiniteStateAutomation:75 - execute GO
@@ -3132,7 +3132,7 @@
 2016-08-24 22:26:06,167 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:06,167 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:06,167 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:06,168 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:06,168 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:06,168 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:06,168 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:06,168 INFO  FiniteStateAutomation:75 - execute GO
@@ -3155,7 +3155,7 @@
 2016-08-24 22:26:06,771 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:06,771 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:06,771 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:06,771 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:06,771 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:06,771 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:06,771 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:06,771 INFO  FiniteStateAutomation:75 - execute GO
@@ -3178,7 +3178,7 @@
 2016-08-24 22:26:07,374 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:07,374 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:07,374 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:07,374 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:07,374 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:07,375 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:07,375 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:07,375 INFO  FiniteStateAutomation:75 - execute GO
@@ -3201,7 +3201,7 @@
 2016-08-24 22:26:07,977 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:07,977 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:07,977 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:07,978 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:07,978 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:07,978 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:07,978 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:07,978 INFO  FiniteStateAutomation:75 - execute GO
@@ -3224,7 +3224,7 @@
 2016-08-24 22:26:08,580 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:08,580 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:08,580 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:08,580 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:08,580 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:08,580 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:08,581 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:08,581 INFO  FiniteStateAutomation:75 - execute GO
@@ -3247,7 +3247,7 @@
 2016-08-24 22:26:09,183 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:09,183 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:09,183 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:09,183 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:09,183 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:02 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:09,183 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:09,183 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:09,183 INFO  FiniteStateAutomation:75 - execute GO
@@ -3270,10 +3270,10 @@
 2016-08-24 22:26:09,786 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=8 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:09,786 DEBUG PositionWatcher:69 - possible size: 8
 2016-08-24 22:26:09,786 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:26:10,187 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', instrument='CL 10-16', date=Wed Aug 24 22:26:10 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=12, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:10,187 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='1dabbc6a1529466782d7d5f2dcec47f5', term='CL 10-16', date=Wed Aug 24 22:26:10 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=12, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:10,287 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:26:10,287 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 8
-2016-08-24 22:26:10,388 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='f67142d149b6480a8199f4221f5f779a', instrument='CL 10-16', date=Wed Aug 24 22:26:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=8, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:10,388 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='f67142d149b6480a8199f4221f5f779a', term='CL 10-16', date=Wed Aug 24 22:26:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=8, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:10,388 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:10,388 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:10,388 INFO  FiniteStateAutomation:75 - execute GO
@@ -3296,10 +3296,10 @@
 2016-08-24 22:26:10,991 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=6 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:10,991 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:26:10,991 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:26:11,393 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='f67142d149b6480a8199f4221f5f779a', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=8, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:11,393 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='f67142d149b6480a8199f4221f5f779a', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=8, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:11,493 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:26:11,493 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 6
-2016-08-24 22:26:11,593 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:11,593 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:11,593 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:11,593 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:11,593 INFO  FiniteStateAutomation:75 - execute GO
@@ -3322,7 +3322,7 @@
 2016-08-24 22:26:12,196 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=6 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:12,196 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:26:12,196 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:12,196 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:12,196 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:12,196 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:12,197 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:12,197 INFO  FiniteStateAutomation:75 - execute GO
@@ -3345,7 +3345,7 @@
 2016-08-24 22:26:12,799 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=6 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:12,799 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:26:12,799 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:12,799 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:12,799 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:12,799 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:12,799 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:12,799 INFO  FiniteStateAutomation:75 - execute GO
@@ -3368,7 +3368,7 @@
 2016-08-24 22:26:13,408 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:13,408 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:13,408 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:13,409 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:13,409 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:13,409 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:13,409 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:13,409 INFO  FiniteStateAutomation:75 - execute GO
@@ -3391,7 +3391,7 @@
 2016-08-24 22:26:14,011 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:14,011 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:14,011 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:14,011 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:14,011 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:14,011 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:14,011 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:14,011 INFO  FiniteStateAutomation:75 - execute GO
@@ -3414,7 +3414,7 @@
 2016-08-24 22:26:14,614 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:14,614 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:14,614 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:14,614 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:14,614 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:14,615 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:14,615 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:14,615 INFO  FiniteStateAutomation:75 - execute GO
@@ -3437,7 +3437,7 @@
 2016-08-24 22:26:15,223 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:15,223 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:15,223 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:15,223 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:15,223 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:15,223 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:15,223 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:15,223 INFO  FiniteStateAutomation:75 - execute GO
@@ -3460,7 +3460,7 @@
 2016-08-24 22:26:15,842 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:15,842 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:15,842 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:15,842 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:15,842 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:15,842 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:15,842 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:15,842 INFO  FiniteStateAutomation:75 - execute GO
@@ -3483,7 +3483,7 @@
 2016-08-24 22:26:16,445 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:16,445 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:16,445 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:16,445 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:16,445 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:16,445 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:16,445 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:16,446 INFO  FiniteStateAutomation:75 - execute GO
@@ -3506,7 +3506,7 @@
 2016-08-24 22:26:17,048 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:17,048 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:17,048 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:17,048 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:17,048 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:17,049 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:17,049 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:17,049 INFO  FiniteStateAutomation:75 - execute GO
@@ -3529,7 +3529,7 @@
 2016-08-24 22:26:17,651 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:17,651 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:17,651 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:17,651 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:17,651 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:17,651 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:17,652 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:17,652 INFO  FiniteStateAutomation:75 - execute GO
@@ -3552,7 +3552,7 @@
 2016-08-24 22:26:18,254 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:18,254 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:18,254 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:18,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:18,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:18,255 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:18,255 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:18,255 INFO  FiniteStateAutomation:75 - execute GO
@@ -3575,7 +3575,7 @@
 2016-08-24 22:26:18,858 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:18,858 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:18,858 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:18,858 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:18,858 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:18,858 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:18,858 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:18,858 INFO  FiniteStateAutomation:75 - execute GO
@@ -3598,7 +3598,7 @@
 2016-08-24 22:26:19,461 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:19,461 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:19,461 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:19,461 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:19,461 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:19,461 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:19,461 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:19,461 INFO  FiniteStateAutomation:75 - execute GO
@@ -3621,7 +3621,7 @@
 2016-08-24 22:26:20,064 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:20,064 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:20,064 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:20,064 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:20,064 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:20,064 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:20,064 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:20,064 INFO  FiniteStateAutomation:75 - execute GO
@@ -3644,7 +3644,7 @@
 2016-08-24 22:26:20,673 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:20,673 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:20,673 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:20,673 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:20,673 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:20,673 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:20,673 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:20,673 INFO  FiniteStateAutomation:75 - execute GO
@@ -3667,7 +3667,7 @@
 2016-08-24 22:26:21,276 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=10 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:21,276 DEBUG PositionWatcher:69 - possible size: 10
 2016-08-24 22:26:21,276 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:21,276 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:21,276 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:21,276 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:21,276 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:21,277 INFO  FiniteStateAutomation:75 - execute GO
@@ -3690,7 +3690,7 @@
 2016-08-24 22:26:21,880 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:21,880 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:21,880 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:21,880 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:21,880 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:21,880 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:21,880 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:21,880 INFO  FiniteStateAutomation:75 - execute GO
@@ -3713,7 +3713,7 @@
 2016-08-24 22:26:22,482 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:22,482 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:22,482 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:22,483 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:22,483 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:22,483 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:22,483 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:22,483 INFO  FiniteStateAutomation:75 - execute GO
@@ -3736,7 +3736,7 @@
 2016-08-24 22:26:23,086 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:23,086 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:23,086 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:23,086 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:23,086 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:23,086 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:23,086 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:23,086 INFO  FiniteStateAutomation:75 - execute GO
@@ -3759,7 +3759,7 @@
 2016-08-24 22:26:23,689 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:23,689 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:23,689 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:23,689 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:23,689 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:23,689 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:23,689 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:23,689 INFO  FiniteStateAutomation:75 - execute GO
@@ -3782,7 +3782,7 @@
 2016-08-24 22:26:24,291 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:24,291 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:24,291 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:24,291 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:24,291 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:24,291 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:24,292 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:24,292 INFO  FiniteStateAutomation:75 - execute GO
@@ -3805,7 +3805,7 @@
 2016-08-24 22:26:24,894 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:24,894 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:24,894 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:24,894 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:24,894 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:24,894 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:24,895 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:24,895 INFO  FiniteStateAutomation:75 - execute GO
@@ -3828,7 +3828,7 @@
 2016-08-24 22:26:25,497 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:25,497 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:25,497 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:25,497 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:25,497 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:25,497 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:25,498 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:25,498 INFO  FiniteStateAutomation:75 - execute GO
@@ -3851,7 +3851,7 @@
 2016-08-24 22:26:26,101 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:26,101 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:26,101 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:26,101 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:26,101 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:26,101 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:26,101 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:26,101 INFO  FiniteStateAutomation:75 - execute GO
@@ -3874,7 +3874,7 @@
 2016-08-24 22:26:26,704 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:26,704 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:26,704 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:26,704 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:26,704 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:26,704 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:26,704 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:26,704 INFO  FiniteStateAutomation:75 - execute GO
@@ -3897,7 +3897,7 @@
 2016-08-24 22:26:27,307 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:27,307 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:27,307 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:27,307 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:27,307 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:27,307 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:27,307 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:27,307 INFO  FiniteStateAutomation:75 - execute GO
@@ -3920,7 +3920,7 @@
 2016-08-24 22:26:27,910 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:27,910 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:26:27,910 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:27,910 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:27,910 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:27,910 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:27,910 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:27,910 INFO  FiniteStateAutomation:75 - execute GO
@@ -3943,7 +3943,7 @@
 2016-08-24 22:26:28,513 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:28,513 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:28,513 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:28,514 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:28,514 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:28,514 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:28,514 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:28,514 INFO  FiniteStateAutomation:75 - execute GO
@@ -3966,7 +3966,7 @@
 2016-08-24 22:26:29,117 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:29,117 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:29,117 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:29,117 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:29,117 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:29,118 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:29,118 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:29,118 INFO  FiniteStateAutomation:75 - execute GO
@@ -3989,7 +3989,7 @@
 2016-08-24 22:26:29,721 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:29,721 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:29,721 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:29,721 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:29,721 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:29,721 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:29,721 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:29,721 INFO  FiniteStateAutomation:75 - execute GO
@@ -4012,7 +4012,7 @@
 2016-08-24 22:26:30,324 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:30,324 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:30,324 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:30,324 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:30,324 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:30,324 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:30,324 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:30,324 INFO  FiniteStateAutomation:75 - execute GO
@@ -4035,7 +4035,7 @@
 2016-08-24 22:26:30,951 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:30,951 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:30,951 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:30,951 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:30,951 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:30,951 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:30,952 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:30,952 INFO  FiniteStateAutomation:75 - execute GO
@@ -4058,7 +4058,7 @@
 2016-08-24 22:26:31,554 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:31,554 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:31,554 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:31,554 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:31,554 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:31,554 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:31,555 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:31,555 INFO  FiniteStateAutomation:75 - execute GO
@@ -4081,7 +4081,7 @@
 2016-08-24 22:26:32,157 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:32,157 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:32,157 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:32,157 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:32,157 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:32,158 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:32,158 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:32,158 INFO  FiniteStateAutomation:75 - execute GO
@@ -4104,7 +4104,7 @@
 2016-08-24 22:26:32,761 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:32,761 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:32,761 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:32,761 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:32,761 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:32,761 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:32,761 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:32,762 INFO  FiniteStateAutomation:75 - execute GO
@@ -4127,7 +4127,7 @@
 2016-08-24 22:26:33,365 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:33,365 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:33,365 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:33,365 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:33,365 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:33,365 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:33,365 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:33,365 INFO  FiniteStateAutomation:75 - execute GO
@@ -4150,7 +4150,7 @@
 2016-08-24 22:26:33,968 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:33,968 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:33,968 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:33,968 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:33,968 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:33,968 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:33,968 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:33,969 INFO  FiniteStateAutomation:75 - execute GO
@@ -4173,7 +4173,7 @@
 2016-08-24 22:26:34,571 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:34,571 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:34,571 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:34,571 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:34,571 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:34,571 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:34,571 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:34,571 INFO  FiniteStateAutomation:75 - execute GO
@@ -4196,7 +4196,7 @@
 2016-08-24 22:26:35,173 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:35,173 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:35,173 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:35,173 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:35,173 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:35,173 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:35,173 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:35,173 INFO  FiniteStateAutomation:75 - execute GO
@@ -4219,7 +4219,7 @@
 2016-08-24 22:26:35,777 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:35,777 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:35,777 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:35,777 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:35,777 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:35,777 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:35,777 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:35,777 INFO  FiniteStateAutomation:75 - execute GO
@@ -4242,7 +4242,7 @@
 2016-08-24 22:26:36,380 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:36,380 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:36,380 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:36,380 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:36,380 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:36,380 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:36,380 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:36,380 INFO  FiniteStateAutomation:75 - execute GO
@@ -4265,7 +4265,7 @@
 2016-08-24 22:26:36,983 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:36,983 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:36,983 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:36,983 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:36,983 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:36,983 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:36,983 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:36,984 INFO  FiniteStateAutomation:75 - execute GO
@@ -4288,7 +4288,7 @@
 2016-08-24 22:26:37,588 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:37,588 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:37,588 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:37,588 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:37,588 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:37,588 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:37,588 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:37,588 INFO  FiniteStateAutomation:75 - execute GO
@@ -4311,7 +4311,7 @@
 2016-08-24 22:26:38,191 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:38,191 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:38,191 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:38,191 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:38,191 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:38,191 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:38,191 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:38,192 INFO  FiniteStateAutomation:75 - execute GO
@@ -4334,7 +4334,7 @@
 2016-08-24 22:26:38,794 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:38,794 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:38,794 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:38,794 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:38,794 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:38,795 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:38,795 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:38,795 INFO  FiniteStateAutomation:75 - execute GO
@@ -4357,7 +4357,7 @@
 2016-08-24 22:26:39,397 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:39,397 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:39,397 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:39,397 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:39,397 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:39,397 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:39,397 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:39,397 INFO  FiniteStateAutomation:75 - execute GO
@@ -4380,7 +4380,7 @@
 2016-08-24 22:26:40,000 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:40,000 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:40,000 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:40,000 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:40,000 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:40,000 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:40,000 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:40,000 INFO  FiniteStateAutomation:75 - execute GO
@@ -4403,7 +4403,7 @@
 2016-08-24 22:26:40,602 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:40,602 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:40,602 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:40,602 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:40,602 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:40,602 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:40,602 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:40,603 INFO  FiniteStateAutomation:75 - execute GO
@@ -4426,7 +4426,7 @@
 2016-08-24 22:26:41,211 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:41,211 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:41,211 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:41,211 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:41,211 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:41,211 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:41,211 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:41,211 INFO  FiniteStateAutomation:75 - execute GO
@@ -4449,7 +4449,7 @@
 2016-08-24 22:26:41,814 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:41,814 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:41,814 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:41,814 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:41,814 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:41,814 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:41,815 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:41,815 INFO  FiniteStateAutomation:75 - execute GO
@@ -4472,7 +4472,7 @@
 2016-08-24 22:26:42,419 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:42,419 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:42,419 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:42,419 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:42,419 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:42,419 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:42,419 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:42,419 INFO  FiniteStateAutomation:75 - execute GO
@@ -4495,7 +4495,7 @@
 2016-08-24 22:26:43,021 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:43,021 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:43,021 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:43,021 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:43,021 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:43,021 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:43,021 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:43,022 INFO  FiniteStateAutomation:75 - execute GO
@@ -4518,7 +4518,7 @@
 2016-08-24 22:26:43,624 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:43,624 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:43,624 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:43,624 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:43,624 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:43,624 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:43,624 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:43,624 INFO  FiniteStateAutomation:75 - execute GO
@@ -4541,7 +4541,7 @@
 2016-08-24 22:26:44,228 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:44,228 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:44,228 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:44,228 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:44,228 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:44,228 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:44,228 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:44,228 INFO  FiniteStateAutomation:75 - execute GO
@@ -4564,7 +4564,7 @@
 2016-08-24 22:26:44,831 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:44,831 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:44,831 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:44,831 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:44,831 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:44,831 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:44,831 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:44,832 INFO  FiniteStateAutomation:75 - execute GO
@@ -4587,7 +4587,7 @@
 2016-08-24 22:26:45,436 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:45,436 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:45,436 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:45,437 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:45,437 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:45,437 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:45,437 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:45,437 INFO  FiniteStateAutomation:75 - execute GO
@@ -4610,7 +4610,7 @@
 2016-08-24 22:26:46,039 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=9 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:46,039 DEBUG PositionWatcher:69 - possible size: 9
 2016-08-24 22:26:46,039 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:46,039 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:46,039 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:46,040 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:46,040 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:46,040 INFO  FiniteStateAutomation:75 - execute GO
@@ -4633,7 +4633,7 @@
 2016-08-24 22:26:46,642 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=9 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:46,642 DEBUG PositionWatcher:69 - possible size: 9
 2016-08-24 22:26:46,642 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:46,642 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:46,642 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:46,642 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:46,642 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:46,643 INFO  FiniteStateAutomation:75 - execute GO
@@ -4656,7 +4656,7 @@
 2016-08-24 22:26:47,246 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=9 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:47,246 DEBUG PositionWatcher:69 - possible size: 9
 2016-08-24 22:26:47,246 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:47,246 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:47,246 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:47,246 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:47,246 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:47,247 INFO  FiniteStateAutomation:75 - execute GO
@@ -4679,7 +4679,7 @@
 2016-08-24 22:26:47,851 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=12 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:47,851 DEBUG PositionWatcher:69 - possible size: 12
 2016-08-24 22:26:47,851 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:47,851 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:47,851 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:47,851 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:47,851 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:47,851 INFO  FiniteStateAutomation:75 - execute GO
@@ -4702,7 +4702,7 @@
 2016-08-24 22:26:48,453 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:48,453 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:48,453 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:48,453 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:48,453 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:48,453 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:48,454 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:48,454 INFO  FiniteStateAutomation:75 - execute GO
@@ -4725,7 +4725,7 @@
 2016-08-24 22:26:49,056 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:49,056 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:49,056 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:49,056 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:49,056 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:49,056 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:49,056 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:49,057 INFO  FiniteStateAutomation:75 - execute GO
@@ -4748,7 +4748,7 @@
 2016-08-24 22:26:49,659 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:49,659 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:49,659 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:49,659 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:49,659 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:49,659 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:49,659 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:49,659 INFO  FiniteStateAutomation:75 - execute GO
@@ -4771,7 +4771,7 @@
 2016-08-24 22:26:50,262 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:50,262 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:50,262 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:50,262 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:50,262 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:50,262 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:50,262 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:50,262 INFO  FiniteStateAutomation:75 - execute GO
@@ -4794,7 +4794,7 @@
 2016-08-24 22:26:50,865 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:50,865 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:50,865 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:50,865 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:50,865 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:50,865 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:50,865 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:50,865 INFO  FiniteStateAutomation:75 - execute GO
@@ -4817,7 +4817,7 @@
 2016-08-24 22:26:51,469 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:51,469 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:51,469 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:51,469 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:51,469 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:51,469 INFO  FiniteStateAutomation:203 - GO executed, pos status: 50 -50
 2016-08-24 22:26:51,469 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:51,469 INFO  FiniteStateAutomation:75 - execute GO
@@ -4848,7 +4848,7 @@
 2016-08-24 22:26:52,980 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:52,980 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:26:52,980 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:52,980 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:52,980 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:11 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:52,980 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:52,980 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:52,980 INFO  FiniteStateAutomation:75 - execute GO
@@ -4870,7 +4870,7 @@
 2016-08-24 22:26:53,583 DEBUG FiniteStateAutomation:140 - current signal: M_L_SELL
 2016-08-24 22:26:53,583 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=50 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:53,583 DEBUG PositionWatcher:69 - possible size: 44
-2016-08-24 22:26:53,683 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', instrument='CL 10-16', date=Wed Aug 24 22:26:51 EEST 2016, deal=Sell, type=Limit, state=Filled, size=6, price=46.69, filled=6, priceFilled=46.69}
+2016-08-24 22:26:53,683 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='c4d7523c82114b0b8e5d86caed0a7195', term='CL 10-16', date=Wed Aug 24 22:26:51 EEST 2016, deal=Sell, type=Limit, state=Filled, size=6, price=46.69, filled=6, priceFilled=46.69}
 2016-08-24 22:26:53,783 DEBUG LimitMaker:79 - cancelled order size: 6 comparing with cancelOrderSize() result: 6
 2016-08-24 22:26:53,783 DEBUG LimitMaker:94 - cancelling dangerous: size is 6
 2016-08-24 22:26:53,783 DEBUG LimitMaker:96 - cancelling dangerous: prevTerm/prevDeal NEAR Sell
@@ -4897,7 +4897,7 @@
 2016-08-24 22:26:54,386 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:26:54,386 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:26:54,386 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 14
-2016-08-24 22:26:54,486 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:54,486 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:54,486 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:54,486 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:54,486 INFO  FiniteStateAutomation:75 - execute GO
@@ -4920,7 +4920,7 @@
 2016-08-24 22:26:55,089 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:55,089 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:55,089 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:55,089 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:55,089 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:55,089 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:55,090 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:55,090 INFO  FiniteStateAutomation:75 - execute GO
@@ -4943,7 +4943,7 @@
 2016-08-24 22:26:55,694 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:55,694 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:55,694 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:55,694 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:55,694 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:55,694 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:55,694 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:55,694 INFO  FiniteStateAutomation:75 - execute GO
@@ -4966,7 +4966,7 @@
 2016-08-24 22:26:56,297 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:56,297 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:56,297 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:56,297 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:56,297 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:56,297 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:56,297 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:56,297 INFO  FiniteStateAutomation:75 - execute GO
@@ -4989,7 +4989,7 @@
 2016-08-24 22:26:56,902 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:56,902 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:56,902 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:56,902 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:56,902 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:56,902 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:56,902 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:56,902 INFO  FiniteStateAutomation:75 - execute GO
@@ -5012,7 +5012,7 @@
 2016-08-24 22:26:57,505 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:57,505 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:57,505 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:57,505 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:57,505 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:57,505 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:57,506 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:57,506 INFO  FiniteStateAutomation:75 - execute GO
@@ -5035,7 +5035,7 @@
 2016-08-24 22:26:58,109 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:58,109 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:58,109 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:58,109 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:58,109 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:58,109 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:58,109 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:58,109 INFO  FiniteStateAutomation:75 - execute GO
@@ -5058,7 +5058,7 @@
 2016-08-24 22:26:58,712 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:26:58,712 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:26:58,712 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:26:58,712 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:26:58,712 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:26:58,712 INFO  FiniteStateAutomation:203 - GO executed, pos status: 44 -44
 2016-08-24 22:26:58,712 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:26:58,712 INFO  FiniteStateAutomation:75 - execute GO
@@ -5089,7 +5089,7 @@
 2016-08-24 22:27:00,231 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:00,231 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:27:00,231 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:00,231 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:00,231 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:54 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=14, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:00,231 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:00,231 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:00,231 INFO  FiniteStateAutomation:75 - execute GO
@@ -5112,7 +5112,7 @@
 2016-08-24 22:27:00,834 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=8 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:00,834 DEBUG PositionWatcher:69 - possible size: 8
 2016-08-24 22:27:00,834 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:27:00,934 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', instrument='CL 10-16', date=Wed Aug 24 22:26:59 EEST 2016, deal=Sell, type=Limit, state=Filled, size=14, price=46.69, filled=14, priceFilled=46.69}
+2016-08-24 22:27:00,934 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='cf09d2229501434b9e0a6edb11c5abb7', term='CL 10-16', date=Wed Aug 24 22:26:59 EEST 2016, deal=Sell, type=Limit, state=Filled, size=14, price=46.69, filled=14, priceFilled=46.69}
 2016-08-24 22:27:01,035 DEBUG LimitMaker:79 - cancelled order size: 14 comparing with cancelOrderSize() result: 14
 2016-08-24 22:27:01,035 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 -6
 2016-08-24 22:27:01,035 DEBUG LimitMaker:110 - placeAnOrder: order size <=0: CL 10-16 Sell 46.69 -6
@@ -5140,7 +5140,7 @@
 2016-08-24 22:27:01,639 DEBUG PositionWatcher:69 - possible size: 9
 2016-08-24 22:27:01,639 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:01,639 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 9
-2016-08-24 22:27:01,739 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:01,739 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:01,739 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:01,739 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:01,740 INFO  FiniteStateAutomation:75 - execute GO
@@ -5163,7 +5163,7 @@
 2016-08-24 22:27:02,342 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:02,342 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:27:02,342 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:02,342 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:02,342 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:02,342 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:02,342 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:02,342 INFO  FiniteStateAutomation:75 - execute GO
@@ -5186,7 +5186,7 @@
 2016-08-24 22:27:02,946 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:02,946 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:27:02,946 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:02,946 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:02,946 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:02,946 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:02,946 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:02,946 INFO  FiniteStateAutomation:75 - execute GO
@@ -5209,7 +5209,7 @@
 2016-08-24 22:27:03,548 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=15 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:03,548 DEBUG PositionWatcher:69 - possible size: 15
 2016-08-24 22:27:03,548 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:03,548 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:03,548 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:03,549 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:03,549 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:03,549 INFO  FiniteStateAutomation:75 - execute GO
@@ -5232,7 +5232,7 @@
 2016-08-24 22:27:04,152 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:04,152 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:27:04,152 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:04,152 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:04,152 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:04,152 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:04,152 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:04,153 INFO  FiniteStateAutomation:75 - execute GO
@@ -5255,7 +5255,7 @@
 2016-08-24 22:27:04,756 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:04,756 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:27:04,756 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:04,756 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:04,756 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:04,756 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:04,756 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:04,756 INFO  FiniteStateAutomation:75 - execute GO
@@ -5278,7 +5278,7 @@
 2016-08-24 22:27:05,359 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=13 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:05,359 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:27:05,359 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:05,359 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:05,359 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:05,359 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:05,359 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:05,359 INFO  FiniteStateAutomation:75 - execute GO
@@ -5301,7 +5301,7 @@
 2016-08-24 22:27:05,963 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:05,963 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:27:05,963 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:05,963 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:05,963 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:05,964 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:05,964 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:05,964 INFO  FiniteStateAutomation:75 - execute GO
@@ -5324,7 +5324,7 @@
 2016-08-24 22:27:06,567 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:06,567 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:27:06,567 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:06,567 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:06,567 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:06,567 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:06,567 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:06,567 INFO  FiniteStateAutomation:75 - execute GO
@@ -5347,7 +5347,7 @@
 2016-08-24 22:27:07,170 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:07,170 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:27:07,170 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:07,170 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:07,170 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:07,170 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:07,170 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:07,170 INFO  FiniteStateAutomation:75 - execute GO
@@ -5370,7 +5370,7 @@
 2016-08-24 22:27:07,773 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=14 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:07,773 DEBUG PositionWatcher:69 - possible size: 14
 2016-08-24 22:27:07,773 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:07,774 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:07,774 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:01 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:07,774 INFO  FiniteStateAutomation:203 - GO executed, pos status: 30 -30
 2016-08-24 22:27:07,774 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:07,774 INFO  FiniteStateAutomation:75 - execute GO
@@ -5398,7 +5398,7 @@
 2016-08-24 22:27:09,238 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.69 spreadASK=0.69 spreadCALC=0.7
 2016-08-24 22:27:09,238 DEBUG Algorithm:32 - phase is: DISTRIBUTION
 2016-08-24 22:27:09,239 DEBUG FiniteStateAutomation:140 - current signal: M_M_SELL
-2016-08-24 22:27:09,339 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', instrument='CL 10-16', date=Wed Aug 24 22:27:07 EEST 2016, deal=Sell, type=Limit, state=Filled, size=9, price=46.69, filled=9, priceFilled=46.69}
+2016-08-24 22:27:09,339 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='109a6c3d2c9b4318a4b5531bc781dc9b', term='CL 10-16', date=Wed Aug 24 22:27:07 EEST 2016, deal=Sell, type=Limit, state=Filled, size=9, price=46.69, filled=9, priceFilled=46.69}
 2016-08-24 22:27:09,439 DEBUG LimitMaker:79 - cancelled order size: 9 comparing with cancelOrderSize() result: 9
 2016-08-24 22:27:09,439 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:09,439 INFO  FiniteStateAutomation:107 - GO executed
@@ -5423,7 +5423,7 @@
 2016-08-24 22:27:10,041 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:10,041 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:10,041 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.7 21
-2016-08-24 22:27:10,142 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', instrument='CL 10-16', date=Wed Aug 24 22:27:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=21, price=46.7, filled=0, priceFilled=0.0}
+2016-08-24 22:27:10,142 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', term='CL 10-16', date=Wed Aug 24 22:27:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=21, price=46.7, filled=0, priceFilled=0.0}
 2016-08-24 22:27:10,142 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:10,142 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:10,142 INFO  FiniteStateAutomation:75 - execute GO
@@ -5446,7 +5446,7 @@
 2016-08-24 22:27:10,747 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=60 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:10,747 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:10,747 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:10,747 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', instrument='CL 10-16', date=Wed Aug 24 22:27:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=21, price=46.7, filled=0, priceFilled=0.0}
+2016-08-24 22:27:10,747 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', term='CL 10-16', date=Wed Aug 24 22:27:10 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=21, price=46.7, filled=0, priceFilled=0.0}
 2016-08-24 22:27:10,747 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:10,747 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:10,747 INFO  FiniteStateAutomation:75 - execute GO
@@ -5468,7 +5468,7 @@
 2016-08-24 22:27:11,350 DEBUG FiniteStateAutomation:140 - current signal: M_L_SELL
 2016-08-24 22:27:11,350 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:11,350 DEBUG PositionWatcher:69 - possible size: 21
-2016-08-24 22:27:11,751 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', instrument='CL 10-16', date=Wed Aug 24 22:27:11 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=21, price=46.7, filled=0, priceFilled=0.0}
+2016-08-24 22:27:11,751 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='29171113f15543cd8266d60d18819fa5', term='CL 10-16', date=Wed Aug 24 22:27:11 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=21, price=46.7, filled=0, priceFilled=0.0}
 2016-08-24 22:27:11,851 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:27:11,851 DEBUG LimitMaker:94 - cancelling dangerous: size is 0
 2016-08-24 22:27:11,851 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
@@ -5494,7 +5494,7 @@
 2016-08-24 22:27:12,461 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:12,461 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:12,461 INFO  LimitMaker:108 - place order by following args: CL 11-16 Buy 47.38 21
-2016-08-24 22:27:12,561 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:12,561 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:12,561 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:12,561 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:12,562 INFO  FiniteStateAutomation:75 - execute GO
@@ -5517,7 +5517,7 @@
 2016-08-24 22:27:13,166 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:13,166 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:13,166 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:13,166 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:13,166 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:13,166 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:13,166 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:13,166 INFO  FiniteStateAutomation:75 - execute GO
@@ -5540,7 +5540,7 @@
 2016-08-24 22:27:13,772 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:13,772 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:13,772 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:13,772 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:13,772 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:13,772 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:13,772 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:13,772 INFO  FiniteStateAutomation:75 - execute GO
@@ -5563,7 +5563,7 @@
 2016-08-24 22:27:14,375 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:14,375 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:14,375 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:14,375 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:14,375 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:14,375 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:14,375 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:14,375 INFO  FiniteStateAutomation:75 - execute GO
@@ -5586,7 +5586,7 @@
 2016-08-24 22:27:14,979 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:14,979 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:14,979 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:14,979 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:14,979 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:14,979 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:14,979 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:14,979 INFO  FiniteStateAutomation:75 - execute GO
@@ -5609,7 +5609,7 @@
 2016-08-24 22:27:15,583 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=55 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:15,583 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:15,583 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:15,583 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:15,583 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:15,583 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:15,583 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:15,583 INFO  FiniteStateAutomation:75 - execute GO
@@ -5632,7 +5632,7 @@
 2016-08-24 22:27:16,186 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=55 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:16,199 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:16,199 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:16,199 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:16,199 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:16,199 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:16,199 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:16,199 INFO  FiniteStateAutomation:75 - execute GO
@@ -5655,7 +5655,7 @@
 2016-08-24 22:27:16,801 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:16,801 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:16,801 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:16,801 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:16,801 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:16,801 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:16,801 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:16,801 INFO  FiniteStateAutomation:75 - execute GO
@@ -5678,7 +5678,7 @@
 2016-08-24 22:27:17,406 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:17,406 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:17,406 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:17,406 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:17,406 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:17,406 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:17,406 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:17,406 INFO  FiniteStateAutomation:75 - execute GO
@@ -5701,7 +5701,7 @@
 2016-08-24 22:27:18,009 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:18,009 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:18,009 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:18,009 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:18,009 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:18,009 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:18,009 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:18,009 INFO  FiniteStateAutomation:75 - execute GO
@@ -5724,7 +5724,7 @@
 2016-08-24 22:27:18,612 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=58 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:18,612 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:18,612 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:18,612 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:18,612 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:18,612 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:18,612 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:18,612 INFO  FiniteStateAutomation:75 - execute GO
@@ -5747,7 +5747,7 @@
 2016-08-24 22:27:19,216 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=46 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:19,216 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:19,216 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:19,216 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:19,216 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:19,216 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:19,216 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:19,216 INFO  FiniteStateAutomation:75 - execute GO
@@ -5770,7 +5770,7 @@
 2016-08-24 22:27:19,820 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:19,820 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:19,820 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:19,820 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:19,820 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:19,820 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:19,820 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:19,820 INFO  FiniteStateAutomation:75 - execute GO
@@ -5793,7 +5793,7 @@
 2016-08-24 22:27:20,423 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:20,423 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:20,423 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:20,423 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:20,423 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:20,423 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:20,423 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:20,423 INFO  FiniteStateAutomation:75 - execute GO
@@ -5816,7 +5816,7 @@
 2016-08-24 22:27:21,026 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:21,026 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:21,026 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:21,026 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:21,026 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:21,026 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:21,026 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:21,026 INFO  FiniteStateAutomation:75 - execute GO
@@ -5839,7 +5839,7 @@
 2016-08-24 22:27:21,630 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:21,630 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:21,630 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:21,630 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:21,630 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:21,630 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:21,630 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:21,630 INFO  FiniteStateAutomation:75 - execute GO
@@ -5862,7 +5862,7 @@
 2016-08-24 22:27:22,235 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:22,235 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:22,235 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:22,235 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:22,235 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:22,235 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:22,236 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:22,236 INFO  FiniteStateAutomation:75 - execute GO
@@ -5885,7 +5885,7 @@
 2016-08-24 22:27:22,839 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=47 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:22,839 DEBUG PositionWatcher:69 - possible size: 21
 2016-08-24 22:27:22,839 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:22,839 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:22,839 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:12 EEST 2016, deal=Buy, type=Limit, state=PendingSubmit, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:22,839 INFO  FiniteStateAutomation:203 - GO executed, pos status: 21 -21
 2016-08-24 22:27:22,839 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:22,839 INFO  FiniteStateAutomation:75 - execute GO
@@ -5905,7 +5905,7 @@
 2016-08-24 22:27:23,442 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.69 spreadASK=0.69 spreadCALC=0.7
 2016-08-24 22:27:23,442 DEBUG Algorithm:32 - phase is: DISTRIBUTION
 2016-08-24 22:27:23,442 DEBUG FiniteStateAutomation:140 - current signal: M_M_SELL
-2016-08-24 22:27:23,802 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', instrument='CL 11-16', date=Wed Aug 24 22:27:23 EEST 2016, deal=Buy, type=Limit, state=Cancelled, size=21, price=47.38, filled=0, priceFilled=0.0}
+2016-08-24 22:27:23,802 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='2bd72bb676774868b7d2292d4878b02c', term='CL 11-16', date=Wed Aug 24 22:27:23 EEST 2016, deal=Buy, type=Limit, state=Cancelled, size=21, price=47.38, filled=0, priceFilled=0.0}
 2016-08-24 22:27:23,903 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:27:23,903 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=4 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:23,903 DEBUG PositionWatcher:69 - possible size: 4
@@ -5936,7 +5936,7 @@
 2016-08-24 22:27:25,917 DEBUG PositionWatcher:69 - possible size: 13
 2016-08-24 22:27:25,917 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:25,917 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 13
-2016-08-24 22:27:26,018 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='5916093867aa43efbb7953436793f1a4', instrument='CL 10-16', date=Wed Aug 24 22:27:25 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:26,018 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='5916093867aa43efbb7953436793f1a4', term='CL 10-16', date=Wed Aug 24 22:27:25 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:26,018 INFO  FiniteStateAutomation:203 - GO executed, pos status: 17 -17
 2016-08-24 22:27:26,018 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:26,018 INFO  FiniteStateAutomation:75 - execute GO
@@ -5959,10 +5959,10 @@
 2016-08-24 22:27:26,621 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=11 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:26,621 DEBUG PositionWatcher:69 - possible size: 11
 2016-08-24 22:27:26,621 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:27:27,022 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='5916093867aa43efbb7953436793f1a4', instrument='CL 10-16', date=Wed Aug 24 22:27:26 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=13, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:27,022 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='5916093867aa43efbb7953436793f1a4', term='CL 10-16', date=Wed Aug 24 22:27:26 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=13, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:27,122 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:27:27,122 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 11
-2016-08-24 22:27:27,222 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='3384bd435c1940948db8d652fb9214b5', instrument='CL 10-16', date=Wed Aug 24 22:27:27 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=11, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:27,222 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='3384bd435c1940948db8d652fb9214b5', term='CL 10-16', date=Wed Aug 24 22:27:27 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=11, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:27,222 INFO  FiniteStateAutomation:203 - GO executed, pos status: 17 -17
 2016-08-24 22:27:27,222 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:27,222 INFO  FiniteStateAutomation:75 - execute GO
@@ -5993,7 +5993,7 @@
 2016-08-24 22:27:28,731 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=9 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:28,731 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:28,731 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:27:28,831 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='3384bd435c1940948db8d652fb9214b5', instrument='CL 10-16', date=Wed Aug 24 22:27:27 EEST 2016, deal=Sell, type=Limit, state=Filled, size=11, price=46.69, filled=11, priceFilled=46.69}
+2016-08-24 22:27:28,831 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='3384bd435c1940948db8d652fb9214b5', term='CL 10-16', date=Wed Aug 24 22:27:27 EEST 2016, deal=Sell, type=Limit, state=Filled, size=11, price=46.69, filled=11, priceFilled=46.69}
 2016-08-24 22:27:28,931 DEBUG LimitMaker:79 - cancelled order size: 11 comparing with cancelOrderSize() result: 11
 2016-08-24 22:27:28,931 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 -5
 2016-08-24 22:27:28,931 DEBUG LimitMaker:110 - placeAnOrder: order size <=0: CL 10-16 Sell 46.69 -5
@@ -6021,7 +6021,7 @@
 2016-08-24 22:27:29,533 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:29,533 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:29,533 INFO  LimitMaker:108 - place order by following args: CL 10-16 Sell 46.69 6
-2016-08-24 22:27:29,634 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:29,634 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:29,634 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:29,634 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:29,634 INFO  FiniteStateAutomation:75 - execute GO
@@ -6044,7 +6044,7 @@
 2016-08-24 22:27:30,237 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=29 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:30,237 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:30,237 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:30,237 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:30,237 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:30,237 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:30,237 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:30,237 INFO  FiniteStateAutomation:75 - execute GO
@@ -6067,7 +6067,7 @@
 2016-08-24 22:27:30,840 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:30,840 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:30,840 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:30,840 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:30,840 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:30,840 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:30,840 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:30,840 INFO  FiniteStateAutomation:75 - execute GO
@@ -6090,7 +6090,7 @@
 2016-08-24 22:27:31,443 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:31,443 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:31,443 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:31,443 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:31,443 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:31,443 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:31,443 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:31,443 INFO  FiniteStateAutomation:75 - execute GO
@@ -6113,7 +6113,7 @@
 2016-08-24 22:27:32,046 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:32,046 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:32,046 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:32,046 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:32,046 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:32,046 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:32,046 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:32,046 INFO  FiniteStateAutomation:75 - execute GO
@@ -6136,7 +6136,7 @@
 2016-08-24 22:27:32,650 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:32,650 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:32,650 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:32,650 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:32,650 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:32,650 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:32,650 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:32,650 INFO  FiniteStateAutomation:75 - execute GO
@@ -6159,7 +6159,7 @@
 2016-08-24 22:27:33,254 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:33,254 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:33,254 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:33,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:33,254 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:33,254 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:33,254 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:33,254 INFO  FiniteStateAutomation:75 - execute GO
@@ -6182,7 +6182,7 @@
 2016-08-24 22:27:33,856 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:33,856 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:33,856 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:33,856 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:33,856 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:33,856 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:33,856 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:33,856 INFO  FiniteStateAutomation:75 - execute GO
@@ -6205,7 +6205,7 @@
 2016-08-24 22:27:34,459 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:34,459 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:34,459 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:34,459 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:34,459 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:34,459 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:34,459 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:34,459 INFO  FiniteStateAutomation:75 - execute GO
@@ -6228,7 +6228,7 @@
 2016-08-24 22:27:35,063 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=33 favor.size=50 phase: DISTRIBUTION
 2016-08-24 22:27:35,063 DEBUG PositionWatcher:69 - possible size: 6
 2016-08-24 22:27:35,063 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:35,063 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
+2016-08-24 22:27:35,063 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:29 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=6, price=46.69, filled=0, priceFilled=0.0}
 2016-08-24 22:27:35,063 INFO  FiniteStateAutomation:203 - GO executed, pos status: 6 -6
 2016-08-24 22:27:35,063 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:35,063 INFO  FiniteStateAutomation:75 - execute GO
@@ -6256,7 +6256,7 @@
 2016-08-24 22:27:36,573 DEBUG Algorithm:25 - Signal definition, market spreads:  spreadBID=0.69 spreadASK=0.69 spreadCALC=0.7
 2016-08-24 22:27:36,573 DEBUG Algorithm:32 - phase is: OFF_SEASON
 2016-08-24 22:27:36,574 DEBUG FiniteStateAutomation:140 - current signal: NOTHING
-2016-08-24 22:27:36,675 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', instrument='CL 10-16', date=Wed Aug 24 22:27:34 EEST 2016, deal=Sell, type=Limit, state=Filled, size=6, price=46.69, filled=6, priceFilled=46.69}
+2016-08-24 22:27:36,675 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='39725c27e774472d9bcf79b339fb8703', term='CL 10-16', date=Wed Aug 24 22:27:34 EEST 2016, deal=Sell, type=Limit, state=Filled, size=6, price=46.69, filled=6, priceFilled=46.69}
 2016-08-24 22:27:36,775 DEBUG LimitMaker:79 - cancelled order size: 6 comparing with cancelOrderSize() result: 6
 2016-08-24 22:27:36,775 INFO  FiniteStateAutomation:203 - GO executed, pos status: 0 0
 2016-08-24 22:27:36,775 INFO  FiniteStateAutomation:107 - GO executed
@@ -6414,7 +6414,7 @@
 2016-08-24 22:27:41,595 DEBUG PositionWatcher:69 - possible size: 17
 2016-08-24 22:27:41,595 DEBUG LimitMaker:47 - is roll necessary: false
 2016-08-24 22:27:41,595 INFO  LimitMaker:108 - place order by following args: CL 11-16 Sell 47.39 17
-2016-08-24 22:27:41,696 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', instrument='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
+2016-08-24 22:27:41,696 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', term='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
 2016-08-24 22:27:41,696 INFO  FiniteStateAutomation:203 - GO executed, pos status: 0 0
 2016-08-24 22:27:41,696 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:41,696 INFO  FiniteStateAutomation:75 - execute GO
@@ -6437,7 +6437,7 @@
 2016-08-24 22:27:42,298 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=17 favor.size=50 phase: ACCUMULATION
 2016-08-24 22:27:42,298 DEBUG PositionWatcher:69 - possible size: 17
 2016-08-24 22:27:42,298 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:42,298 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', instrument='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
+2016-08-24 22:27:42,298 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', term='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
 2016-08-24 22:27:42,298 INFO  FiniteStateAutomation:203 - GO executed, pos status: 0 0
 2016-08-24 22:27:42,298 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:42,298 INFO  FiniteStateAutomation:75 - execute GO
@@ -6460,7 +6460,7 @@
 2016-08-24 22:27:42,909 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=18 favor.size=50 phase: ACCUMULATION
 2016-08-24 22:27:42,909 DEBUG PositionWatcher:69 - possible size: 18
 2016-08-24 22:27:42,909 DEBUG LimitMaker:47 - is roll necessary: false
-2016-08-24 22:27:42,909 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', instrument='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
+2016-08-24 22:27:42,909 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', term='CL 11-16', date=Wed Aug 24 22:27:41 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=17, price=47.39, filled=0, priceFilled=0.0}
 2016-08-24 22:27:42,909 INFO  FiniteStateAutomation:203 - GO executed, pos status: 0 0
 2016-08-24 22:27:42,909 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:42,909 INFO  FiniteStateAutomation:75 - execute GO
@@ -6483,10 +6483,10 @@
 2016-08-24 22:27:43,512 INFO  PositionWatcher:57 - defineMaxPossibleSize marketSize=9 favor.size=50 phase: ACCUMULATION
 2016-08-24 22:27:43,512 DEBUG PositionWatcher:69 - possible size: 9
 2016-08-24 22:27:43,513 DEBUG LimitMaker:47 - is roll necessary: true
-2016-08-24 22:27:43,916 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', instrument='CL 11-16', date=Wed Aug 24 22:27:43 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=17, price=47.39, filled=0, priceFilled=0.0}
+2016-08-24 22:27:43,916 DEBUG LimitMaker:77 - order cancelled: Order{id='null'ordId='548d7218d51345c998e6c8f569bb6048', term='CL 11-16', date=Wed Aug 24 22:27:43 EEST 2016, deal=Sell, type=Limit, state=Cancelled, size=17, price=47.39, filled=0, priceFilled=0.0}
 2016-08-24 22:27:44,017 DEBUG LimitMaker:79 - cancelled order size: 0 comparing with cancelOrderSize() result: 0
 2016-08-24 22:27:44,017 INFO  LimitMaker:108 - place order by following args: CL 11-16 Sell 47.39 9
-2016-08-24 22:27:44,117 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='299d693c42f8412ea10b44a6e3e12393', instrument='CL 11-16', date=Wed Aug 24 22:27:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=47.39, filled=0, priceFilled=0.0}
+2016-08-24 22:27:44,117 DEBUG LimitMaker:61 - rolling order: Order{id='null'ordId='299d693c42f8412ea10b44a6e3e12393', term='CL 11-16', date=Wed Aug 24 22:27:44 EEST 2016, deal=Sell, type=Limit, state=PendingSubmit, size=9, price=47.39, filled=0, priceFilled=0.0}
 2016-08-24 22:27:44,117 INFO  FiniteStateAutomation:203 - GO executed, pos status: 0 0
 2016-08-24 22:27:44,117 INFO  FiniteStateAutomation:107 - GO executed
 2016-08-24 22:27:44,117 INFO  FiniteStateAutomation:75 - execute OF

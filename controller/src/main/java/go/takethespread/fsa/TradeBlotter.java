@@ -182,6 +182,15 @@ public class TradeBlotter {
     public void updateOrdersData() {
         orders = externalManager.getOrders();
         listener.ordersInfoUpdated(orders);
+
+        Money[] transactionPrices;
+        if (isNearLessThanFar()) {
+            transactionPrices = new Money[]{ask_n, bid_f};
+        } else {
+            transactionPrices = new Money[]{bid_n, ask_f};
+        }
+
+        listener.transactionTookPlace(transactionPrices);
     }
 
     public boolean isNearLessThanFar() {

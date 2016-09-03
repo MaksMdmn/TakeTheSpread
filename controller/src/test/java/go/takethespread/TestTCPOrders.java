@@ -10,8 +10,6 @@ public class TestTCPOrders {
     public static void main(String[] args) {
         try {
             TradeSystemInfo info = TradeSystemInfo.getInstance();
-            info.initProp();
-
             String instr1 = info.instrument_n;
             String instr2 = info.instrument_f;
 

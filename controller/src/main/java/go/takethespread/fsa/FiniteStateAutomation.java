@@ -3,13 +3,10 @@ package go.takethespread.fsa;
 
 import go.takethespread.Side;
 import go.takethespread.Term;
+import go.takethespread.managers.*;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Order;
 import go.takethespread.exceptions.TradeException;
-import go.takethespread.managers.ConsoleManager;
-import go.takethespread.managers.ExternalManager;
-import go.takethespread.managers.InfoManager;
-import go.takethespread.managers.TaskManager;
 import go.takethespread.managers.socket.NTTcpExternalManagerImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 public class FiniteStateAutomation extends Thread {
-    private ConsoleManager consoleManager;
     private TaskManager taskManager;
     private ExternalManager externalManager;
     private TradeBlotter blotter;
@@ -37,9 +33,7 @@ public class FiniteStateAutomation extends Thread {
         logger.info("creation of FSA, logger started");
 
         tradeSystemInfo = TradeSystemInfo.getInstance();
-        tradeSystemInfo.initProp();
 
-        consoleManager = ConsoleManager.getInstance();
         taskManager = TaskManager.getInstance();
         externalManager = NTTcpExternalManagerImpl.getInstance();
 

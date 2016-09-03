@@ -1,5 +1,6 @@
 package go.takethespread.managers;
 
+import go.takethespread.Money;
 import go.takethespread.Order;
 
 import java.util.List;
@@ -10,6 +11,8 @@ public class StatusManager implements StatusListener {
     private OrderManager orderManager = null;
     private volatile boolean isRunning = false;
     private volatile boolean isOrdersInfoUpdated = true;
+    private volatile boolean transactionHappened = false;
+    private Money[] lastTransactions;
 
     private StatusManager() {
     }
@@ -49,6 +52,12 @@ public class StatusManager implements StatusListener {
         isOrdersInfoUpdated = true;
     }
 
+    @Override
+    public void transactionTookPlace(Money[] near_far_prices) {
+        transactionHappened = true;
+        lastTransactions = near_far_prices;
+    }
+
     public synchronized boolean isRunning() {
         return isRunning;
     }
@@ -57,7 +66,21 @@ public class StatusManager implements StatusListener {
         return isOrdersInfoUpdated;
     }
 
+    public synchronized boolean isTransactionHappened() {
+        return isOrdersInfoUpdated;
+    }
+
     public synchronized void restoreOrdersInfoStatus() {
         isOrdersInfoUpdated = false;
     }
+
+    public synchronized double[] getLastTransactionPricesAndRestore() {
+        double[] result = new double[2];
+        result[0] = lastTransactions[0] == null ? 0d : lastTransactions[0].getAmount();
+        result[1] = lastTransactions[1] == null ? 0d : lastTransactions[1].getAmount();
+        lastTransactions = null;
+        transactionHappened = false;
+        return result;
+    }
+
 }

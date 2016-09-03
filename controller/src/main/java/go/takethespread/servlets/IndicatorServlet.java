@@ -12,7 +12,7 @@ public class IndicatorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
-        if (ParseJsonUtil.checkConn()) {
+        if (ParseJsonUtil.checkConn() && ParseJsonUtil.checkDataChannel()) {
             jsonObj = ParseJsonUtil.indicatorsToJson();
         } else {
             jsonObj = null; //HERE????

@@ -43,7 +43,6 @@ public class TEST_JSON {
     private static String settingsToJson(ObjectMapper mapper) throws JsonProcessingException {
         LinkedHashMap<String, Object> settingsMap = new LinkedHashMap();
         TradeSystemInfo info = TradeSystemInfo.getInstance();
-        info.initProp();
         settingsMap.put("HOST", info.host);
         settingsMap.put("PORT", info.port);
         settingsMap.put("NEAR FUTURES", info.instrument_n);

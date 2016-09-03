@@ -13,11 +13,7 @@ public class OrdersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonObj;
 
-        if (ParseJsonUtil.checkConn()) {
-            jsonObj = ParseJsonUtil.ordersToJson();
-        } else {
-            jsonObj = null; //HERE????
-        }
+        jsonObj = ParseJsonUtil.ordersToJson();
 
         resp.setContentType("application/json");
         resp.getWriter().print(jsonObj);

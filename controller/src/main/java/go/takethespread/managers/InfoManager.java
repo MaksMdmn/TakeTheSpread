@@ -21,10 +21,6 @@ public class InfoManager {
     public static InfoManager getInstance() {
         if (instance == null) {
             instance = new InfoManager();
-        } else {
-            if (  instance.blotter == null) {
-                throw new RuntimeException("class cannot be used - please, initialize: blotter=" + instance.blotter);
-            }
         }
         return instance;
     }
@@ -34,25 +30,27 @@ public class InfoManager {
     }
 
     public Money getPrice(Term term, Side side) {
+        Money answer = null;
         if (term == Term.NEAR) {
             if (side == Side.BID) {
-                return blotter.getBid_n();
+                answer = blotter.getBid_n();
             }
             if (side == Side.ASK) {
-                return  blotter.getAsk_n();
+                answer = blotter.getAsk_n();
             }
         }
 
         if (term == Term.FAR) {
             if (side == Side.BID) {
-                return blotter.getBid_f();
+                answer = blotter.getBid_f();
             }
             if (side == Side.ASK) {
-                return blotter.getAsk_f();
+                answer = blotter.getAsk_f();
             }
         }
 
-        throw new IllegalArgumentException("term or side is null or has illegal value: " + term + " " + side);
+        return answer;
+
     }
 
     public int getPosition(Term term) {
@@ -67,36 +65,55 @@ public class InfoManager {
         throw new IllegalArgumentException("term is null has illegal value: " + term);
     }
 
-    public Money getCurentSpread(){
-        return blotter.getSpreadCalculator().getCurSpread();
+    public Money getCurrentSpread() {
+        Money answer = null;
+        answer = blotter.getSpreadCalculator().getCurSpread();
+        return answer;
     }
 
-    public Money getBestSpread(){
-        return blotter.getBestSpread();
+    public Money getBestSpread() {
+        Money answer = null;
+        answer = blotter.getBestSpread();
+        return answer;
     }
 
-    public Money getEnteringSpread(){
-        return blotter.getSpreadCalculator().getEnteringSpread();
+    public Money getEnteringSpread() {
+        Money answer = null;
+        answer = blotter.getSpreadCalculator().getEnteringSpread();
+        return answer;
     }
 
-    public Money getCash(){
-        return blotter.getCash();
+    public Money getCash() {
+        Money answer = null;
+        answer = blotter.getCash();
+        return answer;
     }
 
-    public Money getBuyingPwr(){
-        return blotter.getBuypow();
+    public Money getBuyingPwr() {
+        Money answer = null;
+        answer = blotter.getBuypow();
+        return answer;
     }
 
-    public Money getPnL(){
-        return blotter.getPnl();
+    public Money getPnL() {
+        Money answer = null;
+        answer = blotter.getPnl();
+        return answer;
     }
 
-    public List<Order> getAllOrders(){
+    public List<Order> getAllOrders() {
         return blotter.getOrders();
     }
 
-    public TradeSystemInfo getProps(){
+    public TradeSystemInfo getProps() {
         return blotter.getTradeSystemInfo();
     }
 
+    public boolean isBlotterActive() {
+        return blotter != null;
+    }
+
+    public TradeBlotter getBlotter() {
+        return blotter;
+    }
 }
