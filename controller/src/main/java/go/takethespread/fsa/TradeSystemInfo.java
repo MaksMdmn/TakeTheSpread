@@ -4,8 +4,6 @@ import go.takethespread.*;
 import go.takethespread.exceptions.PersistException;
 import go.takethespread.impl.PostgresDaoFactoryImpl;
 import go.takethespread.impl.SettingDaoImpl;
-import go.takethespread.managers.StatusListener;
-import go.takethespread.managers.StatusManager;
 
 import java.sql.Connection;
 import java.util.*;
@@ -20,13 +18,11 @@ public final class TradeSystemInfo {
     public String instrument_f;
     public Money entering_dev;
     public int max_size;
-    public boolean limit_using;
     public int max_loss_n;
     public Money commis;
-    public int spreadCalc_time_sec;
     public int inPos_time_sec;
     public boolean default_spread_using;
-    public int min_spreadCalc_n;
+    public int spread_ticks_ago;
     public Money default_spread;
     //    public final Date trade_session_time;
     //    public final Date exception_session_time;
@@ -140,11 +136,9 @@ public final class TradeSystemInfo {
         max_size = Integer.valueOf(settingsMap.get(Settings.MAX_SIZE));
         entering_dev = Money.dollars(Double.valueOf(settingsMap.get(Settings.ENTER_DEVIATION)));
         default_spread = Money.dollars(Double.valueOf(settingsMap.get(Settings.DEFAULT_SPREAD)));
-        spreadCalc_time_sec = Integer.valueOf(settingsMap.get(Settings.SPR_CALC_TIME_SEC));
-        min_spreadCalc_n = Integer.valueOf(settingsMap.get(Settings.MIN_SPR_CALC_PERIOD_N));
+        spread_ticks_ago = Integer.valueOf(settingsMap.get(Settings.SPREAD_TICKS_AGO_N));
         inPos_time_sec = Integer.valueOf(settingsMap.get(Settings.TIME_IN_POS_SEC));
         default_spread_using = Boolean.valueOf(settingsMap.get(Settings.DEFAULT_SPREAD_USING));
-        limit_using = Boolean.valueOf(settingsMap.get(Settings.LIMIT_USING));
     }
 
 }

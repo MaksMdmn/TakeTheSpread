@@ -15,15 +15,8 @@ public class SpreadCalculator {
 
     private BlockingDeque<Money> marketData;
 
-    private long startTime;
-    private long updateTime;
-    private long spreadCalcDuration;
     private long startPauseTime;
     private long pauseDuration;
-
-    private Money lastCalcSum;
-    private int lastCalcSize;
-    private Money lastRemovingElem;
 
     private Money curSpread;
     private Money enteringSpread;
@@ -37,13 +30,8 @@ public class SpreadCalculator {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
-        this.startTime = System.currentTimeMillis();
-        this.lastCalcSum = Money.dollars(0d);
-        this.lastCalcSize = 0;
-        this.lastRemovingElem = Money.dollars(0d);
         this.curSpread = Money.dollars(0d); // mb bad default??!!
         this.enteringSpread = Money.dollars(0d); // mb bad default??!!
-        this.spreadCalcDuration = tradeSystemInfo.spreadCalc_time_sec * 1000L; //ms
         this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
         this.isPauseEnabled = false;
         this.isEnoughData = false;
@@ -101,12 +89,11 @@ public class SpreadCalculator {
             }
 
             if (isEnoughData) {
-                lastRemovingElem = marketData.pollFirst();
+                marketData.removeFirst();
                 marketData.addLast(spread);
             } else {
                 marketData.addLast(spread);
             }
-            updateTime = System.currentTimeMillis();
         } else {
             checkPauseNecessity();
         }
@@ -119,7 +106,6 @@ public class SpreadCalculator {
             return;
         }
 
-        // default value if in prop = false??
         if (!isEnoughData) {
             return;
         }
@@ -138,19 +124,9 @@ public class SpreadCalculator {
             throw new IllegalArgumentException("market data is empty, cannot calc that, man.");
         }
 
-        if (lastCalcSum.equals(Money.dollars(0d)) || marketData.size() != lastCalcSize) {
-            logger.debug("first calc or queue size was changed: both sizes is " + marketData.size() + " " + lastCalcSize + " lastCalcSum: " + lastCalcSum.getAmount());
-            lastCalcSum = Money.dollars(0d);
-            for (Money m : marketData) {
-                lastCalcSum = lastCalcSum.add(m); //sum+=m
-            }
-            lastCalcSize = marketData.size();
-            curSpread = lastCalcSum.multiply(1d / lastCalcSize); // sum/marketData.size()
+        curSpread = marketData.peekFirst();
+        logger.debug("curSpr = " + curSpread);
 
-        } else {
-            lastCalcSum = lastCalcSum.subtract(lastRemovingElem).add(marketData.peekLast());
-            curSpread = lastCalcSum.multiply(1d / lastCalcSize);
-        }
     }
 
     private void calcEnteringSpread() {
@@ -163,8 +139,7 @@ public class SpreadCalculator {
     }
 
     private boolean isEnoughData() {
-        return (updateTime - startTime) > spreadCalcDuration
-                && marketData.size() > tradeSystemInfo.min_spreadCalc_n;
+        return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
     }
 
     private void checkPauseNecessity() {
@@ -176,4 +151,40 @@ public class SpreadCalculator {
             logger.debug("pause ended.");
         }
     }
+
+
+//    public SpreadCalculator() {
+//        this.tradeSystemInfo = TradeSystemInfo.getInstance();
+//        this.marketData = new LinkedBlockingDeque<>();
+//        this.curSpread = Money.dollars(0d); // mb bad default??!!
+//        this.enteringSpread = Money.dollars(0d); // mb bad default??!!
+//        this.pauseDuration = tradeSystemInfo.inPos_time_sec * 1000L; //ms
+//        this.isPauseEnabled = false;
+//        this.isEnoughData = false;
+//    }
+//
+//    public void setMarketData(LinkedBlockingDeque<Money> data) {
+//        this.marketData = data;
+//    }
+//
+//    public void addAndRemoveMD(Money addingValue) {
+//        marketData.removeFirst();
+//        marketData.addLast(addingValue);
+//    }
+//
+//    public void testCalcs() {
+//        if (!isPauseEnabled) {
+//            isEnoughData = isEnoughData();
+//            calcCurSpread();
+//            calcEnteringSpread();
+//        } else {
+//            if (startPauseTime + pauseDuration < System.currentTimeMillis()) {
+//                isPauseEnabled = false;
+//            }
+//        }
+//    }
+//
+//    public BlockingDeque<Money> getTestData() {
+//        return marketData;
+//    }
 }

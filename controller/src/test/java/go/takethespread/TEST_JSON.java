@@ -54,10 +54,8 @@ public class TEST_JSON {
         settingsMap.put("ENTER SIGNAL DEV", info.entering_dev.getAmount());
         settingsMap.put("MAX SIZE, n", info.max_size);
         settingsMap.put("TIME IN POS, sec", info.inPos_time_sec);
-        settingsMap.put("LIMIT ORDERS USING", info.limit_using);
         settingsMap.put("MAX LOSS NUMBERS", info.max_loss_n);
-        settingsMap.put("MIN SPREAD CALC TIME, sec", info.min_spreadCalc_n);
-        settingsMap.put("SPREAD CALC TIME, sec", info.spreadCalc_time_sec);
+        settingsMap.put("SPREAD TICKS AGO, n", info.spread_ticks_ago);
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(settingsMap);
     }
 
