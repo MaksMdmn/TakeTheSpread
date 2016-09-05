@@ -73,7 +73,7 @@ public class SettingsDaoTest {
         entering_dev.setValue("0.04");
         default_spread.setValue("0.65");
         spread_ticks_ago_n.setValue("20");
-        inPos_time_sec.setValue("60");
+        inPos_time_sec.setValue("10");
         default_spread_using.setValue("true");
     }
 

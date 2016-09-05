@@ -1,20 +1,11 @@
-2016-09-03 15:02:06,962eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=71.51, currency=USD}
-2016-09-03 15:02:07,464eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=41.35, currency=USD}
-2016-09-03 15:02:07,965eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=58.68, currency=USD}
-2016-09-03 15:02:08,466eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=79.21, currency=USD}
-2016-09-03 15:02:08,967eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=82.47, currency=USD}
-2016-09-03 15:02:09,468eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=9.31, currency=USD}
-2016-09-03 15:02:09,970eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=23.3, currency=USD}
-2016-09-03 15:02:10,471eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=86.38, currency=USD}
-2016-09-03 15:02:10,974eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=50.95, currency=USD}
-2016-09-03 15:02:11,475eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=46.93, currency=USD}
-2016-09-03 15:02:11,977eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=26.69, currency=USD}
-2016-09-03 15:02:12,478eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=75.47, currency=USD}
-2016-09-03 15:02:12,479eal INFO  SpreadCalculator:61 - pause started at: 1472904132479
-2016-09-03 15:02:22,989eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=75.81, currency=USD}
-2016-09-03 15:02:23,489eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=15.16, currency=USD}
-2016-09-03 15:02:23,990eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=31.68, currency=USD}
-2016-09-03 15:02:24,491eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=46.56, currency=USD}
-2016-09-03 15:02:24,991eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=30.73, currency=USD}
-2016-09-03 15:02:25,492eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=64.26, currency=USD}
-2016-09-03 15:02:25,992eal DEBUG SpreadCalculator:128 - curSpr = Money{amount=96.24, currency=USD}
+2016-09-05 09:30:21,093eal INFO  FiniteStateAutomation:33 - creation of FSA, logger started
+2016-09-05 09:30:22,699eal INFO  SpreadCalculator:39 - SC created
+2016-09-05 09:30:22,722eal INFO  Algorithm:17 - Creation of Algorithm object
+2016-09-05 09:30:22,723eal INFO  Algorithm:21 - Algorithm created
+2016-09-05 09:30:22,739eal INFO  LimitMaker:34 - LM created
+2016-09-05 09:30:22,750eal INFO  MarketMaker:19 - MM created
+2016-09-05 09:30:22,752eal INFO  PositionWatcher:26 - PW created
+2016-09-05 09:30:22,752eal INFO  FiniteStateAutomation:51 - creation of FSA success
+2016-09-05 09:30:26,330eal INFO  FiniteStateAutomation:69 - execute OF
+2016-09-05 09:30:26,371eal ERROR FiniteStateAutomation:106 - java.lang.NullPointerException
+2016-09-05 09:30:26,371eal ERROR FiniteStateAutomation:107 - [go.takethespread.managers.socket.NTTcpManager.sendOffMessage(NTTcpManager.java:57), go.takethespread.managers.socket.NTTcpExternalManagerImpl.finishingJob(NTTcpExternalManagerImpl.java:212), go.takethespread.fsa.FiniteStateAutomation.executeOF(FiniteStateAutomation.java:220), go.takethespread.fsa.FiniteStateAutomation.run(FiniteStateAutomation.java:81)]
