@@ -31,6 +31,7 @@ public class TradeBlotter {
     private Money buypow;
     private Money pnl;
     private Phase curPhase;
+    private Situation curSituation;
     private StatusListener listener = StatusManager.getInstance();
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
@@ -142,6 +143,10 @@ public class TradeBlotter {
         return curPhase;
     }
 
+    public synchronized Situation getCurSituation() {
+        return curSituation;
+    }
+
     public void updateMarketData() {
         logger.info("data updating...");
         externalManager.refreshData();
@@ -175,7 +180,8 @@ public class TradeBlotter {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
         curPhase = defineCurPhase();
-        logger.debug("new auxiliary data: curSpread " + spreadCalculator.getCurSpread().getAmount() + " curPhase " + curPhase);
+        curSituation = defineCurSituation();
+        logger.debug("new auxiliary data: curSpread " + spreadCalculator.getCurSpread().getAmount() + " curPhase " + curPhase + " curSituation " + curSituation);
     }
 
 
@@ -216,18 +222,44 @@ public class TradeBlotter {
 
         Money bestSpread = getBestSpread();
 
-        if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
-                && pos_n > 0) {
-            return Phase.DISTRIBUTION;
-        }
+        if (curSituation == Situation.CONTANGO) {
+            if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
+                    && pos_n > 0) {
+                return Phase.DISTRIBUTION;
+            }
 
-        if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                && pos_n < tradeSystemInfo.max_size) {
-            return Phase.ACCUMULATION;
+            if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                    && pos_n < tradeSystemInfo.max_size) {
+                return Phase.ACCUMULATION;
+            }
+        } else if (curSituation == Situation.BACKWARDATION) {
+            if (bestSpread.greaterOrEqualThan(spreadCalculator.getCurSpread())
+                    && pos_n > 0) {
+                return Phase.DISTRIBUTION;
+            }
+
+            if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
+                    && pos_n < tradeSystemInfo.max_size) {
+                return Phase.ACCUMULATION;
+            }
         }
 
         return Phase.OFF_SEASON;
 
+    }
+
+    private Situation defineCurSituation() {
+        if (position_n == 0 && position_n == position_f) {
+            Money curSpr = spreadCalculator.getCurSpread();
+            Money enterSpr = spreadCalculator.getEnteringSpread();
+            if (enterSpr.greaterOrEqualThan(curSpr)) {
+                return Situation.CONTANGO;
+            } else {
+                return Situation.BACKWARDATION;
+            }
+        }else{
+            return curSituation;
+        }
     }
 
     public boolean isBidBetterOrEqualAsk() {
@@ -273,6 +305,10 @@ public class TradeBlotter {
         OFF_SEASON
     }
 
+    protected enum Situation {
+        CONTANGO,
+        BACKWARDATION
+    }
 
     //here all market data and pos (like you are in terminal)
 }

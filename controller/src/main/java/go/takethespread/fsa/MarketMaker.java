@@ -49,6 +49,26 @@ public class MarketMaker {
         blotter.updateOrdersData(); // new, can happen something D:
     }
 
+    public void hitPairOrdersToMarket(int buySize, Term buyTerm, int sellSize, Term sellTerm) {
+
+        logger.debug("PAIR DEAL: BUY" + buySize + " " + buyTerm + " SELL " + sellSize + " " + sellTerm);
+        if (buyTerm == null || sellTerm == null || buySize <= 0 || sellSize <= 0) { //size, what should I do ????
+            throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + buySize + " " + buyTerm + " " + sellSize + " " + sellTerm);
+        }
+
+        externalManager.sendPairMarketBuySell(blotter.termToInstrument(buyTerm), buySize, blotter.termToInstrument(sellTerm), sellSize);
+        logger.debug("!ORDERS SENT!");
+
+        if (blotter.getCurPhase() == TradeBlotter.Phase.ACCUMULATION) {
+            logger.info("pause starting...");
+            blotter.getSpreadCalculator().pause();
+        } else {
+            logger.info("pause is not necessary, cause phase is: " + blotter.getCurPhase());
+        }
+
+        blotter.updateOrdersData(); // new, can happen something D:
+    }
+
     public int defineMaxMarketSize(Term term, Side side) {
         if (term == Term.NEAR) {
             if (side == Side.BID) {

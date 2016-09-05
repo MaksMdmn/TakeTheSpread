@@ -37,6 +37,8 @@ public interface ExternalManager {
 
     public Order sendMarketSell(String instr, int size);
 
+    public Order[] sendPairMarketBuySell(String buyInstr, int buySize, String sellInstr, int sellSize);
+
     public Order sendCancelOrder(String ordId);
 
     public Order sendChangeOrder(String ordId, Money price, int size);

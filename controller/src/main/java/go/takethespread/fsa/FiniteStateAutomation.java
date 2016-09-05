@@ -146,8 +146,7 @@ public class FiniteStateAutomation extends Thread {
                     tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
                     size = pw.defineMaxPossibleSize(tmpSize);
 
-                    mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Buy);
-                    mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Sell);
+                    mm.hitPairOrdersToMarket(size, Term.NEAR, size, Term.FAR);
                 }
                 break;
             case L_M_BUY:
@@ -170,8 +169,7 @@ public class FiniteStateAutomation extends Thread {
 
                     size = pw.defineMaxPossibleSize(tmpSize);
 
-                    mm.hitOrderToMarket(size, Term.NEAR, Order.Deal.Sell);
-                    mm.hitOrderToMarket(size, Term.FAR, Order.Deal.Buy);
+                    mm.hitPairOrdersToMarket(size, Term.FAR, size, Term.NEAR);
                 }
                 break;
             case L_M_SELL:

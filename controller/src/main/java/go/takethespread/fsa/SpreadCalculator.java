@@ -134,7 +134,12 @@ public class SpreadCalculator {
             throw new NullPointerException("curSpread is null.");
         }
 
-        enteringSpread = curSpread.add(tradeSystemInfo.entering_dev);
+        if (marketData.peekFirst().lessOrEqualThan(marketData.peekLast())) {
+            enteringSpread = curSpread.add(tradeSystemInfo.entering_dev);
+        } else {
+            enteringSpread = curSpread.subtract(tradeSystemInfo.entering_dev);
+        }
+
 
     }
 

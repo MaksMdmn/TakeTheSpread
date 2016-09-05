@@ -182,6 +182,26 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     @Override
+    public Order[] sendPairMarketBuySell(String buyInstr, int buySize, String sellInstr, int sellSize) {
+        Order[] answer = new Order[2];
+
+        //oriented on second instrument, because second order is last in queue of execution in NT.
+        int tempPos = getPosition(sellInstr);
+
+        long id1 = ntTcpManager.sendBuyMarketMessage(identifyTerm(buyInstr), buySize);
+        long id2 = ntTcpManager.sendSellMarketMessage(identifyTerm(sellInstr), sellSize);
+        answer[0] = parseTheOrder(waitingForAnswer(id1));
+        answer[1] = parseTheOrder(waitingForAnswer(id2));
+
+        while (tempPos == getPosition(sellInstr)) {
+            trackStatus();
+            /*NOP*/
+        }
+        resetStatus();
+        return answer;
+    }
+
+    @Override
     public Order sendCancelOrder(String ordId) {
         long id = ntTcpManager.sendCancelByIdMessage(ordId);
         return parseTheOrder(waitingForAnswer(id));
@@ -201,9 +221,9 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     @Override
     public void startingJob(String host, int port) {
         ntTcpManager.startUpServer(host, port);
-        if(ntTcpManager.isServerWork()){
+        if (ntTcpManager.isServerWork()) {
             System.out.println("server started");
-        }else{
+        } else {
             System.out.println("have some trouble, man");
         }
     }
@@ -219,7 +239,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         farMarketData.updateActualMarketData();
     }
 
-    public boolean isConnOkay(){
+    public boolean isConnOkay() {
         return ntTcpManager.isServerWork();
     }
 
@@ -231,7 +251,6 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
             return Term.FAR;
         throw new IllegalArgumentException("incorrect instrument name: " + instr);
     }
-
 
 
     private Order parseTheOrder(String tempOrder) {
