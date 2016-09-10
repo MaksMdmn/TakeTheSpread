@@ -19,11 +19,13 @@ public class OrderManager {
     private GenericDao<Order, Integer> orderDao;
     private List<String> wroteOrderIdList;
     private LinkedBlockingDeque<Order> unviewedOrders;
+    private int dealsNumber;
 
     private OrderManager() {
         initDataBaseEntities();
         wroteOrderIdList = new LinkedList<>();
         unviewedOrders = new LinkedBlockingDeque<>();
+        dealsNumber = 0;
     }
 
     public static OrderManager getInstance() {
@@ -40,6 +42,7 @@ public class OrderManager {
                     orderDao.persist(o);
                     wroteOrderIdList.add(o.getOrdId());
                     unviewedOrders.add(o);
+                    updateDealsNumber(o);
                 }
             } else {
                 for (Order o : orders) {
@@ -47,6 +50,7 @@ public class OrderManager {
                         orderDao.persist(o);
                         wroteOrderIdList.add(o.getOrdId());
                         unviewedOrders.add(o);
+                        updateDealsNumber(o);
                     }
                 }
             }
@@ -55,12 +59,22 @@ public class OrderManager {
         }
     }
 
+    public int getDealsNumber() {
+        return dealsNumber;
+    }
+
     private void initDataBaseEntities() {
         try {
             daoFactory = new PostgresDaoFactoryImpl();
             orderDao = daoFactory.getDao(daoFactory.getContext(), Order.class);
         } catch (PersistException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void updateDealsNumber(Order o) {
+        if (o.getState() == Order.State.Filled) {
+            dealsNumber += o.getFilled();
         }
     }
 }

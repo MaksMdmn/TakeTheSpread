@@ -43,14 +43,13 @@ public class TestSpreadCalc {
             try {
                 blotter.updateMarketData();
                 blotter.updateAuxiliaryData();
-                System.out.println("sprd: " + blotter.getSpreadCalculator().getCurSpread().getAmount());
+                System.out.println("sprd: " + blotter.getSpreadCalculator().getCalcSpread().getAmount());
 
                 if (userRow.equals("pa")) {
                     blotter.getSpreadCalculator().pause();
                     System.out.println(blotter.getSpreadCalculator().isPauseEnabled());
                     userRow = "";
                 } else if(userRow.equals("ph")){
-                    blotter.getSpreadCalculator().testAddPhonyData();
                     System.out.println("phony data added");
                     userRow = "";
                 }

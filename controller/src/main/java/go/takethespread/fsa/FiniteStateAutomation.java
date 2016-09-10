@@ -1,9 +1,11 @@
 package go.takethespread.fsa;
 
 
+import go.takethespread.Money;
 import go.takethespread.Side;
 import go.takethespread.Term;
 import go.takethespread.managers.*;
+import go.takethespread.managers.socket.NTTcpManager;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Order;
 import go.takethespread.exceptions.TradeException;
@@ -19,6 +21,7 @@ public class FiniteStateAutomation extends Thread {
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
     private InfoManager infoManager;
+    private StatusManager statusManager;
 
     private LimitMaker lm;
     private MarketMaker mm;
@@ -42,7 +45,15 @@ public class FiniteStateAutomation extends Thread {
         infoManager = InfoManager.getInstance();
         infoManager.setBlotter(blotter);
 
-        algo = new Algorithm(tradeSystemInfo, externalManager, blotter);
+        statusManager = StatusManager.getInstance();
+
+        if (!tradeSystemInfo.limit_entering_mode) {
+            logger.debug("MODE IS: ____________CLASSIC____________");
+            algo = new Algorithm_Classic(tradeSystemInfo, externalManager, blotter);
+        } else {
+            logger.debug("MODE IS: ____________LIMIT ENTERING____________");
+            algo = new Algorithm_LimitEntering(tradeSystemInfo, externalManager, blotter);
+        }
 
         lm = new LimitMaker(externalManager, blotter);
         mm = new MarketMaker(externalManager, blotter);
@@ -95,6 +106,9 @@ public class FiniteStateAutomation extends Thread {
                     case BS:
                         executeBS();
                         break;
+                    case OU:
+                        executeOU();
+                        break;
                     default:
                         break;
                 }
@@ -103,6 +117,7 @@ public class FiniteStateAutomation extends Thread {
 //            } catch (TradeException e) {
 //                e.printStackTrace();
             } catch (Exception e) {
+                logger.debug(e + " " + Arrays.toString(e.getStackTrace()));
                 logger.error(e);
                 logger.error(Arrays.toString(e.getStackTrace()));
                 executeGJ();
@@ -137,60 +152,114 @@ public class FiniteStateAutomation extends Thread {
         int size_n;
         int size_f;
         int tmpSize;
+        Money tempPrice;
+        if (!tradeSystemInfo.limit_entering_mode) {
+            logger.debug("MODE: __________________CLASSIC__________________");
+            switch (signal) {
+                case M_M_BUY:
+                    if (lm.cancelOrderSize() == 0) {
+                        size_n = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
+                        size_f = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                        tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                        size = pw.defineMaxPossibleSize(tmpSize);
 
-        switch (signal) {
-            case M_M_BUY:
-                if (lm.cancelOrderSize() == 0) {
-                    size_n = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                    size_f = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                    tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                        mm.hitPairOrdersToMarket(size, Term.NEAR, size, Term.FAR);
+                    }
+                    break;
+                case L_M_BUY:
+                    tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
                     size = pw.defineMaxPossibleSize(tmpSize);
 
-                    mm.hitPairOrdersToMarket(size, Term.NEAR, size, Term.FAR);
-                }
-                break;
-            case L_M_BUY:
-                tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                size = pw.defineMaxPossibleSize(tmpSize);
-
-                lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Buy);
-                break;
-            case M_L_BUY:
-                tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                size = pw.defineMaxPossibleSize(tmpSize);
-
-                lm.rollLimitOrder(size, Term.FAR, Order.Deal.Sell);
-                break;
-            case M_M_SELL:
-                if (lm.cancelOrderSize() == 0) {
-                    size_n = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                    size_f = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                    tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
-
+                    lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Buy);
+                    break;
+                case M_L_BUY:
+                    tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
                     size = pw.defineMaxPossibleSize(tmpSize);
 
-                    mm.hitPairOrdersToMarket(size, Term.FAR, size, Term.NEAR);
-                }
-                break;
-            case L_M_SELL:
-                tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                size = pw.defineMaxPossibleSize(tmpSize);
+                    lm.rollLimitOrder(size, Term.FAR, Order.Deal.Sell);
+                    break;
+                case M_M_SELL:
+                    if (lm.cancelOrderSize() == 0) {
+                        size_n = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                        size_f = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                        tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
 
-                lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Sell);
-                break;
-            case M_L_SELL:
-                tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                size = pw.defineMaxPossibleSize(tmpSize);
+                        size = pw.defineMaxPossibleSize(tmpSize);
 
-                lm.rollLimitOrder(size, Term.FAR, Order.Deal.Buy);
-                break;
-            case NOTHING:
-                if (lm.isOrderPlaced()) {
-                    lm.cancelOrderSize();
-                }
-                break;
-            default:
-                break;
+                        mm.hitPairOrdersToMarket(size, Term.FAR, size, Term.NEAR);
+                    }
+                    break;
+                case L_M_SELL:
+                    tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+
+                    lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Sell);
+                    break;
+                case M_L_SELL:
+                    tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+
+                    lm.rollLimitOrder(size, Term.FAR, Order.Deal.Buy);
+                    break;
+                case NOTHING:
+                    if (lm.isOrderPlaced()) {
+                        lm.cancelOrderSize();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            logger.debug("MODE: __________________LIMIT_ENTERING__________________");
+            switch (signal) {
+                case L_M_BUY:
+                    tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+                    tempPrice = blotter.getSpreadCalculator().getGuideValue().subtract(tradeSystemInfo.entering_dev);
+
+                    lm.rollLimitOrderIncludingPriceInput(
+                            size,
+                            Term.NEAR,
+                            Order.Deal.Buy,
+                            tempPrice);
+
+                    logger.debug("ENTERING ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
+                    break;
+                case L_M_SELL:
+                    tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+                    tempPrice = blotter.getSpreadCalculator().getGuideValue().add(tradeSystemInfo.entering_dev);
+
+                    lm.rollLimitOrderIncludingPriceInput(
+                            size,
+                            Term.NEAR,
+                            Order.Deal.Sell,
+                            tempPrice);
+                    logger.debug("ENTERING ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
+                    break;
+                case M_L_SELL:
+                    tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+
+                    lm.rollLimitOrder(
+                            size,
+                            Term.FAR,
+                            Order.Deal.Buy);
+                    break;
+                case M_L_BUY:
+                    tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
+                    size = pw.defineMaxPossibleSize(tmpSize);
+
+                    lm.rollLimitOrder(
+                            size,
+                            Term.FAR,
+                            Order.Deal.Sell);
+                    break;
+                case NOTHING:
+                    break;
+                default:
+                    break;
+            }
         }
         logger.info("GO executed, pos status: " + blotter.getPosition_n() + " " + blotter.getPosition_f());
     }
@@ -207,14 +276,15 @@ public class FiniteStateAutomation extends Thread {
     private void executeGJ() {
         // correct completion of work!
         try {
-            externalManager.sendCancelOrders();
             taskManager.removeAllTasks();
+            ordersToDBWhenJobFinishedOrStopped();
         } catch (TradeException e) {
             e.printStackTrace();
         }
     }
 
     private void executeOF() {
+        ordersToDBWhenJobFinishedOrStopped();
         externalManager.finishingJob();
         isWorking = false;
     }
@@ -236,6 +306,24 @@ public class FiniteStateAutomation extends Thread {
 
     private void executeRS() {
 
+    }
+
+    private void executeOU() {
+        try {
+            taskManager.pollTask();
+        } catch (TradeException e) {
+            e.printStackTrace();
+        }
+        blotter.updateOrdersData();
+    }
+
+    private void ordersToDBWhenJobFinishedOrStopped() {
+        if(lm.isOrderPlaced()) {
+            externalManager.sendCancelOrder(lm.getRollingOrderId());
+        }
+        blotter.updateOrdersData();
+        statusManager.ordersInfoUpdated(blotter.getOrders());//to DB
+        statusManager.restoreOrdersInfoStatus();
     }
 
 }

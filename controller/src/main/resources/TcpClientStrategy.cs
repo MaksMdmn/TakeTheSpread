@@ -34,10 +34,9 @@ namespace NinjaTrader.Strategy
         // User defined variables (add any user defined variables below)
         #endregion
 		private StreamWriter tcpWriter;
-		private TcpClient tcpClient;
-		private Thread thrGetting;
-		private Thread thrSending;
 		private StreamReader tcpReader;
+		private TcpClient tcpClient;
+		private Thread messageHandler;
 		private bool isCon;
 		private Dictionary<String, IOrder> orderMap = new Dictionary<String, IOrder>();
 		private String prevMessage_n = "";
@@ -54,7 +53,7 @@ namespace NinjaTrader.Strategy
 		private String secondInstrTicker = "CL 11-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
-		private int sendingDelayMs = 200;
+		private int sendingDelayMs = 50; //200
 		//handle by myself
 
         /// <summary>
@@ -98,8 +97,8 @@ namespace NinjaTrader.Strategy
 		private void proceedRead(){
 			tcpReader = new StreamReader(tcpClient.GetStream());
 
-			thrGetting = new Thread(new ThreadStart(ReceiveMessages));
-			thrGetting.Start();
+			messageHandler = new Thread(new ThreadStart(ReceiveMessages));
+			messageHandler.Start();
 		}
 
 		private void proceedWrite(){
@@ -375,8 +374,8 @@ namespace NinjaTrader.Strategy
 				timer.Stop();
 				timer.Dispose();
 			}
-			if (thrGetting != null) {
-				thrGetting = null;
+			if (messageHandler != null) {
+				messageHandler = null;
 			}
 			if (tcpWriter != null) {
 				tcpWriter.Close();

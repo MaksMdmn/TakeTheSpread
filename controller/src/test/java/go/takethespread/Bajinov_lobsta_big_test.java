@@ -4,6 +4,7 @@ import go.takethespread.exceptions.ConsoleException;
 import go.takethespread.exceptions.TradeException;
 import go.takethespread.fsa.FiniteStateAutomation;
 import go.takethespread.managers.ConsoleManager;
+import go.takethespread.managers.socket.NTTcpManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +16,14 @@ public class Bajinov_lobsta_big_test {
         new FiniteStateAutomation().start();
         ConsoleManager cm = ConsoleManager.getInstance();
         String userMsg = "";
+
+        try {
+            cm.parseConsoleMsg("CN");
+        } catch (ConsoleException e) {
+            e.printStackTrace();
+        } catch (TradeException e) {
+            e.printStackTrace();
+        }
 
         while (true) {
             try {

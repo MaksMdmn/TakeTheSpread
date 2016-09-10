@@ -5,6 +5,7 @@ import go.takethespread.impl.PostgresDaoFactoryImpl;
 
 import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public class SettingsDaoTest {
     private static Setting account = new Setting();
@@ -20,12 +21,14 @@ public class SettingsDaoTest {
     private static Setting spread_ticks_ago_n = new Setting();
     private static Setting inPos_time_sec = new Setting();
     private static Setting default_spread_using = new Setting();
+    private static Setting limit_mode = new Setting();
 
     public static void main(String[] args) {
         try {
             DaoFactory<Connection> daoFactory = new PostgresDaoFactoryImpl();
             GenericDao<Setting, Integer> settingDao = daoFactory.getDao(daoFactory.getContext(), Setting.class);
             setMySettings();
+            cleanOldSettings(settingDao);
             persistMySettings(settingDao);
 
         } catch (PersistException e) {
@@ -60,21 +63,24 @@ public class SettingsDaoTest {
         inPos_time_sec.setLastUpdate(new Date());
         default_spread_using.setName(Settings.DEFAULT_SPREAD_USING);
         default_spread_using.setLastUpdate(new Date());
+        limit_mode.setName(Settings.LIMIT_ENTERING_MODE);
+        limit_mode.setLastUpdate(new Date());
 
 
-        account.setValue("lobstatest");
+        account.setValue("lobstaTest");
         host.setValue("localhost");
         port.setValue("8085");
         instrument_n.setValue("CL 10-16");
         instrument_f.setValue("CL 11-16");
         max_loss_n.setValue("2");
         commis.setValue("4.87");
-        max_size.setValue("50");
-        entering_dev.setValue("0.04");
+        max_size.setValue("1");
+        entering_dev.setValue("0.06");
         default_spread.setValue("0.65");
-        spread_ticks_ago_n.setValue("20");
-        inPos_time_sec.setValue("10");
-        default_spread_using.setValue("true");
+        spread_ticks_ago_n.setValue("16");
+        inPos_time_sec.setValue("30");
+        default_spread_using.setValue("false");
+        limit_mode.setValue("true");
     }
 
     private static void persistMySettings(GenericDao<Setting, Integer> settingDao) throws PersistException {
@@ -91,7 +97,18 @@ public class SettingsDaoTest {
         settingDao.persist(spread_ticks_ago_n);
         settingDao.persist(inPos_time_sec);
         settingDao.persist(default_spread_using);
+        settingDao.persist(limit_mode);
     }
 
+    private static void cleanOldSettings(GenericDao<Setting, Integer> settingDao) {
+        try {
+            List<Setting> settings = settingDao.readAll();
+            for (Setting s : settings) {
+                settingDao.delete(s);
+            }
+        } catch (PersistException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

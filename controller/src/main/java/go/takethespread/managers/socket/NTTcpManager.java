@@ -39,8 +39,8 @@ public class NTTcpManager {
         bridge = server.getDataBridge();
     }
 
-    protected boolean isServerWork(){
-        if(server == null){
+    protected boolean isServerWork() {
+        if (server == null) {
             return false;
         }
         return server.isServerWorking();
@@ -159,7 +159,22 @@ public class NTTcpManager {
                 e.printStackTrace();
             }
         }
+
     }
 
+
+    private static long startTime = 0;
+
+    public static void startMeasureTheTime() {
+        startTime = System.currentTimeMillis();
+    }
+
+    public static void endMeasureTheTime() {
+        System.out.println(String.valueOf((System.currentTimeMillis() - startTime)) + " ms.");
+    }
+
+    public static void endMeasureTheTime(String msg) {
+        System.out.println(String.valueOf(msg + ": " + (System.currentTimeMillis() - startTime)) + " ms.");
+    }
 
 }

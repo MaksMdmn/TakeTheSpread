@@ -25,8 +25,8 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
         ntTcpManager = NTTcpManager.getInstance();
         nearMarketData = new ActualMarketData(Term.NEAR);
         farMarketData = new ActualMarketData(Term.FAR);
-        attemptMaxNumbers = 200; //10 sec
-        delay = 50;
+        attemptMaxNumbers = 500; //10 sec
+        delay = 20;
     }
 
     public static synchronized ExternalManager getInstance() {
@@ -229,6 +229,7 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     }
 
     public void finishingJob() {
+        ntTcpManager.sendCancelAllMessage();
         ntTcpManager.sendOffMessage();
         ntTcpManager.finishingTodayJob();
         System.out.println("job finished");

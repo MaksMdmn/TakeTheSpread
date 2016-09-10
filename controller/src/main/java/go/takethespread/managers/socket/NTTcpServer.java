@@ -10,10 +10,10 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 public class NTTcpServer {
 
+    private volatile boolean isConn = false;
     private NTTcpDataBridge dataBridge;
     private Socket socket;
     private ServerSocket serverSocket;
-    private volatile boolean isConn = false;
     private BufferedReader br;
     private PrintWriter pw;
     private Thread reading;
@@ -41,7 +41,7 @@ public class NTTcpServer {
         isConn = true;
         try {
             serverSocket = new ServerSocket(port, 0, InetAddress.getByName(host));
-            serverSocket.setSoTimeout(10 * 1000);
+            serverSocket.setSoTimeout(20 * 1000);
             if (socket == null) {
                 socket = serverSocket.accept();
                 br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -53,8 +53,8 @@ public class NTTcpServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.reading = initReading();
-        this.writing = initWriting();
+        this.reading = initReading(br, dataBridge);
+        this.writing = initWriting(pw, dataBridge);
         reading.start();
         writing.start();
     }
@@ -68,13 +68,13 @@ public class NTTcpServer {
         return isConn;
     }
 
-    private Thread initReading() {
+    private Thread initReading(BufferedReader reader, NTTcpDataBridge bridge) {
         return new Thread(() -> {
             while (isConn) {
                 try {
-                    while (br.ready()) {
-                        String data = br.readLine();
-                        dataBridge.addAnswer(data);
+                    while (reader.ready()) {
+                        String data = reader.readLine();
+                        bridge.addAnswer(data);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -83,14 +83,14 @@ public class NTTcpServer {
         });
     }
 
-    private Thread initWriting() {
+    private Thread initWriting(PrintWriter writer, NTTcpDataBridge bridge) {
         return new Thread(() -> {
             while (isConn) {
-                while (dataBridge.haveMessage()) {
-                    String message = dataBridge.acceptMessage();
+                while (bridge.haveMessage()) {
+                    String message = bridge.acceptMessage();
                     if (message != null) {
-                        pw.write(message + System.lineSeparator());
-                        pw.flush();
+                        writer.write(message + System.lineSeparator());
+                        writer.flush();
                     }
                 }
             }

@@ -30,14 +30,17 @@ public class MarketMaker {
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
         }
 
+        Order tempOrder = null;
         String tmpInstr = blotter.termToInstrument(term);
         if (deal == Order.Deal.Buy) {
-            externalManager.sendMarketBuy(tmpInstr, size);
+            tempOrder = externalManager.sendMarketBuy(tmpInstr, size);
         }
 
         if (deal == Order.Deal.Sell) {
-            externalManager.sendMarketSell(tmpInstr, size);
+            tempOrder = externalManager.sendMarketSell(tmpInstr, size);
         }
+
+        logger.debug("MARKET ORDER (ONE) :" + tempOrder);
 
         if (blotter.getCurPhase() == TradeBlotter.Phase.ACCUMULATION) {
             logger.info("pause starting...");
@@ -51,13 +54,14 @@ public class MarketMaker {
 
     public void hitPairOrdersToMarket(int buySize, Term buyTerm, int sellSize, Term sellTerm) {
 
-        logger.debug("PAIR DEAL: BUY" + buySize + " " + buyTerm + " SELL " + sellSize + " " + sellTerm);
+        logger.debug("PAIR DEAL: BUY " + buySize + " " + buyTerm + " SELL " + sellSize + " " + sellTerm);
         if (buyTerm == null || sellTerm == null || buySize <= 0 || sellSize <= 0) { //size, what should I do ????
             throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + buySize + " " + buyTerm + " " + sellSize + " " + sellTerm);
         }
 
-        externalManager.sendPairMarketBuySell(blotter.termToInstrument(buyTerm), buySize, blotter.termToInstrument(sellTerm), sellSize);
+        Order[] tempOrdersArr = externalManager.sendPairMarketBuySell(blotter.termToInstrument(buyTerm), buySize, blotter.termToInstrument(sellTerm), sellSize);
         logger.debug("!ORDERS SENT!");
+        logger.debug("MARKET ORDER (PAIR), ORDER_N: " + tempOrdersArr[0] + " ORDER_F: " + tempOrdersArr[1]);
 
         if (blotter.getCurPhase() == TradeBlotter.Phase.ACCUMULATION) {
             logger.info("pause starting...");

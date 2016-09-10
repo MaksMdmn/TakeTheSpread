@@ -1,6 +1,7 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Term;
+import go.takethespread.managers.socket.NTTcpManager;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
@@ -34,6 +35,26 @@ public class LimitMaker {
         logger.info("LM created");
     }
 
+    public boolean isOrderPlaced() {
+        return frontRunOrder != null;
+    }
+
+    public int trackFilledSize() {
+        return defineRemainingSize();
+    }
+
+    public int cancelOrderSize() {
+        if (frontRunOrder == null) {
+            return 0;
+        }
+        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getOrdId());
+        logger.debug("order cancelled: " + frontRunOrder);
+        int result = defineRemainingSize();
+        logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderSize() result: " + result);
+        frontRunOrder = null;
+        return result;
+    }
+
     public void rollLimitOrder(int size, Term term, Order.Deal deal) {
         if (isPrevCancellingDangerous(term, deal)) {
             //leave, because it already has changed the position
@@ -61,24 +82,82 @@ public class LimitMaker {
         logger.debug("rolling order: " + frontRunOrder);
     }
 
-    public boolean isOrderPlaced() {
-        return frontRunOrder != null;
-    }
-
-    public int trackFilledSize() {
-        return defineRemainingSize();
-    }
-
-    public int cancelOrderSize() {
-        if (frontRunOrder == null) {
-            return 0;
+    public void rollLimitOrderIncludingPriceInput(int size, Term term, Order.Deal deal, Money price) {
+        if (isPrevCancellingDangerous(term, deal)) {
+            //leave, because it already has changed the position
+            return;
         }
-        frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getOrdId());
-        logger.debug("order cancelled: " + frontRunOrder);
-        int result = defineRemainingSize();
-        logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderSize() result: " + result);
-        frontRunOrder = null;
-        return result;
+
+        String tmpInstr = blotter.termToInstrument(term);
+        isRollNecessary = isRollNecessaryIncludingPriceCheck(size, term, deal,price);
+
+        logger.debug("is roll necessary including price check: " + isRollNecessary);
+
+        if (deal == null || term == null) {
+            throw new IllegalArgumentException("illegal arguments, term and term and size are following: " + term + " " + deal + " " + size);
+        }
+
+        if (frontRunOrder == null) {
+            frontRunOrder = placeAnOrder(tmpInstr, deal, price, size);
+        } else {
+            if (isRollNecessary) {
+                frontRunOrder = placeAnOrder(tmpInstr, deal, price, defineDealSize(size, cancelOrderSize()));
+            }
+        }
+
+        logger.debug("rolling order including price check: " + frontRunOrder);
+    }
+
+    protected String getRollingOrderId(){
+        return frontRunOrder.getOrdId();
+    }
+
+    private boolean isRollNecessary(int size, Term term, Order.Deal deal) {
+        if (frontRunOrder == null) {
+            return false;
+        }
+
+        if (size < frontRunOrder.getSize()) {
+            return true;
+        }
+
+        if (!defineLimitPrice(term, deal).equals(frontRunOrder.getPrice())) {
+            return true;
+        }
+
+        if (term != blotter.instrumentToTerm(frontRunOrder.getInstrument())) {
+            return true;
+        }
+
+        if (deal != frontRunOrder.getDeal()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean isRollNecessaryIncludingPriceCheck(int size, Term term, Order.Deal deal, Money price) {
+        if (frontRunOrder == null) {
+            return false;
+        }
+
+        if (size < frontRunOrder.getSize()) {
+            return true;
+        }
+
+        if (!price.equals(frontRunOrder.getPrice())) {
+            return true;
+        }
+
+        if (term != blotter.instrumentToTerm(frontRunOrder.getInstrument())) {
+            return true;
+        }
+
+        if (deal != frontRunOrder.getDeal()) {
+            return true;
+        }
+
+        return false;
     }
 
     private boolean isPrevCancellingDangerous(Term term, Order.Deal deal) {
@@ -121,29 +200,6 @@ public class LimitMaker {
         throw new IllegalArgumentException("illegal arguments, deal is following: " + deal);
     }
 
-    private boolean isRollNecessary(int size, Term term, Order.Deal deal) {
-        if (frontRunOrder == null) {
-            return false;
-        }
-
-        if (size < frontRunOrder.getSize()) {
-            return true;
-        }
-
-        if (!defineLimitPrice(term, deal).equals(frontRunOrder.getPrice())) {
-            return true;
-        }
-
-        if (term != blotter.instrumentToTerm(frontRunOrder.getInstrument())) {
-            return true;
-        }
-
-        if (deal != frontRunOrder.getDeal()) {
-            return true;
-        }
-
-        return false;
-    }
 
     private Money defineLimitPrice(Term term, Order.Deal deal) {
         if (term == Term.NEAR) {

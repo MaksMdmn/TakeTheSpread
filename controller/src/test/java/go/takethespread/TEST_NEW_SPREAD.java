@@ -10,7 +10,7 @@ public class TEST_NEW_SPREAD {
 //        LinkedBlockingDeque<Money> data = new LinkedBlockingDeque<>();
 //
 //        printMessage("before data added");
-//        System.out.println("cur: " + sc.getCurSpread().getAmount());
+//        System.out.println("cur: " + sc.getCalcSpread().getAmount());
 //        System.out.println("enter: " + sc.getEnteringSpread().getAmount());
 //
 //        for (int i = 0; i < 20; i++) {
@@ -32,7 +32,7 @@ public class TEST_NEW_SPREAD {
 //
 //
 //        printMessage("after data added");
-//        System.out.println("cur: " + sc.getCurSpread().getAmount());
+//        System.out.println("cur: " + sc.getCalcSpread().getAmount());
 //        System.out.println("enter: " + sc.getEnteringSpread().getAmount());
 //
 //        printMessage("cycle");
@@ -47,7 +47,7 @@ public class TEST_NEW_SPREAD {
 //                    System.out.print(m.getAmount() + " | ");
 //                }
 //                System.out.println();
-//                System.out.println("cur: " + sc.getCurSpread().getAmount());
+//                System.out.println("cur: " + sc.getCalcSpread().getAmount());
 //                System.out.println("enter: " + sc.getEnteringSpread().getAmount());
 //                printMessage("");
 //                if(i++ == 10){

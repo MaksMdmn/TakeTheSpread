@@ -10,6 +10,7 @@ public class StatusManager implements StatusListener {
 
     private OrderManager orderManager = null;
     private volatile boolean isRunning = false;
+    private volatile boolean isGoExecuting = false;
     private volatile boolean isOrdersInfoUpdated = true;
     private volatile boolean transactionHappened = false;
     private Money[] lastTransactions;
@@ -29,12 +30,15 @@ public class StatusManager implements StatusListener {
         switch (command) {
             case GO:
                 isRunning = true;
+                isGoExecuting = true;
                 break;
             case GJ:
                 isRunning = false;
+                isGoExecuting = false;
                 break;
             case OF:
                 isRunning = false;
+                isGoExecuting = false;
                 break;
             default:
                 /*NOP*/
@@ -60,6 +64,10 @@ public class StatusManager implements StatusListener {
 
     public synchronized boolean isRunning() {
         return isRunning;
+    }
+
+    public synchronized boolean isGoExecuting() {
+        return isGoExecuting;
     }
 
     public synchronized boolean isOrdersInfoUpdated() {

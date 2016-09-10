@@ -40,7 +40,8 @@ public class TradeBlotter {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.spreadCalculator = new SpreadCalculator(this, tradeSystemInfo);
-        this.curPhase = Phase.OFF_SEASON;
+        this.curPhase = Phase.OFF_SEASON; //default
+        this.curSituation = Situation.CONTANGO; //default
     }
 
     public Term instrumentToTerm(String instrument) {
@@ -166,6 +167,12 @@ public class TradeBlotter {
                 ask_n.getAmount() + " " + askVol_n + " " +
                 bid_f.getAmount() + " " + bidVol_f + " " +
                 ask_f.getAmount() + " " + askVol_f);
+//
+//        logger.warn("new market data: " +
+//                bid_n.getAmount() + " " + bidVol_n + " " +
+//                ask_n.getAmount() + " " + askVol_n + " " +
+//                bid_f.getAmount() + " " + bidVol_f + " " +
+//                ask_f.getAmount() + " " + askVol_f);
 
     }
 
@@ -179,9 +186,10 @@ public class TradeBlotter {
     public void updateAuxiliaryData() {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
-        curPhase = defineCurPhase();
         curSituation = defineCurSituation();
-        logger.debug("new auxiliary data: curSpread " + spreadCalculator.getCurSpread().getAmount() + " curPhase " + curPhase + " curSituation " + curSituation);
+        curPhase = defineCurPhase();
+
+        logger.debug("new auxiliary data: calcSpread " + spreadCalculator.getCalcSpread().getAmount() + " curPhase " + curPhase + " curSituation " + curSituation);
     }
 
 
@@ -191,19 +199,56 @@ public class TradeBlotter {
 
         Money[] transactionPrices;
         if (isNearLessThanFar()) {
-            transactionPrices = new Money[]{ask_n, bid_f};
+            if (curSituation == Situation.CONTANGO) {
+                transactionPrices = new Money[]{ask_n, bid_f};
+            } else if (curSituation == Situation.BACKWARDATION) {
+                transactionPrices = new Money[]{bid_n, ask_f};
+            } else {
+                transactionPrices = new Money[]{ask_n, bid_f}; // DEFAULT, MB CHANGE THAT IN FUTURE
+            }
         } else {
-            transactionPrices = new Money[]{bid_n, ask_f};
+            if (curSituation == Situation.CONTANGO) {
+                transactionPrices = new Money[]{bid_n, ask_f};
+            } else if (curSituation == Situation.BACKWARDATION) {
+                transactionPrices = new Money[]{ask_n, bid_f};
+            } else {
+                transactionPrices = new Money[]{bid_n, ask_f};// DEFAULT, MB CHANGE THAT IN FUTURE
+            }
+
         }
 
         listener.transactionTookPlace(transactionPrices);
     }
 
     public boolean isNearLessThanFar() {
-        if (isBidBetterOrEqualAsk()) {
-            return bid_n.lessOrEqualThan(bid_f);
+        return bid_n.lessOrEqualThan(bid_f);
+    }
+
+
+    public Money getBestSpread() {
+        return getBestSpread(curSituation);
+    }
+
+    public synchronized Money getBestSpread(Situation situation) {
+        if (isNearLessThanFar()) {
+            if (situation == Situation.CONTANGO) {
+                return Money.absl(ask_n.subtract(bid_f));
+            }
+
+            if (situation == Situation.BACKWARDATION) {
+                return Money.absl(bid_n.subtract(ask_f));
+            }
+
+            return Money.absl(ask_n.subtract(bid_f)); //default
         } else {
-            return ask_n.lessOrEqualThan(ask_f);
+            if (situation == Situation.CONTANGO) {
+                return Money.absl(bid_n.subtract(ask_f));
+            }
+
+            if (situation == Situation.BACKWARDATION) {
+                return Money.absl(ask_n.subtract(bid_f));
+            }
+            return Money.absl(bid_n.subtract(ask_f)); //default
         }
     }
 
@@ -220,82 +265,48 @@ public class TradeBlotter {
             throw new IllegalArgumentException("both pos are totally equal and have the same sign, n and f: " + position_n + " " + position_f);
         }
 
-        Money bestSpread = getBestSpread();
+        Money bestSpread = getBestSpread(curSituation);
 
-        if (curSituation == Situation.CONTANGO) {
-            if (bestSpread.lessOrEqualThan(spreadCalculator.getCurSpread())
+        if (!tradeSystemInfo.limit_entering_mode) {
+            if (curSituation == Situation.CONTANGO) {
+                if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
+                        && pos_n > 0) {
+                    return Phase.DISTRIBUTION;
+                }
+
+                if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                        && pos_n < tradeSystemInfo.max_size) {
+                    return Phase.ACCUMULATION;
+                }
+            } else if (curSituation == Situation.BACKWARDATION) {
+                if (bestSpread.greaterOrEqualThan(spreadCalculator.getCalcSpread())
+                        && pos_n > 0) {
+                    return Phase.DISTRIBUTION;
+                }
+
+                if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
+                        && pos_n < tradeSystemInfo.max_size) {
+                    return Phase.ACCUMULATION;
+                }
+            }
+
+            return Phase.OFF_SEASON;
+        } else {
+            if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
                     && pos_n > 0) {
                 return Phase.DISTRIBUTION;
             }
-
-            if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                    && pos_n < tradeSystemInfo.max_size) {
-                return Phase.ACCUMULATION;
-            }
-        } else if (curSituation == Situation.BACKWARDATION) {
-            if (bestSpread.greaterOrEqualThan(spreadCalculator.getCurSpread())
-                    && pos_n > 0) {
-                return Phase.DISTRIBUTION;
-            }
-
-            if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
-                    && pos_n < tradeSystemInfo.max_size) {
-                return Phase.ACCUMULATION;
-            }
+            return Phase.ACCUMULATION;
         }
-
-        return Phase.OFF_SEASON;
 
     }
 
     private Situation defineCurSituation() {
         if (position_n == 0 && position_n == position_f) {
-            Money curSpr = spreadCalculator.getCurSpread();
-            Money enterSpr = spreadCalculator.getEnteringSpread();
-            if (enterSpr.greaterOrEqualThan(curSpr)) {
-                return Situation.CONTANGO;
-            } else {
-                return Situation.BACKWARDATION;
-            }
-        }else{
+            return spreadCalculator.tryToClearCurSituation();
+        } else {
             return curSituation;
         }
-    }
-
-    public boolean isBidBetterOrEqualAsk() {
-        Money byBid = Money.absl(bid_f.subtract(bid_n));
-        Money byAsk = Money.absl(ask_f.subtract(ask_n));
-        return byBid.greaterOrEqualThan(byAsk);
-    }
-
-    public synchronized Money getBestSpread() {
-        if (isBidBetterOrEqualAsk()) {
-            return Money.absl(bid_n.subtract(bid_f));
-        } else {
-            return Money.absl(ask_n.subtract(ask_f));
-        }
-    }
-
-    public synchronized Money getBestSpread(boolean isGreaterSpread) {
-        Money greater;
-        Money smaller;
-        Money byBid = Money.absl(bid_f.subtract(bid_n));
-        Money byAsk = Money.absl(ask_f.subtract(ask_n));
-
-        if (byBid.greaterOrEqualThan(byAsk)) {
-            greater = byBid;
-            smaller = byAsk;
-        } else {
-            smaller = byBid;
-            greater = byAsk;
-        }
-
-        if (isGreaterSpread) {
-            return greater;
-        } else {
-            return smaller;
-        }
-
     }
 
 
@@ -305,7 +316,7 @@ public class TradeBlotter {
         OFF_SEASON
     }
 
-    protected enum Situation {
+    public enum Situation {
         CONTANGO,
         BACKWARDATION
     }

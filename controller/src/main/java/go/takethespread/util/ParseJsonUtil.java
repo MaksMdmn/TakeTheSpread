@@ -60,7 +60,7 @@ public final class ParseJsonUtil {
             List<JsonOrderData> jsonOrders = new ArrayList<>();
             try {
                 OrderDaoImpl dao = new OrderDaoImpl(daoFactory.getContext());
-                for (Order o : dao.readTodayFilledOrdersDesc()) {
+                for (Order o : dao.readTodayOrdersDesc()) {
                     jsonOrders.add(new JsonOrderData(o));
                 }
 
@@ -76,20 +76,22 @@ public final class ParseJsonUtil {
     }
 
     public static String indicatorsToJson() throws JsonProcessingException {
-        JsonIndicData indicData = new JsonIndicData();
-        indicData.setPos_n(manager.getPosition(Term.NEAR));
-        indicData.setPos_f(manager.getPosition(Term.FAR));
-        indicData.setSpot_n(manager.getPrice(Term.NEAR, Side.BID).getAmount()); //HARDCORE: IN THIS CASE NEAREST ALWAYS LOWER THEN FAR
-        indicData.setSpot_f(manager.getPrice(Term.FAR, Side.ASK).getAmount());
-        indicData.setCalcSpr(manager.getCurrentSpread().getAmount());
-        indicData.setCurSpr(manager.getBestSpread().getAmount());
-        indicData.setCash(manager.getCash().getAmount());
-        indicData.setBuyPw(manager.getBuyingPwr().getAmount());
-        indicData.setDeals(0);
-        indicData.setDeals_prf(0);
-        indicData.setDeals_ls(0);
-        indicData.setCommis(0d);
-        indicData.setPnl(manager.getPnL().getAmount());
+        JsonIndicData indicData = new JsonIndicData(true);
+
+        if (statusManager.isGoExecuting()) {
+            indicData.setPos_n(manager.getPosition(Term.NEAR));
+            indicData.setPos_f(manager.getPosition(Term.FAR));
+            indicData.setSpot_n(manager.getPrice(Term.NEAR, Side.ASK).getAmount()); //HARDCORE: IN THIS CASE NEAREST ALWAYS LOWER THEN FAR
+            indicData.setSpot_f(manager.getPrice(Term.FAR, Side.BID).getAmount());
+            indicData.setCalcSpr(manager.getCurrentSpread().getAmount());
+            indicData.setCurSpr(manager.getBestSpread().getAmount());
+            indicData.setCurDev(manager.getCurDeviation().getAmount());
+            indicData.setCash(manager.getCash().getAmount());
+            indicData.setBuyPw(manager.getBuyingPwr().getAmount());
+            indicData.setDeals(manager.getDealsNumber());
+            indicData.setCommis(manager.getCommisValue().getAmount());
+            indicData.setPnl(manager.getPnL().getAmount());
+        }
 
 //        indicData.setPos_n((int) (Math.random() * 10));
 //        indicData.setPos_f((int) (Math.random() * 10));
@@ -117,24 +119,28 @@ public final class ParseJsonUtil {
                 e.printStackTrace();
             }
         } else {
-            double[] priceData = new double[4];
-            priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
-            priceData[1] = manager.getPrice(Term.NEAR, Side.ASK).getAmount();
-            if (statusManager.isTransactionHappened()) {
-                double[] transactionPrices = statusManager.getLastTransactionPricesAndRestore();
-                priceData[2] = transactionPrices[0];
-                priceData[3] = transactionPrices[1];
-            } else {
-                priceData[2] = 0d;
-                priceData[3] = 0d;
-            }
+            if (statusManager.isGoExecuting()) {
+                double[] priceData = new double[4];
+                priceData[0] = manager.getPrice(Term.NEAR, Side.BID).getAmount();
+                priceData[1] = manager.getPrice(Term.FAR, Side.ASK).getAmount();
+                if (statusManager.isTransactionHappened()) {
+                    double[] transactionPrices = statusManager.getLastTransactionPricesAndRestore();
+                    priceData[2] = transactionPrices[0];
+                    priceData[3] = transactionPrices[1];
+                } else {
+                    priceData[2] = 0d;
+                    priceData[3] = 0d;
+                }
 
 //            priceData[0] = 12d;
 //            priceData[1] = 15d;
 //            priceData[2] = 1d;
 //            priceData[3] = 32d;
 
-            answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(priceData);
+                answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(priceData);
+            } else {
+                answer = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(new double[]{0, 0, 0, 0});
+            }
         }
 
         return answer;

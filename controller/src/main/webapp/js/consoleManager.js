@@ -4,7 +4,7 @@ function runConsoleManager() {
     var stkElem = $('#stack');
     var msgBarElem = $('#message-bar');
     var conBarElem = $('#connection-bar');
-    var possibleCommands = ['GO', 'CN', 'GJ', 'OF', 'RS', 'TT', 'LN', 'OS', 'BS'];
+    var possibleCommands = ['GO', 'CN', 'GJ', 'OF', 'RS', 'TT', 'LN', 'OS', 'BS', 'OU'];
     var userCommand;
 
     function handleCommand() {

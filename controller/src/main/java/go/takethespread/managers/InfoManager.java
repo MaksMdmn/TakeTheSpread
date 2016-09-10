@@ -13,9 +13,10 @@ public class InfoManager {
     private static InfoManager instance;
 
     private TradeBlotter blotter;
+    private OrderManager orderManager;
 
     private InfoManager() {
-
+        orderManager = OrderManager.getInstance();
     }
 
     public static InfoManager getInstance() {
@@ -49,7 +50,7 @@ public class InfoManager {
             }
         }
 
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
 
     }
 
@@ -59,7 +60,7 @@ public class InfoManager {
         }
 
         if (term == Term.FAR) {
-            return blotter.getPosition_n();
+            return blotter.getPosition_f();
         }
 
         throw new IllegalArgumentException("term is null has illegal value: " + term);
@@ -67,38 +68,57 @@ public class InfoManager {
 
     public Money getCurrentSpread() {
         Money answer = null;
-        answer = blotter.getSpreadCalculator().getCurSpread();
-        return answer;
+        answer = blotter.getSpreadCalculator().getCalcSpread();
+        return answer == null ? Money.dollars(0d) : answer;
     }
 
     public Money getBestSpread() {
         Money answer = null;
         answer = blotter.getBestSpread();
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
     }
 
     public Money getEnteringSpread() {
         Money answer = null;
         answer = blotter.getSpreadCalculator().getEnteringSpread();
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
     }
 
     public Money getCash() {
         Money answer = null;
         answer = blotter.getCash();
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
     }
 
     public Money getBuyingPwr() {
         Money answer = null;
         answer = blotter.getBuypow();
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
     }
 
     public Money getPnL() {
         Money answer = null;
         answer = blotter.getPnl();
-        return answer;
+        return answer == null ? Money.dollars(0d) : answer;
+    }
+
+    public Money getCurDeviation() {
+        Money diff = Money.absl(getBestSpread().subtract(blotter.getSpreadCalculator().getCalcSpread()));
+        if (blotter.getCurSituation() == TradeBlotter.Situation.CONTANGO) {
+            return diff;
+        } else if (blotter.getCurSituation() == TradeBlotter.Situation.BACKWARDATION) {
+            return diff.multiply(-1d);
+        } else {
+            return Money.dollars(0d);
+        }
+    }
+
+    public int getDealsNumber() {
+        return orderManager.getDealsNumber();
+    }
+
+    public Money getCommisValue() {
+        return blotter.getTradeSystemInfo().commis.multiply(orderManager.getDealsNumber() * -1);
     }
 
     public List<Order> getAllOrders() {

@@ -95,7 +95,7 @@ public class ConsoleManager {
 
     public enum ConsoleCommand {
         GO, //start
-        CN,
+        CN, //connection
         GJ, //stop
         OF, //off
         RS, //restart
@@ -103,6 +103,7 @@ public class ConsoleManager {
         LN, //launch terminal
         OS, // one side market order
         BS, // both side market order   ---- all of them remove automatic control and switch to manual control!!
+        OU, // orders view and DB update
     }
 }
 

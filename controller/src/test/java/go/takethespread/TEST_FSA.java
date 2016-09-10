@@ -28,7 +28,6 @@ public class TEST_FSA {
             try {
                 userMessage = br.readLine();
                 if (userMessage.equals("PH")) {
-                    fsa.testPhonyGetterBlotter().getSpreadCalculator().testAddPhonyData();
                     System.out.println("PHONY DONE");
                     userMessage = "";
                 } else {

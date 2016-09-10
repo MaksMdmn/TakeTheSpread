@@ -2,9 +2,8 @@ function runDataUpdater() {
     var maxDataLength = 2 * 60; // minutes here <----
 
     var chartData = defineStartChartData();
-    var startPriceValues = $.makeArray(updatePrices());
-    var maxPrice = defineMaxPrice();
-    var nearFarColors = defineNearFarColors(startPriceValues[0], startPriceValues[1]);
+    var maxPrice = 100;
+    var nearFarColors = defineNearFarColors();
 
     var g = new Dygraph($('.chart-feature').get(0), chartData, {
         animatedZooms: false,
@@ -77,42 +76,55 @@ function runDataUpdater() {
         autowidth: true,
         rowNum: 1,
         scrollOffset: 0,
-        colNames: ['POS_N', 'POS_F', 'SPOT_N', 'SPOT_F', 'CALC_SPRD', 'MRT_SPRD', 'CASH', 'BUYPW', 'D', 'D+', 'D-', 'COMMIS', 'PnL'],
+        colNames: ['POS_N', 'POS_F', 'SPOT_N', 'SPOT_F', 'CALC_SPRD', 'MRT_SPRD', 'MRT_DEV', 'CASH', 'BUYPW', 'D', 'COMMIS', 'PnL'],
         colModel: [{
             name: 'pos_n',
             index: 'pos_n',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'pos_f',
             index: 'pos_f',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'spot_n',
             index: 'spot_n',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'spot_f',
             index: 'spot_f',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'calcSpr',
             index: 'calcSpr',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'curSpr',
             index: 'curSpr',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
+        }, {
+            name: 'curDev',
+            index: 'curDev',
+            width: 55,
+            editable: true,
+            align: 'center'
         }, {
             name: 'cash',
             index: 'cash',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'buyPw',
             index: 'buyPw',
@@ -122,27 +134,20 @@ function runDataUpdater() {
             name: 'deals',
             index: 'deals',
             width: 55,
-            editable: true
-        }, {
-            name: 'deals_prf',
-            index: 'deals_prf',
-            width: 55,
-            editable: true
-        }, {
-            name: 'deals_ls',
-            index: 'deals_ls',
-            width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'commis',
             index: 'commis',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }, {
             name: 'pnl',
             index: 'pnl',
             width: 55,
-            editable: true
+            editable: true,
+            align: 'center'
         }]
     });
 
@@ -219,11 +224,11 @@ function runDataUpdater() {
     //--------------------------------------------------------------------
 
 
-    // setInterval(function() {
-    //     updatePrices();
-    //     updateIndicators();
-    //     updateOrders();
-    // }, 1000);
+    setInterval(function() {
+        updatePrices();
+        updateIndicators();
+        updateOrders();
+    }, 1000);
 
     $(window).resize(function() {
         setNewTablesWidth();
@@ -256,8 +261,8 @@ function runDataUpdater() {
                 // var spr = Math.abs(tempArr[1] - tempArr[2]);
                 // var dwn = (tempArr[1] <= tempArr[2]) ? tempArr[1] : tempArr[2];
                 // var up = (dwn === tempArr[1]) ? tempArr[2] : tempArr[1];
-                var dwn = 0.1;
-                var up = 0.1;
+                var dwn = 0.6;
+                var up = 0.6;
                 g.updateOptions({
                     'file': chartData,
                     'valueRange': [tempArr[1] - dwn, tempArr[2] + up]
@@ -298,24 +303,14 @@ function runDataUpdater() {
         });
     }
 
-    function defineMaxPrice() {
-        return 100;
-    }
-
     function defineStartChartData() {
         return [];
     }
 
-    function defineNearFarColors(priceNear, priceFar) {
+    function defineNearFarColors() {
         var result = [];
-        if (priceNear <= priceFar) {
-            result[0] = '#008000';
-            result[1] = '#DC143C';
-        } else {
-            result[0] = '#DC143C';
-            result[1] = '#008000';
-        }
-
+        result[0] = '#00FFFF';
+        result[1] = '#9ACD32';
         return result;
     }
 

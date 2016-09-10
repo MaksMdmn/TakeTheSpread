@@ -7,13 +7,33 @@ public class JsonIndicData {
     private double spot_f;
     private double calcSpr;
     private double curSpr;
+    private double curDev;
     private double cash;
     private double buyPw;
     private int deals;
-    private int deals_prf;
-    private int deals_ls;
     private double commis;
     private double pnl;
+
+    public JsonIndicData() {
+
+    }
+
+    public JsonIndicData(boolean setDefaultValues) {
+        if (setDefaultValues) {
+            this.pos_n = 0;
+            this.pos_f = 0;
+            this.spot_n = 0;
+            this.spot_f = 0;
+            this.calcSpr = 0;
+            this.curSpr = 0;
+            this.curDev = 0;
+            this.cash = 0;
+            this.buyPw = 0;
+            this.deals = 0;
+            this.commis = 0;
+            this.pnl = 0;
+        }
+    }
 
     public int getPos_n() {
         return pos_n;
@@ -87,22 +107,6 @@ public class JsonIndicData {
         this.deals = deals;
     }
 
-    public int getDeals_prf() {
-        return deals_prf;
-    }
-
-    public void setDeals_prf(int deals_prf) {
-        this.deals_prf = deals_prf;
-    }
-
-    public int getDeals_ls() {
-        return deals_ls;
-    }
-
-    public void setDeals_ls(int deals_ls) {
-        this.deals_ls = deals_ls;
-    }
-
     public double getCommis() {
         return commis;
     }
@@ -117,5 +121,13 @@ public class JsonIndicData {
 
     public void setPnl(double pnl) {
         this.pnl = pnl;
+    }
+
+    public double getCurDev() {
+        return curDev;
+    }
+
+    public void setCurDev(double curDev) {
+        this.curDev = curDev;
     }
 }
