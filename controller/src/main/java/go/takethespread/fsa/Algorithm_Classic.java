@@ -9,6 +9,11 @@ public class Algorithm_Classic extends Algorithm {
         super(tradeSystemInfo, externalManager, blotter);
     }
 
+    @Override
+    protected String addToLogDebug() {
+        return "";
+    }
+
 
     @Override
     protected Signal getEnterSignal() {

@@ -296,7 +296,12 @@ public class TradeBlotter {
                     && pos_n > 0) {
                 return Phase.DISTRIBUTION;
             }
-            return Phase.ACCUMULATION;
+
+            if (pos_n < tradeSystemInfo.max_size) {
+                return Phase.ACCUMULATION;
+            }
+
+            return Phase.OFF_SEASON;
         }
 
     }

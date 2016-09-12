@@ -10,6 +10,16 @@ public class Algorithm_LimitEntering extends Algorithm {
     }
 
     @Override
+    protected String addToLogDebug() {
+        if (blotter.isNearLessThanFar()) {
+            return " EXIT RULE BIDf - BIDn: " + blotter.getBid_f().subtract(blotter.getBid_n()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread();
+        } else {
+            return " EXIT RULE ASKn - ASKf: " + blotter.getAsk_n().subtract(blotter.getAsk_f()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread();
+        }
+
+    }
+
+    @Override
     protected Signal getEnterSignal() {
         if (blotter.isNearLessThanFar()) {
             return Signal.L_M_BUY;
@@ -20,14 +30,14 @@ public class Algorithm_LimitEntering extends Algorithm {
 
     @Override
     protected Signal getExitSignal() {
-        Money tempSpread;
-        if(blotter.isNearLessThanFar()){
-            tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
+        Money tempSpread = blotter.getBestSpread();
+        if (blotter.isNearLessThanFar()) {
+//            tempSpread = blotter.getBid_f().subtract(blotter.getBid_n());
             if (tempSpread.lessOrEqualThan(blotter.getSpreadCalculator().getCalcSpread())) {
                 return Signal.M_L_SELL;
             }
-        }else{
-            tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
+        } else {
+//            tempSpread = blotter.getAsk_n().subtract(blotter.getAsk_f());
             if (tempSpread.lessOrEqualThan(blotter.getSpreadCalculator().getCalcSpread())) {
                 return Signal.M_L_BUY;
             }

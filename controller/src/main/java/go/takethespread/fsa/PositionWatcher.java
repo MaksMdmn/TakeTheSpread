@@ -40,8 +40,10 @@ public class PositionWatcher {
             }
 
             if (diff_n != 0) {
+                logger.debug("diff n: " + diff_n);
                 fillTheDiff(diff_n, Term.FAR);
             } else {
+                logger.debug("diff n: " + diff_f);
                 fillTheDiff(diff_f, Term.NEAR);
             }
         }

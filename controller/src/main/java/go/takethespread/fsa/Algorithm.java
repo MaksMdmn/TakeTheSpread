@@ -24,6 +24,7 @@ public abstract class Algorithm {
                 " spreadCURRENT=" + blotter.getBestSpread().getAmount()
                 + " spreadCALC=" + blotter.getSpreadCalculator().getCalcSpread().getAmount()
                 + " spreadENTER=" + blotter.getSpreadCalculator().getEnteringSpread().getAmount()
+                + " additional information: " + addToLogDebug()
         );
 
         TradeBlotter.Phase currentPhase = blotter.getCurPhase();
@@ -38,6 +39,8 @@ public abstract class Algorithm {
             return Algorithm.Signal.NOTHING;
         }
     }
+
+    protected abstract String addToLogDebug();
 
     protected abstract Signal getEnterSignal();
 

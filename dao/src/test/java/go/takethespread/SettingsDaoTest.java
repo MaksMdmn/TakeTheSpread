@@ -30,6 +30,7 @@ public class SettingsDaoTest {
             setMySettings();
             cleanOldSettings(settingDao);
             persistMySettings(settingDao);
+            printAllCurrentSettings(settingDao);
 
         } catch (PersistException e) {
             e.printStackTrace();
@@ -75,7 +76,7 @@ public class SettingsDaoTest {
         max_loss_n.setValue("2");
         commis.setValue("4.87");
         max_size.setValue("1");
-        entering_dev.setValue("0.06");
+        entering_dev.setValue("0.07");
         default_spread.setValue("0.65");
         spread_ticks_ago_n.setValue("16");
         inPos_time_sec.setValue("30");
@@ -109,6 +110,10 @@ public class SettingsDaoTest {
         } catch (PersistException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void printAllCurrentSettings(GenericDao<Setting, Integer> settingDao) throws PersistException {
+        settingDao.readAll().forEach(System.out::println);
     }
 
 }
