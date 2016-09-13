@@ -57,7 +57,7 @@ public class FiniteStateAutomation extends Thread {
 
         lm = new LimitMaker(externalManager, blotter);
         mm = new MarketMaker(externalManager, blotter);
-        pw = new PositionWatcher(blotter, mm);
+        pw = new PositionWatcher(blotter, mm, lm);
 
         logger.info("creation of FSA success");
     }

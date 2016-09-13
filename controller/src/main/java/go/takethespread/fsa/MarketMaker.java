@@ -47,6 +47,8 @@ public class MarketMaker {
             blotter.getSpreadCalculator().pause();
         } else {
             logger.info("pause is not necessary, cause phase is: " + blotter.getCurPhase());
+            blotter.getSpreadCalculator().clearAnalysingData();
+            logger.info("removed old market data, cause position was closed.");
         }
 
         blotter.updateOrdersData(); // new, can happen something D:
@@ -68,6 +70,8 @@ public class MarketMaker {
             blotter.getSpreadCalculator().pause();
         } else {
             logger.info("pause is not necessary, cause phase is: " + blotter.getCurPhase());
+            blotter.getSpreadCalculator().clearAnalysingData();
+            logger.info("removed old market data, cause position was closed.");
         }
 
         blotter.updateOrdersData(); // new, can happen something D:

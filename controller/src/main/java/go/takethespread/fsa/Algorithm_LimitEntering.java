@@ -12,9 +12,9 @@ public class Algorithm_LimitEntering extends Algorithm {
     @Override
     protected String addToLogDebug() {
         if (blotter.isNearLessThanFar()) {
-            return " EXIT RULE BIDf - BIDn: " + blotter.getBid_f().subtract(blotter.getBid_n()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread();
+            return " EXIT RULE BIDf - BIDn: " + blotter.getBid_f().subtract(blotter.getBid_n()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread().getAmount();
         } else {
-            return " EXIT RULE ASKn - ASKf: " + blotter.getAsk_n().subtract(blotter.getAsk_f()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread();
+            return " EXIT RULE ASKn - ASKf: " + blotter.getAsk_n().subtract(blotter.getAsk_f()).getAmount() + " <= " + blotter.getSpreadCalculator().getCalcSpread().getAmount();
         }
 
     }

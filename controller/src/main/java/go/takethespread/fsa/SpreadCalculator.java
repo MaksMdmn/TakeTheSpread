@@ -6,6 +6,7 @@ import go.takethespread.Money;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Date;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -66,7 +67,7 @@ public class SpreadCalculator {
     public void pause() {
         startPauseTime = System.currentTimeMillis();
         isPauseEnabled = true;
-        logger.info("pause started at: " + startPauseTime);
+        logger.info("pause started at: " + new Date(startPauseTime));
     }
 
     public boolean isPauseEnabled() {
@@ -97,6 +98,17 @@ public class SpreadCalculator {
             return result;
         } else {
             return TradeBlotter.Situation.CONTANGO;
+        }
+    }
+
+    protected void clearAnalysingData() {
+        marketData.clear();
+        if (!tradeSystemInfo.limit_entering_mode) {
+            marketDataContango.clear();
+            marketDataBackwardation.clear();
+        } else {
+            marketDataNearBid.clear();
+            marketDataNearAsk.clear();
         }
     }
 

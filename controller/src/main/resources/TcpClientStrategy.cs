@@ -236,36 +236,56 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 							break;
 						case "BMRT":
+									printPonentialFailInfo("before submitOrder " + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
+									printPonentialFailInfo("before FILLED cycle");
 							while(tempIOrd.OrderState != OrderState.Filled){
 //								NOP ---- trying to get sure-filled market order D:
 							}
+									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
+									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
+									printPonentialFailInfo("success");
 							break;
 						case "BLMT":
+									printPonentialFailInfo("before submitOrder " + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN, OrderAction.Buy, OrderType.Limit, size, price, 0, "", "");
+									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
+									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
+									printPonentialFailInfo("success");
 							break;
 						case "SMRT":
+									printPonentialFailInfo("before submitOrder " + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
+									printPonentialFailInfo("before FILLED cycle");
 							while(tempIOrd.OrderState != OrderState.Filled){
 //								NOP ---- trying to get sure-filled market order D:
 							}
+									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
+									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
+									printPonentialFailInfo("success");
 							break;
 						case "SLMT":
+									printPonentialFailInfo("before submitOrder " + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Limit, size, price, 0, "", "");
+									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
+									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
+									printPonentialFailInfo("success");
 							break;
 						case "CNAL":
 							CancelAllOrders(true,true);
 							break;
 						case "CNID":
+									printPonentialFailInfo("before cancelOrder " + msgCmd);
 							CancelOrder(orderMap[ordId]);
+									printPonentialFailInfo("waiting for FILLED in map");
 							if(orderMap[ordId].OrderState == OrderState.Filled){
 								SendMessages(msgId, PrepareOrderToSend(orderMap[ordId]));
 							}else{
@@ -273,7 +293,9 @@ namespace NinjaTrader.Strategy
 								{
 	//								NOP ---- trying to get final filled value
 								}
+									printPonentialFailInfo("before sending msg");
 								SendMessages(msgId,PrepareOrderToSend(orderMap[ordId]));
+									printPonentialFailInfo("success");
 							}
 							break;
 						case "CHOR":
@@ -291,7 +313,10 @@ namespace NinjaTrader.Strategy
 							ifParamIncorrect(instrumentN + " " + size + " " + price);
 							break;
 					}
-			}catch(Exception e5){
+			}catch(NullReferenceException e13){
+//				NOP
+			}
+			catch(Exception e5){
 				Print("processMessage exception: " + e5.ToString() + "message was: " + msg );
 			}
 		}
@@ -390,6 +415,10 @@ namespace NinjaTrader.Strategy
 				tcpClient = null;
 			}
 //			Disable();
+		}
+
+		private void printPonentialFailInfo(String addTo){
+			Print(DateTime.Now + " " + DateTime.Now.Millisecond + " "  + addTo + " size of dictionary: " + orderMap.Count);
 		}
 
 

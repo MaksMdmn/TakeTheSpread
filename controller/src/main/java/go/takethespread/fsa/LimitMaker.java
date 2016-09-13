@@ -89,7 +89,7 @@ public class LimitMaker {
         }
 
         String tmpInstr = blotter.termToInstrument(term);
-        isRollNecessary = isRollNecessaryIncludingPriceCheck(size, term, deal,price);
+        isRollNecessary = isRollNecessaryIncludingPriceCheck(size, term, deal, price);
 
         logger.debug("is roll necessary including price check: " + isRollNecessary);
 
@@ -108,8 +108,12 @@ public class LimitMaker {
         logger.debug("rolling order including price check: " + frontRunOrder);
     }
 
-    protected String getRollingOrderId(){
+    protected String getRollingOrderId() {
         return frontRunOrder.getOrdId();
+    }
+
+    protected void makeFrontRunOrderNull() {
+        frontRunOrder = null;
     }
 
     private boolean isRollNecessary(int size, Term term, Order.Deal deal) {

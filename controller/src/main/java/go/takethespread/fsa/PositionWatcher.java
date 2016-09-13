@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class PositionWatcher {
     private TradeBlotter blotter;
     private MarketMaker marketMaker;
+    private LimitMaker limitMaker;
     private int prevPos_n;
     private int prevPos_f;
     private int curPos_n;
@@ -16,9 +17,10 @@ public class PositionWatcher {
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
-    public PositionWatcher(TradeBlotter blotter, MarketMaker marketMaker) {
+    public PositionWatcher(TradeBlotter blotter, MarketMaker mm, LimitMaker lm) {
         this.blotter = blotter;
-        this.marketMaker = marketMaker;
+        this.marketMaker = mm;
+        this.limitMaker = lm;
         this.prevPos_n = 0;
         this.prevPos_f = 0;
         this.curPos_n = 0;
@@ -99,6 +101,7 @@ public class PositionWatcher {
             return; //exception here?
         }
         marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, deal);
+        limitMaker.makeFrontRunOrderNull();
 
         logger.info("equalizing: " + fillTerm + " " + Math.abs(diff) + " " + deal);
     }
