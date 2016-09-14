@@ -24,7 +24,7 @@ public final class TradeSystemInfo {
     public boolean default_spread_using;
     public int spread_ticks_ago;
     public Money default_spread;
-    public boolean limit_entering_mode;
+    public int current_tactics;
     //    public final Date trade_session_time;
     //    public final Date exception_session_time;
     private Map<Settings, String> settingsMap = null;
@@ -140,7 +140,7 @@ public final class TradeSystemInfo {
         spread_ticks_ago = Integer.valueOf(settingsMap.get(Settings.SPREAD_TICKS_AGO_N));
         inPos_time_sec = Integer.valueOf(settingsMap.get(Settings.TIME_IN_POS_SEC));
         default_spread_using = Boolean.valueOf(settingsMap.get(Settings.DEFAULT_SPREAD_USING));
-        limit_entering_mode = Boolean.valueOf(settingsMap.get(Settings.LIMIT_ENTERING_MODE));
+        current_tactics = Integer.valueOf(settingsMap.get(Settings.LOBSTA_TACTICS));
     }
 
 }

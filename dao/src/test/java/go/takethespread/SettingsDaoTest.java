@@ -21,7 +21,7 @@ public class SettingsDaoTest {
     private static Setting spread_ticks_ago_n = new Setting();
     private static Setting inPos_time_sec = new Setting();
     private static Setting default_spread_using = new Setting();
-    private static Setting limit_mode = new Setting();
+    private static Setting lobsta_tactics = new Setting();
 
     public static void main(String[] args) {
         try {
@@ -64,8 +64,8 @@ public class SettingsDaoTest {
         inPos_time_sec.setLastUpdate(new Date());
         default_spread_using.setName(Settings.DEFAULT_SPREAD_USING);
         default_spread_using.setLastUpdate(new Date());
-        limit_mode.setName(Settings.LIMIT_ENTERING_MODE);
-        limit_mode.setLastUpdate(new Date());
+        lobsta_tactics.setName(Settings.LOBSTA_TACTICS);
+        lobsta_tactics.setLastUpdate(new Date());
 
 
         account.setValue("lobstaTest");
@@ -76,12 +76,12 @@ public class SettingsDaoTest {
         max_loss_n.setValue("2");
         commis.setValue("4.87");
         max_size.setValue("1");
-        entering_dev.setValue("0.07");
+        entering_dev.setValue("0.05");
         default_spread.setValue("0.65");
-        spread_ticks_ago_n.setValue("16");
+        spread_ticks_ago_n.setValue("20");
         inPos_time_sec.setValue("30");
         default_spread_using.setValue("false");
-        limit_mode.setValue("true");
+        lobsta_tactics.setValue("2");
     }
 
     private static void persistMySettings(GenericDao<Setting, Integer> settingDao) throws PersistException {
@@ -98,7 +98,7 @@ public class SettingsDaoTest {
         settingDao.persist(spread_ticks_ago_n);
         settingDao.persist(inPos_time_sec);
         settingDao.persist(default_spread_using);
-        settingDao.persist(limit_mode);
+        settingDao.persist(lobsta_tactics);
     }
 
     private static void cleanOldSettings(GenericDao<Setting, Integer> settingDao) {

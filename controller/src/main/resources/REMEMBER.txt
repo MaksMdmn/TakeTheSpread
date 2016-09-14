@@ -1,0 +1,3 @@
+0 - market mode
+1 - limit mode
+2 - start from pos mode

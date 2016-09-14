@@ -267,43 +267,56 @@ public class TradeBlotter {
 
         Money bestSpread = getBestSpread(curSituation);
 
-        if (!tradeSystemInfo.limit_entering_mode) {
-            if (curSituation == Situation.CONTANGO) {
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                if (curSituation == Situation.CONTANGO) {
+                    if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
+                            && pos_n > 0) {
+                        return Phase.DISTRIBUTION;
+                    }
+
+                    if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                            && pos_n < tradeSystemInfo.max_size) {
+                        return Phase.ACCUMULATION;
+                    }
+                } else if (curSituation == Situation.BACKWARDATION) {
+                    if (bestSpread.greaterOrEqualThan(spreadCalculator.getCalcSpread())
+                            && pos_n > 0) {
+                        return Phase.DISTRIBUTION;
+                    }
+
+                    if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
+                            && pos_n < tradeSystemInfo.max_size) {
+                        return Phase.ACCUMULATION;
+                    }
+                }
+
+                return Phase.OFF_SEASON;
+            case 1:
                 if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
                         && pos_n > 0) {
                     return Phase.DISTRIBUTION;
                 }
 
-                if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                        && pos_n < tradeSystemInfo.max_size) {
+                if (pos_n < tradeSystemInfo.max_size) {
                     return Phase.ACCUMULATION;
                 }
-            } else if (curSituation == Situation.BACKWARDATION) {
-                if (bestSpread.greaterOrEqualThan(spreadCalculator.getCalcSpread())
-                        && pos_n > 0) {
+
+                return Phase.OFF_SEASON;
+            case 2:
+                if (pos_n == tradeSystemInfo.max_size) {
                     return Phase.DISTRIBUTION;
                 }
 
-                if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
-                        && pos_n < tradeSystemInfo.max_size) {
+                if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread()) && pos_n < tradeSystemInfo.max_size) {
                     return Phase.ACCUMULATION;
                 }
-            }
 
-            return Phase.OFF_SEASON;
-        } else {
-            if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
-                    && pos_n > 0) {
-                return Phase.DISTRIBUTION;
-            }
-
-            if (pos_n < tradeSystemInfo.max_size) {
-                return Phase.ACCUMULATION;
-            }
-
-            return Phase.OFF_SEASON;
+                return Phase.OFF_SEASON;
+            default:
+                break;
         }
-
+        return Phase.OFF_SEASON; //compiler deception
     }
 
     private Situation defineCurSituation() {

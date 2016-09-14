@@ -27,8 +27,8 @@ public class SpreadCalculator {
     private Money enteringSpread;
     private Money guideValue;
 
-    private volatile boolean isPauseEnabled;
     private boolean isEnoughData;
+    private volatile boolean isPauseEnabled;
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
@@ -36,12 +36,22 @@ public class SpreadCalculator {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
-        if (!tradeSystemInfo.limit_entering_mode) {
-            this.marketDataContango = new LinkedBlockingDeque<>();
-            this.marketDataBackwardation = new LinkedBlockingDeque<>();
-        } else {
-            this.marketDataNearBid = new LinkedBlockingDeque<>();
-            this.marketDataNearAsk = new LinkedBlockingDeque<>();
+
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                this.marketDataContango = new LinkedBlockingDeque<>();
+                this.marketDataBackwardation = new LinkedBlockingDeque<>();
+                break;
+            case 1:
+                this.marketDataNearBid = new LinkedBlockingDeque<>();
+                this.marketDataNearAsk = new LinkedBlockingDeque<>();
+                break;
+            case 2:
+                this.marketDataNearBid = new LinkedBlockingDeque<>();
+                this.marketDataNearAsk = new LinkedBlockingDeque<>();
+                break;
+            default:
+                break;
         }
         this.calcSpread = Money.dollars(0d); // mb bad default??!!
         this.enteringSpread = Money.dollars(0d); // mb bad default??!!
@@ -53,13 +63,22 @@ public class SpreadCalculator {
     }
 
     public void makeCalculations() {
-        isEnoughData = isEnoughData();
-        if (!tradeSystemInfo.limit_entering_mode) {
-            collectCalcData();
-            calcSpreads();
-        } else {
-            collectDataForLimitEntering();
-            calcSpreadsForLimitEntering();
+        isEnoughData = checkEnoughData();
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                collectCalcData();
+                calcSpreads();
+                break;
+            case 1:
+                collectDataForLimitEntering();
+                calcSpreadsForLimitEntering();
+                break;
+            case 2:
+                collectDataForLimitEntering();
+                calcSpreadsForLimitEntering();
+                break;
+            default:
+                break;
         }
         logger.info("calculations in SC completed");
     }
@@ -86,29 +105,49 @@ public class SpreadCalculator {
         return guideValue;
     }
 
-    protected synchronized TradeBlotter.Situation tryToClearCurSituation() {
-        if (!tradeSystemInfo.limit_entering_mode) {
-            TradeBlotter.Situation result;
-            if (marketData.peekFirst().lessOrEqualThan(marketData.peekLast())) {
-                result = TradeBlotter.Situation.CONTANGO;
-            } else {
-                result = TradeBlotter.Situation.BACKWARDATION;
-            }
+    public boolean isEnoughData() {
+        return isEnoughData;
+    }
 
-            return result;
-        } else {
-            return TradeBlotter.Situation.CONTANGO;
+    protected synchronized TradeBlotter.Situation tryToClearCurSituation() {
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                TradeBlotter.Situation result;
+                if (marketData.peekFirst().lessOrEqualThan(marketData.peekLast())) {
+                    result = TradeBlotter.Situation.CONTANGO;
+                } else {
+                    result = TradeBlotter.Situation.BACKWARDATION;
+                }
+
+                return result;
+            case 1:
+                return TradeBlotter.Situation.CONTANGO;
+            case 2:
+                return TradeBlotter.Situation.CONTANGO;
+            default:
+                break;
         }
+
+        return TradeBlotter.Situation.CONTANGO; //compiler deception
     }
 
     protected void clearAnalysingData() {
         marketData.clear();
-        if (!tradeSystemInfo.limit_entering_mode) {
-            marketDataContango.clear();
-            marketDataBackwardation.clear();
-        } else {
-            marketDataNearBid.clear();
-            marketDataNearAsk.clear();
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                marketDataContango.clear();
+                marketDataBackwardation.clear();
+                break;
+            case 1:
+                marketDataNearBid.clear();
+                marketDataNearAsk.clear();
+                break;
+            case 2:
+                marketDataNearBid.clear();
+                marketDataNearAsk.clear();
+                break;
+            default:
+                break;
         }
     }
 
@@ -236,12 +275,18 @@ public class SpreadCalculator {
         calcSpread = marketData.peekFirst();
     }
 
-    private boolean isEnoughData() {
-        if (!tradeSystemInfo.limit_entering_mode) {
-            return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
-        } else {
-            return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
+    private boolean checkEnoughData() {
+        switch (tradeSystemInfo.current_tactics) {
+            case 0:
+                return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
+            case 1:
+                return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
+            case 2:
+                return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
+            default:
+                break;
         }
+        return false; //compiler deception
     }
 
     private void checkPauseNecessity() {

@@ -1,7 +1,6 @@
 package go.takethespread.fsa;
 
 import go.takethespread.Term;
-import go.takethespread.managers.socket.NTTcpManager;
 import go.takethespread.util.ClassNameUtil;
 import go.takethespread.Money;
 import go.takethespread.Order;
@@ -40,17 +39,17 @@ public class LimitMaker {
     }
 
     public int trackFilledSize() {
-        return defineRemainingSize();
+        return defineFilledSize();
     }
 
-    public int cancelOrderSize() {
+    public int cancelOrderAndGetFilled() {
         if (frontRunOrder == null) {
             return 0;
         }
         frontRunOrder = externalManager.sendCancelOrder(frontRunOrder.getOrdId());
         logger.debug("order cancelled: " + frontRunOrder);
-        int result = defineRemainingSize();
-        logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderSize() result: " + result);
+        int result = defineFilledSize();
+        logger.debug("cancelled order size: " + frontRunOrder.getFilled() + " comparing with cancelOrderAndGetFilled() result: " + result);
         frontRunOrder = null;
         return result;
     }
@@ -75,7 +74,7 @@ public class LimitMaker {
             frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, size);
         } else {
             if (isRollNecessary) {
-                frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, defineDealSize(size, cancelOrderSize()));
+                frontRunOrder = placeAnOrder(tmpInstr, deal, tmpPrice, defineDealSize(size, cancelOrderAndGetFilled()));
             }
         }
 
@@ -101,7 +100,7 @@ public class LimitMaker {
             frontRunOrder = placeAnOrder(tmpInstr, deal, price, size);
         } else {
             if (isRollNecessary) {
-                frontRunOrder = placeAnOrder(tmpInstr, deal, price, defineDealSize(size, cancelOrderSize()));
+                frontRunOrder = changeAndGetOrder(price, size);
             }
         }
 
@@ -172,7 +171,7 @@ public class LimitMaker {
             return false;
 
         } else if (term != prevTerm || deal != prevDeal) {
-            int cancelSize = cancelOrderSize();
+            int cancelSize = cancelOrderAndGetFilled();
 
             logger.debug("cancelling dangerous: size is " + cancelSize);
             if (cancelSize > 0) {
@@ -204,6 +203,17 @@ public class LimitMaker {
         throw new IllegalArgumentException("illegal arguments, deal is following: " + deal);
     }
 
+    private Order changeAndGetOrder(Money price, int size){
+        int dealSize = size - defineFilledSize();
+        if(dealSize == 0){
+            logger.debug("ORDER WAS FILLED: " + frontRunOrder);
+            return null;
+        }
+        Order tempOrd = externalManager.sendChangeOrder(frontRunOrder.getOrdId(), price, dealSize);
+        logger.debug("order CHANGED: " + tempOrd);
+
+        return tempOrd;
+    }
 
     private Money defineLimitPrice(Term term, Order.Deal deal) {
         if (term == Term.NEAR) {
@@ -233,7 +243,7 @@ public class LimitMaker {
         return size - filled;
     }
 
-    private int defineRemainingSize() {
+    private int defineFilledSize() {
         String key = frontRunOrder.getOrdId();
         int val = externalManager.getOrderFilled(key);
         int result;
