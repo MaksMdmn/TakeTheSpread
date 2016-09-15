@@ -31,7 +31,6 @@ public class TradeBlotter {
     private Money buypow;
     private Money pnl;
     private Phase curPhase;
-    private Situation curSituation;
     private StatusListener listener = StatusManager.getInstance();
 
     private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
@@ -40,8 +39,7 @@ public class TradeBlotter {
         this.tradeSystemInfo = tradeSystemInfo;
         this.externalManager = externalManager;
         this.spreadCalculator = new SpreadCalculator(this, tradeSystemInfo);
-        this.curPhase = Phase.OFF_SEASON; //default
-        this.curSituation = Situation.CONTANGO; //default
+        this.curPhase = Phase.OFF_SEASON;
     }
 
     public Term instrumentToTerm(String instrument) {
@@ -144,10 +142,6 @@ public class TradeBlotter {
         return curPhase;
     }
 
-    public synchronized Situation getCurSituation() {
-        return curSituation;
-    }
-
     public void updateMarketData() {
         logger.info("data updating...");
         externalManager.refreshData();
@@ -186,10 +180,9 @@ public class TradeBlotter {
     public void updateAuxiliaryData() {
         logger.info("auxiliary data updating...");
         spreadCalculator.makeCalculations();
-        curSituation = defineCurSituation();
         curPhase = defineCurPhase();
 
-        logger.debug("new auxiliary data: calcSpread " + spreadCalculator.getCalcSpread().getAmount() + " curPhase " + curPhase + " curSituation " + curSituation);
+        logger.debug("new auxiliary data: calcSpread " + spreadCalculator.getCalcSpread().getAmount() + " curPhase " + curPhase);
     }
 
 
@@ -199,21 +192,10 @@ public class TradeBlotter {
 
         Money[] transactionPrices;
         if (isNearLessThanFar()) {
-            if (curSituation == Situation.CONTANGO) {
-                transactionPrices = new Money[]{ask_n, bid_f};
-            } else if (curSituation == Situation.BACKWARDATION) {
-                transactionPrices = new Money[]{bid_n, ask_f};
-            } else {
-                transactionPrices = new Money[]{ask_n, bid_f}; // DEFAULT, MB CHANGE THAT IN FUTURE
-            }
+            transactionPrices = new Money[]{ask_n, bid_f};
+
         } else {
-            if (curSituation == Situation.CONTANGO) {
-                transactionPrices = new Money[]{bid_n, ask_f};
-            } else if (curSituation == Situation.BACKWARDATION) {
-                transactionPrices = new Money[]{ask_n, bid_f};
-            } else {
-                transactionPrices = new Money[]{bid_n, ask_f};// DEFAULT, MB CHANGE THAT IN FUTURE
-            }
+            transactionPrices = new Money[]{bid_n, ask_f};
 
         }
 
@@ -225,31 +207,24 @@ public class TradeBlotter {
     }
 
 
-    public Money getBestSpread() {
-        return getBestSpread(curSituation);
+    public synchronized Money getBestSpread() {
+        if (isNearLessThanFar()) {
+            return Money.absl(ask_n.subtract(bid_f));
+        } else {
+            return Money.absl(bid_n.subtract(ask_f));
+        }
     }
 
-    public synchronized Money getBestSpread(Situation situation) {
-        if (isNearLessThanFar()) {
-            if (situation == Situation.CONTANGO) {
-                return Money.absl(ask_n.subtract(bid_f));
-            }
-
-            if (situation == Situation.BACKWARDATION) {
-                return Money.absl(bid_n.subtract(ask_f));
-            }
-
-            return Money.absl(ask_n.subtract(bid_f)); //default
-        } else {
-            if (situation == Situation.CONTANGO) {
-                return Money.absl(bid_n.subtract(ask_f));
-            }
-
-            if (situation == Situation.BACKWARDATION) {
-                return Money.absl(ask_n.subtract(bid_f));
-            }
-            return Money.absl(bid_n.subtract(ask_f)); //default
+    public boolean isMarketDataCorrect() {
+        if(bid_n == null || bid_f == null || ask_n == null || ask_f == null){
+            return true;
         }
+        if (bid_n.lessThan(ask_n) && bid_f.lessThan(ask_f)) {
+            return true;
+        }
+        logger.debug("WARNING!!!! INCORRECT MARKET DATA: " + bid_n + " " + ask_n + "   " + ask_f + " " + bid_f);
+        logger.warn("WARNING!!!! INCORRECT MARKET DATA: " + bid_n + " " + ask_n + "   " + ask_f + " " + bid_f);
+        return false;
     }
 
     private Phase defineCurPhase() {
@@ -265,32 +240,19 @@ public class TradeBlotter {
             throw new IllegalArgumentException("both pos are totally equal and have the same sign, n and f: " + position_n + " " + position_f);
         }
 
-        Money bestSpread = getBestSpread(curSituation);
+        Money bestSpread = getBestSpread();
 
         switch (tradeSystemInfo.current_tactics) {
             case 0:
-                if (curSituation == Situation.CONTANGO) {
-                    if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
-                            && pos_n > 0) {
-                        return Phase.DISTRIBUTION;
-                    }
-
-                    if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
-                            && pos_n < tradeSystemInfo.max_size) {
-                        return Phase.ACCUMULATION;
-                    }
-                } else if (curSituation == Situation.BACKWARDATION) {
-                    if (bestSpread.greaterOrEqualThan(spreadCalculator.getCalcSpread())
-                            && pos_n > 0) {
-                        return Phase.DISTRIBUTION;
-                    }
-
-                    if (bestSpread.lessOrEqualThan(spreadCalculator.getEnteringSpread())
-                            && pos_n < tradeSystemInfo.max_size) {
-                        return Phase.ACCUMULATION;
-                    }
+                if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
+                        && pos_n > 0) {
+                    return Phase.DISTRIBUTION;
                 }
 
+                if (bestSpread.greaterOrEqualThan(spreadCalculator.getEnteringSpread())
+                        && pos_n < tradeSystemInfo.max_size) {
+                    return Phase.ACCUMULATION;
+                }
                 return Phase.OFF_SEASON;
             case 1:
                 if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread())
@@ -319,24 +281,10 @@ public class TradeBlotter {
         return Phase.OFF_SEASON; //compiler deception
     }
 
-    private Situation defineCurSituation() {
-        if (position_n == 0 && position_n == position_f) {
-            return spreadCalculator.tryToClearCurSituation();
-        } else {
-            return curSituation;
-        }
-    }
-
-
     protected enum Phase {
         ACCUMULATION,
         DISTRIBUTION,
         OFF_SEASON
-    }
-
-    public enum Situation {
-        CONTANGO,
-        BACKWARDATION
     }
 
     //here all market data and pos (like you are in terminal)

@@ -46,7 +46,7 @@ public class FiniteStateAutomation extends Thread {
 
         statusManager = StatusManager.getInstance();
 
-        switch(tradeSystemInfo.current_tactics){
+        switch (tradeSystemInfo.current_tactics) {
             case 0:
                 logger.debug("MODE IS: ____________CLASSIC____________");
                 algo = new Algorithm_Classic(tradeSystemInfo, externalManager, blotter);
@@ -84,6 +84,10 @@ public class FiniteStateAutomation extends Thread {
                 do {
                     currentTask = taskManager.getCurrentTask();
                 } while (currentTask == null);
+
+                if (!blotter.isMarketDataCorrect()) {
+                    continue;
+                }
 
                 logger.info("execute " + currentTask.getCommand());
                 switch (currentTask.getCommand()) {
@@ -161,7 +165,7 @@ public class FiniteStateAutomation extends Thread {
         int size_f;
         int tmpSize;
         Money tempPrice;
-        switch(tradeSystemInfo.current_tactics){
+        switch (tradeSystemInfo.current_tactics) {
             case 0:
                 logger.debug("MODE: __________________CLASSIC__________________");
                 switch (signal) {
@@ -391,5 +395,4 @@ public class FiniteStateAutomation extends Thread {
         statusManager.ordersInfoUpdated(blotter.getOrders());//to DB
         statusManager.restoreOrdersInfoStatus();
     }
-
 }

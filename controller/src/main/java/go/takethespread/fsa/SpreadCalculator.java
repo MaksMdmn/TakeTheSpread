@@ -7,7 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class SpreadCalculator {
@@ -18,9 +21,8 @@ public class SpreadCalculator {
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
 
+    private HashMap<Money, Integer> spreadMap;
     private BlockingDeque<Money> marketData;
-    private BlockingDeque<Money> marketDataContango;
-    private BlockingDeque<Money> marketDataBackwardation;
     private BlockingDeque<Money> marketDataNearBid;
     private BlockingDeque<Money> marketDataNearAsk;
     private Money prevBid;
@@ -42,11 +44,9 @@ public class SpreadCalculator {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
         this.marketData = new LinkedBlockingDeque<>();
-
+        this.spreadMap = new HashMap<>();
         switch (tradeSystemInfo.current_tactics) {
             case 0:
-                this.marketDataContango = new LinkedBlockingDeque<>();
-                this.marketDataBackwardation = new LinkedBlockingDeque<>();
                 break;
             case 1:
                 this.marketDataNearBid = new LinkedBlockingDeque<>();
@@ -115,34 +115,10 @@ public class SpreadCalculator {
         return isEnoughData;
     }
 
-    protected synchronized TradeBlotter.Situation tryToClearCurSituation() {
-        switch (tradeSystemInfo.current_tactics) {
-            case 0:
-                TradeBlotter.Situation result;
-                if (marketData.peekFirst().lessOrEqualThan(marketData.peekLast())) {
-                    result = TradeBlotter.Situation.CONTANGO;
-                } else {
-                    result = TradeBlotter.Situation.BACKWARDATION;
-                }
-
-                return result;
-            case 1:
-                return TradeBlotter.Situation.CONTANGO;
-            case 2:
-                return TradeBlotter.Situation.CONTANGO;
-            default:
-                break;
-        }
-
-        return TradeBlotter.Situation.CONTANGO; //compiler deception
-    }
-
     protected void clearAnalysingData() {
         marketData.clear();
         switch (tradeSystemInfo.current_tactics) {
             case 0:
-                marketDataContango.clear();
-                marketDataBackwardation.clear();
                 break;
             case 1:
                 marketDataNearBid.clear();
@@ -157,46 +133,50 @@ public class SpreadCalculator {
         }
     }
 
-    protected Money necessityOfWorstExitLimitPrice(Money favorablePrice, Money currentLimitPrice){
+    protected Money necessityOfWorstExitLimitPrice(Money favorablePrice, Money currentLimitPrice) {
         if (blotter.isNearLessThanFar()) {
-            if(favorablePrice.lessOrEqualThan(currentLimitPrice)){
+            if (favorablePrice.lessOrEqualThan(currentLimitPrice)) {
                 return favorablePrice;
             }
-            if(prevBid.greaterThan(marketDataNearBid.peekLast())){
+            if (prevBid.greaterThan(marketDataNearBid.peekLast())) {
                 return currentLimitPrice;
-            }else{
+            } else {
                 return favorablePrice;
             }
         } else {
-            if(favorablePrice.greaterOrEqualThan(currentLimitPrice)){
+            if (favorablePrice.greaterOrEqualThan(currentLimitPrice)) {
                 return favorablePrice;
             }
-            if(prevAsk.lessThan(marketDataNearAsk.peekLast())){
+            if (prevAsk.lessThan(marketDataNearAsk.peekLast())) {
                 return currentLimitPrice;
-            }else{
+            } else {
                 return favorablePrice;
             }
         }
     }
 
     private void collectCalcData() {
+//        if (!isPauseEnabled) {
+//            Money spreadCon = blotter.getBestSpread();
+//
+//            if (isEnoughData) {
+//                marketData.removeFirst();
+//                marketData.addLast(spreadCon);
+//            } else {
+//                marketData.addLast(spreadCon);
+//            }
+//        } else {
+//            checkPauseNecessity();
+//        }
         if (!isPauseEnabled) {
-            Money guidePrice = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
+            Money spread = blotter.getBestSpread();
 
-            Money spreadCon = blotter.getBestSpread(TradeBlotter.Situation.CONTANGO);
-            Money spreadBack = blotter.getBestSpread(TradeBlotter.Situation.BACKWARDATION);
-
-            if (isEnoughData) {
-                marketDataContango.removeFirst();
-                marketDataBackwardation.removeFirst();
-                marketData.removeFirst();
-                marketDataContango.addLast(spreadCon);
-                marketDataBackwardation.addLast(spreadBack);
-                marketData.addLast(guidePrice);
+            if (spreadMap.containsKey(spread)) {
+                Integer val = spreadMap.get(spread);
+                val++;
+                spreadMap.put(spread, val);
             } else {
-                marketDataContango.addLast(spreadCon);
-                marketDataBackwardation.addLast(spreadBack);
-                marketData.addLast(guidePrice);
+                spreadMap.put(spread, 1);
             }
         } else {
             checkPauseNecessity();
@@ -204,21 +184,14 @@ public class SpreadCalculator {
     }
 
     private void calcSpreads() {
-        TradeBlotter.Situation situation = tryToClearCurSituation();
-
         if (!isEnoughData) {
             if (tradeSystemInfo.default_spread_using) {
                 calcSpread = tradeSystemInfo.default_spread;
                 return;
             } else {
-                calcSpread = blotter.getBestSpread(situation); //equal to market
-                if (situation == TradeBlotter.Situation.CONTANGO) {
-                    enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
-                } else if (situation == TradeBlotter.Situation.BACKWARDATION) {
-                    enteringSpread = calcSpread.subtract(tradeSystemInfo.entering_dev);
-                }
-                return;
+                calcSpread = blotter.getBestSpread();
             }
+            enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
         }
 
         if (isPauseEnabled) {
@@ -227,23 +200,28 @@ public class SpreadCalculator {
             return;
         }
 
-        if (marketData == null) {
-            throw new NullPointerException("marketData is null.");
-        }
+//        if (marketData == null) {
+//            throw new NullPointerException("marketData is null.");
+//        }
+//
+//        if (marketData.isEmpty()) {
+//            throw new IllegalArgumentException("market data is empty, cannot calc that, man.");
+//        }
+//
+//        calcSpread = marketData.peekFirst();
+//        enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
 
-        if (marketData.isEmpty()) {
-            throw new IllegalArgumentException("market data is empty, cannot calc that, man.");
+        Integer tempMax = 0;
+        for (Map.Entry<Money, Integer> pair : spreadMap.entrySet()) {
+            if (tempMax < pair.getValue()) {
+                tempMax = pair.getValue();
+                calcSpread = pair.getKey();
+            }
         }
+        logger.debug("calc spread: " + calcSpread.getAmount() + " was met: " + spreadMap.get(calcSpread) + " times.");
+        enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
 
-        if (situation == TradeBlotter.Situation.CONTANGO) {
-            calcSpread = marketDataContango.peekFirst();
-            enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
-        } else if (situation == TradeBlotter.Situation.BACKWARDATION) {
-            calcSpread = marketDataBackwardation.peekFirst();
-            enteringSpread = calcSpread.subtract(tradeSystemInfo.entering_dev);
-        }
-
-        logger.debug("curSpr = " + calcSpread.getAmount() + " based on: " + situation);
+        logger.debug("curSpr = " + calcSpread.getAmount() + " based on: ");
 
     }
 
@@ -312,7 +290,8 @@ public class SpreadCalculator {
     private boolean checkEnoughData() {
         switch (tradeSystemInfo.current_tactics) {
             case 0:
-                return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
+//                return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
+                return true;
             case 1:
                 return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
             case 2:
@@ -339,7 +318,7 @@ public class SpreadCalculator {
         Money replaceExcess;
         if (blotter.isNearLessThanFar()) {
             diff = marketDataNearBid.peekLast().subtract(marketDataNearBid.peekFirst());
-            if(diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)){
+            if (diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)) {
                 excess = marketDataNearBid.pollLast();
                 replaceExcess = marketDataNearBid.peekFirst().add(diff.multiply(PERCENT_OF_EXCESS));
                 marketDataNearBid.addLast(replaceExcess);
@@ -347,7 +326,7 @@ public class SpreadCalculator {
             }
         } else {
             diff = marketDataNearAsk.peekFirst().subtract(marketDataNearAsk.peekLast());
-            if(diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)){
+            if (diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)) {
                 excess = marketDataNearBid.pollLast();
                 marketDataNearAsk.removeLast();
                 replaceExcess = marketDataNearAsk.peekFirst().subtract(diff.multiply(PERCENT_OF_EXCESS));

@@ -103,14 +103,7 @@ public class InfoManager {
     }
 
     public Money getCurDeviation() {
-        Money diff = Money.absl(getBestSpread().subtract(blotter.getSpreadCalculator().getCalcSpread()));
-        if (blotter.getCurSituation() == TradeBlotter.Situation.CONTANGO) {
-            return diff;
-        } else if (blotter.getCurSituation() == TradeBlotter.Situation.BACKWARDATION) {
-            return diff.multiply(-1d);
-        } else {
-            return Money.dollars(0d);
-        }
+        return Money.absl(getBestSpread().subtract(blotter.getSpreadCalculator().getCalcSpread()));
     }
 
     public int getDealsNumber() {

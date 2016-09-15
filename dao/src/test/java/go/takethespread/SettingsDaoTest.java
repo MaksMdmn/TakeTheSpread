@@ -81,7 +81,7 @@ public class SettingsDaoTest {
         spread_ticks_ago_n.setValue("10"); // was 16
         inPos_time_sec.setValue("30");
         default_spread_using.setValue("false");
-        lobsta_tactics.setValue("2");
+        lobsta_tactics.setValue("0"); // was 2
     }
 
     private static void persistMySettings(GenericDao<Setting, Integer> settingDao) throws PersistException {
