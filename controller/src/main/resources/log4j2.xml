@@ -17,7 +17,7 @@
             </Filters>
         </Console>
 
-        <File name="fileAp" fileName="${log-path}/records.log" append="false">
+        <File name="fileAp" fileName="${log-path}/records-${date:dd-MM-yyyy-HH-mm-ss}.log" append="false">
             <PatternLayout pattern="%deal{yyyy-MM-dd HH:mm:ss,SSS} %-5p %c{1}:%L - %m%n">
             </PatternLayout>
         </File>
