@@ -78,7 +78,7 @@ public class SettingsDaoTest {
         max_size.setValue("1");
         entering_dev.setValue("0.05");
         default_spread.setValue("0.65");
-        spread_ticks_ago_n.setValue("20");
+        spread_ticks_ago_n.setValue("10"); // was 16
         inPos_time_sec.setValue("30");
         default_spread_using.setValue("false");
         lobsta_tactics.setValue("2");

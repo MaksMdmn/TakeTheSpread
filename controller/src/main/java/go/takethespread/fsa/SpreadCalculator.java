@@ -11,6 +11,10 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class SpreadCalculator {
+
+    private static Money SERIOUS_DEVIATION_FOR_BKW = Money.dollars(0.03d);
+    private static double PERCENT_OF_EXCESS = 0.2d;
+
     private TradeBlotter blotter;
     private TradeSystemInfo tradeSystemInfo;
 
@@ -19,6 +23,8 @@ public class SpreadCalculator {
     private BlockingDeque<Money> marketDataBackwardation;
     private BlockingDeque<Money> marketDataNearBid;
     private BlockingDeque<Money> marketDataNearAsk;
+    private Money prevBid;
+    private Money prevAsk;
 
     private long startPauseTime;
     private long pauseDuration;
@@ -151,6 +157,28 @@ public class SpreadCalculator {
         }
     }
 
+    protected Money necessityOfWorstExitLimitPrice(Money favorablePrice, Money currentLimitPrice){
+        if (blotter.isNearLessThanFar()) {
+            if(favorablePrice.lessOrEqualThan(currentLimitPrice)){
+                return favorablePrice;
+            }
+            if(prevBid.greaterThan(marketDataNearBid.peekLast())){
+                return currentLimitPrice;
+            }else{
+                return favorablePrice;
+            }
+        } else {
+            if(favorablePrice.greaterOrEqualThan(currentLimitPrice)){
+                return favorablePrice;
+            }
+            if(prevAsk.lessThan(marketDataNearAsk.peekLast())){
+                return currentLimitPrice;
+            }else{
+                return favorablePrice;
+            }
+        }
+    }
+
     private void collectCalcData() {
         if (!isPauseEnabled) {
             Money guidePrice = Money.absl(blotter.getBid_f().subtract(blotter.getBid_n()));
@@ -226,6 +254,8 @@ public class SpreadCalculator {
             Money spr = blotter.getBestSpread();
 
             if (isEnoughData) {
+                prevBid = marketDataNearBid.peekLast();
+                prevAsk = marketDataNearAsk.peekLast(); //both previous values - after adding element (code below) we cannot see them - havnt get(i) method in queue
                 marketDataNearBid.removeFirst();
                 marketDataNearAsk.removeFirst();
                 marketDataNearBid.addLast(bid);
@@ -233,10 +263,14 @@ public class SpreadCalculator {
                 marketData.removeFirst();
                 marketData.addLast(spr);
             } else {
+                prevBid = bid;
+                prevAsk = ask;
                 marketDataNearBid.addLast(bid);
                 marketDataNearAsk.addLast(ask);
                 marketData.addLast(spr);
             }
+
+            bkwFilter();
         } else {
             checkPauseNecessity();
         }
@@ -296,6 +330,30 @@ public class SpreadCalculator {
             isPauseEnabled = false;
 
             logger.debug("pause ended.");
+        }
+    }
+
+    private void bkwFilter() {
+        Money diff;
+        Money excess;
+        Money replaceExcess;
+        if (blotter.isNearLessThanFar()) {
+            diff = marketDataNearBid.peekLast().subtract(marketDataNearBid.peekFirst());
+            if(diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)){
+                excess = marketDataNearBid.pollLast();
+                replaceExcess = marketDataNearBid.peekFirst().add(diff.multiply(PERCENT_OF_EXCESS));
+                marketDataNearBid.addLast(replaceExcess);
+                logger.debug("BKW FILTER (NEAR LESS), REPLACE VALUE: " + excess.getAmount() + " ON " + replaceExcess.getAmount() + " CAUSE DEV WAS: " + diff.getAmount());
+            }
+        } else {
+            diff = marketDataNearAsk.peekFirst().subtract(marketDataNearAsk.peekLast());
+            if(diff.greaterOrEqualThan(SERIOUS_DEVIATION_FOR_BKW)){
+                excess = marketDataNearBid.pollLast();
+                marketDataNearAsk.removeLast();
+                replaceExcess = marketDataNearAsk.peekFirst().subtract(diff.multiply(PERCENT_OF_EXCESS));
+                marketDataNearAsk.addLast(replaceExcess);
+                logger.debug("BKW FILTER (NEAR GREATER), REPLACE VALUE: " + excess.getAmount() + " ON " + replaceExcess.getAmount() + " CAUSE DEV WAS: " + diff.getAmount());
+            }
         }
     }
 

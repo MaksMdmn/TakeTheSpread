@@ -87,6 +87,12 @@ public class LimitMaker {
             return;
         }
 
+        if (frontRunOrder != null) {
+            logger.debug("TRY TO CHOOSE PRICE BETWEEN(favor, old): " + price.getAmount() + " " + frontRunOrder.getPrice().getAmount());
+            price = blotter.getSpreadCalculator().necessityOfWorstExitLimitPrice(price, frontRunOrder.getPrice());
+            logger.debug("CHOISE: " + price.getAmount());
+        }
+
         String tmpInstr = blotter.termToInstrument(term);
         isRollNecessary = isRollNecessaryIncludingPriceCheck(size, term, deal, price);
 
@@ -203,9 +209,9 @@ public class LimitMaker {
         throw new IllegalArgumentException("illegal arguments, deal is following: " + deal);
     }
 
-    private Order changeAndGetOrder(Money price, int size){
+    private Order changeAndGetOrder(Money price, int size) {
         int dealSize = size - defineFilledSize();
-        if(dealSize == 0){
+        if (dealSize == 0) {
             logger.debug("ORDER WAS FILLED: " + frontRunOrder);
             return null;
         }
