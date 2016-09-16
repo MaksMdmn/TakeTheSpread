@@ -236,17 +236,11 @@ namespace NinjaTrader.Strategy
 							SendMessages(msgId, GetAccountValue(AccountItem.RealizedProfitLoss).ToString());
 							break;
 						case "BMRT":
-									printPonentialFailInfo("before submitOrder " + msgCmd);
+									printPonentialFailInfo("before submitOrder market buy" + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN,OrderAction.Buy, OrderType.Market, size, 0, 0, "", "");
-									printPonentialFailInfo("before FILLED cycle");
-							while(tempIOrd.OrderState != OrderState.Filled){
-//								NOP ---- trying to get sure-filled market order D:
-							}
-									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
-									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
-									printPonentialFailInfo("success");
+									printPonentialFailInfo("success market buy");
 							break;
 						case "BLMT":
 									printPonentialFailInfo("before submitOrder " + msgCmd);
@@ -258,17 +252,11 @@ namespace NinjaTrader.Strategy
 									printPonentialFailInfo("success");
 							break;
 						case "SMRT":
-									printPonentialFailInfo("before submitOrder " + msgCmd);
+									printPonentialFailInfo("before submitOrder market sell" + msgCmd);
 							tempIOrd = SubmitOrder(instrumentN, OrderAction.Sell, OrderType.Market, size, 0, 0, "", "");
-									printPonentialFailInfo("before FILLED cycle");
-							while(tempIOrd.OrderState != OrderState.Filled){
-//								NOP ---- trying to get sure-filled market order D:
-							}
-									printPonentialFailInfo("before adding to map");
 							AddToOrderMap(tempIOrd);
-									printPonentialFailInfo("before sending msg");
 							SendMessages(msgId, PrepareOrderToSend(tempIOrd));
-									printPonentialFailInfo("success");
+									printPonentialFailInfo("success market sell");
 							break;
 						case "SLMT":
 									printPonentialFailInfo("before submitOrder " + msgCmd);

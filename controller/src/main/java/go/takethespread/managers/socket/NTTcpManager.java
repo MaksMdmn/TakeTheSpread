@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class NTTcpManager {
+    private static long idIncrement = 0;
     private static NTTcpManager instance;
     private NTTcpServer server;
     private NTTcpServer.NTTcpDataBridge bridge;
@@ -136,7 +137,7 @@ public class NTTcpManager {
     }
 
     protected static long getMessageId() {
-        return System.currentTimeMillis();
+        return ++idIncrement;
     }
 
     private synchronized void collectAllAnswers() {
