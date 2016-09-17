@@ -1,57 +1,46 @@
 package go.takethespread;
 
+
 import go.takethespread.exceptions.PersistException;
 import go.takethespread.impl.PostgresDaoFactoryImpl;
 
-import java.sql.Connection;
 import java.util.Date;
 
 public class MarketDataDaoImplTest {
     public static void main(String[] args) {
-        MarketData md1 = new MarketData();
-        MarketData md2 = new MarketData();
-        md1.setTerm(Term.NEAR);
-        md1.setBid(Money.dollars(43.2));
-        md1.setAsk(Money.dollars(43.7));
-        md1.setLast(Money.dollars(412.2d));
-        md1.setBidSize(412);
-        md1.setAskSize(666);
-        md1.setDate(new Date());
-
-        md2.setTerm(Term.FAR);
-        md2.setBid(Money.dollars(48.1));
-        md2.setAsk(Money.dollars(49.4));
-        md2.setLast(Money.dollars(41112.2d));
-        md2.setBidSize(12);
-        md2.setAskSize(555);
-        md2.setDate(new Date(new Date().getTime() + 50000L));
-
-        DaoFactory<Connection> daoFactory = new PostgresDaoFactoryImpl();
         try {
-            GenericDao<MarketData, Integer> mdDao = daoFactory.getDao(daoFactory.getContext(), MarketData.class);
-            System.out.println("- TEST INSERT -");
-            md1.setId(mdDao.persist(md1));
-            md2.setId(mdDao.persist(md2));
-            System.out.println("- TEST SELECT - " );
-            System.out.println(mdDao.read(md1.getId()));
+            PostgresDaoFactoryImpl factory = new PostgresDaoFactoryImpl();
+            GenericDao<MarketData, Integer> mdDao = factory.getDao(factory.getContext(), MarketData.class);
+            MarketData md;
+            long startT = System.currentTimeMillis();
+            for (int i = 0; i < 1500; i++) {
+                md = new MarketData();
+                md.setDate(new Date());
+                md.setBid_n(getRandomNumbDouble());
+                md.setBidSize_n(getRandomNumbInt());
+                md.setAsk_n(getRandomNumbDouble());
+                md.setAskSize_n(getRandomNumbInt());
+                md.setBid_f(getRandomNumbDouble());
+                md.setBidSize_f(getRandomNumbInt());
+                md.setAsk_f(getRandomNumbDouble());
+                md.setAskSize_f(getRandomNumbInt());
+                mdDao.persist(md);
+            }
 
-            System.out.println("- TEST SELECT ALL -");
-            System.out.println(mdDao.readAll());
-
-            System.out.println("- TEST UPDATE -");
-            md1.setAskSize(9999);
-            mdDao.update(md1);
-            System.out.println(mdDao.read(md1.getId()));
-
-            System.out.println("- TEST DELETE -");
-            mdDao.delete(md1);
-            System.out.println(mdDao.readAll());
-
+            System.out.println(System.currentTimeMillis() - startT + " ms.");
 
         } catch (PersistException e) {
             e.printStackTrace();
         }
 
+    }
 
+
+    public static Money getRandomNumbDouble() {
+        return Money.dollars(Math.random() * 10);
+    }
+
+    public static int getRandomNumbInt() {
+        return (int) (Math.random() * 100);
     }
 }

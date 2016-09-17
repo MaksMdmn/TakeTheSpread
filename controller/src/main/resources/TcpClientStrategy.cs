@@ -192,11 +192,15 @@ namespace NinjaTrader.Strategy
 						case "ORDS":
 							System.Collections.IEnumerator ListOfOrders = Account.Orders.GetEnumerator();
 							String tempStr = "";
-							for (int i = 0; i < Account.Orders.Count;i++)
-							{
-								ListOfOrders.MoveNext();
-								Order ord1 = (Order)ListOfOrders.Current;
-								tempStr += "ord:" + ord1.ToString() + " Time=" + "'" + ord1.Time.ToString() + "'";
+							if(Account.Orders.Count == 0){
+								tempStr = " "; //just empty row, cause in java "" equal to null when parse...
+							}else{
+								for (int i = 0; i < Account.Orders.Count;i++)
+								{
+									ListOfOrders.MoveNext();
+									Order ord1 = (Order)ListOfOrders.Current;
+									tempStr += "ord:" + ord1.ToString() + " Time=" + "'" + ord1.Time.ToString() + "'";
+								}
 							}
 							SendMessages(msgId, tempStr);
 							break;

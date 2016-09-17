@@ -104,6 +104,9 @@ public class NTTcpExternalManagerImpl implements ExternalManager {
     public List<Order> getOrders() {
         long id = ntTcpManager.sendOrdersMessage();
         String tempOrders = waitingForAnswer(id);
+        if (tempOrders.equals(" ")) {
+            return null;
+        }
         List<Order> orders = new ArrayList<>();
         String[] tempOrdersArr = tempOrders.split("ord:");
         for (String tempOrder : tempOrdersArr) {

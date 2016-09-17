@@ -188,6 +188,10 @@ public class TradeBlotter {
 
     public void updateOrdersData() {
         orders = externalManager.getOrders();
+        if (orders == null) {
+            return;
+        }
+
         listener.ordersInfoUpdated(orders);
 
         Money[] transactionPrices;
@@ -216,7 +220,7 @@ public class TradeBlotter {
     }
 
     public boolean isMarketDataCorrect() {
-        if(bid_n == null || bid_f == null || ask_n == null || ask_f == null){
+        if (bid_n == null || bid_f == null || ask_n == null || ask_f == null) {
             return true;
         }
         if (bid_n.lessThan(ask_n) && bid_f.lessThan(ask_f)) {

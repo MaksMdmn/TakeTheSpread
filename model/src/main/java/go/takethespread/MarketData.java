@@ -9,15 +9,22 @@ public class MarketData implements Serializable, Identified<Integer> {
 
     private Integer id = null;
     private Date date;
-    private Term term;
-    private Money bid;
-    private Money ask;
-    private Money last;
-    private int bidSize;
-    private int askSize;
+    private Money bid_n;
+    private int bidSize_n;
+    private Money ask_n;
+    private int askSize_n;
+    private Money bid_f;
+    private int bidSize_f;
+    private Money ask_f;
+    private int askSize_f;
 
     public MarketData() {
 
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -32,70 +39,82 @@ public class MarketData implements Serializable, Identified<Integer> {
         this.date = date;
     }
 
-    public Term getTerm() {
-        return term;
+    public Money getBid_n() {
+        return bid_n;
     }
 
-    public void setTerm(Term term) {
-        this.term = term;
+    public void setBid_n(Money bid_n) {
+        this.bid_n = bid_n;
     }
 
-    public Money getBid() {
-        return bid;
+    public int getBidSize_n() {
+        return bidSize_n;
     }
 
-    public void setBid(Money bid) {
-        this.bid = bid;
+    public void setBidSize_n(int bidSize_n) {
+        this.bidSize_n = bidSize_n;
     }
 
-    public Money getAsk() {
-        return ask;
+    public Money getAsk_n() {
+        return ask_n;
     }
 
-    public void setAsk(Money ask) {
-        this.ask = ask;
+    public void setAsk_n(Money ask_n) {
+        this.ask_n = ask_n;
     }
 
-    public Money getLast() {
-        return last;
+    public int getAskSize_n() {
+        return askSize_n;
     }
 
-    public void setLast(Money last) {
-        this.last = last;
+    public void setAskSize_n(int askSize_n) {
+        this.askSize_n = askSize_n;
     }
 
-    public int getBidSize() {
-        return bidSize;
+    public Money getBid_f() {
+        return bid_f;
     }
 
-    public void setBidSize(int bidSize) {
-        this.bidSize = bidSize;
+    public void setBid_f(Money bid_f) {
+        this.bid_f = bid_f;
     }
 
-    public int getAskSize() {
-        return askSize;
+    public int getBidSize_f() {
+        return bidSize_f;
     }
 
-    public void setAskSize(int askSize) {
-        this.askSize = askSize;
+    public void setBidSize_f(int bidSize_f) {
+        this.bidSize_f = bidSize_f;
     }
 
-    @Override
-    public Integer getId() {
-        return id;
+    public Money getAsk_f() {
+        return ask_f;
+    }
+
+    public void setAsk_f(Money ask_f) {
+        this.ask_f = ask_f;
+    }
+
+    public int getAskSize_f() {
+        return askSize_f;
+    }
+
+    public void setAskSize_f(int askSize_f) {
+        this.askSize_f = askSize_f;
     }
 
     @Override
     public String toString() {
         return "MarketData{" +
-                "id=" + id +
-                ", date=" + date +
-                ", term=" + term +
-                ", bid=" + bid +
-                ", ask=" + ask +
-                ", last=" + last +
-                ", bidSize=" + bidSize +
-                ", askSize=" + askSize +
+                "date=" + date +
+                ", bid_n=" + bid_n.getAmount() +
+                ", bidSize_n=" + bidSize_n +
+                ", ask_n=" + ask_n.getAmount() +
+                ", askSize_n=" + askSize_n +
+                ", bid_f=" + bid_f.getAmount() +
+                ", bidSize_f=" + bidSize_f +
+                ", ask_f=" + ask_f.getAmount() +
+                ", askSize_f=" + askSize_f +
                 '}';
     }
 }

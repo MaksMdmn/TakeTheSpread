@@ -141,6 +141,8 @@ public class FiniteStateAutomation extends Thread {
         logger.info("execute GO");
 
         blotter.updateMarketData();
+        statusManager.receivedMarketData(blotter);
+
         blotter.updatePositionData();
 
         logger.info("market and pos data updated");
@@ -347,14 +349,14 @@ public class FiniteStateAutomation extends Thread {
         // correct completion of work!
         try {
             taskManager.removeAllTasks();
-            ordersToDBWhenJobFinishedOrStopped();
+            writeInformationToDataBaseWhenFinishing();
         } catch (TradeException e) {
             e.printStackTrace();
         }
     }
 
     private void executeOF() {
-        ordersToDBWhenJobFinishedOrStopped();
+        writeInformationToDataBaseWhenFinishing();
         externalManager.finishingJob();
         isWorking = false;
     }
@@ -387,12 +389,14 @@ public class FiniteStateAutomation extends Thread {
         blotter.updateOrdersData();
     }
 
-    private void ordersToDBWhenJobFinishedOrStopped() {
+    private void writeInformationToDataBaseWhenFinishing() {
         if (lm.isOrderPlaced()) {
             externalManager.sendCancelOrder(lm.getRollingOrderId());
         }
         blotter.updateOrdersData();
         statusManager.ordersInfoUpdated(blotter.getOrders());//to DB
         statusManager.restoreOrdersInfoStatus();
+
+        MarketDataCollector.getInstance().pushToDataBase();
     }
 }

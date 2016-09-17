@@ -2,6 +2,7 @@ package go.takethespread.managers;
 
 import go.takethespread.Money;
 import go.takethespread.Order;
+import go.takethespread.fsa.TradeBlotter;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class StatusManager implements StatusListener {
     private static StatusManager instance;
 
     private OrderManager orderManager = null;
+    private MarketDataCollector marketDataCollector = null;
     private volatile boolean isRunning = false;
     private volatile boolean isGoExecuting = false;
     private volatile boolean isOrdersInfoUpdated = true;
@@ -60,6 +62,17 @@ public class StatusManager implements StatusListener {
     public void transactionTookPlace(Money[] near_far_prices) {
         transactionHappened = true;
         lastTransactions = near_far_prices;
+    }
+
+    @Override
+    public void receivedMarketData(TradeBlotter blotter) {
+        if (marketDataCollector == null) {
+            marketDataCollector = MarketDataCollector.getInstance();
+        }
+        marketDataCollector.collectMarketData(blotter);
+        if (marketDataCollector.isItTimeToPushToDb()) {
+            marketDataCollector.pushToDataBase();
+        }
     }
 
     public synchronized boolean isRunning() {

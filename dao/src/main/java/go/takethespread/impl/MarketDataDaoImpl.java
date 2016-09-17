@@ -14,9 +14,9 @@ import java.util.List;
 
 public class MarketDataDaoImpl extends AbstractJDBCao<MarketData, Integer> {
 
-    private static String SELECT_MARKETDATA = "SELECT id, term, bid, ask, bidsize, asksize, dt, last FROM marketdata";
-    private static String UPDATE_MARKETDATA = "UPDATE marketdata SET term = ?, bid = ?, ask = ?, bidsize = ?, asksize = ?, dt = ?, last = ? WHERE id = ?";
-    private static String INSERT_MARKETDATA = "INSERT INTO marketdata(term, bid, ask, bidsize, asksize, dt, last) VALUES(?,?,?,?,?,?,?)";
+    private static String SELECT_MARKETDATA = "SELECT id, dt, bid_n, bidSize_n, ask_n, askSize_n,  bid_f, bidSize_f, ask_f, askSize_f FROM marketdata";
+    private static String UPDATE_MARKETDATA = "UPDATE marketdata SET dt = ?, bid_n = ?, bidSize_n = ?, ask_n = ?, askSize_n = ?,  bid_f = ?, bidSize_f = ?, ask_f = ?, askSize_f = ? WHERE id = ?";
+    private static String INSERT_MARKETDATA = "INSERT INTO marketdata(dt, bid_n, bidSize_n, ask_n, askSize_n,  bid_f, bidSize_f, ask_f, askSize_f) VALUES(?,?,?,?,?,?,?,?,?)";
     private static String DELETE_MARKETDATA = "DELETE FROM marketdata WHERE id = ?";
 
     private static String SPECIAL_SELECT_MARKETDATA = SELECT_MARKETDATA + " ORDER BY id DESC LIMIT ";
@@ -52,14 +52,15 @@ public class MarketDataDaoImpl extends AbstractJDBCao<MarketData, Integer> {
             while (rs.next()) {
                 MarketData md = new MarketData();
                 md.setId(rs.getInt("id"));
-                md.setTerm(Term.valueOf(rs.getString("term")));
-                md.setBid(Money.dollars(rs.getDouble("bid")));
-                md.setAsk(Money.dollars(rs.getDouble("ask")));
-                md.setBidSize(rs.getInt("bidsize"));
-                md.setAskSize(rs.getInt("asksize"));
                 md.setDate(new java.util.Date(rs.getLong("dt")));
-                md.setLast(Money.dollars(rs.getDouble("last")));
-
+                md.setBid_n(Money.dollars(rs.getDouble("bid_n")));
+                md.setBidSize_n(rs.getInt("bidSize_n"));
+                md.setAsk_n(Money.dollars(rs.getDouble("ask_n")));
+                md.setAskSize_n(rs.getInt("askSize_n"));
+                md.setBid_f(Money.dollars(rs.getDouble("bid_n")));
+                md.setBidSize_f(rs.getInt("bidSize_n"));
+                md.setAsk_f(Money.dollars(rs.getDouble("ask_n")));
+                md.setAskSize_f(rs.getInt("askSize_n"));
                 result.add(md);
             }
         } catch (Exception e) {
@@ -73,14 +74,16 @@ public class MarketDataDaoImpl extends AbstractJDBCao<MarketData, Integer> {
     @Override
     protected void prepareStatementForUpdate(PreparedStatement ps, MarketData object) throws PersistException {
         try {
-            ps.setString(1, object.getTerm().name());
-            ps.setDouble(2, object.getBid().getAmount());
-            ps.setDouble(3, object.getAsk().getAmount());
-            ps.setInt(4, object.getBidSize());
-            ps.setInt(5, object.getAskSize());
-            ps.setLong(6, object.getDate().getTime());
-            ps.setDouble(7, object.getLast().getAmount());
-            ps.setInt(8, object.getId());
+            ps.setLong(1, object.getDate().getTime());
+            ps.setDouble(2, object.getBid_n().getAmount());
+            ps.setInt(3, object.getBidSize_n());
+            ps.setDouble(4, object.getAsk_n().getAmount());
+            ps.setInt(5, object.getAskSize_n());
+            ps.setDouble(6, object.getBid_f().getAmount());
+            ps.setInt(7, object.getBidSize_f());
+            ps.setDouble(8, object.getAsk_f().getAmount());
+            ps.setInt(9, object.getAskSize_f());
+            ps.setInt(10, object.getId());
         } catch (Exception e) {
             throw new PersistException("Parsing resultSet error: ", e);
         }
@@ -89,13 +92,15 @@ public class MarketDataDaoImpl extends AbstractJDBCao<MarketData, Integer> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement ps, MarketData object) throws PersistException {
         try {
-            ps.setString(1, object.getTerm().name());
-            ps.setDouble(2, object.getBid().getAmount());
-            ps.setDouble(3, object.getAsk().getAmount());
-            ps.setInt(4, object.getBidSize());
-            ps.setInt(5, object.getAskSize());
-            ps.setLong(6, object.getDate().getTime());
-            ps.setDouble(7, object.getLast().getAmount());
+            ps.setLong(1, object.getDate().getTime());
+            ps.setDouble(2, object.getBid_n().getAmount());
+            ps.setInt(3, object.getBidSize_n());
+            ps.setDouble(4, object.getAsk_n().getAmount());
+            ps.setInt(5, object.getAskSize_n());
+            ps.setDouble(6, object.getBid_f().getAmount());
+            ps.setInt(7, object.getBidSize_f());
+            ps.setDouble(8, object.getAsk_f().getAmount());
+            ps.setInt(9, object.getAskSize_f());
         } catch (Exception e) {
             throw new PersistException("Parsing resultSet error: ", e);
         }
