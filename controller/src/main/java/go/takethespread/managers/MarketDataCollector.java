@@ -6,6 +6,9 @@ import go.takethespread.MarketData;
 import go.takethespread.exceptions.PersistException;
 import go.takethespread.fsa.TradeBlotter;
 import go.takethespread.impl.PostgresDaoFactoryImpl;
+import go.takethespread.util.ClassNameUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -14,6 +17,7 @@ import java.util.List;
 public class MarketDataCollector {
     private static MarketDataCollector instance;
     private static int ENOUGH_DATA_TIME_TO_PUSH = 1500;
+    private static final Logger logger = LogManager.getLogger(ClassNameUtil.getCurrentClassName());
 
     private List<MarketData> mdList;
     private PostgresDaoFactoryImpl factory;
@@ -50,6 +54,7 @@ public class MarketDataCollector {
     }
 
     public void pushToDataBase() {
+        logger.debug("was called pushing to DB: list size " + mdList.size() + ", enoughSize " + ENOUGH_DATA_TIME_TO_PUSH );
         if (mdList == null) {
             return;
         }
@@ -67,6 +72,7 @@ public class MarketDataCollector {
         } catch (PersistException e) {
             e.printStackTrace();
         }
+        logger.debug("data pushed successful.");
 
     }
 
