@@ -36,6 +36,14 @@ public class OrderManager {
     }
 
     public void addOrderToDBWithoutDuplicates(List<Order> orders) {
+        if (orders == null) {
+            return;
+        }
+
+        if (orders.isEmpty()) {
+            return;
+        }
+
         try {
             if (wroteOrderIdList.isEmpty()) {
                 for (Order o : orders) {
