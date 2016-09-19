@@ -71,8 +71,8 @@ public class SettingsDaoTest {
         account.setValue("lobstaTest");
         host.setValue("localhost");
         port.setValue("8085");
-        instrument_n.setValue("CL 10-16");
-        instrument_f.setValue("CL 11-16");
+        instrument_n.setValue("CL 11-16");
+        instrument_f.setValue("CL 12-16");
         max_loss_n.setValue("2");
         commis.setValue("4.87");
         max_size.setValue("1");

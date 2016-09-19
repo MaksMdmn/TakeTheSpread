@@ -50,7 +50,7 @@ namespace NinjaTrader.Strategy
 
 		//handle by myself
 		private String[] ntToken = new[]{":-:"};
-		private String secondInstrTicker = "CL 11-16";
+		private String secondInstrTicker = "CL 12-16";
 		private int ntPort = 8085;
 		private String ntHost = "127.0.0.1";
 		private int sendingDelayMs = 50; //200
