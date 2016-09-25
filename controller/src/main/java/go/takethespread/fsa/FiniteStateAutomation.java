@@ -23,6 +23,7 @@ public class FiniteStateAutomation extends Thread {
     private StatusManager statusManager;
 
     private LimitMaker lm;
+    private LimitMaker lm_additional;
     private MarketMaker mm;
     private PositionWatcher pw;
     private Algorithm algo;
@@ -46,26 +47,30 @@ public class FiniteStateAutomation extends Thread {
 
         statusManager = StatusManager.getInstance();
 
+        lm = new LimitMaker(externalManager, blotter);
+        mm = new MarketMaker(externalManager, blotter);
+
         switch (tradeSystemInfo.current_tactics) {
             case 0:
                 logger.debug("MODE IS: ____________CLASSIC____________");
                 algo = new Algorithm_Classic(tradeSystemInfo, externalManager, blotter);
+                pw = new PositionWatcher(blotter, mm, lm);
                 break;
             case 1:
                 logger.debug("MODE IS: ____________LIMIT ENTERING____________");
                 algo = new Algorithm_LimitEntering(tradeSystemInfo, externalManager, blotter);
+                pw = new PositionWatcher(blotter, mm, lm);
                 break;
             case 2:
                 logger.debug("MODE IS: ____________START IN MARKET____________");
                 algo = new Algorithm_StartInMarket(tradeSystemInfo, externalManager, blotter);
+                lm_additional = new LimitMaker(externalManager, blotter);
+                pw = new PositionWatcher(blotter, mm, lm, lm_additional);
                 break;
             default:
                 break;
         }
 
-        lm = new LimitMaker(externalManager, blotter);
-        mm = new MarketMaker(externalManager, blotter);
-        pw = new PositionWatcher(blotter, mm, lm);
 
         logger.info("creation of FSA success");
     }
@@ -165,7 +170,7 @@ public class FiniteStateAutomation extends Thread {
         int size;
         int size_n;
         int size_f;
-        int tmpSize;
+        int tempSize;
         Money tempPrice;
         switch (tradeSystemInfo.current_tactics) {
             case 0:
@@ -175,21 +180,21 @@ public class FiniteStateAutomation extends Thread {
                         if (lm.cancelOrderAndGetFilled() == 0) {
                             size_n = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
                             size_f = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                            tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
-                            size = pw.defineMaxPossibleSize(tmpSize);
+                            tempSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                            size = pw.defineMaxPossibleSize(tempSize);
 
                             mm.hitPairOrdersToMarket(size, Term.NEAR, size, Term.FAR);
                         }
                         break;
                     case L_M_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Buy);
                         break;
                     case M_L_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(size, Term.FAR, Order.Deal.Sell);
                         break;
@@ -197,22 +202,22 @@ public class FiniteStateAutomation extends Thread {
                         if (lm.cancelOrderAndGetFilled() == 0) {
                             size_n = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
                             size_f = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                            tmpSize = MarketMaker.choosePairDealSize(size_n, size_f);
+                            tempSize = MarketMaker.choosePairDealSize(size_n, size_f);
 
-                            size = pw.defineMaxPossibleSize(tmpSize);
+                            size = pw.defineMaxPossibleSize(tempSize);
 
                             mm.hitPairOrdersToMarket(size, Term.FAR, size, Term.NEAR);
                         }
                         break;
                     case L_M_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(size, Term.NEAR, Order.Deal.Sell);
                         break;
                     case M_L_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(size, Term.FAR, Order.Deal.Buy);
                         break;
@@ -229,8 +234,8 @@ public class FiniteStateAutomation extends Thread {
                 logger.debug("MODE: __________________LIMIT_ENTERING__________________");
                 switch (signal) {
                     case L_M_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                        size = pw.defineMaxPossibleSize(tempSize);
                         tempPrice = blotter.getSpreadCalculator().getGuideValue().subtract(tradeSystemInfo.entering_dev);
 
                         lm.rollLimitOrderIncludingPriceInput(
@@ -242,8 +247,8 @@ public class FiniteStateAutomation extends Thread {
                         logger.debug("ENTERING ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
                         break;
                     case L_M_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                        size = pw.defineMaxPossibleSize(tempSize);
                         tempPrice = blotter.getSpreadCalculator().getGuideValue().add(tradeSystemInfo.entering_dev);
 
                         lm.rollLimitOrderIncludingPriceInput(
@@ -254,8 +259,8 @@ public class FiniteStateAutomation extends Thread {
                         logger.debug("ENTERING ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
                         break;
                     case M_L_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(
                                 size,
@@ -263,8 +268,8 @@ public class FiniteStateAutomation extends Thread {
                                 Order.Deal.Buy);
                         break;
                     case M_L_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                        tempSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrder(
                                 size,
@@ -280,28 +285,23 @@ public class FiniteStateAutomation extends Thread {
             case 2:
                 logger.debug("MODE: __________________START_IN_MARKET__________________");
                 switch (signal) {
-                    case M_L_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
+                    case L_M_SELL:
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
+                        size = pw.defineMaxPossibleSize(tempSize);
+                        tempPrice = blotter.getAsk_n();
 
-                        lm.rollLimitOrder(
+                        lm.rollLimitOrderIncludingPriceInput(
                                 size,
-                                Term.FAR,
-                                Order.Deal.Buy);
+                                Term.NEAR,
+                                Order.Deal.Sell,
+                                tempPrice);
+                        logger.debug("ENTER ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount());
                         break;
-                    case M_L_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.NEAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
 
-                        lm.rollLimitOrder(
-                                size,
-                                Term.FAR,
-                                Order.Deal.Sell);
-                        break;
                     case L_M_BUY:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
-                        size = pw.defineMaxPossibleSize(tmpSize);
-                        tempPrice = blotter.getSpreadCalculator().getGuideValue().subtract(tradeSystemInfo.entering_dev);
+                        tempSize = mm.defineMaxMarketSize(Term.FAR, Side.BID);
+                        size = pw.defineMaxPossibleSize(tempSize);
+                        tempPrice = blotter.getBid_n();
 
                         lm.rollLimitOrderIncludingPriceInput(
                                 size,
@@ -309,19 +309,45 @@ public class FiniteStateAutomation extends Thread {
                                 Order.Deal.Buy,
                                 tempPrice);
 
-                        logger.debug("EXIT ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
+                        logger.debug("ENTER ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount());
                         break;
-                    case L_M_SELL:
-                        tmpSize = mm.defineMaxMarketSize(Term.FAR, Side.ASK);
-                        size = pw.defineMaxPossibleSize(tmpSize);
-                        tempPrice = blotter.getSpreadCalculator().getGuideValue().add(tradeSystemInfo.entering_dev);
+                    case L_L_BUY:
+                        tempSize = mm.choosePairDealSize(
+                                mm.defineMaxMarketSize(Term.NEAR, Side.ASK),
+                                mm.defineMaxMarketSize(Term.FAR, Side.BID));
+                        size = pw.defineMaxPossibleSize(tempSize);
+
+                        lm.rollLimitOrderIncludingPriceInput(
+                                size,
+                                Term.NEAR,
+                                Order.Deal.Buy,
+                                blotter.getSpreadCalculator().getEnterPointNear());
+
+                        lm_additional.rollLimitOrderIncludingPriceInput(
+                                size,
+                                Term.FAR,
+                                Order.Deal.Sell,
+                                blotter.getSpreadCalculator().getEnterPointFar()
+                        );
+                        break;
+                    case L_L_SELL:
+                        tempSize = mm.choosePairDealSize(
+                                mm.defineMaxMarketSize(Term.NEAR, Side.BID),
+                                mm.defineMaxMarketSize(Term.FAR, Side.ASK));
+                        size = pw.defineMaxPossibleSize(tempSize);
 
                         lm.rollLimitOrderIncludingPriceInput(
                                 size,
                                 Term.NEAR,
                                 Order.Deal.Sell,
-                                tempPrice);
-                        logger.debug("EXIT ORDER PLACED AT LIMIT PRICE: " + tempPrice.getAmount() + " GUIDE PRICE: " + blotter.getSpreadCalculator().getGuideValue().getAmount());
+                                blotter.getSpreadCalculator().getEnterPointNear());
+
+                        lm_additional.rollLimitOrderIncludingPriceInput(
+                                size,
+                                Term.FAR,
+                                Order.Deal.Buy,
+                                blotter.getSpreadCalculator().getEnterPointFar()
+                        );
                         break;
 
                     case NOTHING:

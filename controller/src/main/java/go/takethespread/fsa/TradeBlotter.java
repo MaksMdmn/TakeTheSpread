@@ -270,11 +270,11 @@ public class TradeBlotter {
 
                 return Phase.OFF_SEASON;
             case 2:
-                if (pos_n == tradeSystemInfo.max_size) {
+                if (pos_n > 0) {
                     return Phase.DISTRIBUTION;
                 }
 
-                if (bestSpread.lessOrEqualThan(spreadCalculator.getCalcSpread()) && pos_n < tradeSystemInfo.max_size) {
+                if (pos_n < tradeSystemInfo.max_size) {
                     return Phase.ACCUMULATION;
                 }
 

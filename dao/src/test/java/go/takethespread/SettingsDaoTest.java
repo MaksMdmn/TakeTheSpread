@@ -76,12 +76,12 @@ public class SettingsDaoTest {
         max_loss_n.setValue("2");
         commis.setValue("4.87");
         max_size.setValue("1");
-        entering_dev.setValue("0.04");
+        entering_dev.setValue("0.03"); //was 0.04
         default_spread.setValue("0.65");
-        spread_ticks_ago_n.setValue("10"); // was 16
+        spread_ticks_ago_n.setValue("4000"); // was 10
         inPos_time_sec.setValue("30");
         default_spread_using.setValue("false");
-        lobsta_tactics.setValue("0"); // was 2
+        lobsta_tactics.setValue("2"); // was 0
     }
 
     private static void persistMySettings(GenericDao<Setting, Integer> settingDao) throws PersistException {

@@ -10,6 +10,7 @@ public class PositionWatcher {
     private TradeBlotter blotter;
     private MarketMaker marketMaker;
     private LimitMaker limitMaker;
+    private LimitMaker additionalLimitMaker;
     private int prevPos_n;
     private int prevPos_f;
     private int curPos_n;
@@ -21,11 +22,24 @@ public class PositionWatcher {
         this.blotter = blotter;
         this.marketMaker = mm;
         this.limitMaker = lm;
+        this.additionalLimitMaker = null;
         this.prevPos_n = 0;
         this.prevPos_f = 0;
         this.curPos_n = 0;
         this.curPos_f = 0;
-        logger.info("PW created");
+        logger.info("PW with 1 LM created");
+    }
+
+    public PositionWatcher(TradeBlotter blotter, MarketMaker mm, LimitMaker lm, LimitMaker additionalLimitMaker) {
+        this.blotter = blotter;
+        this.marketMaker = mm;
+        this.limitMaker = lm;
+        this.additionalLimitMaker = additionalLimitMaker;
+        this.prevPos_n = 0;
+        this.prevPos_f = 0;
+        this.curPos_n = 0;
+        this.curPos_f = 0;
+        logger.info("PW with 2 LM (one additional) created");
     }
 
     public void equalizePositions() {
@@ -101,7 +115,11 @@ public class PositionWatcher {
             return; //exception here?
         }
         marketMaker.hitOrderToMarket(Math.abs(diff), fillTerm, deal);
-        limitMaker.makeFrontRunOrderNull();
+
+        limitMaker.cancelOrderAndGetFilled();
+        if (additionalLimitMaker != null) {
+            additionalLimitMaker.cancelOrderAndGetFilled();
+        }
 
         logger.info("equalizing: " + fillTerm + " " + Math.abs(diff) + " " + deal);
     }

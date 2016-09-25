@@ -53,6 +53,8 @@ public abstract class Algorithm {
         M_M_SELL,
         L_M_SELL,
         M_L_SELL,
+        L_L_BUY,
+        L_L_SELL,
         NOTHING
     }
 }

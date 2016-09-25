@@ -34,6 +34,8 @@ public class SpreadCalculator {
     private Money calcSpread;
     private Money enteringSpread;
     private Money guideValue;
+    private Money enterPointNear;
+    private Money enterPointFar;
 
     private boolean isEnoughData;
     private volatile boolean isPauseEnabled;
@@ -43,8 +45,8 @@ public class SpreadCalculator {
     public SpreadCalculator(TradeBlotter blotter, TradeSystemInfo tradeSystemInfo) {
         this.blotter = blotter;
         this.tradeSystemInfo = tradeSystemInfo;
-        this.marketData = new LinkedBlockingDeque<>();
         this.spreadMap = new HashMap<>();
+        this.marketData = new LinkedBlockingDeque<>();
         switch (tradeSystemInfo.current_tactics) {
             case 0:
                 break;
@@ -53,8 +55,6 @@ public class SpreadCalculator {
                 this.marketDataNearAsk = new LinkedBlockingDeque<>();
                 break;
             case 2:
-                this.marketDataNearBid = new LinkedBlockingDeque<>();
-                this.marketDataNearAsk = new LinkedBlockingDeque<>();
                 break;
             default:
                 break;
@@ -80,8 +80,8 @@ public class SpreadCalculator {
                 calcSpreadsForLimitEntering();
                 break;
             case 2:
-                collectDataForLimitEntering();
-                calcSpreadsForLimitEntering();
+                collectCalcData();
+                calcSpreads();
                 break;
             default:
                 break;
@@ -115,6 +115,14 @@ public class SpreadCalculator {
         return isEnoughData;
     }
 
+    public Money getEnterPointNear() {
+        return enterPointNear;
+    }
+
+    public Money getEnterPointFar() {
+        return enterPointFar;
+    }
+
     protected void clearAnalysingData() {
         marketData.clear();
         switch (tradeSystemInfo.current_tactics) {
@@ -125,8 +133,6 @@ public class SpreadCalculator {
                 marketDataNearAsk.clear();
                 break;
             case 2:
-                marketDataNearBid.clear();
-                marketDataNearAsk.clear();
                 break;
             default:
                 break;
@@ -156,18 +162,6 @@ public class SpreadCalculator {
     }
 
     private void collectCalcData() {
-//        if (!isPauseEnabled) {
-//            Money spreadCon = blotter.getBestSpread();
-//
-//            if (isEnoughData) {
-//                marketData.removeFirst();
-//                marketData.addLast(spreadCon);
-//            } else {
-//                marketData.addLast(spreadCon);
-//            }
-//        } else {
-//            checkPauseNecessity();
-//        }
         if (!isPauseEnabled) {
             Money spread = blotter.getBestSpread();
 
@@ -200,17 +194,6 @@ public class SpreadCalculator {
             return;
         }
 
-//        if (marketData == null) {
-//            throw new NullPointerException("marketData is null.");
-//        }
-//
-//        if (marketData.isEmpty()) {
-//            throw new IllegalArgumentException("market data is empty, cannot calc that, man.");
-//        }
-//
-//        calcSpread = marketData.peekFirst();
-//        enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
-
         Integer tempMax = 0;
         for (Map.Entry<Money, Integer> pair : spreadMap.entrySet()) {
             if (tempMax < pair.getValue()) {
@@ -220,9 +203,6 @@ public class SpreadCalculator {
         }
         logger.debug("calc spread: " + calcSpread.getAmount() + " was met: " + spreadMap.get(calcSpread) + " times.");
         enteringSpread = calcSpread.add(tradeSystemInfo.entering_dev);
-
-        logger.debug("curSpr = " + calcSpread.getAmount() + " based on: ");
-
     }
 
     private void collectDataForLimitEntering() {
@@ -287,6 +267,37 @@ public class SpreadCalculator {
         calcSpread = marketData.peekFirst();
     }
 
+
+    private void calcSpreadsStartInMarket() {
+        if (!isEnoughData) {
+            return;
+        }
+
+        if (isPauseEnabled) {
+            //previous value and last element is excess
+            logger.debug("pause now, should to be old spread value: " + calcSpread.getAmount());
+            return;
+        }
+
+        Integer tempMax = 0;
+        for (Map.Entry<Money, Integer> pair : spreadMap.entrySet()) {
+            if (tempMax < pair.getValue()) {
+                tempMax = pair.getValue();
+                calcSpread = pair.getKey();
+            }
+        }
+        logger.debug("calc spread: " + calcSpread.getAmount() + " was met: " + spreadMap.get(calcSpread) + " times.");
+        Money tempDiff= tradeSystemInfo.entering_dev
+                .subtract((blotter.getBestSpread().subtract(calcSpread)));
+        if(blotter.isNearLessThanFar()){
+            enterPointNear = blotter.getAsk_n().subtract(tempDiff);
+            enterPointFar = blotter.getBid_f().add(tempDiff);
+        }else{
+            enterPointNear = blotter.getBid_n().add(tempDiff);
+            enterPointFar = blotter.getAsk_f().subtract(tempDiff);
+        }
+    }
+
     private boolean checkEnoughData() {
         switch (tradeSystemInfo.current_tactics) {
             case 0:
@@ -295,7 +306,7 @@ public class SpreadCalculator {
             case 1:
                 return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
             case 2:
-                return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
+                return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
             default:
                 break;
         }
