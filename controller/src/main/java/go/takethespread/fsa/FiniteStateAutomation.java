@@ -321,13 +321,13 @@ public class FiniteStateAutomation extends Thread {
                                 size,
                                 Term.NEAR,
                                 Order.Deal.Buy,
-                                blotter.getSpreadCalculator().getEnterPointNear());
+                                blotter.getSpreadCalculator().getExitPointNear());
 
                         lm_additional.rollLimitOrderIncludingPriceInput(
                                 size,
                                 Term.FAR,
                                 Order.Deal.Sell,
-                                blotter.getSpreadCalculator().getEnterPointFar()
+                                blotter.getSpreadCalculator().getExitPointFar()
                         );
                         break;
                     case L_L_SELL:
@@ -340,17 +340,23 @@ public class FiniteStateAutomation extends Thread {
                                 size,
                                 Term.NEAR,
                                 Order.Deal.Sell,
-                                blotter.getSpreadCalculator().getEnterPointNear());
+                                blotter.getSpreadCalculator().getExitPointNear());
 
                         lm_additional.rollLimitOrderIncludingPriceInput(
                                 size,
                                 Term.FAR,
                                 Order.Deal.Buy,
-                                blotter.getSpreadCalculator().getEnterPointFar()
+                                blotter.getSpreadCalculator().getExitPointFar()
                         );
                         break;
 
                     case NOTHING:
+                        if (lm.isOrderPlaced()) {
+                            lm.cancelOrderAndGetFilled();
+                        }
+                        if (lm_additional.isOrderPlaced()) {
+                            lm_additional.cancelOrderAndGetFilled();
+                        }
                         break;
                     default:
                         break;

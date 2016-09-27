@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class SpreadCalculator {
@@ -28,14 +27,15 @@ public class SpreadCalculator {
     private Money prevBid;
     private Money prevAsk;
 
+    private long startWorkTime;
     private long startPauseTime;
     private long pauseDuration;
 
     private Money calcSpread;
     private Money enteringSpread;
     private Money guideValue;
-    private Money enterPointNear;
-    private Money enterPointFar;
+    private Money exitPointNear;
+    private Money exitPointFar;
 
     private boolean isEnoughData;
     private volatile boolean isPauseEnabled;
@@ -55,6 +55,7 @@ public class SpreadCalculator {
                 this.marketDataNearAsk = new LinkedBlockingDeque<>();
                 break;
             case 2:
+                this.startWorkTime = System.currentTimeMillis();
                 break;
             default:
                 break;
@@ -70,6 +71,7 @@ public class SpreadCalculator {
 
     public void makeCalculations() {
         isEnoughData = checkEnoughData();
+        logger.debug("IS DATA ENOUGH: " + isEnoughData + " startTime: " + new Date(startWorkTime) + " currentTime: " + new Date());
         switch (tradeSystemInfo.current_tactics) {
             case 0:
                 collectCalcData();
@@ -81,7 +83,7 @@ public class SpreadCalculator {
                 break;
             case 2:
                 collectCalcData();
-                calcSpreads();
+                calcSpreadsStartInMarket();
                 break;
             default:
                 break;
@@ -115,12 +117,12 @@ public class SpreadCalculator {
         return isEnoughData;
     }
 
-    public Money getEnterPointNear() {
-        return enterPointNear;
+    public Money getExitPointNear() {
+        return exitPointNear;
     }
 
-    public Money getEnterPointFar() {
-        return enterPointFar;
+    public Money getExitPointFar() {
+        return exitPointFar;
     }
 
     protected void clearAnalysingData() {
@@ -287,15 +289,17 @@ public class SpreadCalculator {
             }
         }
         logger.debug("calc spread: " + calcSpread.getAmount() + " was met: " + spreadMap.get(calcSpread) + " times.");
-        Money tempDiff= tradeSystemInfo.entering_dev
+        Money tempDiff = tradeSystemInfo.entering_dev
                 .subtract((blotter.getBestSpread().subtract(calcSpread)));
-        if(blotter.isNearLessThanFar()){
-            enterPointNear = blotter.getAsk_n().subtract(tempDiff);
-            enterPointFar = blotter.getBid_f().add(tempDiff);
-        }else{
-            enterPointNear = blotter.getBid_n().add(tempDiff);
-            enterPointFar = blotter.getAsk_f().subtract(tempDiff);
+        if (blotter.isNearLessThanFar()) {
+            exitPointNear = blotter.getAsk_n().subtract(tempDiff);
+            exitPointFar = blotter.getBid_f().add(tempDiff);
+        } else {
+            exitPointNear = blotter.getBid_n().add(tempDiff);
+            exitPointFar = blotter.getAsk_f().subtract(tempDiff);
         }
+
+        logger.debug("EXIT POINTS N&F: " + exitPointNear.getAmount() + " " + exitPointFar.getAmount());
     }
 
     private boolean checkEnoughData() {
@@ -306,7 +310,7 @@ public class SpreadCalculator {
             case 1:
                 return marketDataNearBid.size() >= tradeSystemInfo.spread_ticks_ago;
             case 2:
-                return marketData.size() >= tradeSystemInfo.spread_ticks_ago;
+                return startWorkTime + 1000 * 20 <= System.currentTimeMillis();
             default:
                 break;
         }
@@ -346,5 +350,4 @@ public class SpreadCalculator {
             }
         }
     }
-
 }

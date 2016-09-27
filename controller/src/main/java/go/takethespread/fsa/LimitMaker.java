@@ -87,11 +87,11 @@ public class LimitMaker {
             return;
         }
 
-        if (frontRunOrder != null) {
-            logger.debug("TRY TO CHOOSE PRICE BETWEEN(favor, old): " + price.getAmount() + " " + frontRunOrder.getPrice().getAmount());
-            price = blotter.getSpreadCalculator().necessityOfWorstExitLimitPrice(price, frontRunOrder.getPrice());
-            logger.debug("CHOISE: " + price.getAmount());
-        }
+//        if (frontRunOrder != null) {
+//            logger.debug("TRY TO CHOOSE PRICE BETWEEN(favor, old): " + price.getAmount() + " " + frontRunOrder.getPrice().getAmount());
+//            price = blotter.getSpreadCalculator().necessityOfWorstExitLimitPrice(price, frontRunOrder.getPrice());
+//            logger.debug("CHOISE: " + price.getAmount());
+//        }
 
         String tmpInstr = blotter.termToInstrument(term);
         isRollNecessary = isRollNecessaryIncludingPriceCheck(size, term, deal, price);

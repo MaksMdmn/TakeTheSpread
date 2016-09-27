@@ -16,13 +16,12 @@ public class Algorithm_StartInMarket extends Algorithm {
 
     @Override
     protected Signal getEnterSignal() {
-        Money oneStep = Money.dollars(0.01d);
         boolean dataEnoughCheck = blotter.getSpreadCalculator().isEnoughData();
         boolean spreadCheck = blotter.getBestSpread().lessOrEqualThan(
                 blotter.getSpreadCalculator()
                         .getCalcSpread()
-                        .subtract(oneStep));
-        boolean internalSpreadsCheck = (blotter.getAsk_n().subtract(blotter.getBid_n())).equals(oneStep) && (blotter.getAsk_f().subtract(blotter.getBid_f()).equals(oneStep));
+                        .subtract( Money.dollars(0.01d)));
+        boolean internalSpreadsCheck = (blotter.getAsk_n().subtract(blotter.getBid_n())).equals( Money.dollars(0.01d)) && (blotter.getAsk_f().subtract(blotter.getBid_f()).equals( Money.dollars(0.01d)));
 
         if (dataEnoughCheck && spreadCheck && internalSpreadsCheck) {
             if (blotter.isNearLessThanFar()) {
